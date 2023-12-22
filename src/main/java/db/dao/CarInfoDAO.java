@@ -49,6 +49,7 @@ public class CarInfoDAO {
 		return carInfoList;
 	}
 	
+	
 	public List<CarInfoDTO> showCarInfoList(){
 		
 		conn = DBConnectionManager.connectDB();
@@ -79,6 +80,66 @@ public class CarInfoDAO {
 
 		return carInfoList;
 	}
+
+	//차량 크기별 리스트
+public List<CarInfoDTO> findCarInfoListBySize(){
+		
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT DISTINCT car_size FROM car_info ";
+
+		List<CarInfoDTO> carInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			carInfoList = new ArrayList<CarInfoDTO>();
+
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_size"));
+
+				carInfoList.add(carInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return carInfoList;
+	}
 	
+//차량 연료타입별 리스트
+public List<CarInfoDTO> findCarInfoListByType(){
+	
+	conn = DBConnectionManager.connectDB();
+
+	String sql = " SELECT DISTINCT car_type FROM car_info ";
+
+	List<CarInfoDTO> carInfoList = null;
+
+	try {
+		psmt = conn.prepareStatement(sql);
+
+		rs = psmt.executeQuery();
+		carInfoList = new ArrayList<CarInfoDTO>();
+
+		while (rs.next()) {
+			CarInfoDTO carInfoDTO = new CarInfoDTO();
+
+			carInfoList.add(carInfoDTO);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBConnectionManager.closeDB(conn, psmt, rs);
+	}
+
+	return carInfoList;
+}
+
 	}
 
