@@ -33,7 +33,7 @@ public class CarInfoDAO {
 
 			while (rs.next()) {
 				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
-						rs.getString("car_type"),rs.getInt("passanger_count"),rs.getInt("vehicle_rating"),
+						rs.getString("car_type"),rs.getInt("passenger_count"),rs.getInt("vehicle_rating"),
 						rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
 						rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"));
 
@@ -48,5 +48,37 @@ public class CarInfoDAO {
 
 		return carInfoList;
 	}
+	
+	public List<CarInfoDTO> showCarInfoList(){
+		
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT car_name, car_size, model_year FROM car_info "
+					+ " WHERE car_name = '람보르기니 우라칸' ";
+
+		List<CarInfoDTO> carInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			carInfoList = new ArrayList<CarInfoDTO>();
+
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_name"),rs.getString("car_size"),
+						rs.getInt("model_year"));
+
+				carInfoList.add(carInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return carInfoList;
+	}
+	
 	}
 

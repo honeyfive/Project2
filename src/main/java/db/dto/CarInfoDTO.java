@@ -5,7 +5,7 @@ public class CarInfoDTO {
 	String car_name;
 	String car_size;
 	String car_type;
-	int passanger_count;
+	int passenger_count;
 	int vehicle_rating;
 	String company;
 	String color;
@@ -16,7 +16,7 @@ public class CarInfoDTO {
 	int accident_history;
 	
 	
-	public CarInfoDTO(String car_number, String car_name, String car_size, String car_type, int passanger_count,
+	public CarInfoDTO(String car_number, String car_name, String car_size, String car_type, int passenger_count,
 			int vehicle_rating, String company, String color, int model_year, String management_status, String option1,
 			String option2, int accident_history) {
 		super();
@@ -24,7 +24,7 @@ public class CarInfoDTO {
 		this.car_name = car_name;
 		this.car_size = car_size;
 		this.car_type = car_type;
-		this.passanger_count = passanger_count;
+		this.passenger_count = passenger_count;
 		this.vehicle_rating = vehicle_rating;
 		this.company = company;
 		this.color = color;
@@ -33,6 +33,12 @@ public class CarInfoDTO {
 		this.option1 = option1;
 		this.option2 = option2;
 		this.accident_history = accident_history;
+	}
+	
+	public CarInfoDTO (String car_name,String car_size,int model_year) {
+		this.car_name = car_name;
+		this.car_size = car_size;
+		this.model_year = model_year;
 	}
 
 
@@ -76,13 +82,13 @@ public class CarInfoDTO {
 	}
 
 
-	public int getPassanger_count() {
-		return passanger_count;
+	public int getPassenger_count() {
+		return passenger_count;
 	}
 
 
-	public void setPassanger_count(int passanger_count) {
-		this.passanger_count = passanger_count;
+	public void setPassenger_count(int passenger_count) {
+		this.passenger_count = passenger_count;
 	}
 
 
