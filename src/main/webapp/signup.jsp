@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
-    <link rel="stylesheet" href="./css/signup.css">
+<link rel="stylesheet" href="./css/signup.css">
 </head>
 <body>
 
@@ -125,10 +125,12 @@
 							<div class="signin-id">성별</div>
 							<div class="signin-id signin-gender">
 								<div>
-									<input class="input-gender" type="radio" name="gender">남성
+									<input class="input-gender" type="radio" name="gender"
+										value="F">남성
 								</div>
 								<div>
-									<input class="input-gender" type="radio" name="gender">여성
+									<input class="input-gender" type="radio" name="gender"
+										value="M">여성
 								</div>
 							</div>
 						</div>
@@ -138,19 +140,19 @@
 							<div class="input-box">
 								<div class=" signin-li">
 									<div>
-										<input class="input-li" type="text" name="license">
+										<input class="input-li" type="text" name="license-1">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license">
+										<input class="input-li" type="text" name="license-2">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license">
+										<input class="input-li" type="text" name="license-3">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license">
+										<input class="input-li" type="text" name="license-4">
 									</div>
 								</div>
 								<div>
@@ -162,9 +164,9 @@
 						<div class="signin-input signin-input-id">
 							<div class="signin-id">면허취득일</div>
 							<div class="signin-birth">
-								<input class="birth-box" name="birth-year" id="birth-year"
+								<input class="birth-box" name="license-year" id="license-year"
 									type="text" placeholder="취득년도"> <select
-									class="birth-box" name="birth-month" id="birth-month">
+									class="birth-box" name="license-month" id="license-month">
 									<option disabled selected>월</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -179,7 +181,7 @@
 									<option value="11">11</option>
 									<option value="12">12</option>
 
-								</select> <select class="birth-box" name="birth-date" id="birth-date">
+								</select> <select class="birth-box" name="license-date" id="license-date">
 									<option disabled selected>일</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -219,7 +221,19 @@
 								<div class="signin-id">전화번호</div>
 								<div class="input-box">
 									<div class="input-item">
-										<input class="input-id" type="text" name="tel">
+										<div class=" signin-tel">
+											<div>
+												<input class="input-tel" type="text" name="tel-1">
+											</div>
+											<div class="input-li-slash">-</div>
+											<div>
+												<input class="input-tel" type="text" name="tel-2">
+											</div>
+											<div class="input-li-slash">-</div>
+											<div>
+												<input class="input-tel" type="text" name="te1-3">
+											</div>
+										</div>
 									</div>
 									<div>
 										<button class="id-chd">확인</button>
@@ -241,13 +255,13 @@
 							<!-- 동의 문구 -->
 							<div class="checkbox">
 								<div>
-									<input type="checkbox"> SMS/전화 수신 동의 (선택)
+									<input type="checkbox" name="sms-ok"> SMS/전화 수신 동의 (선택)
 								</div>
 								<div>
-									<input type="checkbox"> 이메일 수신 동의 (선택)
+									<input type="checkbox" name="email-ok"> 이메일 수신 동의 (선택)
 								</div>
 								<div>
-									<input type="checkbox"> 개인정보수집 및 이용 동의
+									<input type="checkbox" name="l-am-ok"> 개인정보수집 및 이용 동의
 								</div>
 							</div>
 							<!-- 회원가입버튼-->
@@ -258,5 +272,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
