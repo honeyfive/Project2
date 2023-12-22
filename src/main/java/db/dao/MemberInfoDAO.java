@@ -16,7 +16,11 @@ public class MemberInfoDAO {
 	PreparedStatement psmt;
 	ResultSet rs;
 
+<<<<<<< HEAD
 	// 조회
+=======
+	// 멤버정보찾기리스트
+>>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 	public List<MemberInfoDTO> findMemberList() {
 
 		conn = DBConnectionManager.connectDB();
@@ -49,6 +53,7 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+<<<<<<< HEAD
 	}
 
 	// 저장
@@ -176,13 +181,51 @@ public class MemberInfoDAO {
 	
 			result = psmt.executeUpdate();
 			
+=======
+	}
+
+	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
+	public List<MemberInfoDTO> findMemberListById(String targetId, String targetPw) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM member_info WHERE id = ? and password = ? ";
+
+		System.out.println(targetId + targetPw);
+		
+		List<MemberInfoDTO> memberInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, targetId);
+			psmt.setString(2, targetPw);
+			rs = psmt.executeQuery();
+			memberInfoList = new ArrayList<MemberInfoDTO>(); // 못 찾아도 null이 아님
+
+			while (rs.next()) {
+
+				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
+						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
+						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
+						rs.getInt("overdue_history"), rs.getInt("use_count"));
+
+				memberInfoList.add(memberInfoDTO);
+			}
+
+>>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
+<<<<<<< HEAD
 		
 		return result;
+=======
+
+		return memberInfoList;
+
+>>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 	}
 
 }

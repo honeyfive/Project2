@@ -1,13 +1,10 @@
-<%@page import="java.util.List"%>
-<%@page import="db.dao.InsuranceInfoDAO"%>
-<%@page import="db.dto.InsuranceInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>헤더</title>
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -61,25 +58,5 @@
 		</div>
 
 	</div>
-
-	<%
-	InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
-	List<InsuranceInfoDTO> insuranceinfoList = insuranceDAO.findInsuranceInfoList();
-	%>
-	<table>
-		<h3>보험종류</h3>
-		<tr>전체<input type="checkbox"><tr>
-			<%
-			if (insuranceinfoList != null) {
-				for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
-			%>
-		
-		<tr><%=insuranceinfo.getInsurance_type()%><input type="checkbox"></tr>
-		<%
-		}
-		}
-		%>
-	</table>
-
 </body>
 </html>
