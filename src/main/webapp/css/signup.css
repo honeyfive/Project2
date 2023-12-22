@@ -103,7 +103,7 @@ body{
     color: #0D6FFC;
     font-size: 12px;
     font-weight: lighter;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 
 #pw-check{
@@ -136,10 +136,9 @@ body{
 
 /*운전면허번호*/
 .signin-li{
-    width: 500px;
+    width: 430px;
     height: 40px;
     margin: auto;
-    margin-right: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -154,6 +153,23 @@ body{
 .input-li-slash{
     width: 10px;
     height: 40px;
+}
+
+/*전화번호*/
+.signin-tel{
+    width: 430px;
+    height: 40px;
+    margin: auto;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-tel{
+    width: 120px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
 }
 
 /*동의문구*/
