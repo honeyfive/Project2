@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>헤더</title>
-<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -18,13 +18,13 @@
 			<!-- 헤더 로고-->
 			<div class="header-nav-img">
 				<a href=""> <!-- 이미지 누르면 메인 화면으로 이동하도록 .. 나중에 링크 추가하기--> <img
-					id="hugo-logo" src="../images/휴카로고_예비1.png" alt="hugo logo">
+					id="hugo-logo" src="./images/휴카로고_예비1.png" alt="hugo logo">
 				</a>
 			</div>
 
 			<!-- 네비게이션 버튼-->
 			<div class="header-nav-btn">
-				<a href="../Reservation.jsp"> <!-- 예약 페이지 연결-->
+				<a href="./Reservation.jsp"> <!-- 예약 페이지 연결-->
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
 				</a> <a href=""> <!-- 결제 페이지 연결-->
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
