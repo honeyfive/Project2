@@ -1,14 +1,14 @@
 package db.dto;
 
 public class HistoryInfoDTO {
-	public String reservation_number;
+	public int reservation_number;
 	public int membership_number;
 	public String return_date;
 	public String real_return_date;
 	public int overdue_history;
 	public String accident_history;
 	
-	public HistoryInfoDTO(String reservation_number, int membership_number, String return_date, String real_return_date,
+	public HistoryInfoDTO(int reservation_number, int membership_number, String return_date, String real_return_date,
 			int overdue_history, String accident_history) {
 		super();
 		this.reservation_number = reservation_number;
@@ -19,11 +19,11 @@ public class HistoryInfoDTO {
 		this.accident_history = accident_history;
 	}
 
-	public String getReservation_number() {
+	public int getReservation_number() {
 		return reservation_number;
 	}
 
-	public void setReservation_number(String reservation_number) {
+	public void setReservation_number(int reservation_number) {
 		this.reservation_number = reservation_number;
 	}
 

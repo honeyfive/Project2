@@ -15,7 +15,7 @@
 	InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
 	List<InsuranceInfoDTO> insuranceinfoList = insuranceDAO.findInsuranceInfoList();
 	%>
-<table border="1">
+<table>
 		<h3>보험종류</h3>
 		<tr>전체<input type="checkbox"><tr>
 		<%
@@ -28,18 +28,7 @@
 			}
 		}
 			%>
-<h3>자동차모델</h3>
-<%
-		if(insuranceinfoList != null) {
-			for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
-		%>
-		
-		<tr> <%=insuranceinfo.getInsurance_type()%><input type="checkbox"></tr>
-			<%
-			}
-		}
-			%>
-	</table>
+</table>
 	
 </body>
 </html>
