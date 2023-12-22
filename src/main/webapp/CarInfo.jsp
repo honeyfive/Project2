@@ -10,56 +10,120 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		CarInfoDAO carInfoDAO = new CarInfoDAO();
-		List<CarInfoDTO> carInfoList = carInfoDAO.findCarInfoList(); 
-	%> 
+	<%CarInfoDAO carInfoDAO = new CarInfoDAO(); %>
 	
-	<h1>차량 정보 테이블</h1>
-	<table border=1;>
-	<tr>
-		<th>차량 번호</th>
-		<th>차량명</th>
-		<th>차 크기</th>
-		<th>차종</th>
-		<th>승차인원</th>
-		<th>차량등급(배기량)</th>
-		<th>제조회사</th>
-		<th>색상</th>
-		<th>연식</th>
-		<th>관리상태</th>
-		<th>옵션1</th>
-		<th>옵션2</th>
-		<th>사고이력</th>
-	</tr>
-	<%
-	if(carInfoList != null){
-		for(CarInfoDTO carInfoDTO : carInfoList){
-	%>		
-	<tr>
-		<td><%=carInfoDTO.getCar_number() %></td>
-		<td><%=carInfoDTO.getCar_name() %></td>
-		<td><%=carInfoDTO.getCar_size() %></td>
-		<td><%=carInfoDTO.getCar_type() %></td>
-		<td><%=carInfoDTO.getPassanger_count() %></td>
-		<td><%=carInfoDTO.getVehicle_rating() %></td>
-		<td><%=carInfoDTO.getCompany() %></td>
-		<td><%=carInfoDTO.getColor() %></td>
-		<td><%=carInfoDTO.getModel_year() %></td>
-		<td><%=carInfoDTO.getManagement_status() %></td>
-		<td><%=carInfoDTO.getOption1() %></td>
-		<td><%=carInfoDTO.getOption2() %></td>
-		<td><%=carInfoDTO.getAccident_history() %></td>
-	</tr>
-	<%
-		}
-	}
+	<% 	CarInfoDTO showRecommendCarInfo1 = carInfoDAO.showRecommendCarInfo1();
+		CarInfoDTO showRecommendCarInfo2 = carInfoDAO.showRecommendCarInfo2();
+		CarInfoDTO showRecommendCarInfo3 = carInfoDAO.showRecommendCarInfo3();
+		CarInfoDTO showRecommendCarInfo4 = carInfoDAO.showRecommendCarInfo4();
+		
+		CarInfoDTO showCheapCarInfo1 = carInfoDAO.showCheapCarInfo1();
+		CarInfoDTO showCheapCarInfo2 = carInfoDAO.showCheapCarInfo2();
+		CarInfoDTO showCheapCarInfo3 = carInfoDAO.showCheapCarInfo3();
+		CarInfoDTO showCheapCarInfo4 = carInfoDAO.showCheapCarInfo4();
+		
+		CarInfoDTO showOldCarInfo1 = carInfoDAO.showOldCarInfo1();
+		CarInfoDTO showOldCarInfo2 = carInfoDAO.showOldCarInfo2();
+		CarInfoDTO showOldCarInfo3 = carInfoDAO.showOldCarInfo3();
+		CarInfoDTO showOldCarInfo4 = carInfoDAO.showOldCarInfo4();
+		
+		CarInfoDTO showPopularCarInfo1 = carInfoDAO.showPopularCarInfo1();
+		CarInfoDTO showPopularCarInfo2 = carInfoDAO.showPopularCarInfo2();
+		CarInfoDTO showPopularCarInfo3 = carInfoDAO.showPopularCarInfo3();
+		CarInfoDTO showPopularCarInfo4 = carInfoDAO.showPopularCarInfo4();
 	%>
-	</table>	
 	
 	
+	<!-- 추천 차량 정보 보여주는 쿼리 -->
+	<h1>추천 차량 리스트</h1>
+	<h2>추천 차량 1</h2>
+	<span><%=showRecommendCarInfo1.getCar_name() %></span>
+	<span><%=showRecommendCarInfo1.getCar_size() %></span>
+	<span><%=showRecommendCarInfo1.getModel_year() %>년식</span>
+	
+	<h2>추천 차량 2</h2>
+	<span><%=showRecommendCarInfo2.getCar_name() %></span>
+	<span><%=showRecommendCarInfo2.getCar_size() %></span>
+	<span><%=showRecommendCarInfo2.getModel_year() %>년식</span>
+	
+	<h2>추천 차량 3</h2>
+	<span><%=showRecommendCarInfo3.getCar_name() %></span>
+	<span><%=showRecommendCarInfo3.getCar_size() %></span>
+	<span><%=showRecommendCarInfo3.getModel_year() %>년식</span>
+	
+	<h2>추천 차량 4</h2>
+	<span><%=showRecommendCarInfo4.getCar_name() %></span>
+	<span><%=showRecommendCarInfo4.getCar_size() %></span>
+	<span><%=showRecommendCarInfo4.getModel_year() %>년식</span>
 	
 	
+	<!-- 가성비 차량 정보 보여주는 쿼리  -->
+	<h1>가성비 차량 리스트</h1>
+	<h2>가성비 차량 1</h2>
+	<span><%=showCheapCarInfo1.getCar_name() %></span>
+	<span><%=showCheapCarInfo1.getCar_size() %></span>
+	<span><%=showCheapCarInfo1.getModel_year() %>년식</span>
+	
+	
+	<h2>가성비 차량 2</h2>
+	<span><%=showCheapCarInfo2.getCar_name() %></span>
+	<span><%=showCheapCarInfo2.getCar_size() %></span>
+	<span><%=showCheapCarInfo2.getModel_year() %>년식</span>
+	
+	<h2>가성비 차량 3</h2>
+	<span><%=showCheapCarInfo3.getCar_name() %></span>
+	<span><%=showCheapCarInfo3.getCar_size() %></span>
+	<span><%=showCheapCarInfo3.getModel_year() %>년식</span>
+	
+	<h2>가성비 차량 4</h2>
+	<span><%=showCheapCarInfo4.getCar_name() %></span>
+	<span><%=showCheapCarInfo4.getCar_size() %></span>
+	<span><%=showCheapCarInfo4.getModel_year() %>년식</span>
+	
+	<!-- Y2K 차량 정보 보여주는 쿼리  -->
+	<h1>Y2K 차량 리스트</h1>
+	
+	<h2>Y2K 차량 1</h2>
+	<span><%=showOldCarInfo1.getCar_name() %></span>
+	<span><%=showOldCarInfo1.getCar_size() %></span>
+	<span><%=showOldCarInfo1.getModel_year() %>년식</span>
+	
+	<h2>Y2K 차량 2</h2>
+	<span><%=showOldCarInfo2.getCar_name() %></span>
+	<span><%=showOldCarInfo2.getCar_size() %></span>
+	<span><%=showOldCarInfo2.getModel_year() %>년식</span>
+	
+	<h2>Y2K 차량 3</h2>
+	<span><%=showOldCarInfo3.getCar_name() %></span>
+	<span><%=showOldCarInfo3.getCar_size() %></span>
+	<span><%=showOldCarInfo3.getModel_year() %>년식</span>
+
+	<h2>Y2K 차량 4</h2>
+	<span><%=showOldCarInfo4.getCar_name() %></span>
+	<span><%=showOldCarInfo4.getCar_size() %></span>
+	<span><%=showOldCarInfo4.getModel_year() %>년식</span>
+	
+	<!-- 인기 차량 정보 보여주는 쿼리 -->
+	<h1>인기 차량 리스트</h1>
+	<h2>인기 차량 1</h2>
+	<span><%=showPopularCarInfo1.getCar_name() %></span>
+	<span><%=showPopularCarInfo1.getCar_size() %></span>
+	<span><%=showPopularCarInfo1.getModel_year() %>년식</span>
+	
+	<h2>인기 차량 2</h2>
+	<span><%=showPopularCarInfo2.getCar_name() %></span>
+	<span><%=showPopularCarInfo2.getCar_size() %></span>
+	<span><%=showPopularCarInfo2.getModel_year() %>년식</span>
+	
+	<h2>인기 차량 3</h2>
+	<span><%=showPopularCarInfo3.getCar_name() %></span>
+	<span><%=showPopularCarInfo3.getCar_size() %></span>
+	<span><%=showPopularCarInfo3.getModel_year() %>년식</span>
+	
+	<h2>인기 차량 4</h2>
+	<span><%=showPopularCarInfo4.getCar_name() %></span>
+	<span><%=showPopularCarInfo4.getCar_size() %></span>
+	<span><%=showPopularCarInfo4.getModel_year() %>년식</span>
 	
 </body>
 </html>
