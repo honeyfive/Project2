@@ -34,5 +34,8 @@
             </div>
         </div>
     </div>
+    
+    <!-- <%@ include file="footer.jsp" %> 푸터 jsp 추가되면 넣기-->
+    
 </body>
 </html>
