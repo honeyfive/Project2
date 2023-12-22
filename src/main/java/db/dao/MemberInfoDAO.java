@@ -16,7 +16,7 @@ public class MemberInfoDAO {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-	
+	//멤버정보찾기리스트
 	public List<MemberInfoDTO> findMemberList(){
 		
 				conn = DBConnectionManager.connectDB();
