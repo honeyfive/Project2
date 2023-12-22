@@ -16,7 +16,7 @@ public class CarInfoDTO {
 	int accident_history;
 	
 	
-	public CarInfoDTO(String car_number, String car_name, String car_size, String car_type, int passenger_count,
+	public CarInfoDTO (String car_number, String car_name, String car_size, String car_type, int passenger_count,
 			int vehicle_rating, String company, String color, int model_year, String management_status, String option1,
 			String option2, int accident_history) {
 		super();
@@ -40,8 +40,17 @@ public class CarInfoDTO {
 		this.car_size = car_size;
 		this.model_year = model_year;
 	}
-
-
+	
+	//차량 크기
+	public CarInfoDTO (String car_size) {
+		this.car_size = car_size;
+	}
+	
+	public CarInfoDTO () {
+		this.car_type = car_type;
+	}
+	
+	
 	public String getCar_number() {
 		return car_number;
 	}

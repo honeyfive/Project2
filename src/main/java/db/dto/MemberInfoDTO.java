@@ -37,6 +37,12 @@ public class MemberInfoDTO {
 		this.overdue_history = overdue_history;
 		this.use_count = use_count;
 	}
+	
+	public MemberInfoDTO(int membership_number, String membership_level) {
+		super();
+		this.membership_number = membership_number;
+		this.membership_level = membership_level;
+	}
 
 
 	public int getMembership_number() {
