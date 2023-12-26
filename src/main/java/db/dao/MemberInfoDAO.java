@@ -16,11 +16,8 @@ public class MemberInfoDAO {
 	PreparedStatement psmt;
 	ResultSet rs;
 
-<<<<<<< HEAD
 	// 조회
-=======
 	// 멤버정보찾기리스트
->>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 	public List<MemberInfoDTO> findMemberList() {
 
 		conn = DBConnectionManager.connectDB();
@@ -53,7 +50,6 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
-<<<<<<< HEAD
 	}
 
 	// 저장
@@ -169,7 +165,7 @@ public class MemberInfoDAO {
 	
 		String sql =  " UPDATE member_info"
 					+ " SET membership_level = ? "
-					+ " WHERE id = ? ";
+					+ " WHERE Membership_number = ? ";
 		
 		int result = 0;
 		
@@ -181,7 +177,14 @@ public class MemberInfoDAO {
 	
 			result = psmt.executeUpdate();
 			
-=======
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		
+		return result;
 	}
 
 	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
@@ -212,20 +215,14 @@ public class MemberInfoDAO {
 				memberInfoList.add(memberInfoDTO);
 			}
 
->>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
-<<<<<<< HEAD
-		
-		return result;
-=======
 
 		return memberInfoList;
 
->>>>>>> 34e055bcedb084154a4e6d054ab677fe1405e774
 	}
 
 }

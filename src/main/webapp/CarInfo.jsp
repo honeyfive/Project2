@@ -41,7 +41,7 @@
 		<td><%=carInfoDTO.getCar_name() %></td>
 		<td><%=carInfoDTO.getCar_size() %></td>
 		<td><%=carInfoDTO.getCar_type() %></td>
-		<td><%=carInfoDTO.getPassanger_count() %></td>
+		<td><%=carInfoDTO.getPassenger_count() %></td>
 		<td><%=carInfoDTO.getVehicle_rating() %></td>
 		<td><%=carInfoDTO.getCompany() %></td>
 		<td><%=carInfoDTO.getColor() %></td>
