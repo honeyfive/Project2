@@ -36,6 +36,7 @@
 			%>
 		
 		<%=insuranceinfo.getInsurance_type()%><input type="checkbox">
+		
 		<%
 		}
 		}
