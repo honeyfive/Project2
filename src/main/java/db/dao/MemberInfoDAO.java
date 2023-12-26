@@ -224,5 +224,50 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
+	
+//	새 고객 추가 클래스 > 수정중
+	public List<MemberInfoDTO> saveMemberList(String targetId, String targetPw) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " INSERT INTO member_info "
+				+ " VALUES( (SELECT max()+1 FROM member_info), ? , (EXTRACT(YEAR FROM sysdate) - ? ), concat(? , '-', ? , '-', tel3), id, password, email, NULL,\r\n"
+				+ "    concat(license1, '-', license2, '-', license3, '-', license4, '-'), gender, concat(birthyear, '-', birthmonth, '-', birthdate),\r\n"
+				+ "    concat(licenseyear, '-', licensemonth, '-', licensedate), NULL, NULL); ";
+
+		System.out.println(targetId + targetPw);
+		
+		List<MemberInfoDTO> memberInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, targetId);
+			psmt.setString(2, targetPw);
+			rs = psmt.executeQuery();
+			memberInfoList = new ArrayList<MemberInfoDTO>(); // 못 찾아도 null이 아님
+
+			while (rs.next()) {
+
+				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
+						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
+						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
+						rs.getInt("overdue_history"), rs.getInt("use_count"));
+
+				memberInfoList.add(memberInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return memberInfoList;
+	
+	
+	
+	
+	
+	
 
 }
