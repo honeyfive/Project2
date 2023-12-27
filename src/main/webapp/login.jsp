@@ -29,7 +29,7 @@
                     <div class="signin-plz signin-wait">아직 회원이 아니신가요?</div>
                     <div class="signin-plz signin-ad ">회원가입하고 다양한 혜택도 받아가세요!</div>
                     <div class="signin-go "><button class="login-input login-submit"
-                        onclick="location.href='signin.html'" >회원가입 하러 가기</button></div> <!-- 회원가입페이지 연결-->
+                        onclick="location.href='signup.jsp'" >회원가입 하러 가기</button></div> <!-- 회원가입페이지 연결-->
                 </div>
             </div>
         </div>
