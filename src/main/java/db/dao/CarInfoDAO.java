@@ -35,7 +35,7 @@ public class CarInfoDAO {
 				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
 						rs.getString("car_type"),rs.getInt("passenger_count"),rs.getInt("vehicle_rating"),
 						rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
-						rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"));
+						rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"),rs.getString("car_image"));
 
 				carInfoList.add(carInfoDTO);
 			}
@@ -52,7 +52,7 @@ public class CarInfoDAO {
 	private List<CarInfoDTO> getCarInfoByCategory(String category) {
 	    conn = DBConnectionManager.connectDB();
 
-	    String sql = "SELECT cf.car_number, cf.car_name, cf.car_size, cf.model_year "
+	    String sql = "SELECT cf.car_image, cf.car_number, cf.car_name, cf.car_size, cf.model_year "
 	            + "FROM car_info cf, car_introduce ct "
 	            + "WHERE cf.car_number = ct.car_number "
 	            + "AND car_category = ? ";
@@ -66,6 +66,7 @@ public class CarInfoDAO {
 
 	        while (rs.next()) {
 	            CarInfoDTO carInfoDTO = new CarInfoDTO(
+	            		rs.getString("car_image"),
 	                    rs.getString("car_number"),
 	                    rs.getString("car_name"),
 	                    rs.getString("car_size"),
