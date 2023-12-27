@@ -1,0 +1,146 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* 차량 이미지 높이 너비 */
+img{
+    width: 200px;
+    height: 40%;
+}
+
+/* 차량정보 글박스 높이조정 */
+.recommend_car_info,.cheap_car_info,.old_car_info,.popular_car_info{
+	top: 20px;
+}
+
+/* 조건별 차 고르는 메뉴 박스 */
+.mainpage_menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 구분선 */
+.dividing_line{
+    border-top: 1px solid lightgray;
+    top: 10px;
+    width: 80%;
+}
+
+/* 추천차량 글꼴 */
+.recommend_car_title_text{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* 추천차량 4개 박스를 감싸는 박스 */
+.show_recommend_car_box{
+    display: flex;
+    
+}
+
+/* 추천 차량 4개 박스 */
+.show_recommend_car{
+    margin: 20px;
+    width: 275px;
+    height: 300px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* 가성비 차량 글꼴 */
+.cheap_car_title{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* 가성비 차량 4개 박스를 감싸는 박스 */
+.show_cheap_car_box{
+    display: flex;
+}
+
+/* 가성비 차량 4개 박스 */
+.show_cheap_car{
+    margin: 20px;
+    width: 275px;
+    height: 300px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* Y2K 차량 글꼴 */
+.old_car_title{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* Y2K 차량 4개 박스를 감싸는 박스 */
+.show_old_car_box{
+    display: flex;
+}
+
+/* Y2K 차량 4개 박스 */
+.show_old_car{
+    margin: 20px;
+    width: 275px;
+    height: 300px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* 인기 차량 글꼴 */
+.popular_car_title{
+    font-size: 30px;
+    margin: 30px;
+    color: #0D6FFC;
+    font-weight: bold;
+}
+
+/* 인기 차량 4개를 감싸는 박스 */
+.show_popular_car_box{
+    display: flex;
+}
+
+/* 인기 차량 4개 박스 */
+.show_popular_car{
+    margin: 20px;
+    width: 275px;
+    height: 300px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+

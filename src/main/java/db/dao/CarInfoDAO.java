@@ -31,11 +31,11 @@ psmt = conn.prepareStatement(sql);
 rs = psmt.executeQuery();
 carInfoList = new ArrayList<CarInfoDTO>();
 
-while (rs.next()) {
-CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
-rs.getString("car_type"),rs.getInt("passenger_count"),rs.getInt("vehicle_rating"),
-rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
-rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"),rs.getString("car_image"));
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
+						rs.getString("car_type"),rs.getInt("passenger_count"),rs.getInt("vehicle_rating"),
+						rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
+						rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"));
 
 carInfoList.add(carInfoDTO);
 }
@@ -46,43 +46,40 @@ e.printStackTrace();
 DBConnectionManager.closeDB(conn, psmt, rs);
 }
 
-return carInfoList;
-}
+		return carInfoList;
+	}
+	
+	
+	public List<CarInfoDTO> showCarInfoList(){
+		
+		conn = DBConnectionManager.connectDB();
 
-private List<CarInfoDTO> getCarInfoByCategory(String category) {
-conn = DBConnectionManager.connectDB();
+		String sql = " SELECT car_name, car_size, model_year FROM car_info "
+					+ " WHERE car_name = '람보르기니 우라칸' ";
 
-String sql = "SELECT cf.car_image, cf.car_number, cf.car_name, cf.car_size, cf.model_year "
-+ "FROM car_info cf, car_introduce ct "
-+ "WHERE cf.car_number = ct.car_number "
-+ "AND car_category = ? ";
+		List<CarInfoDTO> carInfoList = null;
 
-List<CarInfoDTO> carInfoList2 = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(sql);
 
-try {
-psmt = conn.prepareStatement(sql);
-psmt.setString(1, category);
-rs = psmt.executeQuery();
+			rs = psmt.executeQuery();
+			carInfoList = new ArrayList<CarInfoDTO>();
 
-while (rs.next()) {
-CarInfoDTO carInfoDTO = new CarInfoDTO(
-rs.getString("car_image"),
-rs.getString("car_number"),
-rs.getString("car_name"),
-rs.getString("car_size"),
-rs.getInt("model_year")
-);
-carInfoList2.add(carInfoDTO);
-}
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_name"),rs.getString("car_size"),
+						rs.getInt("model_year"));
 
-} catch (SQLException e) {
-e.printStackTrace();
-} finally {
-DBConnectionManager.closeDB(conn, psmt, rs);
-}
+				carInfoList.add(carInfoDTO);
+			}
 
-return carInfoList2;
-}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return carInfoList;
+	}
 
 //차량 크기별 리스트
 public List<CarInfoDTO> findCarInfoListBySize(){
@@ -99,8 +96,8 @@ psmt = conn.prepareStatement(sql);
 rs = psmt.executeQuery();
 carInfoList = new ArrayList<CarInfoDTO>();
 
-while (rs.next()) {
-CarInfoDTO carInfoDTO = null; //new CarInfoDTO(rs.getString("car_size"));
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_size"));
 
 carInfoList.add(carInfoDTO);
 }
@@ -111,32 +108,38 @@ e.printStackTrace();
 DBConnectionManager.closeDB(conn, psmt, rs);
 }
 
-return carInfoList;
+		return carInfoList;
+	}
+	
+//차량 연료타입별 리스트
+public List<CarInfoDTO> findCarInfoListByType(){
+	
+	conn = DBConnectionManager.connectDB();
+
+	String sql = " SELECT DISTINCT car_type FROM car_info ";
+
+	List<CarInfoDTO> carInfoList = null;
+
+	try {
+		psmt = conn.prepareStatement(sql);
+
+		rs = psmt.executeQuery();
+		carInfoList = new ArrayList<CarInfoDTO>();
+
+		while (rs.next()) {
+			CarInfoDTO carInfoDTO = new CarInfoDTO();
+
+			carInfoList.add(carInfoDTO);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DBConnectionManager.closeDB(conn, psmt, rs);
+	}
+
+	return carInfoList;
 }
 
-// 추천 차량 정보 조회
-public List<CarInfoDTO> showRecommendCarInfo() {
-return getCarInfoByCategory("R");
-}
+	}
 
-// Y2K 차량 정보 조회
-public List<CarInfoDTO> showOldCarInfo() {
-return getCarInfoByCategory("Y");
-}
-
-// 가성비 차량 정보 조회
-public List<CarInfoDTO> showCheapCarInfo() {
-return getCarInfoByCategory("C");
-}
-
-// 인기 차량 정보 조회
-public List<CarInfoDTO> showPopularCarInfo(){
-return getCarInfoByCategory("P");
-
-}
-
-
-
-
-
-}
