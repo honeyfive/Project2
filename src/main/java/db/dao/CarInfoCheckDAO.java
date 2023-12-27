@@ -51,4 +51,212 @@ public class CarInfoCheckDAO {
 
 		return carInfoList;
 	}
+	
+	public int findCarByTypeGasoline() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='G' ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByTypeDiesel() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='D' ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByTypeElectronic() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='E' ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByTypeHydrogen() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='H' ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByVehicleRating_1() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 0 AND 999 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByVehicleRating_2() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 1000 AND 2999 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByVehicleRating_3() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 3000 AND 4999 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findCarByVehicleRating_4() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating > 5000 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
 }

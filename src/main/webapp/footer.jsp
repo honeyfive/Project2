@@ -1,93 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결제페이지</title>
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/payment.css">
-
+<meta charset="UTF-8">
+<title>푸터</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="./css/footer.css">
 </head>
 <body>
-    <!--헤더-->
-    <div class="header">
-
-        <!-- 헤더 네비게이션-->
-        <div class="header-nav">
-
-            <!-- 헤더 로고-->
-            <div class="header-nav-img">
-                <a href="../html/header.html"> <!-- 이미지 누르면 메인 화면으로 이동하도록 .. 나중에 링크 추가하기-->
-                    <img id="hugo-logo" src="../images/휴카로고_예비1.png" alt="hugo logo">
-                </a>
-            </div>
-
-            <!-- 네비게이션 버튼-->
-            <div class="header-nav-btn">
-                <a href=""> <!-- 예약 페이지 연결-->
-                    <div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
-                </a>
-                <a href=""> <!-- 결제 페이지 연결-->
-                    <div id="payment-pg" class="hearder-nav-btn-item">결제</div>
-                </a>
-                <a href=""> <!-- 마이 페이지 연결-->
-                    <div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
-                </a>
-                <a href=""> <!-- 관리자 전용 페이지 연결-->
-                    <div id="management-pg" class="hearder-nav-btn-item">관리자전용</div>
-                </a>
-            </div>
-
-        </div>
-
-        <!-- 헤더 로그인 쪽-->
-        <div class="header-nav-login">
-
-            <!-- 상담 연결-->
-            <div class="header-nav-login-call">
-                <i class="fa-solid fa-phone"></i>
-                <div>친절상담</div>
-                <div>1544-3333</div>
-            </div>
-            <div class="header-nav-login-slash"> | </div>
-            <!-- 로그인 버튼-->
-            <a href="../html/login.html"> <!-- 로그인 / 회원가입 페이지 연결하기-->
-                <div class="header-nav-login-btn">
-                    <i class="fa-regular fa-circle-user"></i>
-                    <div id="login">로그인</div>
-                </div>
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="titleBox"> 
-        <div class="titleText1">결제정보 </div>
-    </div>
-
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1>
-    <h1>결제</h1> 
-    <h1>결제</h1>
-    
-
-
-
-
-
-
-    <footer>
+<footer>
         <div class="footer_container">
             <div class="box1">
                 <div class="b1">
@@ -191,7 +115,6 @@
             <div class="box2">
                 <div class="b2">
                     <div class="b2-1">
-                        <img>
                         <div class="company_info">
                             <p class="a2_font">주식회사 팀오투 | 대표자 : 정용진 | 사업자등록번호 : 286-88-00238</p>
                             <p class="a2_font">주소 : 서울특별시 강남구 테헤란로2길 21 9층, 10층 (역삼동, 타워 300빌딩)</p>
@@ -210,6 +133,6 @@
 
 
     </footer>
-    
+
 </body>
 </html>

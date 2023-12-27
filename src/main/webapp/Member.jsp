@@ -201,8 +201,7 @@ color: gray;
 	 <legend>회원정보 수정</legend>
 	 <form id="personForm" action="deleteMember_proc.jsp" method="post">
 		<label>회원번호 : </label><input type="text" class="input_membership_number" name="membership_number"
-		> <button id="deleteBtn" type="button">삭제하기</button><br>
-		<!-- <label>수정할 회원등급 : </label><input type="text" id="input_membership_level" name="membership_level"> -->
+		> <button id="deleteBtn" type="button">삭제하기</button>
 
 	</form>
 	

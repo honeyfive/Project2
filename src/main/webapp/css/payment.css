@@ -1,0 +1,18 @@
+.titleBox{
+    background-color: pink;
+    width: 100%;
+    height: 300px;
+}
+
+.titleText1{
+    font-size: 50px;
+    border: solid black;
+    width: 100%;
+    height: 200px;
+    padding: 150px;
+    align-items: center;
+    text-align: center;
+}
+
+
+

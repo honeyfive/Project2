@@ -28,7 +28,7 @@
 	CarInfoDAO carInfoDAO = new CarInfoDAO();
 	List<CarInfoDTO> carInfoList = carInfoDAO.findCarInfoList();
 	List<CarInfoDTO> carSizeInfoList = carInfoDAO.findCarInfoListBySize();
-	List<CarInfoDTO> carTypeInfoList = carInfoDAO.findCarInfoListByType();
+	List<CarInfoDTO> carTypeInfoList = null; //carInfoDAO.findCarInfoListByType();
 	%>
 
 	<div class="location-modal">
