@@ -82,6 +82,36 @@ public class CarInfoDAO {
 
 	    return carInfoList2;
 	}
+
+	//차량 크기별 리스트
+public List<CarInfoDTO> findCarInfoListBySize(){
+		
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT DISTINCT car_size FROM car_info ";
+
+		List<CarInfoDTO> carInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			carInfoList = new ArrayList<CarInfoDTO>();
+
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_size"));
+
+				carInfoList.add(carInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return carInfoList;
+	}
 	
 	// 추천 차량 정보 조회
 	public List<CarInfoDTO> showRecommendCarInfo() {

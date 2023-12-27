@@ -1,10 +1,8 @@
-<%@page import="db.dao.MemberInfoDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="db.dao.MemberInfoDAO"%>
-<%@ page import="db.dto.MemberInfoDTO"%>
+<%@ page import="db.dao.CarInfoCheckDAO"%>
+<%@ page import="db.dto.CarInfoCheckDTO"%>
 <%@ page import="java.util.List"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +11,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
-
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
 }
 
 .side_bar {
@@ -96,6 +86,7 @@ margin-top: 20px;
 	font-size: 1.1rem;
 	margin-top: 15%;
 }
+
 a {
 text-decoration-line : none;
 color: gray;
@@ -106,8 +97,16 @@ color: gray;
 </head>
 <body>
 
+	<%
+	
+		CarInfoCheckDAO memberInfoDAO = new CarInfoCheckDAO();
+	
+		List<CarInfoCheckDTO> carList = memberInfoDAO.findCarInfoList();
+		
+	%>
+	
 	<div class="side_bar">
-		<a href="./manage_main.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+	<a href="./manage_main.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
   <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
 </svg> 메인 화면</div></a>
 		<a href="./Member.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -125,115 +124,48 @@ color: gray;
   <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
 </svg> 돌아 가기</div></a>
 	</div>
-
-	<%
-	
-	/* String membership_number = request.getParameter("membership_number");
-	System.out.println(membership_number);
-	int intId = 0;
-	try {
-		intId = Integer.parseInt(membership_number);
-	} catch (Exception e){
-		e.printStackTrace();
-		intId = 0;
-	} */
-	
-		
-		MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-		
-		//MemberInfoDTO memberInfo = memberInfoDAO.findMemberById(intId);
-	
-		List<MemberInfoDTO> memberList = memberInfoDAO.findMemberList();
-		%>
-
-	<h1>회원정보</h1>
+	<h1>차량정보</h1>
 	<p></p>
 	<table class="member_graph">
 		<tr>
-			<th>회원번호</th>
-			<th>이름</th>
-			<th>나이</th>
-			<th>전화번호</th>
-			<th>아이디</th>
-			<th>비밀번호</th>
-			<th>이메일</th>
-			<th>회원등급</th>
-			<th>면허증번호</th>
-			<th>성별</th>
-			<th>생년월일</th>
-			<th>면허취득일</th>
-			<th>연체횟수</th>
-			<th>이용횟수</th>
+			<th>차량번호</th>
+			<th>차량명</th>
+			<th>차 크기</th>
+			<th>차종</th>
+			<th>승차인원</th>
+			<th>배기량</th>
+			<th>제조회사</th>
+			<th>색상</th>
+			<th>연식</th>
+			<th>관리상태</th>
+			<th>옵션1</th>
+			<th>옵션2</th>
+			<th>사고이력</th>
 		</tr>
-
-
-
-
-		<%
-		for(MemberInfoDTO memberInfo : memberList) {
+	
+	<%
+		for(CarInfoCheckDTO carInfo : carList) {
 						  %>
 
 		<tr>
-			<td><%=memberInfo.getMembership_number()%><a href="./Member.jsp?id=<%=memberInfo.getMembership_number()%>"></a></td>
-			<td><%=memberInfo.getName()%></td>
-			<td><%=memberInfo.getAge()%></td>
-			<td><%=memberInfo.getTel()%></td>
-			<td><%=memberInfo.getId()%></td>
-			<td><%=memberInfo.getPassword()%></td>
-			<td><%=memberInfo.getEmail()%></td>
-			<td><%=memberInfo.getMembership_level()%><a href="./Member.jsp?id=<%=memberInfo.getMembership_level()%>"></a></td>
-			<td><%=memberInfo.getLisence_number()%></td>
-			<td><%=memberInfo.getGender()%></td>
-			<td><%=memberInfo.getBirthday()%></td>
-			<td><%=memberInfo.getLisence_acquisition_date()%></td>
-			<td><%=memberInfo.getOverdue_history()%></td>
-			<td><%=memberInfo.getUse_count()%></td>
+			<td><%=carInfo.getCar_number()%></td>
+			<td><%=carInfo.getCar_name()%></td>
+			<td><%=carInfo.getCar_size()%></td>
+			<td><%=carInfo.getCar_type()%></td>
+			<td><%=carInfo.getPassenger_count()%></td>
+			<td><%=carInfo.getVehicle_rating()%></td>
+			<td><%=carInfo.getCompany()%></td>
+			<td><%=carInfo.getColor()%></td>
+			<td><%=carInfo.getModel_year()%></td>
+			<td><%=carInfo.getManagement_status()%></td>
+			<td><%=carInfo.getOption1()%></td>
+			<td><%=carInfo.getOption2()%></td>
+			<td><%=carInfo.getAccident_history()%></td>
 		</tr>
 		<%
 	  } 
 	  %>
 
 	</table>
-	
-
-
-	 <fieldset>
-	 <legend>회원정보 수정</legend>
-	 <form id="personForm" action="deleteMember_proc.jsp" method="post">
-		<label>회원번호 : </label><input type="text" class="input_membership_number" name="membership_number"
-		> <button id="deleteBtn" type="button">삭제하기</button><br>
-		<!-- <label>수정할 회원등급 : </label><input type="text" id="input_membership_level" name="membership_level"> -->
-
-	</form>
-	
-	</fieldset>
-	<a href="modifyMembership_level.jsp"><button type="button">수정</button></a>
-	<script>
-		document.getElementById('deleteBtn').addEventListener('click',()=> {
-			if (confirm('삭제 하시겠습니까?')){
-				//location.href = 'deletePerson_proc.jsp?id=';
-				
-				let form = document.getElementById('personForm');
-				form.action = 'deleteMember_proc.jsp';
-				form.submit();
-			}
-		});
-		
-		/* document.getElementById('modifyBtn').addEventListener('click',()=>{
-			let input_membership_level = document.getElementById('input_membership_level');
-			if(input_membership_level.value.trim() == ''){
-				alert('회원번호는 필수 입력입니다.');
-				input_membership_level.focus();
-				return;
-			}
-			
-			if (confirm('수정 하시겠습니까?')){
-				let form = document.getElementById('personForm');
-				form.action = 'modifyMember_proc.jsp';
-				form.submit();
-			}
-		}); */
-	</script>
-
 </body>
 </html>
