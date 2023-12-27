@@ -28,7 +28,7 @@
 .show_recommend_car{
     margin: 20px;
     width: 275px;
-    height: 250px;
+    height: 280px;
     border-radius: 3%;
     border: 1px solid gray;
     display: flex;
@@ -42,7 +42,7 @@
 /* 추천 차량 4개 박스의 높이, 너비 */
 .recommend_car_image1, .recommend_car_image2, .recommend_car_image3, .recommend_car_image4{
     width: 200px;
-    height: 120px;
+    height: 40%;
     margin: 0 auto;
 }
 
@@ -108,7 +108,7 @@
 .show_cheap_car{
     margin: 20px;
     width: 275px;
-    height: 250px;
+    height: 280px;
     border-radius: 3%;
     border: 1px solid gray;
     display: flex;
@@ -119,7 +119,7 @@
 /* 가성비 차량 4개 박스의 높이, 너비 */
 .cheap_car_image1, .cheap_car_image2, .cheap_car_image3, .cheap_car_image4{
     width: 200px;
-    height: 120px;
+    height: 40%;
     margin: 0 auto;
     position: absolute;
     top: 0;
@@ -153,6 +153,7 @@
     background-size: 100%;
     background-repeat: no-repeat;
     left: 30px;
+    top: -5px;
 }
 
 /* 가성비 4 차량 */
@@ -181,7 +182,7 @@
 .show_old_car{
     margin: 20px;
     width: 275px;
-    height: 250px;
+    height: 280px;
     border-radius: 3%;
     border: 1px solid gray;
     display: flex;
@@ -192,7 +193,7 @@
 /* Y2K 박스 4개의 높이, 너비 */
 .old_car_image1, .old_car_image2, .old_car_image3, .old_car_image4{
     width: 200px;
-    height: 120px;
+    height: 40%;
     margin: 0 auto;
     position: absolute;
     top: 0;
@@ -215,7 +216,7 @@
     background-size: 100%;
     background-repeat: no-repeat;
     transform: scale(1.1);
-
+    height: 125px;
 }
 
 /* Y2K 3 차량 */
@@ -235,6 +236,7 @@
     background-repeat: no-repeat;
     left: 35px;
     top: 10px;
+    height: 120px;
 }
 
 /* 인기 차량 글꼴 */
@@ -254,7 +256,7 @@
 .show_popular_car{
     margin: 20px;
     width: 275px;
-    height: 250px;
+    height: 280px;
     border-radius: 3%;
     border: 1px solid gray;
     display: flex;
@@ -265,7 +267,7 @@
 /* 인기 차량 4개 박스의 높이, 너비 */
 .popular_car_image1, .popular_car_image2, .popular_car_image3, .popular_car_image4{
     width: 200px;
-    height: 120px;
+    height: 40%;
     margin: 0 auto;
     position: absolute;
     top: 0;
@@ -310,6 +312,7 @@
     background-size: 100%;
     background-repeat: no-repeat;
     transform: scale(1.2);
+    height: 125px;
     left: 30px;
-    top: 10px;
+    top: 5px;
 }
