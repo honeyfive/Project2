@@ -99,7 +99,7 @@ public List<CarInfoDTO> findCarInfoListBySize(){
 			carInfoList = new ArrayList<CarInfoDTO>();
 
 			while (rs.next()) {
-				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_size"));
+				CarInfoDTO carInfoDTO = null; //new CarInfoDTO(rs.getString("car_size"));
 
 				carInfoList.add(carInfoDTO);
 			}
