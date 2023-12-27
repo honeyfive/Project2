@@ -43,6 +43,11 @@ public class MemberInfoDTO {
 		this.membership_number = membership_number;
 		this.membership_level = membership_level;
 	}
+	
+	public MemberInfoDTO(String name) {
+		super();
+		this.name = name;
+	}
 
 
 	public int getMembership_number() {

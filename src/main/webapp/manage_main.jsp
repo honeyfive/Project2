@@ -1,7 +1,12 @@
+<%@page import="db.dao.MemberInfoDAO"%>
+<%@page import="db.dao.CarInfoCheckDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="db.dao.CarAvailableDAO"%>
 <%@ page import="db.dto.CarAvailableDTO"%>
+<%@ page import="db.dao.Top5MemberDAO"%>
+<%@ page import="db.dto.MemberInfoDTO"%>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +29,116 @@
 	font-weight: bold;
 }
 
+}
+
+body {
+	color: #666;
+	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
+		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
+		"Lucida Grande", Sans-Serif;
+}
+
+
+
 .manage {
 	margin: 0 auto;
 	font-size: 1.1rem;
 	margin-top: 15%;
 }
 
-
 a {
 text-decoration-line : none;
 color: gray;
+}
+
+.car_available_img {
+	width: 60%;
+	height: 70%;
+	margin-top:5%;
+	margin-left: 40%;
+}
+
+.car_available {
+	display:inline-block;
+	margin-left:2%;
+	magin-top:17%;
+	width:25%;
+	height:20vh;
+	border: 1px solid #4891d4;
+	background-color: #4891d4;
+	border-radius: 2px;
+	position: relative;
+}
+
+.car_using{
+	display:inline-block;
+	margin-left:5%;
+	magin-top:17%;
+	width:25%;
+	height:20vh;
+	border: 1px solid #f4d141;
+	background-color: #f4d141;
+	border-radius: 2px;
+	position: relative;
+}
+
+.car_maintenance{
+	display:inline-block;
+	margin-left:5%;
+	magin-top:17%;
+	width:25%;
+	height:20vh;
+	border: 1px solid #e67e22;
+	background-color: #e67e22;
+	border-radius: 2px;
+	position: relative;
+}
+
+
+.availableCount {
+	
+	position:absolute;
+	margin-left: 1%;
+	color: white;
+	font-size: 1.9rem;
+	padding-top:15%;
+	padding-left: 12%;
+	font-weight: bold;
+}
+
+.ment {
+	font-size:1.6rem;
+	margin-left: 3%;
+	color: white;
+}
+
+span {
+	font-weight: bold;
+}
+
+.member_graph {
+	margin-left : 5%;
+	margin-bottom : 3%;
+	display: inline-block;
+	color: #607274;
+}
+
+#bar-chart {
+	margin-top: 5%;
+	margin-left: 25%;
+}
+
+.line {
+	width: 40%;
+	height: 2px;
+	color: #607274;
+	border: 2px solid #607274;
+}
+
+hr {
+	height:1px;
+	background: #9bb8cd;
+	border: 0;
 }
 </style>
 <meta charset="UTF-8">
@@ -71,10 +176,193 @@ color: gray;
 		
 		int usingCount = carAvailableDAO.findCarUsing(); //사용중인차 count
 		
+		Top5MemberDAO top5MemberInfoDAO = new Top5MemberDAO();
+		
+		List<MemberInfoDTO> top5MemberList = top5MemberInfoDAO.findTop5MemberList();
+		
+		CarInfoCheckDAO carInfoCheckDAO = new CarInfoCheckDAO();
+		
+		int gasoline = carInfoCheckDAO.findCarByTypeGasoline();  //gasoline
+		
+		int diesel = carInfoCheckDAO.findCarByTypeDiesel();  //diesel
+		
+		int electronic = carInfoCheckDAO.findCarByTypeElectronic(); //electronic
+		
+		int hydrogen = carInfoCheckDAO.findCarByTypeHydrogen(); //hydrogen
+		
+		int vehicleRating_1 = carInfoCheckDAO.findCarByVehicleRating_1(); //배기량 0~999
+		
+		int vehicleRating_2 = carInfoCheckDAO.findCarByVehicleRating_2(); //배기량 1000~2999
+		
+		int vehicleRating_3 = carInfoCheckDAO.findCarByVehicleRating_3(); //배기량 3000~4999
+		
+		int vehicleRating_4 = carInfoCheckDAO.findCarByVehicleRating_4(); //배기량 > 5000
+		
+		MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
+		
+		int age_1 = memberInfoDAO.findMemberByAge_1();  //나이 20-25
+		
+		int age_2 = memberInfoDAO.findMemberByAge_2();
+		
+		int age_3 = memberInfoDAO.findMemberByAge_3();
+		
+		int age_4 = memberInfoDAO.findMemberByAge_4();
+		
+		int age_5 = memberInfoDAO.findMemberByAge_5();
+		
+		System.out.println(availableCount + " " + gasoline + " " + diesel + " " + electronic + " " + hydrogen + " " + vehicleRating_1);
+		
 	%>
-		<p>Total Available Cars: <%=availableCount %></p>
-		<p>Total Maintenance Cars: <%=maintenanceCount %></p>
-		<p>Total Using Cars: <%=usingCount %></p>
 	
+		<hr/>
+		<span>Dashboard</span>
+		<br></br>
+		<div class="car_available">
+			<div class="ment">사용가능</div>
+			<div class="availableCount">
+				<%=availableCount %>
+			</div>
+		<img src="./images/자동차_사용가능.png" class="car_available_img">
+		</div>
+		
+		<div class="car_using">
+			<div class="ment">사용중</div>
+			<div class="availableCount">
+				<%=usingCount %>
+			</div>
+		<img src="./images/자동차_사용중.png" class="car_available_img">
+		</div>
+		
+		<div class="car_maintenance">
+			<div class="ment">정비중</div>
+			<div class="availableCount">
+				<%=maintenanceCount %>
+			</div>
+		<img src="./images/자동차_정비중.png" class="car_available_img">
+		</div>
+		<br></br>
+		<hr/>
+		
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<canvas id="doughnut-chart" width="500" height="200" style="display: inline-block;"></canvas>
+
+	<script>
+	let usingCount = '<%=usingCount %>';
+	let gasoline = '<%=gasoline%>';
+	let diesel = '<%=diesel%>';
+	let electronic = '<%=electronic%>';
+	let hydrogen = '<%=hydrogen%>';
+	
+	new Chart(document.getElementById("doughnut-chart"), {
+	    type: 'doughnut',
+	    data: {
+	      labels: ["Gasoline", "Diesel", "Electric", "Hydrogen"],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#35a331", "#fe3852","#f7f700","#52D3D8"],
+	          data: [gasoline,diesel,electronic,hydrogen]
+	        }
+	      ]
+	    },
+	    options: {
+	    	responsive: false,
+	      title: {
+	        display: true,
+	        text: 'By Car Type'
+	      }
+	    }
+	});
+	</script>
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<canvas id="doughnut-chart1" width="500" height="200" style="display: inline-block;"></canvas>
+
+	<script>
+	let vehicleRating_1 = '<%=vehicleRating_1 %>';
+	let vehicleRating_2 = '<%=vehicleRating_2%>';
+	let vehicleRating_3 = '<%=vehicleRating_3%>';
+	let vehicleRating_4 = '<%=vehicleRating_4%>';
+	
+	new Chart(document.getElementById("doughnut-chart1"), {
+	    type: 'doughnut',
+	    data: {
+	      labels: ["0~999", "1000~2999", "3000~4999", "5000 ↑"],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#C499F3", "#739072","#596FB7","#7D0A0A"],
+	          data: [vehicleRating_1,vehicleRating_2,vehicleRating_3,vehicleRating_4]
+	        }
+	      ]
+	    },
+	    options: {
+	    	responsive: false,
+	      title: {
+	        display: true,
+	        text: 'By Vehicle Rating'
+	      }
+	    }
+	});
+	</script>
+	<br></br>
+	<hr/>
+	<p></p>
+	<table class="member_graph">
+		<tr>
+			<td>
+				TOP 5 Client ⭐
+			</td>
+		</tr>
+		
+		<%
+		int a = 0;
+		for(MemberInfoDTO memberInfo : top5MemberList) {
+			a++;
+						  %>
+		<tr>
+			<td><%=
+			a + ".       " + memberInfo.getName()
+			%></td>
+		</tr>
+		<%
+	  } 
+	  %>
+	</table>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<canvas id="bar-chart" width="500" height="200" style="display: inline-block;"></canvas>
+	
+	<script>
+	let age_1 = '<%=age_1%>';
+	let age_2 = '<%=age_2%>';
+	let age_3 = '<%=age_3%>';
+	let age_4 = '<%=age_4%>';
+	let age_5 = '<%=age_5%>';
+	
+	new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["20-25", "26-29", "30-35", "36-39", "40more"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [age_1,age_2,age_3,age_4,age_5, 0]
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Client By Age'
+      }
+    }
+});
+	</script>
 </body>
 </html>
