@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.mypage_container{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.my_info_box{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 50px;
+}
+
+.my_info{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 50px;
+}
+
+.member_rent_use{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.past_reservation_,.use_count,.overdue_history{
+    align-items: center;
+    margin: 20px;
+}
+
+.rent_progress_box{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 50px;
+    align-items: center;
+}
+
+.not_rent_progress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.member_payment_type_proc_box{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 50px;
+}
