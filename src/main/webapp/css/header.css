@@ -24,20 +24,23 @@ a {
     width: 800px;
     height: 80px;
     margin-top: 10px;
+    margin-right: 100px;
     display: flex;
+    justify-content: center;    
 }
 
 /*헤더 로고*/
 .header-nav-img {
-    margin-left: 50px;
-    margin-right: 10px;
     width: 200px;
     height: 80px;
+    display: flex;
+    justify-content : center;
+    align-items: center;
 }
 
 #hugo-logo {
-    width: 200px;
-    height: 80px;
+	width: 200px;
+	margin-bottom: 5px;
     object-fit: contain;
     cursor: pointer;
 }
@@ -47,19 +50,19 @@ a {
     width: 400px;
     height: 80px;
     display: flex;
-    justify-content: space-around;
+    padding-bottom: 13px;
+    align-items: center;
+    justify-content: center;
 }
 
 .hearder-nav-btn-item {
-    width: 60px;
-    height: 80px;
     font-size: 18px;
     font-weight: bold;
     color: gray;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 #my-pg {
@@ -75,6 +78,7 @@ a {
     width: 450px;
     height: 80px;
     margin-top: 10px;
+    margin-right:-55px;
     display: flex;
     align-items: center;
 }
@@ -102,6 +106,7 @@ a {
 .header-nav-login-btn {
     width: 200px;
     height: 80px;
+    padding-bottom: 13px;
     color: gray;
     font-size: 18px;
     font-weight: bold;
