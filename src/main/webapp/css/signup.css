@@ -106,6 +106,10 @@ body{
     margin-top: 13px;
 }
 
+.hide{
+    display: none;
+}
+
 #pw-check{
     /* display: none; */
 }
@@ -144,7 +148,7 @@ body{
 }
 
 .input-li{
-    width: 100px;
+    width: 95px;
     height: 40px;
     border: 1px solid lightgray;
     border-radius: 0.5rem;
