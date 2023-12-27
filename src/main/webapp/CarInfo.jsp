@@ -18,7 +18,6 @@
 		
 		List<CarInfoDTO> showOldCarInfo = carInfoDAO.showOldCarInfo();
 	
-		
 		List<CarInfoDTO> showPopularCarInfo = carInfoDAO.showPopularCarInfo();
 		
 	%>
