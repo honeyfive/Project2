@@ -15,7 +15,7 @@ public class MemberInfoDAO {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-
+	
 	// 조회
 	// 멤버정보찾기리스트
 	public List<MemberInfoDTO> findMemberList() {
@@ -50,6 +50,7 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+
 	}
 
 	// 저장
@@ -263,6 +264,7 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+
 	}
 	
 	public int findMemberByAge_1() {
@@ -395,3 +397,4 @@ public class MemberInfoDAO {
 		return count;
 	}
 }
+

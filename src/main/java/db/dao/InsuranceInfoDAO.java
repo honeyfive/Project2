@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.dto.InsuranceInfoDTO;
+import db.dto.ReservationInfoDTO;
 import db.util.DBConnectionManager;
 
 public class InsuranceInfoDAO {
@@ -44,6 +45,38 @@ public class InsuranceInfoDAO {
 		}
 
 		return insuranceInfoList;
+	}
+	
+	//보험번호로 하나의 정보 
+	public InsuranceInfoDTO findInsuranceInfoByInsuNumber(int insurance_number) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM insurance_Info "
+					+ " where insurance_number = ? ";
+
+		InsuranceInfoDTO insuranceInfoDTO = null;
+		
+		 try {
+			 psmt = conn.prepareStatement(sql);
+
+			 
+			 psmt.setInt(1,insurance_number);
+			 
+			 rs = psmt.executeQuery(); 	
+			 
+			 if(rs.next()) {
+				 insuranceInfoDTO = new InsuranceInfoDTO(
+						 rs.getInt("insurance_number"), rs.getString("insurance_type"), rs.getInt("insurance_price"));
+			 }
+			 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+		
+		return insuranceInfoDTO;	
+		
 	}
 
 }

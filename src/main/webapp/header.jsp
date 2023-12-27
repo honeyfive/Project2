@@ -24,7 +24,7 @@
 
 			<!-- 네비게이션 버튼-->
 			<div class="header-nav-btn">
-				<a href="./Reservation.jsp"> <!-- 예약 페이지 연결-->
+				<a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
 				</a> <a href=""> <!-- 결제 페이지 연결-->
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>

@@ -12,24 +12,24 @@ import db.dto.PaymentInfoDTO;
 import db.util.DBConnectionManager;
 
 public class CarInfoDAO {
-	Connection conn;
-	PreparedStatement psmt;
-	ResultSet rs;
-	
-	//차정보테이블 찾기 리스트
-	public List<CarInfoDTO> findCarInfoList(){
-		
-		conn = DBConnectionManager.connectDB();
+Connection conn;
+PreparedStatement psmt;
+ResultSet rs;
 
-		String sql = " SELECT * FROM car_info ";
+//차정보테이블 찾기 리스트
+public List<CarInfoDTO> findCarInfoList(){
 
-		List<CarInfoDTO> carInfoList = null;
+conn = DBConnectionManager.connectDB();
 
-		try {
-			psmt = conn.prepareStatement(sql);
+String sql = " SELECT * FROM car_info ";
 
-			rs = psmt.executeQuery();
-			carInfoList = new ArrayList<CarInfoDTO>();
+List<CarInfoDTO> carInfoList = null;
+
+try {
+psmt = conn.prepareStatement(sql);
+
+rs = psmt.executeQuery();
+carInfoList = new ArrayList<CarInfoDTO>();
 
 			while (rs.next()) {
 				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
@@ -37,14 +37,14 @@ public class CarInfoDAO {
 						rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
 						rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"));
 
-				carInfoList.add(carInfoDTO);
-			}
+carInfoList.add(carInfoDTO);
+}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnectionManager.closeDB(conn, psmt, rs);
-		}
+} catch (SQLException e) {
+e.printStackTrace();
+} finally {
+DBConnectionManager.closeDB(conn, psmt, rs);
+}
 
 		return carInfoList;
 	}
@@ -81,32 +81,32 @@ public class CarInfoDAO {
 		return carInfoList;
 	}
 
-	//차량 크기별 리스트
+//차량 크기별 리스트
 public List<CarInfoDTO> findCarInfoListBySize(){
-		
-		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT DISTINCT car_size FROM car_info ";
+conn = DBConnectionManager.connectDB();
 
-		List<CarInfoDTO> carInfoList = null;
+String sql = " SELECT DISTINCT car_size FROM car_info ";
 
-		try {
-			psmt = conn.prepareStatement(sql);
+List<CarInfoDTO> carInfoList = null;
 
-			rs = psmt.executeQuery();
-			carInfoList = new ArrayList<CarInfoDTO>();
+try {
+psmt = conn.prepareStatement(sql);
+
+rs = psmt.executeQuery();
+carInfoList = new ArrayList<CarInfoDTO>();
 
 			while (rs.next()) {
 				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_size"));
 
-				carInfoList.add(carInfoDTO);
-			}
+carInfoList.add(carInfoDTO);
+}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnectionManager.closeDB(conn, psmt, rs);
-		}
+} catch (SQLException e) {
+e.printStackTrace();
+} finally {
+DBConnectionManager.closeDB(conn, psmt, rs);
+}
 
 		return carInfoList;
 	}
