@@ -15,8 +15,7 @@ public class MemberInfoDAO {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-
-
+	
 	// 조회
 	// 멤버정보찾기리스트
 	public List<MemberInfoDTO> findMemberList() {
@@ -167,7 +166,7 @@ public class MemberInfoDAO {
 	
 		String sql =  " UPDATE member_info"
 					+ " SET membership_level = ? "
-					+ " WHERE id = ? ";
+					+ " WHERE Membership_number = ? ";
 		
 		int result = 0;
 		
@@ -224,6 +223,7 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+
 	}
 	
 //	새 고객 추가 클래스 > 수정중
