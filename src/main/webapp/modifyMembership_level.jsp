@@ -159,10 +159,16 @@ margin-top: 20px;
 	 <fieldset>
 	 <legend>회원정보 수정</legend>
 	 <form id="personForm" action="deleteMember_proc.jsp" method="post">
-		<label>수정할 회원등급 : </label>
-		<input type="text" id="input_membership_number" name="membership_number" placeholder="수정할 회원번호"> 
+	 	<input type="text" id="input_membership_number" name="membership_number" placeholder="수정할 회원번호(필수입력)"><br>
+		<label>등급 수정 : </label> 
 		<input type="text" id="input_membership_level" name="membership_level" placeholder="수정할 등급">
-		<button id="modifyBtn" type="button">수정하기</button>
+		<button id="modifyBtn" type="button">수정하기</button><br>
+		<label>연체횟수 수정 : </label>
+		<input type="text" id="input_overdue_history" name="overdue_history" placeholder="연체횟수">
+		<button id="modifyBtn1" type="button">수정하기</button><br>
+		<label>이용횟수 수정 : </label>
+		<input type="text" id="input_use_count" name="use_count" placeholder="이용횟수">
+		<button id="modifyBtn2" type="button">수정하기</button><br>
 	</form>
 	
 	</fieldset>
@@ -179,6 +185,36 @@ margin-top: 20px;
 			if (confirm('수정 하시겠습니까?')){
 				let form = document.getElementById('personForm');
 				form.action = 'modifyMember_proc.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn1').addEventListener('click',()=>{
+			let input_overdue_history = document.getElementById('input_overdue_history');
+			if(input_overdue_history.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_overdue_history.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyOverdue.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn2').addEventListener('click',()=>{
+			let input_use_count = document.getElementById('input_use_count');
+			if(input_use_count.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_use_count.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyUseCount.jsp';
 				form.submit();
 			}
 		});
