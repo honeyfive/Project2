@@ -79,6 +79,39 @@ public class PaymentInfoDAO {
 
 			return result;
 		}
+		
+		
+		//결제 타입만 보여주는 리스트
+		public List<PaymentInfoDTO> findPaymentTypeInfoList() {
+
+			conn = DBConnectionManager.connectDB();
+
+			String sql = " SELECT payment_type FROM payment_info "
+					+ " GROUP BY payment_type ";
+
+			List<PaymentInfoDTO> paymentInfoList = null;
+
+			try {
+				psmt = conn.prepareStatement(sql);
+				
+
+				rs = psmt.executeQuery();
+				paymentInfoList = new ArrayList<PaymentInfoDTO>();
+
+				while (rs.next()) {
+					PaymentInfoDTO paymentInfoDTO = new PaymentInfoDTO(rs.getString("payment_type"));
+
+					paymentInfoList.add(paymentInfoDTO);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBConnectionManager.closeDB(conn, psmt, rs);
+			}
+
+			return paymentInfoList;
+		}
 	
 	
 }
