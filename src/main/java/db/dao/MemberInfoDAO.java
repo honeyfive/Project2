@@ -407,5 +407,137 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+
+	}
+	
+	public int findMemberByAge_1() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM member_info WHERE age BETWEEN 20 AND 25 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findMemberByAge_2() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM member_info WHERE age BETWEEN 26 AND 29 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findMemberByAge_3() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM member_info WHERE age BETWEEN 30 AND 35 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findMemberByAge_4() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM member_info WHERE age BETWEEN 36 AND 39 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
+	}
+	
+	public int findMemberByAge_5() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT count(*) FROM member_info WHERE age >= 40 ";
+
+		int count = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return count;
 	}
 }
+

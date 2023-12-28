@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.dto.InsuranceInfoDTO;
+import db.dto.MemberInfoDTO;
 import db.dto.PaymentInfoDTO;
 import db.util.DBConnectionManager;
 
@@ -45,4 +46,39 @@ public class PaymentInfoDAO {
 
 		return paymentInfoList;
 	}
+	
+	
+	// 저장   ... 이게 맞나 ,,
+	
+		public int savePaymentInfo(PaymentInfoDTO paymentInfo) {
+
+			conn = DBConnectionManager.connectDB();
+
+			String sql = " INSERT INTO payment_info"
+					  +    "(? , ? , ?, ? , ? , ? )"   ;
+
+			int result = 0;
+
+			try {
+				psmt = conn.prepareStatement(sql);
+
+				psmt.setInt(1, paymentInfo.getPayment_number());
+				psmt.setInt(2, paymentInfo.getPayment_price());
+				psmt.setString(3, paymentInfo.getPayment_type());
+				psmt.setString(4, paymentInfo.getPayment_time());
+				psmt.setInt(5, paymentInfo.getReservation_number());
+				psmt.setInt(6, paymentInfo.getPayment_state());
+
+				result = psmt.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBConnectionManager.closeDB(conn, psmt, rs);
+			}
+
+			return result;
+		}
+	
+	
 }
