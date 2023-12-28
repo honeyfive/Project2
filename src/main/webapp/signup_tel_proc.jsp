@@ -12,21 +12,20 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
-	String lisence1 = request.getParameter("lisence1");
-	String lisence2 = request.getParameter("lisence2");
-	String lisence3 = request.getParameter("lisence3");
-	String lisence4 = request.getParameter("lisence4");
-	System.out.println(lisence1 + "-" + lisence2 + "-" + lisence3 + "-" + lisence4);
+	String tel1 = request.getParameter("tel1");
+	String tel2 = request.getParameter("tel2");
+	String tel3 = request.getParameter("tel3");
+	System.out.println(tel1 + "-" + tel2 + "-" + tel3);
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListByLisenceNumber(lisence1, lisence2, lisence3, lisence4);
+	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListByTel(tel1, tel2, tel3);
 	System.out.println("리스트 사이즈 : " + memberInfoList.size());
 
 	
 	if (memberInfoList.size() > 0) {
 	%>
 	<script>
-		alert('<%=lisence1%>-<%=lisence2%>-<%=lisence3%>-<%=lisence4%>는 이미 등록된 운전면허번호입니다.');
+		alert('<%=tel1%>-<%=tel2%>-<%=tel3%>는 이미 등록된 전화번호입니다.');
 		location.href = 'signup.jsp';
 	
 	</script>

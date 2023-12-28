@@ -13,6 +13,7 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- 회원가입-->
+	<form action="signup_proc.jsp">
 	<div class="content">
 		<div class="content-main">
 			<!-- 회원가입 메인-->
@@ -59,7 +60,7 @@
 					<div class="input-box">
 						<div>
 							<input class="input-id input-pw" type="input"
-								placeholder="최대 10글자" name="pw" id="password">
+								placeholder="최대 10글자" id="password">
 							<!-- <i class="fa-solid fa-eye"></i> -->
 						</div>
 						<div>
@@ -147,21 +148,22 @@
 						<div class="signin-id">운전면허번호</div>
 						<div class="input-box">
 							<div class=" signin-li">
-								<form action="signup_lisenceNumber_proc.jsp" class="signin-li-form">
+								<form action="signup_lisenceNumber_proc.jsp"
+									class="signin-li-form">
 									<div>
-										<input class="input-li" type="text" name="license-1">
+										<input class="input-li" type="text" name="lisence1">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license-2">
+										<input class="input-li" type="text" name="lisence2">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license-3">
+										<input class="input-li" type="text" name="lisence3">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-li" type="text" name="license-4">
+										<input class="input-li" type="text" name="lisence4">
 									</div>
 							</div>
 							<div>
@@ -233,22 +235,24 @@
 							<div class="input-box">
 								<div class="input-item">
 									<div class=" signin-tel">
-										<div>
-											<input class="input-tel" type="text" name="tel-1">
-										</div>
-										<div class="input-li-slash">-</div>
-										<div>
-											<input class="input-tel" type="text" name="tel-2">
-										</div>
-										<div class="input-li-slash">-</div>
-										<div>
-											<input class="input-tel" type="text" name="te1-3">
-										</div>
+										<form action="signup_tel_proc.jsp" class="signin-li-form">
+											<div>
+												<input class="input-tel" type="text" name="tel1">
+											</div>
+											<div class="input-li-slash">-</div>
+											<div>
+												<input class="input-tel" type="text" name="tel2">
+											</div>
+											<div class="input-li-slash">-</div>
+											<div>
+												<input class="input-tel" type="text" name="tel3">
+											</div>
 									</div>
 								</div>
 								<div>
 									<button class="id-chd">확인</button>
 								</div>
+								</form>
 							</div>
 						</div>
 						<!-- 이메일 -->
@@ -256,11 +260,12 @@
 							<div class="signin-id">이메일</div>
 							<div class="input-box">
 								<div class="input-item">
-									<input class="input-id" type="text" name="email">
+									<form action="signup_email_proc.jsp" class="signin-li-form">
+										<input class="input-id" type="text" name="email">
 								</div>
 								<div>
 									<button class="id-chd">확인</button>
-								</div>
+								</div></form>
 							</div>
 						</div>
 						<!-- 동의 문구 -->
