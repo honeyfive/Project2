@@ -147,7 +147,7 @@
 						<div class="signin-id">운전면허번호</div>
 						<div class="input-box">
 							<div class=" signin-li">
-								<form action="signup_lisenceNumber_proc.jsp">
+								<form action="signup_lisenceNumber_proc.jsp" class="signin-li-form">
 									<div>
 										<input class="input-li" type="text" name="license-1">
 									</div>

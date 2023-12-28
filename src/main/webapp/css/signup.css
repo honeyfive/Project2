@@ -1,4 +1,4 @@
-body{
+*{
     box-sizing: border-box;
 }
 .content{
@@ -147,8 +147,14 @@ body{
     justify-content: space-between;
 }
 
+.signin-li-form{
+    width: 430px;
+    height: 40px;
+    display: flex;
+}
+
 .input-li{
-    width: 95px;
+    width: 80px;
     height: 40px;
     border: 1px solid lightgray;
     border-radius: 0.5rem;
