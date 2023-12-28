@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.dto.CarInfoDTO;
+import db.dto.InsuranceInfoDTO;
 import db.dto.PaymentInfoDTO;
 import db.util.DBConnectionManager;
 
@@ -133,6 +134,41 @@ public List<CarInfoDTO> findCarInfoListBySize(){
 	public List<CarInfoDTO> showPopularCarInfo(){
 		return getCarInfoByCategory("P");
 				
+	}
+	
+	
+	// carnumber로 
+	public CarInfoDTO findCarInfoByCarNumber(String Car_number) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM car_info "
+					+ " where car_number = ? ";
+
+		CarInfoDTO carInfoDTO = null;
+		
+		 try {
+			 psmt = conn.prepareStatement(sql);
+
+			 
+			 psmt.setString(1,Car_number);
+			 
+			 rs = psmt.executeQuery(); 	
+			 
+			 if(rs.next()) {
+				 carInfoDTO = new CarInfoDTO(rs.getString("car_number"),rs.getString("car_name"),rs.getString("car_size"),
+							rs.getString("car_type"),rs.getInt("passenger_count"),rs.getInt("vehicle_rating"),
+							rs.getString("company"),rs.getString("color"),rs.getInt("model_year"),rs.getString("management_status"),
+							rs.getString("option1"),rs.getString("option2"),rs.getInt("accident_history"),rs.getString("car_image"));
+			 }
+			 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+		
+		return carInfoDTO;	
+		
 	}
 
 		
