@@ -228,7 +228,7 @@ public class MemberInfoDAO {
 		String sql = " SELECT * FROM member_info WHERE id = ? ";
 
 		System.out.println("변수 값 확인 : " + targetId);
-		
+
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
@@ -236,7 +236,7 @@ public class MemberInfoDAO {
 			psmt.setString(1, targetId);
 			rs = psmt.executeQuery();
 			memberInfoList = new ArrayList<MemberInfoDTO>();
-			
+
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -257,7 +257,7 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
-	
+
 //	회원가입 시 이미 있는 비번인가 확인하는 메소드
 	public List<MemberInfoDTO> findMemberListByPw(String targetPw) {
 		conn = DBConnectionManager.connectDB();
@@ -265,7 +265,7 @@ public class MemberInfoDAO {
 		String sql = " SELECT * FROM member_info WHERE password = ? ";
 
 		System.out.println("변수 값 확인 : " + targetPw);
-		
+
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
@@ -273,7 +273,7 @@ public class MemberInfoDAO {
 			psmt.setString(1, targetPw);
 			rs = psmt.executeQuery();
 			memberInfoList = new ArrayList<MemberInfoDTO>();
-			
+
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -294,28 +294,25 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
-	
-//	회원가입 시 이미 있는 운전면허번호인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByTel(String targetTel1, String targetTel2, String targetTel3) {
+
+//	회원가입 시 이미 있는 전화번호인가 확인하는 메소드
+	public List<MemberInfoDTO> findMemberListByTel(String targetTel) {
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT * FROM member_info "
-				+ " WHERE tel = ? || '-' || ? || '-' || ? "
+		String sql = " SELECT * FROM member_info " + " WHERE tel = ? "
 				+ " ORDER BY membership_number ";
 
-		System.out.println("변수 값 확인 : " + targetTel1 + "-" + targetTel2 + "-" + targetTel3);
-		
+		System.out.println("변수 값 확인 : " + targetTel);
+
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, targetTel1);
-			psmt.setString(2, targetTel2);
-			psmt.setString(3, targetTel3);
-
+			psmt.setString(1, targetTel);
+			
 			rs = psmt.executeQuery();
 			memberInfoList = new ArrayList<MemberInfoDTO>();
-			
+
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -336,30 +333,24 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
-	
+
 //	회원가입 시 이미 있는 운전면허번호인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByLisenceNumber
-	(String targetLisence1, String targetLisence2, String targetLisence3, String targetLisence4) {
+	public List<MemberInfoDTO> findMemberListByLisenceNumber(String targetLisence) {
 		conn = DBConnectionManager.connectDB();
+		String sql = " SELECT * FROM member_info " + " WHERE lisence_number = ? ";
 
-		String sql = " SELECT * FROM member_info "
-				+ " WHERE lisence_number = ? || '-' || ? || '-' || ? || '-' || ? "
-				+ " ORDER BY membership_number ";
+		System.out.println(
+				"변수 값 확인 : " + targetLisence );
 
-		System.out.println("변수 값 확인 : " + targetLisence1 + "-" + targetLisence2 + "-" + targetLisence3 + "-" + targetLisence4);
-		
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, targetLisence1);
-			psmt.setString(2, targetLisence2);
-			psmt.setString(3, targetLisence3);
-			psmt.setString(4, targetLisence4);
+			psmt.setString(1, targetLisence);
 
 			rs = psmt.executeQuery();
 			memberInfoList = new ArrayList<MemberInfoDTO>();
-			
+
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -380,17 +371,15 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
-	
+
 //	회원가입 시 이미 있는 이메일인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByEmail
-	(String targetEmail) {
+	public List<MemberInfoDTO> findMemberListByEmail(String targetEmail) {
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT * FROM member_info "
-				+ " WHERE email = ? ";
+		String sql = " SELECT * FROM member_info " + " WHERE email = ? ";
 
 		System.out.println("변수 값 확인 : " + targetEmail);
-		
+
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
@@ -399,7 +388,7 @@ public class MemberInfoDAO {
 
 			rs = psmt.executeQuery();
 			memberInfoList = new ArrayList<MemberInfoDTO>();
-			
+
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -420,15 +409,14 @@ public class MemberInfoDAO {
 		return memberInfoList;
 
 	}
-		
 
-//	새 고객 추가 메소드
-	public int saveMemberList(String targetName, String targetBirthYear, String targetTel1,
-			String targetTel2, String targetTel3, String targetId, String targetPassword, String targetEmail,
-			String targetLisence1, String targetLisence2, String targetLisence3, String targetLisence4,
-			String targetGender, String targetBirthMonth, String targetBirthDate,
-			String targetLisenceYear, String targetLisenceMonth, String targetLisenceDate) {
-		
+//	새 고객 추가 메소드 > 수정 중
+	public int saveMemberList(String targetName, String targetBirthYear, String targetTel1, String targetTel2,
+			String targetTel3, String targetId, String targetPassword, String targetEmail, String targetLisence1,
+			String targetLisence2, String targetLisence3, String targetLisence4, String targetGender,
+			String targetBirthMonth, String targetBirthDate, String targetLisenceYear, String targetLisenceMonth,
+			String targetLisenceDate) {
+
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " INSERT INTO member_info (membership_number, name, age, tel, id, password, email, "
@@ -437,13 +425,12 @@ public class MemberInfoDAO {
 				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , NULL, ? || '-' || ? || '-' || ? || '-' || ? , "
 				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, NULL, NULL )";
 
-		System.out.println("변수 확인 > 아이디" + targetId + " 비번" + targetPassword + " 이름" + targetName +
-				" 출생년도" + targetBirthYear + " 출생월" + targetBirthMonth + " 출생일" + targetBirthDate +
-				" 성별" + targetGender + " 운전면허1" + targetLisence1 + " 운전면허2" + targetLisence2 +
-				" 운전면허3" + targetLisence3 + " 운전면허4" + targetLisence4 + " 면허취득년" + targetLisenceYear +
-				" 면허취득월" + targetLisenceMonth + " 면허취득일" + targetLisenceDate +
-				" 전화번호1" + targetTel1 + " 전화번호2" + targetTel2 + " 전화번호3" + targetTel3 +
-				" 이메일" + targetEmail);
+		System.out.println("변수 확인 > 아이디" + targetId + " 비번" + targetPassword + " 이름" + targetName + " 출생년도"
+				+ targetBirthYear + " 출생월" + targetBirthMonth + " 출생일" + targetBirthDate + " 성별" + targetGender
+				+ " 운전면허1" + targetLisence1 + " 운전면허2" + targetLisence2 + " 운전면허3" + targetLisence3 + " 운전면허4"
+				+ targetLisence4 + " 면허취득년" + targetLisenceYear + " 면허취득월" + targetLisenceMonth + " 면허취득일"
+				+ targetLisenceDate + " 전화번호1" + targetTel1 + " 전화번호2" + targetTel2 + " 전화번호3" + targetTel3 + " 이메일"
+				+ targetEmail);
 
 		int result = 0;
 
@@ -479,7 +466,7 @@ public class MemberInfoDAO {
 		return result;
 
 	}
-	
+
 	public int findMemberByAge_1() {
 
 		conn = DBConnectionManager.connectDB();
@@ -505,7 +492,7 @@ public class MemberInfoDAO {
 
 		return count;
 	}
-	
+
 	public int findMemberByAge_2() {
 
 		conn = DBConnectionManager.connectDB();
@@ -531,7 +518,7 @@ public class MemberInfoDAO {
 
 		return count;
 	}
-	
+
 	public int findMemberByAge_3() {
 
 		conn = DBConnectionManager.connectDB();
@@ -557,7 +544,7 @@ public class MemberInfoDAO {
 
 		return count;
 	}
-	
+
 	public int findMemberByAge_4() {
 
 		conn = DBConnectionManager.connectDB();
@@ -583,7 +570,7 @@ public class MemberInfoDAO {
 
 		return count;
 	}
-	
+
 	public int findMemberByAge_5() {
 
 		conn = DBConnectionManager.connectDB();
@@ -610,4 +597,3 @@ public class MemberInfoDAO {
 		return count;
 	}
 }
-

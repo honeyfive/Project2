@@ -50,7 +50,7 @@
 	%>
 	<script>
 		alert('회원가입 완료 !');
-		location.href = 'signup.jsp';
+		location.href = 'mainpage.jsp';
 	</script>
 	<%
 	} else {

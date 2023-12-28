@@ -1,3 +1,4 @@
+// 비밀번호 영어 문자 숫자 그거 ..
 const pw = document.getElementById('password');
 const cautionMessage = document.getElementsByClassName('hide');
 const btn = document.getElementById('chkBtn');
@@ -5,7 +6,7 @@ const btn = document.getElementById('chkBtn');
 console.log(pw);
 
 
-function strongPassword (str) {
+function strongPassword(str) {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
 }
 
@@ -19,12 +20,12 @@ function strongPassword (str) {
 //     }
 // })
 
-btn.onclick = function(){
-    if(pw.value.length !== 0){
-        if(strongPassword(pw.value)){
+btn.onclick = function () {
+    if (pw.value.length !== 0) {
+        if (strongPassword(pw.value)) {
             cautionMessage.classList.add('hide');
         }
-    } else{
+    } else {
         cautionMessage.classList.remove('hide');
     }
 }
