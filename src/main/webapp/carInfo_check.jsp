@@ -103,6 +103,9 @@ color: gray;
 	
 		List<CarInfoCheckDTO> carList = memberInfoDAO.findCarInfoList();
 		
+		List<CarInfoCheckDTO> carNumbers = memberInfoDAO.findCarNumberList();
+		
+		
 	%>
 	
 	<div class="side_bar">
@@ -120,9 +123,9 @@ color: gray;
   <path d="M13.5 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm-11-1a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z"/>
 </svg> 렌트 관리</div></a>
-		<a href="./test main.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
+		<a href="./login.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
   <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
-</svg> 돌아 가기</div></a>
+</svg> 로그 아웃</div></a>
 	</div>
 	<h1>차량정보</h1>
 	<p></p>
@@ -167,5 +170,63 @@ color: gray;
 	  %>
 
 	</table>
+	
+	<fieldset>
+	<legend>차량정보 추가</legend>
+	<form action="addCar_proc.jsp" method="post">
+		<laber>차량번호:</laber> <input type="text" name="car_number">
+		<laber>차량명:</laber> <input type="text" name="car_name">
+		<laber>승차인원: </laber> <input type="text" name="passenger_count"><br>
+		<laber>차크기:</laber> 
+		<select name="car_size">
+			<option>S</option>
+			<option>M</option>
+			<option>L_SEDAN</option>
+			<option>S_SUV</option>
+			<option>L_RV</option>
+			<option>L_RV</option>
+			<option>SPORT</option>
+		</select>
+		<label>차종: </label>
+		<select name="car_type">
+			<option>G</option>
+			<option>D</option>
+			<option>E</option>
+			<option>H</option>
+		</select><br>
+		<laber>배기량: </laber> <input type="text" name="vehicle_rating">
+		<laber>제조회사: </laber> <input type="text" name="company">
+		<laber>색상: </laber> <input type="text" name="color">
+		<laber>연식: </laber> <input type="text" name="model_year"><br>
+		<label>관리상태: </label>
+		<select name="management_status">
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select><br>
+		<laber>네비게이션: </laber><input type="checkbox" value="NAV"  name="option1"><br>
+		<laber>카메라: </laber><input type="checkbox" value="CAM" name="option2"><br>
+		<laber>사고이력: </laber> <input type="text" name="accident_history">
+		
+		<button type="submit">추가</button>
+	</form>
+	</fieldset>
+	
+	<fieldset>
+	<legend>차량정보 삭제</legend>
+	<form action="deleteCar_proc.jsp" method="post">
+	<select name="car_number">
+        <%
+            
+            for (CarInfoCheckDTO carNumber : carNumbers) {
+        %>
+        <option value="<%=carNumber.getCar_number() %>"><%=carNumber.getCar_number() %></option>
+        <%
+            }
+        %>
+    </select>
+    <button type="submit">삭제</button>
+	</form>
+	</fieldset>
 </body>
 </html>
