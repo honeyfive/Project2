@@ -189,7 +189,7 @@ public class MemberInfoDAO {
 
 		String sql = " SELECT * FROM member_info WHERE id = ? and password = ? ";
 
-		System.out.println(targetId + targetPw);
+		System.out.println("변수 값 확인 : " + targetId + targetPw);
 
 		List<MemberInfoDTO> memberInfoList = null;
 
@@ -227,7 +227,7 @@ public class MemberInfoDAO {
 
 		String sql = " SELECT * FROM member_info WHERE id = ? ";
 
-		System.out.println(targetId);
+		System.out.println("변수 값 확인 : " + targetId);
 		
 		List<MemberInfoDTO> memberInfoList = null;
 
@@ -264,7 +264,7 @@ public class MemberInfoDAO {
 
 		String sql = " SELECT * FROM member_info WHERE password = ? ";
 
-		System.out.println(targetPw);
+		System.out.println("변수 값 확인 : " + targetPw);
 		
 		List<MemberInfoDTO> memberInfoList = null;
 
@@ -296,15 +296,57 @@ public class MemberInfoDAO {
 	}
 	
 //	회원가입 시 이미 있는 운전면허번호인가 확인하는 메소드
+	public List<MemberInfoDTO> findMemberListByTel(String targetTel1, String targetTel2, String targetTel3) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM member_info "
+				+ " WHERE tel = ? || '-' || ? || '-' || ? "
+				+ " ORDER BY membership_number ";
+
+		System.out.println("변수 값 확인 : " + targetTel1 + "-" + targetTel2 + "-" + targetTel3);
+		
+		List<MemberInfoDTO> memberInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, targetTel1);
+			psmt.setString(2, targetTel2);
+			psmt.setString(3, targetTel3);
+
+			rs = psmt.executeQuery();
+			memberInfoList = new ArrayList<MemberInfoDTO>();
+			
+			while (rs.next()) {
+
+				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
+						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
+						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
+						rs.getInt("overdue_history"), rs.getInt("use_count"));
+
+				memberInfoList.add(memberInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return memberInfoList;
+
+	}
+	
+//	회원가입 시 이미 있는 운전면허번호인가 확인하는 메소드
 	public List<MemberInfoDTO> findMemberListByLisenceNumber
 	(String targetLisence1, String targetLisence2, String targetLisence3, String targetLisence4) {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM member_info "
-				+ " WHERE lisence_number = ' ? '|| '-' || ' ? ' || '-' || ' ? ' || '-' || ' ? ' "
+				+ " WHERE lisence_number = ? || '-' || ? || '-' || ? || '-' || ? "
 				+ " ORDER BY membership_number ";
 
-		System.out.println(targetLisence1 + "-" + targetLisence2 + "-" + targetLisence3 + "-" + targetLisence4);
+		System.out.println("변수 값 확인 : " + targetLisence1 + "-" + targetLisence2 + "-" + targetLisence3 + "-" + targetLisence4);
 		
 		List<MemberInfoDTO> memberInfoList = null;
 
@@ -339,56 +381,25 @@ public class MemberInfoDAO {
 
 	}
 	
-	
-	
-	
-	
-
-//	새 고객 추가 메소드 > 수정중
-	public List<MemberInfoDTO> saveMemberList(String targetName, String targetBirthYear, String targetTel1,
-			String targetTel2, String targetTel3, String targetId, String targetPassword, String targetEmail,
-			String targetLicense1, String targetLicense2, String targetLicense3, String targetLicense4,
-			String targetGender, String targetBirthYear2, String targetBirthMonth, String targetBirthDate,
-			String targetLicenseYear, String targetLicenseMonth, String targetLicenseDate) {
+//	회원가입 시 이미 있는 이메일인가 확인하는 메소드
+	public List<MemberInfoDTO> findMemberListByEmail
+	(String targetEmail) {
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " INSERT INTO member_info " // 이거 별명 붙여야함 !! 다시
-				+ " VALUES( (SELECT max()+1 FROM member_info), ? , (EXTRACT(YEAR FROM sysdate) - ? ), concat( ? , '-', ? , '-', ? ), ? , ? , ? , NULL, "
-				+ " concat( ? , '-', ? , '-', ? , '-', ? , '-'), ? , concat(? , '-', ? , '-', ? ), "
-				+ " concat( ? , '-', ? , '-', ? ), NULL, NULL); ";
+		String sql = " SELECT * FROM member_info "
+				+ " WHERE email = ? ";
 
-		System.out.println(targetName + targetBirthYear + targetTel1 + targetTel2 + targetTel3 + targetId
-				+ targetPassword + targetEmail + targetLicense1 + targetLicense2 + targetLicense3 + targetLicense4
-				+ targetGender + targetBirthYear2 + targetBirthMonth + targetBirthDate + targetLicenseYear
-				+ targetLicenseMonth + targetLicenseDate);
-
+		System.out.println("변수 값 확인 : " + targetEmail);
+		
 		List<MemberInfoDTO> memberInfoList = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, targetName);
-			psmt.setString(2, targetBirthYear);
-			psmt.setString(3, targetTel1);
-			psmt.setString(4, targetTel2);
-			psmt.setString(5, targetTel3);
-			psmt.setString(6, targetId);
-			psmt.setString(7, targetPassword);
-			psmt.setString(8, targetEmail);
-			psmt.setString(9, targetLicense1);
-			psmt.setString(10, targetLicense2);
-			psmt.setString(11, targetLicense3);
-			psmt.setString(12, targetLicense4);
-			psmt.setString(13, targetGender);
-			psmt.setString(14, targetBirthYear2);
-			psmt.setString(15, targetBirthMonth);
-			psmt.setString(16, targetBirthDate);
-			psmt.setString(17, targetLicenseYear);
-			psmt.setString(18, targetLicenseMonth);
-			psmt.setString(19, targetLicenseDate);
+			psmt.setString(1, targetEmail);
 
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>(); // 못 찾아도 null이 아님
-
+			memberInfoList = new ArrayList<MemberInfoDTO>();
+			
 			while (rs.next()) {
 
 				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
@@ -407,6 +418,65 @@ public class MemberInfoDAO {
 		}
 
 		return memberInfoList;
+
+	}
+		
+
+//	새 고객 추가 메소드
+	public int saveMemberList(String targetName, String targetBirthYear, String targetTel1,
+			String targetTel2, String targetTel3, String targetId, String targetPassword, String targetEmail,
+			String targetLisence1, String targetLisence2, String targetLisence3, String targetLisence4,
+			String targetGender, String targetBirthMonth, String targetBirthDate,
+			String targetLisenceYear, String targetLisenceMonth, String targetLisenceDate) {
+		
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " INSERT INTO member_info (membership_number, name, age, tel, id, password, email, "
+				+ " membership_level, lisence_number, gender, birthday, lisence_acquisition_date, overdue_history, use_count) "
+				+ " VALUES ((SELECT MAX(membership_number) + 1 FROM member_info), ? , (EXTRACT(YEAR FROM SYSDATE) - ?), "
+				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , NULL, ? || '-' || ? || '-' || ? || '-' || ? , "
+				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, NULL, NULL )";
+
+		System.out.println("변수 확인 > 아이디" + targetId + " 비번" + targetPassword + " 이름" + targetName +
+				" 출생년도" + targetBirthYear + " 출생월" + targetBirthMonth + " 출생일" + targetBirthDate +
+				" 성별" + targetGender + " 운전면허1" + targetLisence1 + " 운전면허2" + targetLisence2 +
+				" 운전면허3" + targetLisence3 + " 운전면허4" + targetLisence4 + " 면허취득년" + targetLisenceYear +
+				" 면허취득월" + targetLisenceMonth + " 면허취득일" + targetLisenceDate +
+				" 전화번호1" + targetTel1 + " 전화번호2" + targetTel2 + " 전화번호3" + targetTel3 +
+				" 이메일" + targetEmail);
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, targetName);
+			psmt.setString(2, targetBirthYear);
+			psmt.setString(3, targetTel1);
+			psmt.setString(4, targetTel2);
+			psmt.setString(5, targetTel3);
+			psmt.setString(6, targetId);
+			psmt.setString(7, targetPassword);
+			psmt.setString(8, targetEmail);
+			psmt.setString(9, targetLisence1);
+			psmt.setString(10, targetLisence2);
+			psmt.setString(11, targetLisence3);
+			psmt.setString(12, targetLisence4);
+			psmt.setString(13, targetGender);
+			psmt.setString(14, targetBirthYear);
+			psmt.setString(15, targetBirthMonth);
+			psmt.setString(16, targetBirthDate);
+			psmt.setString(17, targetLisenceYear);
+			psmt.setString(18, targetLisenceMonth);
+			psmt.setString(19, targetLisenceDate);
+
+			result = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
 
 	}
 	
