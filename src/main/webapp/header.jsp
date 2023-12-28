@@ -18,7 +18,7 @@
 			<!-- 헤더 로고-->
 			<div class="header-nav-img">
 				<a href=""> <!-- 이미지 누르면 메인 화면으로 이동하도록 .. 나중에 링크 추가하기--> <img
-					id="hugo-logo" src="./images/휴카로고_예비1.png" alt="hugo logo">
+					id="hugo-logo" src="./images/hucarlogo2.png" alt="hugo logo">
 				</a>
 			</div>
 
