@@ -55,18 +55,17 @@ public class ReservationInfoDAO {
 		//예약번호 기준으로 예약정보 한개만 읽어오는 메소드 
 		public ReservationInfoDTO findReservationInfoByRsrvNumber(int reservation_number) {
 			 conn = DBConnectionManager.connectDB();
-			 String sql = "select * from reservation_information"
-					 		+ "where reservation_number = ? " ;
+			 String sql = " select * from reservation_information "
+					 		+ " where reservation_number = ? " ;
 			 
-			 ReservationInfoDTO reservationInfoDTO = null; 	// return할 객체
+			 ReservationInfoDTO reservationInfoDTO = null; 
 			
 			 try {
 				 psmt = conn.prepareStatement(sql);
-				 //connection 활용해서 sql 명령을 실행하는 객체
 				 
 				 psmt.setInt(1,reservation_number);
 				 
-				 rs = psmt.executeQuery(); 		//준비된 쿼리문 실행
+				 rs = psmt.executeQuery(); 
 				 
 				 if(rs.next()) {
 					 reservationInfoDTO = new ReservationInfoDTO (
@@ -83,6 +82,9 @@ public class ReservationInfoDAO {
 			}
 			
 			return reservationInfoDTO ;
-}
+} }
 		
-}
+
+		
+		
+

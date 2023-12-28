@@ -1,3 +1,4 @@
+<%@page import="db.dto.PaymentInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="db.dao.ReservationInfoDAO" %>
@@ -16,6 +17,11 @@
 		ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
 		
 		int result = reservationInfoDAO.saveReservationInfo(name);
+		
+		
+		//이거~~~~~ 두줄 쌤이 써줁거 ㅎ
+		savePaymentInfo(100002, 1653652, C , dk  , 1112, 3 );
+		savePaymentInfo(PaymentInfoDTO);
 // 		int result = 0;
 		
 		if(result > 0){
