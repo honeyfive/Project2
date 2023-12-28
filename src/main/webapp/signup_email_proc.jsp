@@ -6,13 +6,13 @@
 
 	<%
 	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("id");
+	String email = request.getParameter("email");
 
-	System.out.println(id);
+	System.out.println(email);
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListById(id);
-
+	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListByEmail(email);
+	
 	int result = 0;
 	
 	if(memberInfoList.size() > 0){
@@ -21,6 +21,7 @@
 	} else{
 		result = 1; // 성공
 		out.print(result);
+
 
 	}
 	%>

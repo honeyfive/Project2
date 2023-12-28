@@ -1,0 +1,168 @@
+.my_Info_main_container{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: rgb(233, 230, 230);
+}
+
+.my_info_box{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.my_info_text{
+    padding-top: 40px;
+}
+
+.my_info_main_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+}
+
+.my_name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.member_name{
+    margin-bottom: 0;
+    font-size: 25px;
+}
+
+.member_email_big{
+    color: gray;
+    margin: 0;
+    font-size: 20px;
+}
+
+.my_email_id{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.go_to_member_email{
+    display: flex;
+    align-items: center;
+}
+
+.member_email{
+    margin-right: 10px;
+}
+
+.my_phonenum{
+    width: 50%;
+    height: 73px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.my_nickname{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.go_to_member_nickname{
+    display: flex;
+    align-items: center;
+}
+
+.member_nickname{
+    margin-right: 10px;
+}
+
+.my_birthday{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.my_gender{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.account_linkage{
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.account_linkage_text{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+.kakaotalk_box, .apple_box, .naver_box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fa-apple, .fa-comment-sms, .fa-n{
+    width: auto;
+    color: grey;
+}
+
+.go_to_apple_linkage, .go_to_naver_linkage{
+    width: 83px;
+    height: 22px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.my_email_id:hover, .my_phonenum:hover, .my_nickname:hover, .my_birthday:hover, .my_gender:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.go_to_apple_linkage:hover, .go_to_naver_linkage:hover{
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

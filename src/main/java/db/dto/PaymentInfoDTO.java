@@ -67,4 +67,11 @@ public class PaymentInfoDTO {
 		this.payment_state = payment_state;
 	}
 
+	public PaymentInfoDTO(String payment_type) {
+		super();
+		this.payment_type = payment_type;
+	}
+	
+	
+
 }
