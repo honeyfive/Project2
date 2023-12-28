@@ -1,7 +1,8 @@
 <%@page import="db.dao.MemberInfoDAO"%>
-<%@page import="oracle.net.aso.l"%>
+<%@page import="java.util.List"%>
+<%@page import="db.dto.MemberInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +19,13 @@
 	String birthYear = request.getParameter("birth-year");
 	String birthMonth = request.getParameter("birth-month");
 	String birthDate = request.getParameter("birth-date");
-	String license1 = request.getParameter("license-1");
-	String license2 = request.getParameter("license-2");
-	String license3 = request.getParameter("license-3");
-	String license4 = request.getParameter("license-4");
-	String licenseYear = request.getParameter("license-year");
-	String licenseMonth = request.getParameter("license-month");
-	String licenseDate = request.getParameter("license-date");
+	String lisence1 = request.getParameter("lisence-1");
+	String lisence2 = request.getParameter("lisence-2");
+	String lisence3 = request.getParameter("lisence-3");
+	String lisence4 = request.getParameter("lisence-4");
+	String lisenceYear = request.getParameter("lisence-year");
+	String lisenceMonth = request.getParameter("lisence-month");
+	String licenseDate = request.getParameter("lisence-date");
 	String gender = request.getParameter("gender");
 	String tel1 = request.getParameter("tel-1");
 	String tel2 = request.getParameter("tel-2");
@@ -34,8 +35,28 @@
 	String emailOk = request.getParameter("email-ok");
 	String iAmOk = request.getParameter("I-am-ok");
 	
+	System.out.println(id);
+
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-		
+	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListById(id);
+
+	if (memberInfoList.size() > 0) {
 	%>
+	<script>
+		alert('<%=id%>는 이미 사용 중인 아이디입니다. 다른 아이디를 입력해주세요.');
+		location.href = 'signup.jsp';
+	</script>
+	<%
+	} else {
+	%>
+	<script>
+		alert('사용 가능한 아이디 입니다!');
+		location.href = 'signup.jsp';
+	</script>
+	<%
+	}
+	%>
+
+
 </body>
 </html>

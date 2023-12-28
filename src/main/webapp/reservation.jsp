@@ -9,13 +9,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="./css/reservation.css">
+<link rel="stylesheet" href="./css/footer.css">
 </head>
 <body>
-	
+
 	<%
 	//보험 정보 리스트 불러오기
 	InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
@@ -26,71 +30,285 @@
 	List<CarInfoDTO> carSizeInfoList = carInfoDAO.findCarInfoListBySize();
 	List<CarInfoDTO> carTypeInfoList = null; //carInfoDAO.findCarInfoListByType();
 	%>
-	
-		<h3>보험종류</h3>
-		<!-- 보험 종류 체크박스 -->
-		전체<input type="checkbox">
-			<%
-			if (insuranceinfoList != null) {
-				for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
-			%>
-		
-		<%=insuranceinfo.getInsurance_type()%><input type="checkbox">
-		
-		<%
-		}
-		}
-		%>
-		<h3>자동차 모델1</h3>    
-		<select>     
-			<%
-			if (carInfoList != null) {
-				for (CarInfoDTO carInfo : carInfoList) {
-			%>
-		
-		<option> <%=carInfo.getCar_name()%> </option>
-		<%
-		}
-		}
-		%>
-		</select>
-		
-		<%-- <h3>자동차 모델2</h3>    
-			<%
-			if (carInfoList != null) {
-				for (CarInfoDTO carInfo : carInfoList) {
-			%>
-		
-		<%=carInfo.getCar_name()%><input type="checkbox">
-		<%
-		}
-		}
-		%> --%>
-		
-		<h3>차량크기</h3>
-		전체<input type="checkbox">
-		   <%
-			if (carSizeInfoList != null) {
-				for (CarInfoDTO carInfo : carSizeInfoList) {
-			%>
-		
-		<%=carInfo.getCar_size()%><input type="checkbox">
-		<%
-		}
-		}
-		%>
-		
-		<h3>차량타입</h3>
-		전체<input type="checkbox">
-		   <%
-			if (carTypeInfoList != null) {
-				for (CarInfoDTO carInfo : carTypeInfoList) {
-			%>
-		
-		<%=carInfo.getCar_type()%><input type="checkbox">
-		<%
-		}
-		}
-		%>
+
+	<div class="location-modal">
+		<!-- 모달창 - 지역 -->
+		<div class="location-modal-body">
+			<div class="location-modal-close-Btn">X</div>
+			<div class="location-modal-body-container">
+				<div class="location-modal-mainBox1">
+					아산
+					<div class="location-modal-mainBox1-item"></div>
+				</div>
+				<div class="location-modal-mainBox2">
+					천안
+					<div class="location-modal-mainBox2-item"></div>
+				</div>
+				<div class="location-modal-returnDate-text"></div>
+			</div>
+			<div class="location-modal-check-Btn"></div>
+		</div>
+	</div>
+	<!-- 모달창 - 달력 -->
+	<div class="date-modal">
+		<div class="date-modal-body">
+			<div class="date-modal-close-Btn">X</div>
+			<h2>달력모달창 제목</h2>
+			<p>달력모달창 내용</p>
+		</div>
+	</div>
+
+	<div class="header">
+
+		<!-- 헤더 네비게이션-->
+		<div class="header-nav">
+
+			<!-- 헤더 로고-->
+			<div class="header-nav-img">
+				<a href=""> <!-- 이미지 누르면 메인 화면으로 이동하도록 .. 나중에 링크 추가하기--> <img
+					id="hugo-logo" src="./images/hucarlogo2.png" alt="hugo logo">
+				</a>
+			</div>
+
+			<!-- 네비게이션 버튼-->
+			<div class="header-nav-btn">
+				<a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
+					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
+				</a> <a href=""> <!-- 결제 페이지 연결-->
+					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
+				</a> <a href=""> <!-- 마이 페이지 연결-->
+					<div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
+				</a> <a href=""> <!-- 관리자 전용 페이지 연결-->
+					<div id="management-pg" class="hearder-nav-btn-item">관리자전용</div>
+				</a>
+			</div>
+
+		</div>
+		<!-- 헤더 로그인 쪽-->
+		<div class="header-nav-login">
+
+			<!-- 상담 연결-->
+			<div class="header-nav-login-call">
+				<i class="fa-solid fa-phone"></i>
+				<div>친절상담</div>
+				<div>1544-3333</div>
+			</div>
+			<div class="header-nav-login-slash">|</div>
+			<!-- 로그인 버튼-->
+			<a href=""> <!-- 로그인 / 회원가입 페이지 연결하기-->
+				<div class="header-nav-login-btn">
+					<i class="fa-regular fa-circle-user"></i>
+					<div id="login">로그인</div>
+				</div>
+			</a>
+
+		</div>
+
+	</div>
+
+	<!-- 예약페이지  -->
+	<div class="rv-locationAndDateBox-sticky">
+		<div class="rv-locationAndDateBox">
+			<div class="rv-locationAndDateBox-location"></div>
+			<div class="rv-locationAndDateBox-date"></div>
+			<div class="rv-locationAndDateBox-selectCarBtn">차량검색</div>
+		</div>
+	</div>
+	<div class="rv-container">
+		<div class="rv-carInfoBox-container">
+			<div class="rv-carInfoBox-top">
+				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
+			</div>
+			<div class="rv-carInfoBox-main">
+				<div class="rv-carInfoBox-Box1"></div>
+				<div class="rv-carInfoBox-Box2"></div>
+				<div class="rv-carInfoBox-Box3"></div>
+				<div class="rv-carInfoBox-Box4"></div>
+				<div class="rv-carInfoBox-Box5"></div>
+			</div>
+		</div>
+		<div class="rv-filterBox">
+			<div class="rv-filterBox-Main">
+				<div class="rv-filterBox-Main-1">
+					자차보험
+					<div class="rv-filterBox-Main-1-data">
+						전체<input type="checkbox">
+						<%
+						if (insuranceinfoList != null) {
+							for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
+						%>
+
+						<%=insuranceinfo.getInsurance_type()%><input type="checkbox">
+
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
+				<div class="rv-filterBox-Main-2">
+					자동차모델
+					<div class="rv-filterBox-Main-2-data">
+						<select>
+							<%
+							if (carInfoList != null) {
+								for (CarInfoDTO carInfo : carInfoList) {
+							%>
+
+							<option>
+								<%=carInfo.getCar_name()%>
+							</option>
+							<%
+							}
+							}
+							%>
+						</select>
+					</div>
+				</div>
+				<div class="rv-filterBox-Main-3">
+					차량크기
+					<div class="rv-filterBox-Main-3-data">
+						전체 <input type="checkbox">
+						<%
+						if (carSizeInfoList != null) {
+							for (CarInfoDTO carInfo : carSizeInfoList) {
+						%>
+
+						<%=carInfo.getCar_size()%><input type="checkbox">
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
+				<div class="rv-filterBox-Main-4">
+					차량연료
+					<div class="rv-filterBox-Main-4-data"></div>
+				</div>
+				<div class="rv-filterBox-Main-5">
+					필터 초기화
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+						fill="currentColor" class="bi bi-arrow-counterclockwise"
+						viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+							d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                        <path
+							d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                      </svg>
+				</div>
+
+			</div>
+			<div class="rv-filterBox-RVBtn">예약하기</div>
+		</div>
+	</div>
+
+
+	<footer>
+		<div class="footer_container">
+			<div class="box1">
+				<div class="b1">
+					<div class="b1-1">
+						<div class="p1box">
+							<p class="b1_font">휴카 서비스</p>
+							<div class="p1_min">
+								<a class="a1_font">단기렌트</a> <a class="a1_font">해외렌트</a> <a
+									class="a1_font">월렌트</a> <a class="a1_font">휴카 회원 혜택</a> <a
+									class="a1_font">자주 묻는 질문</a>
+							</div>
+						</div>
+						<div class="p2box">
+							<p class="b1_font">국내인기 지역</p>
+							<div class="p2-1_min">
+								<a class="a1_font">제주 렌트카</a> <a class="a1_font">부산 렌트카</a> <a
+									class="a1_font">여수 렌트카</a> <a class="a1_font">경주 렌트카</a> <a
+									class="a1_font">서울 렌트카</a> <a class="a1_font">강남구 월렌트</a>
+							</div>
+						</div>
+						<div class="p3box">
+							<p class="b1_font">해외 인기 지역</p>
+							<div class="p2-2_min">
+								<a class="a1_font">오키나와 렌트카</a> <a class="a1_font">괌 렌트카</a> <a
+									class="a1_font">후쿠오카 렌트카</a> <a class="a1_font">사이판 렌트카</a> <a
+									class="a1_font">삿포로 렌트카</a> <a class="a1_font">해외 편도 렌트카</a>
+							</div>
+						</div>
+						<div class="p4box">
+							<p class="b1_font">회사 정보</p>
+							<div class="p3-1_min">
+								<a class="a1_font">2조 소개</a> <a class="a1_font">휴카 서비스</a> <a
+									class="a1_font">휴카 파트너스</a> <a class="a1_font">2조 채용</a> <a
+									class="a1_font">입점 문의</a>
+							</div>
+						</div>
+						<div class="p5box">
+							<p class="b1_font">통합 약관</p>
+							<div class="p3-2_min">
+								<a class="a1_font">개인정보 처리방침</a> <a class="a1_font">이용약관</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="b1-2">
+						<div>
+							<div class="iconbox">
+								<div class="insta">
+									<span><i class="fa-brands fa-instagram fa-2x"></i></span>
+								</div>
+								<div class="facebook">
+									<span><i class="fa-brands fa-facebook fa-2x"></i></span>
+								</div>
+								<div class="blog">
+									<span><i class="fa-brands fa-blogger fa-2x"></i></span>
+								</div>
+								<div class="youtube">
+									<span><i class="fa-brands fa-youtube fa-2x"></i></span>
+								</div>
+							</div>
+							<div class="callcenterbox">
+								<p class="callcenter">고객센터</p>
+								<p class="callcenter_num">1544-5344</p>
+								<div class="callcenter_info">
+									<p class="call_info">매일(공휴일 포함) 오전 9시 ~ 오후 6시</p>
+									<p class="call_info">점심시간 오후 12시 30분 ~ 1시 30분(1시간)</p>
+									<p class="call_info">국내문의 : feedback@teamo2.kr</p>
+									<p class="call_info">해외문의 : global@teamo2.kr</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 라인 -->
+			<div class="line"></div>
+
+
+			<div class="box2">
+				<div class="b2">
+					<div class="b2-1">
+						<img>
+						<div class="company_info">
+							<p class="a2_font">주식회사 팀오투 | 대표자 : 정용진 | 사업자등록번호 :
+								286-88-00238</p>
+							<p class="a2_font">주소 : 서울특별시 강남구 테헤란로2길 21 9층, 10층 (역삼동, 타워
+								300빌딩)</p>
+							<p class="a2_font">통신판매업신고: 제2019-서울강남-04914호 | 개인정보보호책임자:
+								오승헌</p>
+							<p class="a2_font">Copyright TeamO2 Co., Ltd. All rights
+								reserved.</p>
+						</div>
+						<p class="p1_font">주식회사 팀오투는 통신판매중개자로서 카모아의 거래당사자가 아니며 상품정보,
+							거래조건 및 거래에 관련한 의무와 책임은 각 판매자에게 있습니다.</p>
+					</div>
+					<div class="b2-2"></div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<script src="./js/reservation.js"></script>
 </body>
 </html>

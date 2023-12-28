@@ -1,12 +1,30 @@
-// const eye = document.querySelector(".fa-eye");
-// const showPw = docume.querySelector(".input-pw");
+const pw = document.getElementById('password');
+const cautionMessage = document.getElementsByClassName('hide');
+const btn = document.getElementById('chkBtn');
 
-// eye.addEventListener("click", ()=>{
-//     // showPw.toggleClass('active');
+console.log(pw);
 
-//     if(showPw.type == "password"){
-//         showPw.type = "text";
+
+function strongPassword (str) {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+}
+
+// pw.addEventListener('onclick', ()=>{
+//     if(pw.value.length !== 0){
+//         if(strongPassword(pw.value)){
+//             cautionMessage.classList.add('hide');
+//         }
 //     } else{
-//         showPw.type = "password";
+//         cautionMessage.classList.remove('hide');
 //     }
 // })
+
+btn.onclick = function(){
+    if(pw.value.length !== 0){
+        if(strongPassword(pw.value)){
+            cautionMessage.classList.add('hide');
+        }
+    } else{
+        cautionMessage.classList.remove('hide');
+    }
+}
