@@ -141,7 +141,10 @@ public class ReservationInfoDTO {
 		this.payment_number = payment_number;
 	}
 	
-	
+	public ReservationInfoDTO(String rental_place) {
+		super();
+		this.rental_place = rental_place;
+	}
 	
 	
 }
