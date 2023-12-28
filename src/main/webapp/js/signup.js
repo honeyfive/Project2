@@ -1,31 +1,15 @@
 // 비밀번호 영어 문자 숫자 그거 ..
-const pw = document.getElementById('password');
-const cautionMessage = document.getElementsByClassName('hide');
-const btn = document.getElementById('chkBtn');
+const pw = document.getElementById('pw').val();
+const pwBtn = document.getElementById('pwChkBtn');
+const check = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{3,10}$/;
 
 console.log(pw);
 
-
-function strongPassword(str) {
-    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
-}
-
-// pw.addEventListener('onclick', ()=>{
-//     if(pw.value.length !== 0){
-//         if(strongPassword(pw.value)){
-//             cautionMessage.classList.add('hide');
-//         }
-//     } else{
-//         cautionMessage.classList.remove('hide');
-//     }
-// })
-
-btn.onclick = function () {
-    if (pw.value.length !== 0) {
-        if (strongPassword(pw.value)) {
-            cautionMessage.classList.add('hide');
-        }
-    } else {
-        cautionMessage.classList.remove('hide');
+pwBtn.addEventListener('click', ()=>{
+    if (check.test(pw)) {
+        alert("이용 가능한 비밀번호입니다!");
+      } else { 
+        alert("비밀번호는 3자리 이상 10자리 이하 영문 + 숫자 + 특수문자 조합으로 이루어져야 합니다.")
     }
-}
+})
+

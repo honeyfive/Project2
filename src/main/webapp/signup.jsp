@@ -43,11 +43,11 @@
 						<div class="input-box">
 							<div>
 								<input class="input-id input-pw" type="input"
-									placeholder="최대 10글자" name="pw">
+									placeholder="최대 10글자" name="pw" id="pw">
 								<!-- <i class="fa-solid fa-eye"></i> -->
 							</div>
 							<div>
-								<button type="button" class="id-chd">확인</button>
+								<button type="button" class="id-chd" id="pwChkBtn">확인</button>
 							</div>
 						</div>
 						<div class="caution signin-id hide">비밀번호는 영문 + 숫자 + 특수기호를
@@ -285,10 +285,12 @@
 	</form>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="./js/signup.js"></script>
 	<script src="./js/signup_id.js"></script>
 	<script src="./js/signup_lisenceNumber.js"></script>
 	<script src="./js/signup_tel.js"></script>
 	<script src="./js/signup_email.js"></script>
+
 
 
 
