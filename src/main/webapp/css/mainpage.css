@@ -53,8 +53,11 @@ img{
     justify-content: center;
     align-items: center;
     position: relative;
-    cursor: pointer;
+    cursor: pointer; 
+    transition: all 0.5 ease;
 }
+
+
 
 
 /* 가성비 차량 글꼴 */
@@ -83,6 +86,7 @@ img{
     align-items: center;
     position: relative;
     cursor: pointer;
+    transition: all 0.5 ease;
 }
 
 
@@ -112,6 +116,7 @@ img{
     align-items: center;
     position: relative;
     cursor: pointer;
+    transition: all 0.5 ease;
 }
 
 
@@ -141,5 +146,25 @@ img{
     align-items: center;
     position: relative;
     cursor: pointer;
+    transition: all 0.5 ease;
 }
 
+.show_recommend_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_cheap_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_old_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_popular_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
