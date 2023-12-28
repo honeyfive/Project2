@@ -182,6 +182,56 @@ public class MemberInfoDAO {
 
 		return result;
 	}
+	
+	public int modifyOverdue(MemberInfoDTO memberInfo) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " UPDATE member_info" + " SET overdue_history = ? " + " WHERE Membership_number = ? ";
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(2, memberInfo.getMembership_number());
+			psmt.setInt(1, memberInfo.getOverdue_history());
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
+	
+	public int modifyUseCount(MemberInfoDTO memberInfo) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " UPDATE member_info" + " SET use_count = ? " + " WHERE Membership_number = ? ";
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(2, memberInfo.getMembership_number());
+			psmt.setInt(1, memberInfo.getUse_count());
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
 
 	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
 	public List<MemberInfoDTO> findMemberListById(String targetId, String targetPw) {

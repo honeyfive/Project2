@@ -33,6 +33,11 @@ public class CarInfoCheckDTO {
 		this.option2 = option2;
 		this.accident_history = accident_history;
 	}
+	
+	public CarInfoCheckDTO(String car_number) {
+		super();
+		this.car_number = car_number;
+	}
 	public String getCar_number() {
 		return car_number;
 	}
