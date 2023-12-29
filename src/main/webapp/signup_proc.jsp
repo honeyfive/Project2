@@ -31,20 +31,14 @@
 	String tel3 = request.getParameter("tel3");
 	String email = request.getParameter("email");
 
-	
-	System.out.println("proc 변수 확인 > 아이디" + id + " 비번" + pw + " 이름" + name +
-			" 출생년도" + birthYear + " 출생월" + birthMonth + " 출생일" + birthDate +
-			" 성별" + gender + " 운전면허1" + lisence1 + " 운전면허2" + lisence2 +
-			" 운전면허3" + lisence3 + " 운전면허4" + lisence4 + " 면허취득년" + lisenceYear +
-			" 면허취득월" + lisenceMonth + " 면허취득일" + lisenceDate +
-			" 전화번호1" + tel1 + " 전화번호2" + tel2 + " 전화번호3" + tel3 +
-			" 이메일" + email);
-	
-	
+	System.out.println("proc 변수 확인 > 아이디" + id + " 비번" + pw + " 이름" + name + " 출생년도" + birthYear + " 출생월" + birthMonth
+			+ " 출생일" + birthDate + " 성별" + gender + " 운전면허1" + lisence1 + " 운전면허2" + lisence2 + " 운전면허3" + lisence3
+			+ " 운전면허4" + lisence4 + " 면허취득년" + lisenceYear + " 면허취득월" + lisenceMonth + " 면허취득일" + lisenceDate + " 전화번호1"
+			+ tel1 + " 전화번호2" + tel2 + " 전화번호3" + tel3 + " 이메일" + email);
+
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	int result = memberInfoDAO.saveMemberList(name, birthYear, tel1, tel2, tel3, 
-			id, pw, email, lisence1, lisence2, lisence3, lisence4, 
-			gender, birthMonth, birthDate, lisenceYear, lisenceMonth, lisenceDate);
+	int result = memberInfoDAO.saveMemberInfo(name, birthYear, tel1, tel2, tel3, id, pw, email, lisence1, lisence2,
+			lisence3, lisence4, gender, birthMonth, birthDate, lisenceYear, lisenceMonth, lisenceDate);
 
 	if (result > 0) {
 	%>

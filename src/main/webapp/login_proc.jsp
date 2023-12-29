@@ -20,14 +20,9 @@
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 
-	List<MemberInfoDTO> memberinfoList = memberInfoDAO.findMemberListById(id, pw);
-	
-	
-	
-	
-	
-	
-	if (memberinfoList.size() == 0) {
+	MemberInfoDTO memberinfoDTO = memberInfoDAO.findMemberByIdPw(id, pw);
+
+	if (memberinfoDTO == null) {
 	%>
 	<script>
 		alert('아이디와 비밀번호를 확인하세요');
@@ -35,11 +30,11 @@
 	</script>
 	<%
 	} else { //로그인 성공시
-		session.setAttribute("id",id);
+	session.setAttribute("id", id);
 	%>
 	<script>
 		alert('로그인 성공');
-	 	location.href = 'mainpage.jsp'; // 메인 페이지랑 연결
+		location.href = 'mainpage.jsp'; // 메인 페이지랑 연결
 	</script>
 	<%
 	}
