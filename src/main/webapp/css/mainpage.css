@@ -2,11 +2,18 @@
     box-sizing: border-box;
 }
 
-/* 차량 이미지 높이 너비 */
-img{
-    width: 200px;
-    height: 40%;
+.recommend_car_image, .cheap_car_image, .old_car_image, .popular_car_image{
+    width: 236px;
+    height: 164px;
 }
+
+/* 차량 이미지 높이 너비 */
+.main_page_picture{
+    width: 100%;
+    object-fit: contain;
+}
+
+
 
 /* 차량정보 글박스 높이조정 */
 .recommend_car_info,.cheap_car_info,.old_car_info,.popular_car_info{

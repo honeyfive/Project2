@@ -14,12 +14,13 @@
 </head>
 <body>
     <!--헤더-->
-    <%@ include file="header.jsp" %>
+    <%@ include file="header2.jsp" %>
 
     <!-- 내 정보 페이지 메인 -->
     <div class="my_Info_main_container">
         <div class="my_info_box">
-            <p class="my_info_text"> 내 정보 </p>
+        		<!-- 회원 이름  -->
+            <p class="my_info_text"> 000님 정보 </p>
         </div>
         <div class="my_info_main_box">
             <div class="my_name">
@@ -58,7 +59,7 @@
             <span class="account_linkage_text"> 계정연동</span>
             <div class="kakaotalk_box">
                 <p><i class="fa-solid fa-comment-sms"></i> &nbsp;카카오톡</p>
-                <p><i class="fa-solid fa-check"></i> 연동완료 </p>
+                <p><i class="fa-solid fa-check"></i> 연동중 </p>
             </div>
             <div class="apple_box">
                 <p><i class="fa-brands fa-apple"></i> &nbsp;Apple</p>
@@ -69,8 +70,24 @@
                 <button class="go_to_naver_linkage">연동하기</button>
             </div>
         </div>
-    </div>
 
+        <div class="logout_box">
+            <a id="go_to_logout">로그아웃</a>
+            <span class="logout_slash">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <a class="member_out">회원 탈퇴</a>
+        </div>
+    </div>
+	<script>
+		document.getElementById('go_to_logout').addEventListener('click',()=>{
+
+            if(confirm('로그아웃 하시겠습니까?')){
+
+                alert('로그아웃 되었습니다');
+                location.href="./login.jsp";
+            }
+        })
+	
+	</script>
 
     <!-- 푸터 -->
     <%@ include file="footer.jsp" %>
