@@ -7,14 +7,19 @@
 <%@ page import="db.dao.Top5MemberDAO"%>
 <%@ page import="db.dto.MemberInfoDTO"%>
 <%@ page import="java.util.List"%>
+<%@page import="db.dto.PaymentInfoDTO"%>
+<%@page import="db.dao.PaymentInfoDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", helvetica, arial, sans-serif;
 }
 
 .side_bar {
@@ -33,9 +38,8 @@
 
 body {
 	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
+	font-family: "Roboto", helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
 }
 
 
@@ -44,6 +48,16 @@ body {
 	margin: 0 auto;
 	font-size: 1.1rem;
 	margin-top: 15%;
+}
+
+th, td {
+	padding: 4px 2px;
+}
+
+th {
+	background: #0D6FFC;
+	color: #fff;
+	text-align: left;
 }
 
 a {
@@ -96,7 +110,6 @@ color: gray;
 
 
 .availableCount {
-	
 	position:absolute;
 	margin-left: 1%;
 	color: white;
@@ -117,16 +130,147 @@ span {
 }
 
 .member_graph {
-	margin-left : 5%;
-	margin-bottom : 3%;
-	display: inline-block;
+	margin-top:5%;
+	margin-right: 30%;
+	float:right;
 	color: #607274;
 }
 
 #bar-chart {
-	margin-top: 5%;
-	margin-left: 25%;
+	margin-top: 11%;
+	margin-left: 10%;
+	float: right;
 }
+
+/* .daily {
+	margin-top:20px;
+	margin: auto auto;
+} */
+
+.daily {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:1rem;
+  font-weight: 100;
+  padding:5px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding:4px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:15px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+ .daily-box {
+	background: #fff;
+  	border-radius: 2px;
+  	position: relative;
+	width: 370px;
+	height: 580px;
+	margin-left: 5%;
+	margin-top: 5%;
+	float : left;
+  	
+} 
 
 .line {
 	width: 40%;
@@ -136,9 +280,12 @@ span {
 }
 
 hr {
+	margin-top: 2%;
+	margin-bottom: 2%;
 	height: 10px;
   	border: 0;
-  	box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  	box-shadow: 3px 4px 8px lightgray;
+  	/* box-shadow: 10px 10px 10px -10px #8c8c8c inset; */
 }
 </style>
 <meta charset="UTF-8">
@@ -211,6 +358,9 @@ hr {
 		int age_5 = memberInfoDAO.findMemberByAge_5();
 		
 		System.out.println(availableCount + " " + gasoline + " " + diesel + " " + electronic + " " + hydrogen + " " + vehicleRating_1);
+		
+		PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
+		List<PaymentInfoDTO> paymentInfoList = paymentInfoDAO.dailyPaymentsList();
 		
 	%>
 	
@@ -307,9 +457,37 @@ hr {
 	    }
 	});
 	</script>
-	<br></br>
+	
+	
+	<br>
 	<hr/>
-	<p></p>
+	<div class="daily-box">
+	<table border="1" class="daily">
+	
+		<tr>
+			<th>Date</th>
+			<th>Total Amount</th>
+			<th>Payment Count</th>
+		</tr>
+		
+		
+	<%
+		if(paymentInfoList != null) {
+			for(PaymentInfoDTO paymentInfo : paymentInfoList){
+		%>
+		
+			<tr>
+				<td><%= paymentInfo.getPaymentDate() %></td>
+            	<td><%= paymentInfo.getTotalAmount() + "원"%></td>
+            	<td><%= paymentInfo.getPaymentCount() %></td>
+			</tr>
+	<%
+			}
+		}
+	%>	
+	</table>
+	</div>
+	
 	<table class="member_graph">
 		<tr>
 			<td>
@@ -364,5 +542,6 @@ hr {
     }
 });
 	</script>
+	
 </body>
 </html>
