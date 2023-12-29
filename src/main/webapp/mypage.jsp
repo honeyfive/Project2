@@ -73,24 +73,26 @@
                 <div class="payment_proc_text">결제수단 수정</div> 
                 <div class="payment_proc_option">
                     <select class="payment_option">
-                    <% if(paymentInfoDTO != null) {
-                    	for(PaymentInfoDTO paymentTypeInfo : paymentInfoDTO){
-                    	%>
-                        <option><%=paymentTypeInfo.getPayment_type()%></option>
-                        <%}
-                    	} %>
+                    <% String []arr = {"카드 결제", "휴대폰 결제", "실시간 계좌이체"};
+                    //dto 안에 결제수단 값에 따라서 어떤 option이 selected 되어야하는가를 결정
+                    //화면에 보이는 출력 목록은 고정
+                    //사용자 기본 결제수단 정보 읽어와서 C P T
+                   %>
+                    	<option value="C" selected>카드결제</option>
+                    	<option value="P">휴대폰 결제</option>
+                    	<option value="T">실시간 계좌이체</option>
                     </select>
                 </div>
                 
             </div>
         </div>
-        <div class="my_info_proc_box">
+        <!-- 개인정보 수정 페이지 -->
+        <a href="./myinfoproc.jsp" class="my_info_proc_box">
             <div class="my_info_proc">
                 <p class="my_info_proc_text"> 내 정보 관리</p>
                 <i class="fa-solid fa-angle-right"></i>
-                <!-- 개인정보 수정 페이지 -->
             </div>
-        </div>
+        </a>
         <div class="customer_service_box">
             <div class="customer_service">
                 <p class="customer_service_center">고객 센터</p>

@@ -1,350 +1,378 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .header {
-    box-shadow: 3px 4px 8px lightgray;
+	box-shadow: 3px 4px 8px lightgray;
 }
 
 /* 예약페이지 메인 컨테이너 */
 .rv-container {
-    width: 100%;
-    height: 700px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #eeeeee;
-    position: relative;
-    z-index: 100;
+	width: 100%;
+	height: 700px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	background-color: #eeeeee;
+	position: relative;
+	z-index: 100;
 }
 
-.rv-locationAndDateBox-sticky{
-    background-color: #eeeeee;
-    height: 215px;
+.rv-locationAndDateBox-sticky {
+	background-color: #eeeeee;
+	height: 215px;
 }
 /* 지역&날짜 박스 */
 .rv-locationAndDateBox {
-    padding-top: 100px;
-    width: 100%;
-    height: 170px;
-    display: flex;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: white;
-    box-shadow: 3px 4px 8px lightgray;
+	padding-top: 100px;
+	width: 100%;
+	height: 170px;
+	display: flex;
+	position: sticky;
+	top: 0px;
+	z-index: 1;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	background-color: white;
+	box-shadow: 3px 4px 8px lightgray;
 }
 
 /* 지역 박스 */
 .rv-locationAndDateBox-location {
-    margin-left: 6%;
-    width: 20%;
-    height: 45px;
-    border-radius: 5px;
-    background-color: #F2F3F3;
-    cursor: pointer;
+	margin-left: 6%;
+	width: 20%;
+	height: 45px;
+	border-radius: 5px;
+	background-color: #F2F3F3;
+	cursor: pointer;
 }
 
 /* 날짜 박스 */
 .rv-locationAndDateBox-date {
-    width: 53%;
-    height: 45px;
-    border-radius: 5px;
-    background-color: #F3F3F3;
-    cursor: pointer;
+	width: 53%;
+	height: 45px;
+	border-radius: 5px;
+	background-color: #F3F3F3;
+	cursor: pointer;
 }
 
 /* 차량검색 버튼 */
 .rv-locationAndDateBox-selectCarBtn {
-    margin-right: 6%;
-    width: 12%;
-    height: 45px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #0D6FFC;
-    cursor: pointer;
+	margin-right: 6%;
+	width: 12%;
+	height: 45px;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #0D6FFC;
+	cursor: pointer;
 }
 
 /* 자동차 정보 박스 */
-.rv-carInfoBox-container{
-    margin-left: 5%;
-    width: 55%;
-    height: 660px;
-    display: flex;
-    flex-direction: column;
+.rv-carInfoBox-container {
+	margin-left: 5%;
+	width: 55%;
+	height: 660px;
+	display: flex;
+	flex-direction: column;
 }
 
 /* 자동차 정보 박스 - top */
 .rv-carInfoBox-top {
-    width: 100%;
-    height: 60px;
-    padding: 10px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    color: #1e1e1e;
+	width: 100%;
+	height: 60px;
+	padding: 10px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	display: flex;
+	justify-self: center;
+	align-items: center;
+	color: #1e1e1e;
 }
 /* 자동차 정보 박스 - main 내용
 알게된 사실 : 여러개의 box가 있는 스크롤에선
 부모요소에 flex 와 flex-direction: column를 사용하면 적용이 안된다!*/
 .rv-carInfoBox-main {
-    width: 100%;
-    max-height: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: white;
-    overflow: scroll;
+	width: 100%;
+	max-height: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
+	overflow: scroll;
 }
 
-.rv-carInfoBox-Box1{
-    width: 100%;
-    height: 250px;
-    margin-bottom: 10px;
-    border: 1px solid black;
-
+.rv-carInfoBox-Box1 {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box2{
-    width: 100%;
-    height: 250px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+.rv-carInfoBox-Box2 {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box3{
-    width: 100%;
-    height: 250px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+.rv-carInfoBox-Box3 {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box4{
-    width: 100%;
-    height: 250px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+.rv-carInfoBox-Box4 {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box5{
-    width: 100%;
-    height: 250px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+.rv-carInfoBox-Box5 {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+	border: 1px solid black;
 }
 
 /* 자동차 정보 박스 스크롤바 없애기 */
 .rv-carInfoBox-main::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 /* 필터 박스 */
 .rv-filterBox {
-    margin-right: 5%;
-    width: 30%;
-    height: 660px;
-    border-radius: 10px 10px 0px 0px;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
+	margin-right: 5%;
+	width: 30%;
+	height: 660px;
+	border-radius: 10px 10px 0px 0px;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.5rem;
 }
 
 /* 필터 메인 박스 */
 .rv-filterBox-Main {
-    width: 100%;
-    height: 600px;
-    background-color: white;
-    border-radius: 10px 10px 0px 0px;
-    display: flex;
-    flex-direction: column;
-    color: #999999;
+	width: 100%;
+	height: 600px;
+	background-color: white;
+	border-radius: 10px 10px 0px 0px;
+	display: flex;
+	flex-direction: column;
+	color: #999999;
 }
 
 .rv-filterBox-Main-1 {
-    width: 100%;
-    height: 130px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1.3rem;
+	width: 100%;
+	height: 130px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.3rem;
 }
 
-.rv-filterBox-Main-1-data{
-    width: 100%;
-    height: 80px;
-    font-weight: lighter;
-    border-bottom: 1px solid #e1e1e1;
+.rv-filterBox-Main-1-data {
+	width: 100%;
+	height: 80px;
+	font-weight: lighter;
+	border-bottom: 1px solid #e1e1e1;
 	font-size: 1.1rem;
 	display: flex;
-    justify-content: space-between;
-    align-items: center;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .rv-filterBox-Main-2 {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1.3rem;
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.3rem;
 }
 
-.rv-filterBox-Main-2-data{
-    width: 100%;
-    height: 100px;
-    border-bottom: 1px solid #e1e1e1;
+.rv-filterBox-Main-2-data {
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid #e1e1e1;
 	font-size: 1rem;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .rv-filterBox-Main-3 {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1.3rem;
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.3rem;
 }
 
-.rv-filterBox-Main-3-data{
-    width: 100%;
-    height: 100px;
-    border-bottom: 1px solid #e1e1e1;
+.rv-filterBox-Main-3-data {
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid #e1e1e1;
 }
 
 .rv-filterBox-Main-4 {
-    width: 100%;
-    height: 140px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1.3rem;
+	width: 100%;
+	height: 140px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.3rem;
 }
 
-.rv-filterBox-Main-4-data{
-    width: 100%;
-    height: 80px;
-    border-bottom: 1px solid #e1e1e1;
+.rv-filterBox-Main-4-data {
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #e1e1e1;
 }
 /* 필터 - 필터 초기화 버튼 */
 .rv-filterBox-Main-5 {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    background-color: #f8f8f8;
-    text-align: center;
-    cursor: pointer;
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	font-size: 1.3rem;
+	font-weight: bold;
+	background-color: #f8f8f8;
+	text-align: center;
+	cursor: pointer;
 }
 
 /* 필터 - 예약하기 버튼 */
 .rv-filterBox-RVBtn {
-    width: 100%;
-    height: 60px;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 2rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #0D6FFC;
-    cursor: pointer;
+	width: 100%;
+	height: 60px;
+	border-radius: 0px 0px 10px 10px;
+	font-size: 2rem;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #0D6FFC;
+	cursor: pointer;
 }
-
-/* 무한 스크롤 css예제 */
-/* html, body{ margin: 0; }
-h1 {position: fixed; top: 0; width: 100%; height: 60px; text-align: center; background: white; margin: 0; line-height: 60px;}
-section .box {height: 500px; background: red;}
-section .box p {margin: 0; color: white; padding: 80px 20px;}
-section .box:nth-child(2n) {background: blue;} */
 
 /* 모달창-지역 */
-.location-modal{
-    position:absolute;
-    display:none;
-    justify-content: center;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 300;
+.location-modal {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 300;
 }
 
-.location-modal-body{
-    position:absolute;
-    z-index: 300;
-
-    top:50vh; 
-    /* 모달을 화면가운데 놓기위함.  */
-
-    width:1000px;  
-    /* 모달의 가로크기  */
-    height:600px;
-    /* 모달의 세로크기  */
-
-    padding:40px;  
-
-    text-align: center;
-
-    background-color: rgb(255,255,255);
-    /* 모달창 배경색 흰색 */
-    border-radius:10px; 
-    /* 테두리  */
-    box-shadow:0 2px 3px 0 rgba(34,36,38,0.15); 
-    /* 테두리 그림자  */
-
-    transform:translateY(-50%);
-    /* 모듈창열었을때 위치설정 가운데로  */
+.location-modal-body {
+	position: absolute;
+	z-index: 300;
+	top: 50vh;
+	/* 모달을 화면가운데 놓기위함.  */
+	width: 1000px;
+	/* 모달의 가로크기  */
+	height: 600px;
+	/* 모달의 세로크기  */
+	padding: 50px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	/* 모달창 배경색 흰색 */
+	border-radius: 10px;
+	/* 테두리  */
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	/* 테두리 그림자  */
+	transform: translateY(-50%);
+	/* 모듈창열었을때 위치설정 가운데로  */
+	display: flex;
+	justify-content: center;
+	align-items: start;
+}
+/* 모달창 - 지역 닫기 버튼 */
+.location-modal-close-Btn {
+	position: absolute;
+	top: 12px;
+	right: 22px;
+	font-size: 1.5rem;
+	z-index: 400;
+	cursor: pointer;
+}
+/* 모달창 - 지역 아산/천안 컨테이너 */
+.location-modal-body-container {
+	width: 95%;
+	height: 90%;
+	border: 1px solid black;
+	display: flex;
+	flex-flow: row wrap;
+}
+/* 모달창 - 지역 아산 */
+.location-modal-mainBox1 {
+	width: 50%;
+	height: 100%;
+	border: 1px solid black;
 }
 
+.location-modal-mainBox1-item {
+	width: 100%;
+	height: 2000px;
+	overflow: auto;
+}
+
+/* 모달창 - 지역 천안 */
+.location-modal-mainBox2 {
+	width: 50%;
+	height: 100%;
+	border: 1px solid black;
+}
+
+.location-modal-mainBox2-item {
+	
+}
+
+.location-modal-returnDate-text {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
 /* 모달창-날짜시간 */
-.date-modal{
-    position:absolute;
-    display:none;
-    justify-content: center;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 300;
+.date-modal {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 300;
 }
 
-.date-modal-body{
-    position:absolute;
-    z-index: 300;
-
-    top:50vh; 
-    /* 모달을 화면가운데 놓기위함.  */
-
-    width:1000px;  
-    /* 모달의 가로크기  */
-    height:600px;
-    /* 모달의 세로크기  */
-
-    padding:40px;  
-
-    text-align: center;
-
-    background-color: rgb(255,255,255);
-    /* 모달창 배경색 흰색 */
-    border-radius:10px; 
-    /* 테두리  */
-    box-shadow:0 2px 3px 0 rgba(34,36,38,0.15); 
-    /* 테두리 그림자  */
-
-    transform:translateY(-50%);
-    /* 모듈창열었을때 위치설정 가운데로  */
+.date-modal-body {
+	position: absolute;
+	z-index: 300;
+	top: 50vh;
+	/* 모달을 화면가운데 놓기위함.  */
+	width: 1000px;
+	/* 모달의 가로크기  */
+	height: 600px;
+	/* 모달의 세로크기  */
+	padding: 40px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	/* 모달창 배경색 흰색 */
+	border-radius: 10px;
+	/* 테두리  */
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	/* 테두리 그림자  */
+	transform: translateY(-50%);
+	/* 모듈창열었을때 위치설정 가운데로  */
 }

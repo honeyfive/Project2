@@ -39,33 +39,3 @@ dateModal.addEventListener("click", e => {
         dateModal.style.display = "none";
     }
 });
-
-
-/*<!-- 무한스크롤 -->
-    <!-- <h1>무한스크롤</h1>
-  <section>
-    <div class="box">
-      <p>
-        1번째 블록
-      </p>
-    </div>
-    <div class="box">
-      <p>
-        2번째 블록
-      </p>
-    </div>
-  </section>
-  <script>
-    var count = 2;
-    window.onscroll = function(e) {
-      console.log(window.innerHeight , window.scrollY,document.body.offsetHeight)
-      if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { 
-        setTimeout(function(){
-          var addContent = document.createElement("div");
-          addContent.classList.add("box")
-          addContent.innerHTML = `<p>${++count}번째 블록</p>`
-          document.querySelector('section').appendChild(addContent);
-        }, 1000)  
-      }
-    }
-  </script> -->*/

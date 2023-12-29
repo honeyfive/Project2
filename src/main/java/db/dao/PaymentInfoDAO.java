@@ -78,26 +78,25 @@ public class PaymentInfoDAO {
 		}
 	
 	
-	// 저장   ... 이게 맞나 ,,
+	// 저장   ... 
 	
-		public int savePaymentInfo(PaymentInfoDTO paymentInfo) {
+		public int savePaymentInfo(int payment_number, int payment_price , String Payment_type, String Payment_time, int Reservation_number, int Payment_state) {
 
 			conn = DBConnectionManager.connectDB();
 
-			String sql = " INSERT INTO payment_info"
-					  +    "(? , ? , ?, ? , ? , ? )"   ;
+			String sql = " INSERT INTO payment_info VALUES( ?, ?, ? , ?, ? , ? ) "   ;
 
 			int result = 0;
 
 			try {
 				psmt = conn.prepareStatement(sql);
 
-				psmt.setInt(1, paymentInfo.getPayment_number());
-				psmt.setInt(2, paymentInfo.getPayment_price());
-				psmt.setString(3, paymentInfo.getPayment_type());
-				psmt.setString(4, paymentInfo.getPayment_time());
-				psmt.setInt(5, paymentInfo.getReservation_number());
-				psmt.setInt(6, paymentInfo.getPayment_state());
+				psmt.setInt(1, payment_number);
+				psmt.setInt(2, payment_price);
+				psmt.setString(3, Payment_type);
+				psmt.setString(4, Payment_time);
+				psmt.setInt(5, Reservation_number);
+				psmt.setInt(6, Payment_state);
 
 				result = psmt.executeUpdate();
 

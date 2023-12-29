@@ -12,16 +12,6 @@
 }
 
 
-a{
-    color: gray;
-    margin-right: 15px;
-    margin-top: 0.625rem;
-    margin-top: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 0.625rem;
-    column-gap: 3.125rem;
-}
 .box1{
     display: flex;
     align-items: start;
@@ -44,6 +34,14 @@ a{
 
 .a1_font{
     font-size: .90rem;
+    color: gray;
+    margin-right: 15px;
+    margin-top: 0.625rem;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.625rem;
+    column-gap: 3.125rem;
 }
 
 .a2_font{
@@ -100,7 +98,7 @@ a{
     display: flex;
 }
 
-.fa-brands{
+.fa-instagram, .fa-facebook, .fa-blogger, .fa-youtube{
     width: 70px;
     height: 30px;
     color: gray;

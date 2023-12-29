@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 <link rel="stylesheet" href="./css/signup.css">
+
 </head>
 <body>
 
@@ -43,15 +44,15 @@
 						<div class="input-box">
 							<div>
 								<input class="input-id input-pw" type="input"
-									placeholder="최대 10글자" name="pw">
+									placeholder="최대 10글자" name="pw" id="pw">
 								<!-- <i class="fa-solid fa-eye"></i> -->
 							</div>
 							<div>
-								<button type="button" class="id-chd">확인</button>
+								<button type="button" class="id-chd" id="pwChkBtn" onclick="checkPasswordPattern(pw)">확인</button>
 							</div>
 						</div>
-						<div class="caution signin-id hide">비밀번호는 영문 + 숫자 + 특수기호를
-							포함해야 합니다</div>
+						<div class="caution signin-id" >비밀번호는 영문 + 숫자 + 특수기호를
+							포함 3-10글자이어야 합니다</div>
 					</div>
 
 					<!-- 이름-->
@@ -170,9 +171,9 @@
 					<div class="signin-input signin-input-id">
 						<div class="signin-id">면허취득일</div>
 						<div class="signin-birth">
-							<input class="birth-box" name="license-year" id="license-year"
+							<input class="birth-box" name="lisence-year" id="lisence-year"
 								type="text" placeholder="취득년도"> <select
-								class="birth-box" name="license-month" id="license-month">
+								class="birth-box" name="lisence-month" id="lisence-month">
 								<option disabled selected>월</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -187,7 +188,7 @@
 								<option value="11">11</option>
 								<option value="12">12</option>
 
-							</select> <select class="birth-box" name="license-date" id="license-date">
+							</select> <select class="birth-box" name="lisence-date" id="lisence-date">
 								<option disabled selected>일</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -271,24 +272,24 @@
 							<input type="checkbox" name="email-ok"> 이메일 수신 동의 (선택)
 						</div>
 						<div>
-							<input type="checkbox" name="l-am-ok"> 개인정보수집 및 이용 동의
+							<input type="checkbox" name="plz-ok" id="plz-ok" onchange="toggleButton()"> 개인정보수집 및 이용 동의
 						</div>
 					</div>
 
-
-
-
 					<!-- 회원가입버튼-->
+					<div class="caution plz">개인정보 수집에 동의하셔야 회원가입을 할 수 있습니다.</div>
 					<div class="signin-btn">
-						<input type="submit" class="signin-submit input-id" value="회원가입">
+						<button type="submit" class="signin-submit input-id" disabled>회원가입</button>
 					</div>
 	</form>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="./js/signup.js"></script>
 	<script src="./js/signup_id.js"></script>
 	<script src="./js/signup_lisenceNumber.js"></script>
 	<script src="./js/signup_tel.js"></script>
 	<script src="./js/signup_email.js"></script>
+
 
 
 
