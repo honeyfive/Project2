@@ -7,6 +7,10 @@ public class PaymentInfoDTO {
 	public String payment_time;
 	public int reservation_number;
 	public int payment_state;
+	public String paymentDate;
+	public String totalAmount;
+	public String paymentCount;
+	
 
 	public PaymentInfoDTO(int payment_number, int payment_price, String payment_type, String payment_time,
 			int reservation_number, int payment_state) {
@@ -17,6 +21,42 @@ public class PaymentInfoDTO {
 		this.payment_time = payment_time;
 		this.reservation_number = reservation_number;
 		this.payment_state = payment_state;
+	}
+	
+	public PaymentInfoDTO(String payment_time, int payment_price) {
+		super();
+		this.payment_time = payment_time;
+		this.payment_price = payment_price;
+	}
+	
+	public PaymentInfoDTO(String paymentDate, String totalAmount, String paymentCount) {
+        this.paymentDate = paymentDate;
+        this.totalAmount = totalAmount;
+        this.paymentCount = paymentCount;
+    }
+
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+	public String getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(String totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getPaymentCount() {
+		return paymentCount;
+	}
+
+	public void setPaymentCount(String paymentCount) {
+		this.paymentCount = paymentCount;
 	}
 
 	public int getPayment_number() {
