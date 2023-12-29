@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 <link rel="stylesheet" href="./css/signup.css">
+
 </head>
 <body>
 
@@ -47,11 +48,11 @@
 								<!-- <i class="fa-solid fa-eye"></i> -->
 							</div>
 							<div>
-								<button type="button" class="id-chd" id="pwChkBtn">확인</button>
+								<button type="button" class="id-chd" id="pwChkBtn" onclick="checkPasswordPattern(pw)">확인</button>
 							</div>
 						</div>
-						<div class="caution signin-id hide">비밀번호는 영문 + 숫자 + 특수기호를
-							포함해야 합니다</div>
+						<div class="caution signin-id" >비밀번호는 영문 + 숫자 + 특수기호를
+							포함 3-10글자이어야 합니다</div>
 					</div>
 
 					<!-- 이름-->
