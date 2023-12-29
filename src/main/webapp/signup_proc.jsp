@@ -56,7 +56,7 @@
 	} else {
 	%>
 	<script>
-		alert('회원 가입에 실패했습니다.\n정보들을 다시 한 번 확인해주세요.');
+		alert('회원 가입에 실패했습니다.\n입력하신 정보들을 다시 한 번 확인해주세요.');
 		location.href = 'signup.jsp';
 	</script>
 	<%

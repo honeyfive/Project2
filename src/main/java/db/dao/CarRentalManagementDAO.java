@@ -18,7 +18,7 @@ public class CarRentalManagementDAO {
 		public CarRentalManagementDTO findCarRentalManagementInfoByCarNumber(String Car_number) {
 			conn = DBConnectionManager.connectDB();
 
-			String sql = " SELECT * FROM car_info "
+			String sql = " SELECT * FROM car_rental_management "
 						+ " where car_number = ? ";
 
 			CarRentalManagementDTO carRentalManagementDTO = null;

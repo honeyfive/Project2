@@ -468,8 +468,8 @@ public class MemberInfoDAO {
 		String sql = " INSERT INTO member_info (membership_number, name, age, tel, id, password, email, "
 				+ " membership_level, lisence_number, gender, birthday, lisence_acquisition_date, overdue_history, use_count) "
 				+ " VALUES ((SELECT MAX(membership_number) + 1 FROM member_info), ? , (EXTRACT(YEAR FROM SYSDATE) - ?), "
-				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , NULL, ? || '-' || ? || '-' || ? || '-' || ? , "
-				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, NULL, NULL )";
+				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , null, ? || '-' || ? || '-' || ? || '-' || ? , "
+				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, null, null )";
 
 		System.out.println("변수 확인 > 아이디" + targetId + " 비번" + targetPassword + " 이름" + targetName + " 출생년도"
 				+ targetBirthYear + " 출생월" + targetBirthMonth + " 출생일" + targetBirthDate + " 성별" + targetGender
