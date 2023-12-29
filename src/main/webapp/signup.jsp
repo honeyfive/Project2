@@ -170,9 +170,9 @@
 					<div class="signin-input signin-input-id">
 						<div class="signin-id">면허취득일</div>
 						<div class="signin-birth">
-							<input class="birth-box" name="license-year" id="license-year"
+							<input class="birth-box" name="lisence-year" id="lisence-year"
 								type="text" placeholder="취득년도"> <select
-								class="birth-box" name="license-month" id="license-month">
+								class="birth-box" name="lisence-month" id="lisence-month">
 								<option disabled selected>월</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -187,7 +187,7 @@
 								<option value="11">11</option>
 								<option value="12">12</option>
 
-							</select> <select class="birth-box" name="license-date" id="license-date">
+							</select> <select class="birth-box" name="lisence-date" id="lisence-date">
 								<option disabled selected>일</option>
 								<option value="1">1</option>
 								<option value="2">2</option>

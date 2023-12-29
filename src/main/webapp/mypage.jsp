@@ -86,13 +86,13 @@
                 
             </div>
         </div>
-        <div class="my_info_proc_box">
+        <!-- 개인정보 수정 페이지 -->
+        <a href="./myinfoproc.jsp" class="my_info_proc_box">
             <div class="my_info_proc">
                 <p class="my_info_proc_text"> 내 정보 관리</p>
                 <i class="fa-solid fa-angle-right"></i>
-                <!-- 개인정보 수정 페이지 -->
             </div>
-        </div>
+        </a>
         <div class="customer_service_box">
             <div class="customer_service">
                 <p class="customer_service_center">고객 센터</p>
