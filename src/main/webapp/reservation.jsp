@@ -55,7 +55,7 @@
 							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceAsan) {
 						%>
 
-						<p><%=reservationInfo.getRental_place()%></p>
+						<p class="asanList"><%=reservationInfo.getRental_place()%></p>
 
 						<%
 						}
@@ -71,7 +71,7 @@
 							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceCheonan) {
 						%>
 
-						<p><%=reservationInfo.getRental_place()%></p>
+						<p class="cheonanList"><%=reservationInfo.getRental_place()%></p>
 
 						<%
 						}
@@ -109,7 +109,13 @@
 				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
 			</div>
 			<div class="rv-carInfoBox-main">
-				<div class="rv-carInfoBox-Box1"></div>
+				<div class="rv-carInfoBox-Box">
+				<div class="rv-carInfoBox-Box-imgBox"></div>
+				<div class="rv-carInfoBox-Box-carInfoBox"></div>
+				<div class="rv-carInfoBox-Box-carName"></div>
+				<div class="rv-carInfoBox-Box-carYear"></div>
+				
+				</div>
 				
 				<div class="rv-carInfoBox-Box2"></div>
 				<div class="rv-carInfoBox-Box3"></div>

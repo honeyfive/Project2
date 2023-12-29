@@ -108,11 +108,27 @@
 	overflow: scroll;
 }
 
-.rv-carInfoBox-Box1 {
+.rv-carInfoBox-Box {
 	width: 100%;
 	height: 250px;
 	margin-bottom: 10px;
 	border: 1px solid black;
+}
+
+.rv-carInfoBox-Box-imgBox{
+	
+}
+
+.rv-carInfoBox-Box-carInfoBox{
+	
+}
+
+.rv-carInfoBox-Box-carName{
+	
+}
+
+.rv-carInfoBox-Box-carYear{
+	
 }
 
 .rv-carInfoBox-Box2 {
@@ -161,7 +177,7 @@
 
 /* 필터 메인 박스 */
 .rv-filterBox-Main {
-	position:relative;
+	position: relative;
 	width: 100%;
 	height: 600px;
 	background-color: white;
@@ -211,53 +227,55 @@
 }
 
 /* 자동차 모델 selcet css */
-.hide{
-    display: none;
+.hide {
+	display: none;
 }
-.show{
-    display: block;
+
+.show {
+	display: block;
 }
 
 /* 셀렉트 영역 스타일 */
-.select{
-    padding: 5px 10px;
-    width: 250px;
-    border-radius: 5px;
-    border:1px solid #0E70FC;
-    background-color: white;
-    background-image: url("https://img.icons8.com/material-rounded/24/000000/expand-arrow.png");
-    background-repeat: no-repeat;
-    background-position: 96% center;
-    cursor: pointer;
-    
+.select {
+	padding: 5px 10px;
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid #0E70FC;
+	background-color: white;
+	background-image:
+		url("https://img.icons8.com/material-rounded/24/000000/expand-arrow.png");
+	background-repeat: no-repeat;
+	background-position: 96% center;
+	cursor: pointer;
 }
-ul{
+
+ul {
 	position: relatice;
 }
 
-li{
-	z-index:10;
+li {
+	z-index: 10;
 }
 /* 옵션 영역 스타일 */
-.select ul{
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 100%;
-    border:1px solid #0E70FC;
-    border-radius: 5px;
-    background-color: white;
-    cursor: pointer;
-       
+.select ul {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 100%;
+	border: 1px solid #0E70FC;
+	border-radius: 5px;
+	background-color: white;
+	cursor: pointer;
 }
-.select ul li{
+
+.select ul li {
 	position: relative;
-    padding: 10px;
-    list-style-type: none;
-    
+	padding: 10px;
+	list-style-type: none;
 }
-.select ul li:hover{
-    background-color: #0E70FC;
+
+.select ul li:hover {
+	background-color: #0E70FC;
 }
 
 .rv-filterBox-Main-3 {
@@ -382,36 +400,73 @@ li{
 .location-modal-mainBox1 {
 	width: 50%;
 	height: 10%;
+	padding-top:6px;
 	border: 1px solid black;
+	font-size: 1.4rem;
+	font-weight: bold;
 }
 
 .location-modal-mainBox1-item {
 	width: 100%;
-	height: 2000px;
-	overflow: auto;
+	margin-top: 25px;
+	height: 390px;
+	font-weight: lighter;
+	font-size: 1.2rem;
+}
+
+.asanList {
+	padding: 15px;
+}
+
+.asanList:hover{
+	background-color:#0D6FFC;
+	color:white;
+	cursor:pointer;
+}
+
+.cheonanList {
+	padding: 15px;
+}
+
+.cheonanList:hover{
+	background-color:#0D6FFC;
+	color:white;
+	cursor:pointer;
 }
 
 /* 모달창 - 지역 천안 */
 .location-modal-mainBox2 {
 	width: 50%;
 	height: 10%;
+	padding-top:6px;
 	border: 1px solid black;
+	font-size: 1.4rem;
+	font-weight: bold;
 }
 
 .location-modal-mainBox2-item {
-	
+	width: 100%;
+	margin-top: 25px;
+	height: 390px;
+	font-size: 1.2rem;
+	font-weight: lighter;
+	overflow: scroll;
+}
+
+.location-modal-mainBox2-item::-webkit-scrollbar {
+	display: none;
 }
 
 .location-modal-returnDate-text {
 	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	text-align: center;
+	bottom: -70px;
+	left: 0px; text-align : center;
 	font-size: 2rem;
 	font-weight: bold;
+	text-align: center;
 }
 
-.location-modal-check-Btn{
+.location-modal-check-Btn {
 	width: 180px;
 	height: 70px;
 	border: 1px solid black;
