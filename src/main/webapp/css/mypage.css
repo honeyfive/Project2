@@ -168,6 +168,7 @@
 
 /* 내 정보 관리 텍스트 */
 .my_info_proc_text{
+    color: black;
     font-weight: bold;
     font-size: 20px;
 }
