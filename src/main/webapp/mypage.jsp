@@ -23,18 +23,40 @@
 		List<MemberInfoDTO> memberInfoDTO = memberInfoDAO.findMemberList();
 		PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
 		List<PaymentInfoDTO> paymentInfoDTO = paymentInfoDAO.findPaymentTypeInfoList();
+
+		//MemberInfoDTO memberInfo = //
+		
+        String id = (String)session.getAttribute("id");
+		MemberInfoDTO loginMemberDTO = memberInfoDAO.findMemberById(id);
+		
+		System.out.println(loginMemberDTO);
+        //String email = (String)session.getAttribute("email");
 	%>
 
     <!--헤더-->
     
-    <%@ include file="header.jsp" %>
+    <%@ include file="header2.jsp" %>
 
     <!-- 마이페이지 메인 -->
     <div class="mypage_container">
         <div class="my_info_box">
             <div class="my_info">
+
+                <%
+                    if(id != null){
+                %>   
+                <div class="my_name"> <%=loginMemberDTO.getName() %> 님</div>
+                
+                <%
+                    }else{
+                %>
                 <div class="my_name"> 000님</div>
-                <div class="my_email"> 000@gmail.com</div>
+                <%   	
+                    }
+                %>
+
+                
+                <div class="my_email"> <%=loginMemberDTO.getEmail() %> </div>
             </div>
             <div class="member_rent_use">
                 <div class="memeber_rating_box">
@@ -65,7 +87,7 @@
                 <i class="fa-regular fa-face-flushed"></i>
                 <p class="not_rent_progress_ment">진행중인 렌트 내역이 없습니다</p>
                 <p class="not_rent_progress_ment" style="color: #0D6FFC; font-weight: bold;">지금 고객님이 원하는 렌트카를 빌리고 신나게 떠나볼까요?</p>
-                <button class="go_to_reservation">렌트하러 가기</button>
+                <button class="go_to_reservation_btn" onclick="location.href='./reservation.jsp'">렌트하러 가기</button>
             </div>
         </div>
         <div class="member_payment_type_proc_box">

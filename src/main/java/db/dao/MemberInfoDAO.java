@@ -272,30 +272,26 @@ public class MemberInfoDAO {
 	}
 
 //	회원가입 시 이미 있는 아이딘가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListById(String targetId) {
+	public MemberInfoDTO findMemberById(String targetId) {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM member_info WHERE id = ? ";
 
 		System.out.println("변수 값 확인 : " + targetId);
 
-		List<MemberInfoDTO> memberInfoList = null;
-
+		MemberInfoDTO memberInfoDTO = null;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetId);
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>();
 
-			while (rs.next()) {
+			if(rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
-
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -304,7 +300,7 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
@@ -472,8 +468,8 @@ public class MemberInfoDAO {
 		String sql = " INSERT INTO member_info (membership_number, name, age, tel, id, password, email, "
 				+ " membership_level, lisence_number, gender, birthday, lisence_acquisition_date, overdue_history, use_count) "
 				+ " VALUES ((SELECT MAX(membership_number) + 1 FROM member_info), ? , (EXTRACT(YEAR FROM SYSDATE) - ?), "
-				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , N, ? || '-' || ? || '-' || ? || '-' || ? , "
-				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, 0, 0 )";
+				+ " ? || '-' || ? || '-' || ? , ? , ? , ? , null, ? || '-' || ? || '-' || ? || '-' || ? , "
+				+ " ? , ? || '-' || ? || '-' || ? , ? || '-' || ? || '-' || ?, null, null )";
 
 		System.out.println("변수 확인 > 아이디" + targetId + " 비번" + targetPassword + " 이름" + targetName + " 출생년도"
 				+ targetBirthYear + " 출생월" + targetBirthMonth + " 출생일" + targetBirthDate + " 성별" + targetGender
@@ -646,4 +642,44 @@ public class MemberInfoDAO {
 
 		return count;
 	}
+	
+	
+	public MemberInfoDTO login(String targetId, String targetPw) {
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM member_info WHERE id = ? and password = ? ";
+
+		MemberInfoDTO dto = null;
+		System.out.println("변수 값 확인 : " + targetId + targetPw);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, targetId);
+			psmt.setString(2, targetPw);
+			rs = psmt.executeQuery();
+			
+
+			while (rs.next()) {
+				
+				targetId = rs.getString("id");
+				targetPw = rs.getString("password");
+				String email = rs.getString("email");
+				String member_level = rs.getString("membership_level");
+				
+				dto = new MemberInfoDTO(targetId,targetPw,email,member_level);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		
+		return dto;
+
+	}
+
+	
+	
 }

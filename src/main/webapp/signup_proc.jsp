@@ -46,7 +46,7 @@
 			id, pw, email, lisence1, lisence2, lisence3, lisence4, 
 			gender, birthMonth, birthDate, lisenceYear, lisenceMonth, lisenceDate);
 
-	if (result == 0) {
+	if (result > 0) {
 	%>
 	<script>
 		alert('회원가입 완료 !');

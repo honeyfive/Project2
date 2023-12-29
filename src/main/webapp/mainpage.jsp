@@ -29,14 +29,14 @@
 	
     <!--헤더-->
     
-<%@ include file="header.jsp" %>
+<%@ include file="header2.jsp" %>
 
 
     <!-- 메인페이지  -->
     
     <div class="mainpage">
         <div class="mainpage_picture_div">
-            <img src="images/메인_람보르기니사진.jpg" style="width:100%; height: 500px;">
+            <img class="main_page_picture" src="images/메인_람보르기니사진.jpg"  >
         </div>
         <div class="mainpage_menu">
             <div class="recommend_car_list">
@@ -49,10 +49,9 @@
 	                	%>
 	                  <%   for (CarInfoDTO recommendCar : recommendCarInfoList) {
 	                %><div class="show_recommend_car">
-	                    <img src="<%= recommendCar.getCar_image() %>" alt="Car Image">
+	                    <img class="recommend_car_image" src="<%= recommendCar.getCar_image() %>" alt="Car Image">
 	                    <div class="dividing_line"></div>
 	                    <div class="recommend_car_info">
-	                        <p class="recommend_car_info_text">차량 번호 : <%= recommendCar.getCar_number() %></p>
 	                        <p class="recommend_car_info_text">차량명 : <%= recommendCar.getCar_name() %></p>
 	                        <p class="recommend_car_info_text">사이즈 : <%= recommendCar.getCar_size() %></p>
 	                        <p class="recommend_car_info_text">연식 : <%= recommendCar.getModel_year() %></p>
@@ -65,95 +64,90 @@
 	                }
 	                %>
 	            </div>
-        </div>
-    
-            </div>
-            <div class="cheap_car_list">
-                <div class="cheap_car_title">
-                    <p class="cheap_car_title_text"><i class="fa-solid fa-coins"></i> 가성비차량</p>
-                </div>
-                <div class="show_cheap_car_box">
-                    
-                        <% 
-	                if (cheapCarInfoList != null) {
-	                    for (CarInfoDTO cheapCar : cheapCarInfoList) {
-	                %>
-	                <div class="show_cheap_car">
-	                    <img src="<%= cheapCar.getCar_image() %>" alt="Car Image">
-	                    <div class="dividing_line"></div>
-	                    <div class="cheap_car_info">
-	                        <p class="cheap_car_info_text">차량 번호 : <%= cheapCar.getCar_number() %></p>
-	                        <p class="cheap_car_info_text">차량명 : <%= cheapCar.getCar_name() %></p>
-	                        <p class="cheap_car_info_text">사이즈 : <%= cheapCar.getCar_size() %></p>
-	                        <p class="cheap_car_info_text">연식 : <%= cheapCar.getModel_year() %></p>
-	                    </div>
-	                
-	                </div>
-	                <% 
-	                    }
-	                } else {
-	                    // 데이터가 없을 때 처리할 부분
-	                }
-	                %>
-                    
-                
-            </div>
-            <div class="old_car_list">
-                <div class="old_car_title">
-                    <p class="old_car_title_text"><i class="fa-solid fa-hand-holding-heart"></i> 유행은 돌고 돈다! Y2K 차량</p>
-                </div>
-                <div class="show_old_car_box">
-                    
-                        <% 
-	                if (oldCarInfoList != null) {
-	                    for (CarInfoDTO oldCar : oldCarInfoList) {
-	                %>
-	                <div class="show_old_car">
-	                    <img src="<%= oldCar.getCar_image() %>" alt="Car Image">
-	                    <div class="dividing_line"></div>
-	                    <div class="old_car_info">
-	                        <p class="old_car_info_text">차량 번호 : <%= oldCar.getCar_number() %></p>
-	                        <p class="old_car_info_text">차량명 : <%= oldCar.getCar_name() %></p>
-	                        <p class="old_car_info_text">사이즈 : <%= oldCar.getCar_size() %></p>
-	                        <p class="old_car_info_text">연식 : <%= oldCar.getModel_year() %></p>
-	                    </div>
-	                </div>
-	                <% 
-	                    }
-	                } else {
-	                    // 데이터가 없을 때 처리할 부분
-	                }
-	                %>
-                </div>
-            </div>
-            <div class="popular_car_list">
-                <div class="popular_car_title"> 
-                    <p class="popular_car_title_text"><i class="fa-solid fa-fire"></i> 고객들에게 인기만점 인기 차량</p>
-                </div>
-                <div class="show_popular_car_box">
-                     <% 
-	                if (popularCarInfoList != null) {
-	                    for (CarInfoDTO popularCar : popularCarInfoList) {
-	                %>
-	                <div class="show_popular_car">
-	                    <img src="<%= popularCar.getCar_image() %>" alt="Car Image">
-	                    <div class="dividing_line"></div>
-	                    <div class="popular_car_info">
-	                        <p class="popular_car_info_text">차량 번호 : <%= popularCar.getCar_number() %></p>
-	                        <p class="popular_car_info_text">차랑명 : <%= popularCar.getCar_name() %></p>
-	                        <p class="popular_car_info_text">사이즈 : <%= popularCar.getCar_size() %></p>
-	                        <p class="popular_car_info_text">연식 : <%= popularCar.getModel_year() %></p>
-	                    </div>
-	                </div>
-	                <% 
-	                    }
-	                } else {
-	                    // 데이터가 없을 때 처리할 부분
-	                }
-	                %>
-                </div>
-            </div>
-        </div>
+        	</div>
+			<div class="cheap_car_list">
+				<div class="cheap_car_title">
+					<p class="cheap_car_title_text"><i class="fa-solid fa-coins"></i> 가성비차량</p>
+				</div>
+				<div class="show_cheap_car_box">
+					
+						<% 
+					if (cheapCarInfoList != null) {
+						for (CarInfoDTO cheapCar : cheapCarInfoList) {
+					%>
+					<div class="show_cheap_car">
+						<img class="cheap_car_image" src="<%= cheapCar.getCar_image() %>" alt="Car Image">
+						<div class="dividing_line"></div>
+						<div class="cheap_car_info">
+							<p class="cheap_car_info_text">차량명 : <%= cheapCar.getCar_name() %></p>
+							<p class="cheap_car_info_text">사이즈 : <%= cheapCar.getCar_size() %></p>
+							<p class="cheap_car_info_text">연식 : <%= cheapCar.getModel_year() %></p>
+						</div>
+					
+					</div>
+					<% 
+						}
+					} else {
+						// 데이터가 없을 때 처리할 부분
+					}
+					%>
+				</div>
+			</div>
+            
+			<div class="old_car_list">
+				<div class="old_car_title">
+					<p class="old_car_title_text"><i class="fa-solid fa-hand-holding-heart"></i> 유행은 돌고 돈다! Y2K 차량</p>
+				</div>
+				<div class="show_old_car_box">
+					
+						<% 
+					if (oldCarInfoList != null) {
+						for (CarInfoDTO oldCar : oldCarInfoList) {
+					%>
+					<div class="show_old_car">
+						<img class="old_car_image" src="<%= oldCar.getCar_image() %>" alt="Car Image">
+						<div class="dividing_line"></div>
+						<div class="old_car_info">
+							<p class="old_car_info_text">차량명 : <%= oldCar.getCar_name() %></p>
+							<p class="old_car_info_text">사이즈 : <%= oldCar.getCar_size() %></p>
+							<p class="old_car_info_text">연식 : <%= oldCar.getModel_year() %></p>
+						</div>
+					</div>
+					<% 
+						}
+					} else {
+						// 데이터가 없을 때 처리할 부분
+					}
+					%>
+				</div>
+			</div>
+			<div class="popular_car_list">
+				<div class="popular_car_title"> 
+					<p class="popular_car_title_text"><i class="fa-solid fa-fire"></i> 고객들에게 인기만점 인기 차량</p>
+				</div>
+				<div class="show_popular_car_box">
+						<% 
+					if (popularCarInfoList != null) {
+						for (CarInfoDTO popularCar : popularCarInfoList) {
+					%>
+					<div class="show_popular_car">
+						<img class="popular_car_image" src="<%= popularCar.getCar_image() %>" alt="Car Image">
+						<div class="dividing_line"></div>
+						<div class="popular_car_info">
+							<p class="popular_car_info_text">차랑명 : <%= popularCar.getCar_name() %></p>
+							<p class="popular_car_info_text">사이즈 : <%= popularCar.getCar_size() %></p>
+							<p class="popular_car_info_text">연식 : <%= popularCar.getModel_year() %></p>
+						</div>
+					</div>
+					<% 
+						}
+					} else {
+						// 데이터가 없을 때 처리할 부분
+					}
+					%>
+				</div>
+			</div>
+	</div>
 
         
     </div>
