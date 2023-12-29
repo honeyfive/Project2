@@ -1,10 +1,10 @@
 // 비밀번호 영어 문자 숫자 그거 ..
 
 
-  function checkPasswordPattern(pw) {
-  const pwInput = document.getElementById('pw').value;
-  const pwBtn = document.getElementById('pwChkBtn');
-  let message = "";
+function checkPasswordPattern(pw) {
+  const pwInput = document.getElementById('pw').value; // 비번 입력값
+  const pwBtn = document.getElementById('pwChkBtn'); // 확인 버튼
+  let message = ""; // 출력 메세지
 
   const pattern1 = /[0-9]/;  // 숫자
   const pattern2 = /[a-zA-Z]/; // 영어
@@ -40,5 +40,19 @@
     alert(message);
   } else {
     alert("사용 가능한 비밀번호입니다!");
+  }
+}
+
+// 개인정보 동의 안 하면 회원가입 불가
+
+function toggleButton() {
+  const agreeBtn = document.querySelector('#plz-ok'); // 체크박스
+  const submitBtn = document.querySelector('.signin-submit'); // 회원가입버튼
+
+  if (agreeBtn.checked) {
+      submitBtn.removeAttribute("disabled");
+      console.log("눌림");
+  } else {
+      submitBtn.setAttribute("disabled", "disabled");
   }
 }
