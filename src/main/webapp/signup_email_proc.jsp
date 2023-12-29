@@ -4,18 +4,18 @@
 <%@page import="java.util.List"%>
 <%@page import="db.dto.MemberInfoDTO"%>
 
-	<%
+<%
 	request.setCharacterEncoding("UTF-8");
 	String email = request.getParameter("email");
 
 	System.out.println(email);
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListByEmail(email);
+	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberByEmail(email);
 	
 	int result = 0;
 	
-	if(memberInfoList.size() > 0){
+	if(memberInfoDTO != null){
 		result = 0; // 실패
 		out.print(result);
 	} else{
