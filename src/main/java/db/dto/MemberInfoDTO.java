@@ -18,6 +18,15 @@ public class MemberInfoDTO {
 	int use_count;
 	
 	
+	
+	public MemberInfoDTO(String id, String password, String email, String membership_level) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.membership_level = membership_level;
+	}
+
 	public MemberInfoDTO(int membership_number, String name, int age, String tel, String id, String password,
 			String email, String membership_level, String lisence_number, String gender, String birthday,
 			String lisence_acquisition_date, int overdue_history, int use_count) {
@@ -203,6 +212,15 @@ public class MemberInfoDTO {
 
 	public void setUse_count(int use_count) {
 		this.use_count = use_count;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberInfoDTO [membership_number=" + membership_number + ", name=" + name + ", age=" + age + ", tel="
+				+ tel + ", id=" + id + ", password=" + password + ", email=" + email + ", membership_level="
+				+ membership_level + ", lisence_number=" + lisence_number + ", gender=" + gender + ", birthday="
+				+ birthday + ", lisence_acquisition_date=" + lisence_acquisition_date + ", overdue_history="
+				+ overdue_history + ", use_count=" + use_count + "]";
 	}
 	
 	

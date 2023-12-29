@@ -14,13 +14,19 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
 	String pw = request.getParameter("password");
+	String email = request.getParameter("email");
 	System.out.println(id);
 	System.out.println(pw);
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 
 	List<MemberInfoDTO> memberinfoList = memberInfoDAO.findMemberListById(id, pw);
-
+	
+	
+	
+	
+	
+	
 	if (memberinfoList.size() == 0) {
 	%>
 	<script>
@@ -28,7 +34,8 @@
 		location.href = 'login.jsp';
 	</script>
 	<%
-	} else {
+	} else { //로그인 성공시
+		session.setAttribute("id",id);
 	%>
 	<script>
 		alert('로그인 성공');

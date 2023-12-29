@@ -20,7 +20,7 @@
                     <input class="login-id login-input" type="text" placeholder="아이디를 입력하세요." name="id">
                     <input class="login-pw login-input" type="password" placeholder="비밀번호를 입력하세요." name="password">
                     <input class="login-submit login-input" type="submit" value="로그인"
-                        onclick="location.href='~'"> <!-- 메인 화면 나중에 연결하기-->
+                        onclick="location.href= './mainpage.jsp'"> <!-- 메인 화면 나중에 연결하기-->
                 </form>
                 <hr>
                 <!--회원가입 유도창-->

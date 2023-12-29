@@ -23,7 +23,7 @@
 .b1{
     width: 100%;
     display: flex;
-    
+    justify-content: space-between;
 }
 
 .b1_font{
@@ -71,7 +71,8 @@
 
 .b1-2{
     width: 30%;
-    
+    display: flex;
+    justify-content: right;
 }
 
 .callcenter{

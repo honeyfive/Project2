@@ -193,16 +193,30 @@
     justify-content: space-evenly;
 }
 
+.plz{
+    width: 500px;
+    height: 10px;
+    margin: auto;
+    text-align: center;
+}
 
 /*회원가입버튼*/
 .signin-btn{
     display: flex;
     justify-self: center;
+    margin-top: 10px;
 }
 
-.signin-submit{
+.signin-submit:disabled{
+    background-color: #7a7e83;
+    border: none;
+    color: white;
+    cursor: not-allowed;
+}
+
+.signin-submit:not(:disabled){
     background-color: #0D6FFC;
     border: none;
     color: white;
-    
+    cursor: pointer;
 }
