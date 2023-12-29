@@ -36,9 +36,10 @@
 	//예약 정보 리스트 불러오기
 	//예약 정보 - 대여장소-아산
 	ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
-	List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = reservationInfoDAO.findReservationInfoListByRentalPlaceAsan();
-	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO.findReservationInfoListByRentalPlaceCheonan();
-	
+	List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = reservationInfoDAO
+			.findReservationInfoListByRentalPlaceAsan();
+	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO
+			.findReservationInfoListByRentalPlaceCheonan();
 	%>
 
 	<div class="location-modal">
@@ -65,7 +66,7 @@
 				<div class="location-modal-mainBox2">
 					천안
 					<div class="location-modal-mainBox2-item">
-					<%
+						<%
 						if (reservationInfoListByRentalPlaceCheonan != null) {
 							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceCheonan) {
 						%>
@@ -78,9 +79,9 @@
 						%>
 					</div>
 				</div>
-				<div class="location-modal-returnDate-text">반납하실 장소는 ""입니다</div>
+				<div class="location-modal-returnDate-text">반납하실 장소는 "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"입니다</div>
 			</div>
-			<div class="location-modal-check-Btn"></div>
+			<div class="location-modal-check-Btn">확인</div>
 		</div>
 	</div>
 	<!-- 모달창 - 달력 -->
@@ -109,6 +110,7 @@
 			</div>
 			<div class="rv-carInfoBox-main">
 				<div class="rv-carInfoBox-Box1"></div>
+				
 				<div class="rv-carInfoBox-Box2"></div>
 				<div class="rv-carInfoBox-Box3"></div>
 				<div class="rv-carInfoBox-Box4"></div>
@@ -137,20 +139,22 @@
 				<div class="rv-filterBox-Main-2">
 					자동차모델
 					<div class="rv-filterBox-Main-2-data">
-						<select>
-							<%
-							if (carInfoList != null) {
-								for (CarInfoDTO carInfo : carInfoList) {
-							%>
-
-							<option>
-								<%=carInfo.getCar_name()%>
-							</option>
-							<%
-							}
-							}
-							%>
-						</select>
+						<div class="select" data-role="selectBox">
+							<span date-value="optValue" class="selected-option">
+								<!-- 선택된 옵션 값이 출력되는 부분 -->
+							</span>
+							<ul class="hide">
+								<%
+								if (carInfoList != null) {
+									for (CarInfoDTO carInfo : carInfoList) {
+								%>
+								<li><%=carInfo.getCar_name()%></li>
+								<%
+								}
+								}
+								%>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="rv-filterBox-Main-3">

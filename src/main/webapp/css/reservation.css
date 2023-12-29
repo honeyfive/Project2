@@ -161,6 +161,7 @@
 
 /* 필터 메인 박스 */
 .rv-filterBox-Main {
+	position:relative;
 	width: 100%;
 	height: 600px;
 	background-color: white;
@@ -168,6 +169,7 @@
 	display: flex;
 	flex-direction: column;
 	color: #999999;
+	z-index: 500;
 }
 
 .rv-filterBox-Main-1 {
@@ -191,7 +193,7 @@
 
 .rv-filterBox-Main-2 {
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
@@ -199,17 +201,68 @@
 
 .rv-filterBox-Main-2-data {
 	width: 100%;
-	height: 100px;
+	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+/* 자동차 모델 selcet css */
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/* 셀렉트 영역 스타일 */
+.select{
+    padding: 5px 10px;
+    width: 250px;
+    border-radius: 5px;
+    border:1px solid #0E70FC;
+    background-color: white;
+    background-image: url("https://img.icons8.com/material-rounded/24/000000/expand-arrow.png");
+    background-repeat: no-repeat;
+    background-position: 96% center;
+    cursor: pointer;
+    
+}
+ul{
+	position: relatice;
+}
+
+li{
+	z-index:10;
+}
+/* 옵션 영역 스타일 */
+.select ul{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    border:1px solid #0E70FC;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+       
+}
+.select ul li{
+	position: relative;
+    padding: 10px;
+    list-style-type: none;
+    
+}
+.select ul li:hover{
+    background-color: #0E70FC;
+}
+
 .rv-filterBox-Main-3 {
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
@@ -217,8 +270,14 @@
 
 .rv-filterBox-Main-3-data {
 	width: 100%;
-	height: 100px;
+	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
+	font-size: 1.1rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .rv-filterBox-Main-4 {
@@ -232,7 +291,12 @@
 .rv-filterBox-Main-4-data {
 	width: 100%;
 	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
+	font-size: 1.1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 /* 필터 - 필터 초기화 버튼 */
 .rv-filterBox-Main-5 {
@@ -317,7 +381,7 @@
 /* 모달창 - 지역 아산 */
 .location-modal-mainBox1 {
 	width: 50%;
-	height: 100%;
+	height: 10%;
 	border: 1px solid black;
 }
 
@@ -330,7 +394,7 @@
 /* 모달창 - 지역 천안 */
 .location-modal-mainBox2 {
 	width: 50%;
-	height: 100%;
+	height: 10%;
 	border: 1px solid black;
 }
 
@@ -339,9 +403,25 @@
 }
 
 .location-modal-returnDate-text {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
 	text-align: center;
 	font-size: 2rem;
 	font-weight: bold;
+}
+
+.location-modal-check-Btn{
+	width: 180px;
+	height: 70px;
+	border: 1px solid black;
+	position: absolute;
+	bottom: 15px;
+	right: 73px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 /* 모달창-날짜시간 */
 .date-modal {
