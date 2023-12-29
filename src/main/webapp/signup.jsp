@@ -272,16 +272,14 @@
 							<input type="checkbox" name="email-ok"> 이메일 수신 동의 (선택)
 						</div>
 						<div>
-							<input type="checkbox" name="l-am-ok"> 개인정보수집 및 이용 동의
+							<input type="checkbox" name="plz-ok" id="plz-ok" onchange="toggleButton()"> 개인정보수집 및 이용 동의
 						</div>
 					</div>
 
-
-
-
 					<!-- 회원가입버튼-->
+					<div class="caution plz">개인정보 수집에 동의하셔야 회원가입을 할 수 있습니다.</div>
 					<div class="signin-btn">
-						<input type="submit" class="signin-submit input-id" value="회원가입">
+						<button type="submit" class="signin-submit input-id" disabled>회원가입</button>
 					</div>
 	</form>
 
