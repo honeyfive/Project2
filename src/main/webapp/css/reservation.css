@@ -105,8 +105,6 @@
 	width: 100%;
 	max-height: 100%;
 	padding: 10px;
-	border-radius: 10px;
-	background-color: white;
 	overflow: scroll;
 }
 
@@ -114,63 +112,65 @@
 	width: 100%;
 	height: 250px;
 	margin-bottom: 10px;
-	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
 	display: flex;
 	flex-flow: row nowrap;
 }
 
 .rv-carInfoBox-Box-imgBox {
-width: 50%;
-border: 1px solid black;
+	width: 50%;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .rv-carInfoBox-Box-carInfoBox {
 	width: 50%;
-	border: 1px solid black;
+	padding: 10px;
+	background-color: white;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: center;
+	border-left: 1px solid #999999;
+}
+
+.car_image {
+	width: 100%;
 }
 
 .rv-carInfoBox-Box-carName {
 	width: 100%;
 	height: 20%;
-	border: 1px solid black;
+	display: flex;
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: #27374D;
+	margin-bottom: 5px;
 }
 
 .rv-carInfoBox-Box-carYear {
 	width: 100%;
 	height: 20%;
-	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box2 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
-	border: 1px solid black;
+.rv-carInfoBox-Box-carYear-textBox {
+	width: 44px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: #c7c7c7;
+	font-size: 1.15rem;
+	font-weight: bold;
+	color: #444444;
 }
 
-.rv-carInfoBox-Box3 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
-	border: 1px solid black;
-}
-
-.rv-carInfoBox-Box4 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
-	border: 1px solid black;
-}
-
-.rv-carInfoBox-Box5 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
-	border: 1px solid black;
+.rv-carInfoBox-Box-sumRentAndInsurancePrice1 {
+	
 }
 
 /* 자동차 정보 박스 스크롤바 없애기 */
@@ -294,12 +294,12 @@ li {
 }
 
 .rv-filterBox-Main-2-data .select {
-    position: relative;
-    z-index: 2000;
+	position: relative;
+	z-index: 2000;
 }
 
 .rv-filterBox-Main-2-data .hide {
-    z-index: 1000;
+	z-index: 1000;
 }
 
 .rv-filterBox-Main-3 {
@@ -453,7 +453,6 @@ li {
 	height: 390px;
 	font-weight: bold;
 	font-size: 1.2rem;
-
 }
 
 .asanList {
@@ -464,6 +463,11 @@ li {
 	background-color: #0D6FFC;
 	color: white;
 	cursor: pointer;
+}
+
+.selected {
+	background-color: #0D6FFC;
+	color: white;
 }
 
 .cheonanList {
@@ -501,7 +505,6 @@ li {
 .location-modal-mainBox2-item::-webkit-scrollbar-track {
 	background-color: #e1e1e1;
 }
-
 
 .location-modal-mainBox2-item {
 	color: black;
