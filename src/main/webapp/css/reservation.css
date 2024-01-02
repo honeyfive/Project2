@@ -519,31 +519,6 @@ li {
 	overflow: auto;
 }
 
-.location-modal-returnDate-text {
-	position: absolute;
-	bottom: -63px;
-	left: 0px;
-	text-align: center;
-	font-size: 1.8rem;
-	font-weight: bold;
-	text-align: center;
-	color: #27374D;
-}
-
-.location-modal-returnPlaceBox {
-	position: absolute;
-	bottom: 33px;
-	left: 295px;
-	width: 342px;
-	height: 45px;
-	display: flex;
-	font-size: 1.75rem;
-	font-weight: bold;
-	color: #0D6FFC;
-	justify-content: center;
-	align-items: center;
-}
-
 .location-modal-check-Btn {
 	width: 160px;
 	height: 60px;
@@ -557,7 +532,7 @@ li {
 	cursor: pointer;
 	font-size: 1.5rem;
 	font-weight: bold;
-	background-color: #0D6FFC;
+	background-color: #999999;
 	color: white;
 }
 

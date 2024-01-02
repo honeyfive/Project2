@@ -97,10 +97,10 @@ $(document).ready(function() {
 	// 모든 asanList 클래스에 클릭 이벤트 추가
 	$('.asanList,.cheonanList').click(function() {
 		$(this).addClass('selected');
-
 		// 다른 asanList 클래스에서 selected 클래스 제거
 		$('.asanList,.cheonanList').not(this).removeClass('selected');
-
-		$('.rv-locationAndDateBox-location')(text);
+		if ('.asanList,.cheonanList' = 'selected') {
+			$('location-modal-check-Btn').style.backgroundColor = "#0D6FFC";
+		}
 	});
 });
