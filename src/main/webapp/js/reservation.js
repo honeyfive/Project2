@@ -76,7 +76,7 @@ function selectOpt() {
 
 /* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
 function selectFirst() {
-	const firstValue = opts[0].innerHTML;
+	const firstValue = '--자동차 모델을 선택하세요--';
 	values.innerHTML = `${firstValue}`
 }
 
@@ -99,8 +99,24 @@ $(document).ready(function() {
 		$(this).addClass('selected');
 		// 다른 asanList 클래스에서 selected 클래스 제거
 		$('.asanList,.cheonanList').not(this).removeClass('selected');
-		if ('.asanList,.cheonanList' = 'selected') {
-			$('location-modal-check-Btn').style.backgroundColor = "#0D6FFC";
+		if ($('.asanList,.cheonanList').hasClass('selected')) {
+			$(".location-modal-check-Btn").css("background-color", "#0D6FFC");
 		}
+	});
+});
+
+//모달 다음 확인
+document.addEventListener("DOMContentLoaded", function() {
+	// 다음버튼 클릭 시 이벤트 처리
+	document.querySelector('.location-modal-check-Btn').addEventListener('click', function() {
+		// 대여장소선택을 반납장소선택으로 변경
+
+		document.querySelector('.location-modal-header-text').innerText = '반납장소선택';
+
+		// 다음을 확인으로 변경
+		document.querySelector('.location-modal-check-Btn').innerText = '확인';
+
+		// 여기에 추가로 원하는 기능을 구현할 수 있습니다.
+		// 예를 들어, 다음을 누를 때마다 특정 동작이 일어나도록 할 수 있습니다.
 	});
 });

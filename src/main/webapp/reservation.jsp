@@ -18,6 +18,8 @@
 <head>
 <meta charset="UTF-8">
 <title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png"
+	sizes="32x32">
 <link rel="stylesheet" href="./css/header2.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -154,9 +156,18 @@
 						<div class="rv-carInfoBox-Box-carYear">
 							<p class="rv-carInfoBox-Box-carYear-textBox"><%=carInfo.getModel_year()%></p>
 						</div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice1"></div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice2"></div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice3"></div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">완전자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">수퍼자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
 					</div>
 				</div>
 				<%
