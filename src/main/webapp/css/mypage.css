@@ -45,7 +45,7 @@
 /* 회원 렌트 이용내역 박스 */
 .member_rent_use{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding-bottom: 50px;
 }
 

@@ -62,17 +62,18 @@
                 <div class="memeber_rating_box">
                     <i class="fa-regular fa-star-half-stroke"></i>
                     <span class="member_rent_use_text">내 등급</span>
-                    <!-- 회원등급 보여주는 곳 -->
+                    <span class=""><%=loginMemberDTO.getMembership_level() %></span>
                 </div>
                 <div class="use_count_box">
                     <i class="fa-solid fa-list-check"></i>
                     <span class="member_rent_use_text">이용 횟수</span>
-                    <!-- 회원 렌트 이용횟수 보여주는 곳 -->
+                    <span class=""><%=loginMemberDTO.getUse_count() %></span>
+
                 </div>
                 <div class="overdue_history_box">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     <span class="member_rent_use_text">연체 횟수</span>
-                    <!-- 회원 연체 횟수 보여주는 곳 -->
+                    <span class=""><%=loginMemberDTO.getLisence_number() %></span>
                 </div>
             </div>
             <div class="member_level"></div>
