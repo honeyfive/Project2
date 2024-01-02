@@ -15,6 +15,7 @@ public class CarInfoCheckDTO {
 	String option1;
 	String option2;
 	int accident_history;
+	
 	public CarInfoCheckDTO(String car_number, String car_name, String car_size, String car_type, int passenger_count,
 			int vehicle_rating, String company, String color, int model_year, String management_status, String option1,
 			String option2, int accident_history) {

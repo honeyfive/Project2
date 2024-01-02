@@ -21,7 +21,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT * FROM car_info ";
+		String sql = " SELECT * FROM car_info_check ";
 
 		List<CarInfoCheckDTO> carInfoList = null;
 
@@ -55,7 +55,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT car_number FROM car_info ";
+		String sql = " SELECT car_number FROM car_info_check ";
 
 		List<CarInfoCheckDTO> carInfoList = null;
 
@@ -85,7 +85,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " DELETE FROM car_info " + " WHERE car_number = ? ";
+		String sql = " DELETE FROM car_info_check " + " WHERE car_number = ? ";
 
 		int result = 0;
 
@@ -111,7 +111,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " INSERT INTO car_info VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+		String sql = " INSERT INTO car_info_check VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 		int result = 0;
 
@@ -148,7 +148,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='G' ";
+		String sql = " SELECT COUNT(*) FROM car_info_check " + " WHERE car_type='G' ";
 
 		int count = 0;
 
@@ -174,7 +174,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='D' ";
+		String sql = " SELECT COUNT(*) FROM car_info_check " + " WHERE car_type='D' ";
 
 		int count = 0;
 
@@ -200,7 +200,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='E' ";
+		String sql = " SELECT COUNT(*) FROM car_info_check " + " WHERE car_type='E' ";
 
 		int count = 0;
 
@@ -226,7 +226,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT COUNT(*) FROM car_info " + " WHERE car_type='H' ";
+		String sql = " SELECT COUNT(*) FROM car_info_check " + " WHERE car_type='H' ";
 
 		int count = 0;
 
@@ -252,7 +252,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 0 AND 999 ";
+		String sql = " SELECT count(*) FROM car_info_check WHERE vehicle_rating BETWEEN 0 AND 999 ";
 
 		int count = 0;
 
@@ -278,7 +278,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 1000 AND 2999 ";
+		String sql = " SELECT count(*) FROM car_info_check WHERE vehicle_rating BETWEEN 1000 AND 2999 ";
 
 		int count = 0;
 
@@ -304,7 +304,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating BETWEEN 3000 AND 4999 ";
+		String sql = " SELECT count(*) FROM car_info_check WHERE vehicle_rating BETWEEN 3000 AND 4999 ";
 
 		int count = 0;
 
@@ -330,7 +330,7 @@ public class CarInfoCheckDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT count(*) FROM CAR_INFO WHERE vehicle_rating > 5000 ";
+		String sql = " SELECT count(*) FROM car_info_check WHERE vehicle_rating > 5000 ";
 
 		int count = 0;
 
