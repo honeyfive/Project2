@@ -24,6 +24,7 @@
 	background-color: #eeeeee;
 	height: 215px;
 }
+
 /* 지역&날짜 박스 */
 .rv-locationAndDateBox {
 	padding-top: 100px;
@@ -96,6 +97,7 @@
 	align-items: center;
 	color: #1e1e1e;
 }
+
 /* 자동차 정보 박스 - main 내용
 알게된 사실 : 여러개의 box가 있는 스크롤에선
 부모요소에 flex 와 flex-direction: column를 사용하면 적용이 안된다!*/
@@ -108,10 +110,38 @@
 	overflow: scroll;
 }
 
-.rv-carInfoBox-Box1 {
+.rv-carInfoBox-Box {
 	width: 100%;
 	height: 250px;
 	margin-bottom: 10px;
+	border: 1px solid black;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.rv-carInfoBox-Box-imgBox {
+width: 50%;
+border: 1px solid black;
+}
+
+.rv-carInfoBox-Box-carInfoBox {
+	width: 50%;
+	border: 1px solid black;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.rv-carInfoBox-Box-carName {
+	width: 100%;
+	height: 20%;
+	border: 1px solid black;
+}
+
+.rv-carInfoBox-Box-carYear {
+	width: 100%;
+	height: 20%;
 	border: 1px solid black;
 }
 
@@ -161,6 +191,7 @@
 
 /* 필터 메인 박스 */
 .rv-filterBox-Main {
+	position: relative;
 	width: 100%;
 	height: 600px;
 	background-color: white;
@@ -168,6 +199,7 @@
 	display: flex;
 	flex-direction: column;
 	color: #999999;
+	z-index: 500;
 }
 
 .rv-filterBox-Main-1 {
@@ -191,7 +223,7 @@
 
 .rv-filterBox-Main-2 {
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
@@ -199,17 +231,80 @@
 
 .rv-filterBox-Main-2-data {
 	width: 100%;
-	height: 100px;
+	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+/* 자동차 모델 selcet css */
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+/* 셀렉트 영역 스타일 */
+.select {
+	padding: 5px 10px;
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid #0E70FC;
+	background-color: white;
+	background-image:
+		url("https://img.icons8.com/material-rounded/24/000000/expand-arrow.png");
+	background-repeat: no-repeat;
+	background-position: 96% center;
+	cursor: pointer;
+}
+
+ul {
+	position: relatice;
+}
+
+li {
+	z-index: 10;
+}
+
+/* 옵션 영역 스타일 */
+.select ul {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 100%;
+	border: 1px solid #0E70FC;
+	border-radius: 5px;
+	background-color: white;
+	cursor: pointer;
+}
+
+.select ul li {
+	position: relative;
+	padding: 10px;
+	list-style-type: none;
+}
+
+.select ul li:hover {
+	background-color: #0E70FC;
+}
+
+.rv-filterBox-Main-2-data .select {
+    position: relative;
+    z-index: 2000;
+}
+
+.rv-filterBox-Main-2-data .hide {
+    z-index: 1000;
+}
+
 .rv-filterBox-Main-3 {
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
@@ -217,8 +312,14 @@
 
 .rv-filterBox-Main-3-data {
 	width: 100%;
-	height: 100px;
+	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
+	font-size: 1.1rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .rv-filterBox-Main-4 {
@@ -232,8 +333,14 @@
 .rv-filterBox-Main-4-data {
 	width: 100%;
 	height: 80px;
+	font-weight: lighter;
 	border-bottom: 1px solid #e1e1e1;
+	font-size: 1.1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 /* 필터 - 필터 초기화 버튼 */
 .rv-filterBox-Main-5 {
 	width: 100%;
@@ -285,7 +392,7 @@
 	/* 모달의 세로크기  */
 	padding: 50px;
 	text-align: center;
-	background-color: rgb(255, 255, 255);
+	background-color: white;
 	/* 모달창 배경색 흰색 */
 	border-radius: 10px;
 	/* 테두리  */
@@ -297,6 +404,7 @@
 	justify-content: center;
 	align-items: start;
 }
+
 /* 모달창 - 지역 닫기 버튼 */
 .location-modal-close-Btn {
 	position: absolute;
@@ -306,43 +414,150 @@
 	z-index: 400;
 	cursor: pointer;
 }
+
+.location-modal-header-text {
+	position: absolute;
+	top: 11px;
+	left: 72px;
+	font-size: 1.6rem;
+	font-weight: bold;
+	color: #0D6FFC;
+}
+
 /* 모달창 - 지역 아산/천안 컨테이너 */
 .location-modal-body-container {
 	width: 95%;
 	height: 90%;
-	border: 1px solid black;
 	display: flex;
 	flex-flow: row wrap;
 }
+
 /* 모달창 - 지역 아산 */
 .location-modal-mainBox1 {
+	color: white;
+	border-right: white;
+	background-color: #0D6FFC;
 	width: 50%;
-	height: 100%;
-	border: 1px solid black;
+	height: 10%;
+	padding-top: 6px;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 1.4rem;
+	font-weight: bold;
 }
 
 .location-modal-mainBox1-item {
+	color: #27374D;
+	background-color: #eeeeee;
 	width: 100%;
-	height: 2000px;
-	overflow: auto;
+	margin-top: 9px;
+	height: 390px;
+	font-weight: bold;
+	font-size: 1.2rem;
+
+}
+
+.asanList {
+	padding: 15px;
+}
+
+.asanList:hover {
+	background-color: #0D6FFC;
+	color: white;
+	cursor: pointer;
+}
+
+.cheonanList {
+	padding: 15px;
+}
+
+.cheonanList:hover {
+	background-color: #0D6FFC;
+	color: white;
+	cursor: pointer;
 }
 
 /* 모달창 - 지역 천안 */
 .location-modal-mainBox2 {
+	color: white;
+	background-color: #0D6FFC;
 	width: 50%;
-	height: 100%;
-	border: 1px solid black;
+	height: 10%;
+	padding-top: 6px;
+	border-left: white;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 1.4rem;
+	font-weight: bold;
 }
 
+.location-modal-mainBox2-item::-webkit-scrollbar {
+	width: 10px;
+}
+
+.location-modal-mainBox2-item::-webkit-scrollbar-thumb {
+	background-color: #999999;
+	border-radius: 10px;
+}
+
+.location-modal-mainBox2-item::-webkit-scrollbar-track {
+	background-color: #e1e1e1;
+}
+
+
 .location-modal-mainBox2-item {
-	
+	color: black;
+	background-color: #eeeeee;
+	width: 100%;
+	margin-top: 9px;
+	height: 390px;
+	font-size: 1.2rem;
+	font-weight: lighter;
+	font-weight: bold;
+	color: #27374D;
+	overflow: auto;
 }
 
 .location-modal-returnDate-text {
+	position: absolute;
+	bottom: -63px;
+	left: 0px;
 	text-align: center;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	font-weight: bold;
+	text-align: center;
+	color: #27374D;
 }
+
+.location-modal-returnPlaceBox {
+	position: absolute;
+	bottom: 33px;
+	left: 295px;
+	width: 342px;
+	height: 45px;
+	display: flex;
+	font-size: 1.75rem;
+	font-weight: bold;
+	color: #0D6FFC;
+	justify-content: center;
+	align-items: center;
+}
+
+.location-modal-check-Btn {
+	width: 160px;
+	height: 60px;
+	border-radius: 10px;
+	position: absolute;
+	bottom: 25px;
+	right: 73px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background-color: #0D6FFC;
+	color: white;
+}
+
 /* 모달창-날짜시간 */
 .date-modal {
 	position: absolute;

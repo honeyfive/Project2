@@ -11,11 +11,11 @@
 	System.out.println(tel);
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	List<MemberInfoDTO> memberInfoList = memberInfoDAO.findMemberListByTel(tel);
+	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberByTel(tel);
 	
 	int result = 0;
 	
-	if(memberInfoList.size() > 0){
+	if(memberInfoDTO != null){
 		result = 0; // 실패
 		out.print(result);
 	} else{

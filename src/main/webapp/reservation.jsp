@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>휴카</title>
-<link rel="stylesheet" href="./css/header.css">
+<link rel="stylesheet" href="./css/header2.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet"
@@ -22,7 +22,7 @@
 </head>
 <body>
 	<!-- 헤더 -->
-	<%@ include file="header.jsp"%>
+	<%@ include file="header2.jsp"%>
 
 	<%
 	//보험 정보 리스트 불러오기
@@ -36,15 +36,17 @@
 	//예약 정보 리스트 불러오기
 	//예약 정보 - 대여장소-아산
 	ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
-	List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = reservationInfoDAO.findReservationInfoListByRentalPlaceAsan();
-	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO.findReservationInfoListByRentalPlaceCheonan();
-	
+	List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = reservationInfoDAO
+			.findReservationInfoListByRentalPlaceAsan();
+	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO
+			.findReservationInfoListByRentalPlaceCheonan();
 	%>
 
 	<div class="location-modal">
 		<!-- 모달창 - 지역 -->
 		<div class="location-modal-body">
 			<div class="location-modal-close-Btn">X</div>
+			<div class="location-modal-header-text">대여장소선택</div>
 			<div class="location-modal-body-container">
 				<div class="location-modal-mainBox1">
 					아산
@@ -54,7 +56,7 @@
 							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceAsan) {
 						%>
 
-						<p><%=reservationInfo.getRental_place()%></p>
+						<p class="asanList"><%=reservationInfo.getRental_place()%></p>
 
 						<%
 						}
@@ -65,12 +67,12 @@
 				<div class="location-modal-mainBox2">
 					천안
 					<div class="location-modal-mainBox2-item">
-					<%
+						<%
 						if (reservationInfoListByRentalPlaceCheonan != null) {
 							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceCheonan) {
 						%>
 
-						<p><%=reservationInfo.getRental_place()%></p>
+						<p class="cheonanList"><%=reservationInfo.getRental_place()%></p>
 
 						<%
 						}
@@ -78,9 +80,12 @@
 						%>
 					</div>
 				</div>
-				<div class="location-modal-returnDate-text">반납하실 장소는 ""입니다</div>
+				<div class="location-modal-returnDate-text">반납하실 장소는
+					"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" 입니다</div>
+				
 			</div>
-			<div class="location-modal-check-Btn"></div>
+			<div class="location-modal-returnPlaceBox">농협은행 신방 새말점 앞</div>
+			<div class="location-modal-check-Btn">확인</div>
 		</div>
 	</div>
 	<!-- 모달창 - 달력 -->
@@ -91,9 +96,6 @@
 			<p>달력모달창 내용</p>
 		</div>
 	</div>
-
-
-
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
 		<div class="rv-locationAndDateBox">
@@ -108,7 +110,14 @@
 				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
 			</div>
 			<div class="rv-carInfoBox-main">
-				<div class="rv-carInfoBox-Box1"></div>
+				<div class="rv-carInfoBox-Box">
+					<div class="rv-carInfoBox-Box-imgBox"></div>
+					<div class="rv-carInfoBox-Box-carInfoBox"></div>
+					<div class="rv-carInfoBox-Box-carName"></div>
+					<div class="rv-carInfoBox-Box-carYear"></div>
+
+				</div>
+
 				<div class="rv-carInfoBox-Box2"></div>
 				<div class="rv-carInfoBox-Box3"></div>
 				<div class="rv-carInfoBox-Box4"></div>
@@ -136,21 +145,22 @@
 				</div>
 				<div class="rv-filterBox-Main-2">
 					자동차모델
-					<div class="rv-filterBox-Main-2-data">
-						<select>
+				</div>
+				<div class="rv-filterBox-Main-2-data">
+					<div class="select" data-role="selectBox">
+						<span date-value="optValue" class="selected-option"> <!-- 선택된 옵션 값이 출력되는 부분 -->
+						</span>
+						<ul class="hide">
 							<%
 							if (carInfoList != null) {
 								for (CarInfoDTO carInfo : carInfoList) {
 							%>
-
-							<option>
-								<%=carInfo.getCar_name()%>
-							</option>
+							<li><%=carInfo.getCar_name()%></li>
 							<%
 							}
 							}
 							%>
-						</select>
+						</ul>
 					</div>
 				</div>
 				<div class="rv-filterBox-Main-3">
