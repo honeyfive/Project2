@@ -32,7 +32,7 @@
 		
 		
 		ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
-		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1140);
+		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1120);
 
 	
 		InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
@@ -128,8 +128,6 @@
          <th>옵셥 2</th>
       </tr>
       
-      <tr>
-      
          <tr>
             <td><%=carInfoDTO.getOption1()%></td>
             <td><%=carInfoDTO.getOption2()%></td>
@@ -155,50 +153,41 @@
    
       <h3>운전자정보</h3>
 
-   <form>	
+   
       <label>이름 : </label><input type="text" id="input_name" name="name" value="<%=memberInfoDTO.getName()%>">
       <label>생년월일 : </label><input type="text" id="input_birthday" name="birthday" value="<%=memberInfoDTO.getBirthday()%>">
-      <label>휴대폰번호 : </label><input type="text" id="input_phoneNumber" name="phoneNumber" value="<%=memberInfoDTO.getTel()%>">
+      <label>휴대폰번호 : </label><input type="text" id="tel" name="tel" value="<%=memberInfoDTO.getTel()%>">
       <label>이메일 : </label><input type="text" id="input_eMail" name="eMail" value="<%=memberInfoDTO.getEmail()%>">
-   </form>
+   	  
+  
    
  
    
    
 
 	<h3>결제금액</h3>
-	<div>총 결제금액 : <%=(int)total_price %> 원 </div>  <%-- if 취소하면 총액*0.1 --%>
+	<p>총 결제금액 : <%=(int)total_price %>원 </p>
 	<p>차량 대여 요금 : <%=(int)car_price%> 원 </p>
 	<p>보험요금(<%=insuranceDTO.getInsurance_type()%>) : <%=insuranceDTO.getInsurance_price()%> 원 </p>
 	
-	
+	<form action="Payment_proc.jsp" method="post">
  	<h3>결제 수단</h3>
-      
-  <%--       <%
-         if(paymentInfoList != null) {
-             for(PaymentInfoDTO paymentInfo : paymentInfoList){
-         %>
-      
-      <tr><%=paymentInfo.getPayment_type()%><input type="checkbox"></tr>
-      <%
-      }
-      }
-      %> --%>
-	
-	
+      <select name="payment_type">
+      	<option value="T">실시간계좌이체</option>
+      	<option value="C">카드결제</option>
+      	<option value="P">휴대폰결제</option>
+      </select>
+
 
 	<h3>결제하기</h3>
-	
-	<form action="payment_proc.jsp" method="post">
+		
+			
+		<input type="hidden" name="reservation_number" value="<%=reservationInfoDTO.getReservation_number()%>">
+		<input type="hidden"  name="payment_price" value="<%=(int)total_price %>">
 		
 		<button type="submit">결제하기</button>
 	</form>
-	
-	
-		<%
-		//결제하기 버튼 눌렀을때, 테이블에 저장하는 단계 생성
-	%>
-	
+
 	
 	
 	
