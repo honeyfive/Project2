@@ -19,6 +19,13 @@ public class HistoryInfoDTO {
 		this.accident_history = accident_history;
 	}
 
+	@Override
+	public String toString() {
+		return "HistoryInfoDTO [reservation_number=" + reservation_number + ", membership_number=" + membership_number
+				+ ", return_date=" + return_date + ", real_return_date=" + real_return_date + ", overdue_history="
+				+ overdue_history + ", accident_history=" + accident_history + "]";
+	}
+
 	public int getReservation_number() {
 		return reservation_number;
 	}

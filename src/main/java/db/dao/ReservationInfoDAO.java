@@ -12,144 +12,139 @@ import db.util.DBConnectionManager;
 import oracle.sql.ConcreteProxyUtil;
 
 public class ReservationInfoDAO {
-	
+
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-	
-	//예약확인찾기 리스트
-		//예약 전체 리스트
-		public List<ReservationInfoDTO> findReservationInfoList() {
 
-			conn = DBConnectionManager.connectDB();
+	// 예약확인찾기 리스트
+	// 예약 전체 리스트
+	public List<ReservationInfoDTO> findReservationInfoList() {
 
-			String sql = " select * from reservation_information";
+		conn = DBConnectionManager.connectDB();
 
-			List<ReservationInfoDTO> reservationInfoList = null;
+		String sql = " select * from reservation_information";
 
-			try {
-				psmt = conn.prepareStatement(sql);
+		List<ReservationInfoDTO> reservationInfoList = null;
 
-				rs = psmt.executeQuery();
-				reservationInfoList = new ArrayList<ReservationInfoDTO>();
+		try {
+			psmt = conn.prepareStatement(sql);
 
-				while (rs.next()) {
-					ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(
-							rs.getInt("reservation_number"),rs.getString("rental_place"),rs.getString("return_place"),rs.getString("rental_date"),
-							rs.getString("return_date"),rs.getInt("total_rental_date"),rs.getInt("total_rental_time"),
-							rs.getInt("insurance_number"),rs.getString("car_number"),rs.getInt("membership_number"),rs.getInt("payment_number") );
+			rs = psmt.executeQuery();
+			reservationInfoList = new ArrayList<ReservationInfoDTO>();
 
-					reservationInfoList.add(reservationInfoDTO);
-				}
+			while (rs.next()) {
+				ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(rs.getInt("reservation_number"),
+						rs.getString("rental_place"), rs.getString("return_place"), rs.getString("rental_date"),
+						rs.getString("return_date"), rs.getInt("total_rental_date"), rs.getInt("total_rental_time"),
+						rs.getInt("insurance_number"), rs.getString("car_number"), rs.getInt("membership_number"),
+						rs.getInt("payment_number"));
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				DBConnectionManager.closeDB(conn, psmt, rs);
+				reservationInfoList.add(reservationInfoDTO);
 			}
 
-			return reservationInfoList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
-		
-		
-		//예약번호
-		public ReservationInfoDTO findReservationInfoByRsrvNumber(int reservation_number) {
-			 conn = DBConnectionManager.connectDB();
-			 String sql = " select * from reservation_information "
-					 		+ " where reservation_number = ? " ;
-			 
-			 ReservationInfoDTO reservationInfoDTO = null; 
-			
-			 try {
-				 psmt = conn.prepareStatement(sql);
-				 
-				 psmt.setInt(1,reservation_number);
-				 
-				 rs = psmt.executeQuery(); 
-				 
-				 if(rs.next()) {
-					 reservationInfoDTO = new ReservationInfoDTO (
-							 rs.getInt("reservation_number"),rs.getString("rental_place"),rs.getString("return_place"),rs.getString("rental_date"),
-								rs.getString("return_date"),rs.getInt("total_rental_date"),rs.getInt("total_rental_time"),
-								rs.getInt("insurance_number"),rs.getString("car_number"),rs.getInt("membership_number"),rs.getInt("payment_number")
-							 );
-				 }
-				 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				DBConnectionManager.closeDB(conn, psmt, rs);
+
+		return reservationInfoList;
+	}
+
+	// 예약번호
+	public ReservationInfoDTO findReservationInfoByRsrvNumber(int reservation_number) {
+		conn = DBConnectionManager.connectDB();
+		String sql = " select * from reservation_information " + " where reservation_number = ? ";
+
+		ReservationInfoDTO reservationInfoDTO = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, reservation_number);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				reservationInfoDTO = new ReservationInfoDTO(rs.getInt("reservation_number"),
+						rs.getString("rental_place"), rs.getString("return_place"), rs.getString("rental_date"),
+						rs.getString("return_date"), rs.getInt("total_rental_date"), rs.getInt("total_rental_time"),
+						rs.getInt("insurance_number"), rs.getString("car_number"), rs.getInt("membership_number"),
+						rs.getInt("payment_number"));
 			}
-			
-			return reservationInfoDTO ;
-		
-}
-	
-		//아산지역 대여장소리스트
-				public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceAsan() {
 
-					conn = DBConnectionManager.connectDB();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
 
-					String sql = " select rental_place from reservation_information "
-							+ " where rental_place = '천안아산역 KTX 광장1' "
-							+ " or rental_place = '선문대학교 본관 앞' "
-							+ " or rental_place = '배방 농협 하나로 마트' "
-							+ " or rental_place = '아산 고속버스터미널 앞' "
-							+ " or rental_place = '탕정역 앞' "
-							+ " or rental_place = '온양온천역' "
-							+ " or rental_place = '순천향대 정문 앞' ";
+		return reservationInfoDTO;
 
-					List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = null;
+	}
 
-					try {
-						psmt = conn.prepareStatement(sql);
+	// 아산지역 대여장소리스트
+	public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceAsan() {
 
-						rs = psmt.executeQuery();
-						reservationInfoListByRentalPlaceAsan = new ArrayList<ReservationInfoDTO>();
+		conn = DBConnectionManager.connectDB();
 
-						while (rs.next()) {
-							ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(rs.getString("rental_place"));
+		String sql = " select rental_place from reservation_information " + " where rental_place = '천안아산역 KTX 광장1' "
+				+ " or rental_place = '선문대학교 본관 앞' " + " or rental_place = '배방 농협 하나로 마트' "
+				+ " or rental_place = '아산 고속버스터미널 앞' " + " or rental_place = '탕정역 앞' " + " or rental_place = '온양온천역' "
+				+ " or rental_place = '순천향대 정문 앞' ";
 
-							reservationInfoListByRentalPlaceAsan.add(reservationInfoDTO);
-						}
+		List<ReservationInfoDTO> reservationInfoListByRentalPlaceAsan = null;
 
-					} catch (SQLException e) {
-						e.printStackTrace();
-					} finally {
-						DBConnectionManager.closeDB(conn, psmt, rs);
-					}
+		try {
+			psmt = conn.prepareStatement(sql);
 
-					return reservationInfoListByRentalPlaceAsan;
-				}
-				
-				//천안지역 대여장소리스트
-				public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceCheonan() {
+			rs = psmt.executeQuery();
+			reservationInfoListByRentalPlaceAsan = new ArrayList<ReservationInfoDTO>();
 
-					conn = DBConnectionManager.connectDB();
+			while (rs.next()) {
+				ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(rs.getString("rental_place"));
 
-					String sql = " select rental_place from reservation_information where rental_place NOT IN('천안아산역 KTX 광장1', '선문대학교 본관 앞', '배방 농협 하나로 마트', '아산 고속버스터미널 앞', '탕정역 앞', '온양온천역', '순천향대 정문 앞') ";
+				reservationInfoListByRentalPlaceAsan.add(reservationInfoDTO);
+			}
 
-					List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
 
-					try {
-						psmt = conn.prepareStatement(sql);
+		return reservationInfoListByRentalPlaceAsan;
+	}
 
-						rs = psmt.executeQuery();
-						reservationInfoListByRentalPlaceCheonan = new ArrayList<ReservationInfoDTO>();
+	// 천안지역 대여장소리스트
+	public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceCheonan() {
 
-						while (rs.next()) {
-							ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(rs.getString("rental_place"));
+		conn = DBConnectionManager.connectDB();
 
-							reservationInfoListByRentalPlaceCheonan.add(reservationInfoDTO);
-						}
+		String sql = " select rental_place from reservation_information where rental_place NOT IN('천안아산역 KTX 광장1', '선문대학교 본관 앞', '배방 농협 하나로 마트', '아산 고속버스터미널 앞', '탕정역 앞', '온양온천역', '순천향대 정문 앞') ";
 
-					} catch (SQLException e) {
-						e.printStackTrace();
-					} finally {
-						DBConnectionManager.closeDB(conn, psmt, rs);
-					}
+		List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = null;
 
-					return reservationInfoListByRentalPlaceCheonan;
-				}
-				
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			reservationInfoListByRentalPlaceCheonan = new ArrayList<ReservationInfoDTO>();
+
+			while (rs.next()) {
+				ReservationInfoDTO reservationInfoDTO = new ReservationInfoDTO(rs.getString("rental_place"));
+
+				reservationInfoListByRentalPlaceCheonan.add(reservationInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return reservationInfoListByRentalPlaceCheonan;
+	}
+
 }

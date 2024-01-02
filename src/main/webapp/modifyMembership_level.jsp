@@ -42,7 +42,7 @@ th, td {
 }
 
 th {
-	background: #42444e;
+	background: #0D6FFC;
 	color: #fff;
 	text-align: left;
 }
@@ -79,6 +79,46 @@ tr:last-child td:last-child {
 #input_membership_number {
 margin-top: 20px;
 }
+
+h1 {
+ color: #0D6FFC;
+}
+
+.modal {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1200px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_body {
+	position: absolute;
+	top: 8%;  
+	width : 1000px; 
+	height : 200px; 
+	padding : 10px;
+	background-color: rgb(255, 255, 255); 
+	border-radius :10px;
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15); 
+	transform:translateY(-50%);
+	color: black;
+}
+
+#modalCloseButton {
+	margin-left: 10px;
+	cursor: pointer;
+	float: right;
+	padding: 5px;
+}
+
+.carAddModalTitle{
+	margin-left: 15px;
+	color: #0D6FFC;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -107,6 +147,11 @@ margin-top: 20px;
 
 	<h1>회원정보 수정</h1>
 	<p></p>
+	<br>
+	<br>
+	<div class="carMaintenance">
+		<button class="btn-open-modal">수정</button>
+	</div>
 	<table class="member_graph">
 		<tr>
 			<th>회원번호</th>
@@ -156,22 +201,33 @@ margin-top: 20px;
 	
 
 
-	 <fieldset>
-	 <legend>회원정보 수정</legend>
-	 <form id="personForm" action="deleteMember_proc.jsp" method="post">
-	 	<input type="text" id="input_membership_number" name="membership_number" placeholder="수정할 회원번호(필수입력)"><br>
-		<label>등급 수정 : </label> 
-		<input type="text" id="input_membership_level" name="membership_level" placeholder="수정할 등급">
-		<button id="modifyBtn" type="button">수정하기</button><br>
-		<label>연체횟수 수정 : </label>
-		<input type="text" id="input_overdue_history" name="overdue_history" placeholder="연체횟수">
-		<button id="modifyBtn1" type="button">수정하기</button><br>
-		<label>이용횟수 수정 : </label>
-		<input type="text" id="input_use_count" name="use_count" placeholder="이용횟수">
-		<button id="modifyBtn2" type="button">수정하기</button><br>
-	</form>
-	
-	</fieldset>
+	 <div class="modal">
+		<div class="modal_body">
+			<h2 class="carAddModalTitle">
+				회원정보 수정<span id="modalCloseButton">❌</span>
+			</h2>
+			<fieldset>
+				<legend>회원정보 수정</legend>
+				<form id="personForm" action="deleteMember_proc.jsp" method="post">
+					<input type="text" id="input_membership_number"
+						name="membership_number" placeholder="수정할 회원번호(필수입력)"><br>
+					<label>등급 수정 : </label> <input type="text"
+						id="input_membership_level" name="membership_level"
+						placeholder="수정할 등급">
+					<button id="modifyBtn" type="button">수정하기</button>
+					<br> <label>연체횟수 수정 : </label> <input type="text"
+						id="input_overdue_history" name="overdue_history"
+						placeholder="연체횟수">
+					<button id="modifyBtn1" type="button">수정하기</button>
+					<br> <label>이용횟수 수정 : </label> <input type="text"
+						id="input_use_count" name="use_count" placeholder="이용횟수">
+					<button id="modifyBtn2" type="button">수정하기</button>
+					<br>
+				</form>
+
+			</fieldset>
+		</div>
+	</div>
 	<script>
 		
 		document.getElementById('modifyBtn').addEventListener('click',()=>{
@@ -219,5 +275,19 @@ margin-top: 20px;
 			}
 		});
 	</script>
+	
+	<script>
+        const modal = document.querySelector('.modal');
+        const btnOpenModal=document.querySelector('.btn-open-modal');
+        const modalCloseButton = document.getElementById('modalCloseButton');
+
+        btnOpenModal.addEventListener("click", ()=>{
+            modal.style.display="flex";
+        });
+        
+        modalCloseButton.addEventListener('click', () => {
+        	  modal.style.display="none";
+        	});
+    </script>
 </body>
 </html>

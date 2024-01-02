@@ -56,7 +56,7 @@ th, td {
 
 th {
 	background: #0D6FFC;
-	color: #fff;
+	color: #0D6FFC;
 	text-align: left;
 }
 
@@ -131,9 +131,10 @@ span {
 
 .member_graph {
 	margin-top:5%;
-	margin-right: 30%;
+	margin-right: 11%;
 	float:right;
 	color: #607274;
+	display: inline-block;
 }
 
 #bar-chart {
@@ -307,7 +308,7 @@ hr {
 		<a href="./manage_Reservation.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-kanban" viewBox="0 0 16 16">
   <path d="M13.5 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm-11-1a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z"/>
-</svg> 렌트 관리</div></a>
+</svg> 예약 정보</div></a>
 		<a href="./login.jsp"><div class="manage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
   <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
 </svg> 로그 아웃</div></a>
@@ -326,6 +327,8 @@ hr {
 		Top5MemberDAO top5MemberInfoDAO = new Top5MemberDAO();
 		
 		List<MemberInfoDTO> top5MemberList = top5MemberInfoDAO.findTop5MemberList();
+		
+		List<MemberInfoDTO> blackList = top5MemberInfoDAO.findBlackListMember();
 		
 		CarInfoCheckDAO carInfoCheckDAO = new CarInfoCheckDAO();
 		
@@ -503,6 +506,25 @@ hr {
 		<tr>
 			<td><%=
 			a + ".       " + memberInfo.getName()
+			%></td>
+		</tr>
+		<%
+	  } 
+	  %>
+	</table>
+	
+	<table class="member_graph">
+		<tr>
+			<td>
+				BlackList😈
+			</td>
+		</tr>
+		
+		<%
+		for(MemberInfoDTO memberInfo : blackList) {
+						  %>
+		<tr>
+			<td><%=memberInfo.getName()
 			%></td>
 		</tr>
 		<%
