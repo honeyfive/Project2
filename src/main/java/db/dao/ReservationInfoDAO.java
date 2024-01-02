@@ -52,7 +52,7 @@ public class ReservationInfoDAO {
 		}
 		
 		
-		//예약번호 기준으로 예약정보 한개만 읽어오는 메소드 
+		//예약번호
 		public ReservationInfoDTO findReservationInfoByRsrvNumber(int reservation_number) {
 			 conn = DBConnectionManager.connectDB();
 			 String sql = " select * from reservation_information "

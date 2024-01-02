@@ -80,24 +80,21 @@ public class PaymentInfoDAO {
 	
 	// 저장   ... 
 	
-		public int savePaymentInfo(int payment_number, int payment_price , String Payment_type, String Payment_time, int Reservation_number, int Payment_state) {
+		public int savePaymentInfo(int payment_price , String Payment_type, int Reservation_number) {
 
 			conn = DBConnectionManager.connectDB();
 
-			String sql = " INSERT INTO payment_info VALUES( ?, ?, ? , ?, ? , ? ) "   ;
+			String sql = " INSERT INTO payment_info VALUES( (SELECT NVL(MAX(payment_number), 0) + 1 FROM payment_info) , ?, ? , TO_CHAR(sysdate, 'YYYY-MM-DD HH:MM') , ? , 1 ) "   ;
 
 			int result = 0;
 
 			try {
 				psmt = conn.prepareStatement(sql);
 
-				psmt.setInt(1, payment_number);
-				psmt.setInt(2, payment_price);
-				psmt.setString(3, Payment_type);
-				psmt.setString(4, Payment_time);
-				psmt.setInt(5, Reservation_number);
-				psmt.setInt(6, Payment_state);
-
+				psmt.setInt(1,payment_price );
+				psmt.setString(2, Payment_type);
+				psmt.setInt(3, Reservation_number);
+		
 				result = psmt.executeUpdate();
 
 			} catch (SQLException e) {
