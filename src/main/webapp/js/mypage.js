@@ -1,0 +1,1 @@
+const rateText = document.querySelector('#rate').innerText;

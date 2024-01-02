@@ -279,7 +279,7 @@
 					<!-- 회원가입버튼-->
 					<div class="caution plz">개인정보 수집에 동의하셔야 회원가입을 할 수 있습니다.</div>
 					<div class="signin-btn">
-						<button type="submit" class="signin-submit input-id" disabled>회원가입</button>
+						<button type="submit" class="signin-submit input-id">회원가입</button>
 					</div>
 	</form>
 

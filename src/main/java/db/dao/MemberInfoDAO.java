@@ -182,7 +182,7 @@ public class MemberInfoDAO {
 
 		return result;
 	}
-	
+
 	public int modifyOverdue(MemberInfoDTO memberInfo) {
 
 		conn = DBConnectionManager.connectDB();
@@ -207,7 +207,7 @@ public class MemberInfoDAO {
 
 		return result;
 	}
-	
+
 	public int modifyUseCount(MemberInfoDTO memberInfo) {
 
 		conn = DBConnectionManager.connectDB();
@@ -234,31 +234,28 @@ public class MemberInfoDAO {
 	}
 
 	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
-	public List<MemberInfoDTO> findMemberListById(String targetId, String targetPw) {
+	public MemberInfoDTO findMemberByIdPw(String targetId, String targetPw) {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM member_info WHERE id = ? and password = ? ";
 
 		System.out.println("변수 값 확인 : " + targetId + targetPw);
 
-		List<MemberInfoDTO> memberInfoList = null;
+		MemberInfoDTO memberInfoDTO = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetId);
 			psmt.setString(2, targetPw);
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>(); // 못 찾아도 null이 아님
 
-			while (rs.next()) {
+			if (rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
-
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -267,7 +264,7 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
@@ -285,7 +282,7 @@ public class MemberInfoDAO {
 			psmt.setString(1, targetId);
 			rs = psmt.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 
 				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
@@ -305,30 +302,28 @@ public class MemberInfoDAO {
 	}
 
 //	회원가입 시 이미 있는 비번인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByPw(String targetPw) {
+	public MemberInfoDTO findMemberByPw(String targetPw) {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM member_info WHERE password = ? ";
 
 		System.out.println("변수 값 확인 : " + targetPw);
 
-		List<MemberInfoDTO> memberInfoList = null;
+		MemberInfoDTO memberInfoDTO = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetPw);
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>();
 
-			while (rs.next()) {
+			if (rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
 
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -337,37 +332,33 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
 //	회원가입 시 이미 있는 전화번호인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByTel(String targetTel) {
+	public MemberInfoDTO findMemberByTel(String targetTel) {
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT * FROM member_info " + " WHERE tel = ? "
-				+ " ORDER BY membership_number ";
+		String sql = " SELECT * FROM member_info " + " WHERE tel = ? " + " ORDER BY membership_number ";
 
 		System.out.println("변수 값 확인 : " + targetTel);
 
-		List<MemberInfoDTO> memberInfoList = null;
+		MemberInfoDTO memberInfoDTO = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetTel);
-			
+
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>();
 
-			while (rs.next()) {
+			if (rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
-
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -376,36 +367,32 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
 //	회원가입 시 이미 있는 운전면허번호인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByLisenceNumber(String targetLisence) {
+	public MemberInfoDTO findMemberByLisenceNumber(String targetLisence) {
 		conn = DBConnectionManager.connectDB();
 		String sql = " SELECT * FROM member_info " + " WHERE lisence_number = ? ";
 
-		System.out.println(
-				"변수 값 확인 : " + targetLisence );
+		System.out.println("변수 값 확인 : " + targetLisence);
 
-		List<MemberInfoDTO> memberInfoList = null;
+		MemberInfoDTO memberInfoDTO = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetLisence);
 
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>();
 
-			while (rs.next()) {
+			if (rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
-
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -414,36 +401,33 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
 //	회원가입 시 이미 있는 이메일인가 확인하는 메소드
-	public List<MemberInfoDTO> findMemberListByEmail(String targetEmail) {
+	public MemberInfoDTO findMemberByEmail(String targetEmail) {
 		conn = DBConnectionManager.connectDB();
 
 		String sql = " SELECT * FROM member_info " + " WHERE email = ? ";
 
 		System.out.println("변수 값 확인 : " + targetEmail);
 
-		List<MemberInfoDTO> memberInfoList = null;
+		MemberInfoDTO memberInfoDTO = null;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, targetEmail);
 
 			rs = psmt.executeQuery();
-			memberInfoList = new ArrayList<MemberInfoDTO>();
 
-			while (rs.next()) {
+			if (rs.next()) {
 
-				MemberInfoDTO memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
+				memberInfoDTO = new MemberInfoDTO(rs.getInt("membership_number"), rs.getString("name"),
 						rs.getInt("age"), rs.getString("tel"), rs.getString("id"), rs.getString("password"),
 						rs.getString("email"), rs.getString("membership_level"), rs.getString("lisence_number"),
 						rs.getString("gender"), rs.getString("birthday"), rs.getString("lisence_acquisition_date"),
 						rs.getInt("overdue_history"), rs.getInt("use_count"));
-
-				memberInfoList.add(memberInfoDTO);
 			}
 
 		} catch (SQLException e) {
@@ -452,12 +436,12 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		return memberInfoList;
+		return memberInfoDTO;
 
 	}
 
 //	새 고객 추가 메소드 > 수정 중
-	public int saveMemberList(String targetName, String targetBirthYear, String targetTel1, String targetTel2,
+	public int saveMemberInfo(String targetName, String targetBirthYear, String targetTel1, String targetTel2,
 			String targetTel3, String targetId, String targetPassword, String targetEmail, String targetLisence1,
 			String targetLisence2, String targetLisence3, String targetLisence4, String targetGender,
 			String targetBirthMonth, String targetBirthDate, String targetLisenceYear, String targetLisenceMonth,
@@ -642,8 +626,7 @@ public class MemberInfoDAO {
 
 		return count;
 	}
-	
-	
+
 	public MemberInfoDTO login(String targetId, String targetPw) {
 		conn = DBConnectionManager.connectDB();
 
@@ -657,16 +640,15 @@ public class MemberInfoDAO {
 			psmt.setString(1, targetId);
 			psmt.setString(2, targetPw);
 			rs = psmt.executeQuery();
-			
 
 			while (rs.next()) {
-				
+
 				targetId = rs.getString("id");
 				targetPw = rs.getString("password");
 				String email = rs.getString("email");
 				String member_level = rs.getString("membership_level");
-				
-				dto = new MemberInfoDTO(targetId,targetPw,email,member_level);
+
+				dto = new MemberInfoDTO(targetId, targetPw, email, member_level);
 			}
 
 		} catch (SQLException e) {
@@ -675,11 +657,8 @@ public class MemberInfoDAO {
 			DBConnectionManager.closeDB(conn, psmt, rs);
 		}
 
-		
 		return dto;
 
 	}
 
-	
-	
 }
