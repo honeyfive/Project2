@@ -85,7 +85,7 @@ public class CarInfoDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " SELECT DISTINCT car_size FROM car_info ";
+		String sql = " SELECT DISTINCT car_size FROM car_info";
 
 		List<CarInfoDTO> carInfoList3 = null;
 
@@ -195,10 +195,38 @@ public class CarInfoDAO {
 		
 		return carInfoDTO;	
 		
-	}
+	}	
 
-		
-	
-		
-		
+	public List<CarInfoDTO> findCarInfoListByCarSize() {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM car_info WHERE car_size = '?' ";
+
+		List<CarInfoDTO> carInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			carInfoList = new ArrayList<CarInfoDTO>();
+
+			while (rs.next()) {
+				CarInfoDTO carInfoDTO = new CarInfoDTO(rs.getString("car_number"), rs.getString("car_name"),
+						rs.getString("car_size"), rs.getString("car_type"), rs.getInt("passenger_count"),
+						rs.getInt("vehicle_rating"), rs.getString("company"), rs.getString("color"),
+						rs.getInt("model_year"), rs.getString("management_status"), rs.getString("option1"),
+						rs.getString("option2"), rs.getInt("accident_history"), rs.getString("car_image"));
+
+				carInfoList.add(carInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return carInfoList;
 	}
+}
