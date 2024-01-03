@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>휴카</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -31,13 +32,13 @@
             <p class="my_info_text"> <%=loginMemberDTO.getName() %>님 정보 </p>
         </div>
         <div class="my_info_main_box">
-            <div class="my_name">
+            <div class="my_id_email_box">
                 <!-- 회원 아이디 -->
-                <p class="member_name"> <%=loginMemberDTO.getId() %> </p>
+                <p class="member_id_big"> <%=loginMemberDTO.getId() %> </p>
                 <!-- 회원 이메일 -->
                 <p class="member_email_big"> <%=loginMemberDTO.getEmail() %> </p>
             </div>
-            <div class="my_email_id">
+            <div class="my_email_box">
                 <p> 이메일계정 </p>
                 <div class="go_to_member_email">
                     <p class="member_email"> <%=loginMemberDTO.getEmail() %>  </p>
@@ -48,11 +49,10 @@
                 <span> 전화번호 : <%=loginMemberDTO.getTel() %> </span>
                 <i class="fa-solid fa-angle-right"></i>
             </div>
-            <div class="my_nickname">
-                <p>닉네임</p>
-                <div class="go_to_member_nickname">
-                    <p class="member_nickname"><%=loginMemberDTO.getId() %>님 </p>
-                    <i class="fa-solid fa-angle-right"></i>
+            <div class="my_id">
+                <p>아이디</p>
+                <div class="go_to_member_id">
+                    <p class="member_id"><%=loginMemberDTO.getId() %>님 </p>
                 </div>
             </div>
             <div class="my_birthday">
@@ -67,7 +67,7 @@
             <span class="account_linkage_text"> 계정연동</span>
             <div class="kakaotalk_box">
                 <p><i class="fa-solid fa-comment-sms"></i> &nbsp;카카오톡</p>
-                <p><i class="fa-solid fa-check"></i> 연동중 </p>
+                <button class="go_to_kakao_linkage">연동하기</button>
             </div>
             <div class="apple_box">
                 <p><i class="fa-brands fa-apple"></i> &nbsp;Apple</p>
@@ -78,6 +78,8 @@
                 <button class="go_to_naver_linkage">연동하기</button>
             </div>
         </div>
+        
+        
 
         <div class="logout_box">
             <a id="go_to_logout">로그아웃</a>
@@ -87,6 +89,8 @@
     </div>
 	
 
+<!-- 모달창 -->
+
     <div class="member_email_modal">
         <div class="email_modal_body">
             <div class="email_title">
@@ -95,10 +99,11 @@
             </div>
             <div class="email_modal_main">
             <form action="modifyMemberEmail.jsp">
-                <div>
-                <input type="hidden" name="id" vaule="<%=loginMemberDTO.getId() %>">
-                <input class="input_proc_email" placeholder="<%=loginMemberDTO.getEmail() %>" name="email"></div>
-                <button  class="proc_btn"> 이메일 수정 </button>
+                <div class="modify_member_email">
+                    <input type="hidden" name="id" value="<%=loginMemberDTO.getId() %>">
+                    <input class="input_proc_email" placeholder="<%=loginMemberDTO.getEmail() %>" name="email">
+                    <button  class="proc_btn"> 이메일 수정 </button>
+                </div>
              </form>   
             </div>
         </div>
@@ -111,9 +116,14 @@
                 <i class="fa-solid fa-xmark close_modal_btn"></i>
             </div>
             <div class="tel_modal_main">
-                <div><input class="input_proc_tel" placeholder="<%=loginMemberDTO.getTel() %>"></div>
-                <span class="error_text">'010-1234-5678' 형식으로 입력 해 주세요.</span>
-                <button  class="proc_btn"> 전화번호 수정 </button>
+            <form action="modifyMemberTel.jsp">
+                <div class="modify_member_tel">
+                	<input type="hidden" name="id" value="<%=loginMemberDTO.getId() %>">
+                    <input class="input_proc_tel" placeholder="<%=loginMemberDTO.getTel() %>" name="tel">
+                    <span class="error_text">'010-1234-5678' 형식으로 입력 해 주세요.</span>
+                    <button  class="proc_btn"> 전화번호 수정 </button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -125,25 +135,18 @@
                 <i class="fa-solid fa-xmark close_modal_btn"></i>
             </div>
             <div class="birth_modal_main">
-                <div><input class="input_proc_birth" placeholder="<%=loginMemberDTO.getBirthday() %>"></div>
-                <span class="error_text">'2000-01-01' 형식으로 입력 해 주세요.</span>
-                <button  class="proc_btn"> 생년월일 수정 </button>
+            <form action="modifyMemberBirth.jsp">
+                <div class="modify_member_birth">
+                	<input type="hidden" name="id" value="<%=loginMemberDTO.getId() %>">
+                    <input class="input_proc_birth" placeholder="<%=loginMemberDTO.getBirthday() %>" name="birthday">
+                    <span class="error_text">'2000-01-01' 형식으로 입력 해 주세요.</span>
+                    <button  class="proc_btn"> 생년월일 수정 </button>
+                </div>
+            </form>
             </div>
         </div>    
     </div>
 
-    <div class="member_nickname_modal">
-        <div class="nickname_modal_body">
-            <div class="nickname_title">
-                <span class="proc_nickname"> 닉네임 수정 </span>
-                <i class="fa-solid fa-xmark close_modal_btn"></i>
-            </div>
-            <div class="nickname_modal_main">
-                <div><input class="input_proc_nickname" placeholder="<%=loginMemberDTO.getId() %>"></div>
-                <button  class="proc_btn"> 닉네임 수정 </button>
-            </div>
-        </div>    
-    </div>
 
 
 

@@ -29,7 +29,7 @@
             %>
                 <script>
                     alert('수정 성공');
-                    location.href='이동경로';
+                    location.href='myinfoproc.jsp';
                 </script>
             <%
                 } else {

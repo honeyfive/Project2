@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>휴카</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="css/mainpage.css">
     <link
     rel="stylesheet"
@@ -49,8 +50,10 @@
 	                	%>
 	                  <%   for (CarInfoDTO recommendCar : recommendCarInfoList) {
 	                %><div class="show_recommend_car">
-	                    <img class="recommend_car_image" src="<%= recommendCar.getCar_image() %>" alt="Car Image">
-	                    <div class="dividing_line"></div>
+						<div class="recommend_car_image_box">
+	                    	<img class="recommend_car_image" src="<%= recommendCar.getCar_image() %>" alt="Car Image">
+	                    </div>
+							<div class="dividing_line"></div>
 	                    <div class="recommend_car_info">
 	                        <p class="recommend_car_info_text">차량명 : <%= recommendCar.getCar_name() %></p>
 	                        <p class="recommend_car_info_text">사이즈 : <%= recommendCar.getCar_size() %></p>
@@ -76,7 +79,9 @@
 						for (CarInfoDTO cheapCar : cheapCarInfoList) {
 					%>
 					<div class="show_cheap_car">
-						<img class="cheap_car_image" src="<%= cheapCar.getCar_image() %>" alt="Car Image">
+						<div class="cheap_car_image_box">
+							<img class="cheap_car_image" src="<%= cheapCar.getCar_image() %>" alt="Car Image">
+						</div>	
 						<div class="dividing_line"></div>
 						<div class="cheap_car_info">
 							<p class="cheap_car_info_text">차량명 : <%= cheapCar.getCar_name() %></p>
@@ -105,7 +110,9 @@
 						for (CarInfoDTO oldCar : oldCarInfoList) {
 					%>
 					<div class="show_old_car">
-						<img class="old_car_image" src="<%= oldCar.getCar_image() %>" alt="Car Image">
+						<div class="old_car_image_box">
+							<img class="old_car_image" src="<%= oldCar.getCar_image() %>" alt="Car Image">
+						</div>	
 						<div class="dividing_line"></div>
 						<div class="old_car_info">
 							<p class="old_car_info_text">차량명 : <%= oldCar.getCar_name() %></p>
@@ -131,7 +138,9 @@
 						for (CarInfoDTO popularCar : popularCarInfoList) {
 					%>
 					<div class="show_popular_car">
-						<img class="popular_car_image" src="<%= popularCar.getCar_image() %>" alt="Car Image">
+						<div class="popular_car_image_box">
+							<img class="popular_car_image" src="<%= popularCar.getCar_image() %>" alt="Car Image">
+						</div>
 						<div class="dividing_line"></div>
 						<div class="popular_car_info">
 							<p class="popular_car_info_text">차랑명 : <%= popularCar.getCar_name() %></p>

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="db.dao.MemberInfoDAO"%>
 <%@ page import="db.dto.MemberInfoDTO"%>
-<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+<%
         request.setCharacterEncoding("UTF-8");
-        String tel = request.getParameter("tel");
         String id = request.getParameter("id");
-        System.out.println("modifyPerson_proc 파라미터 : " + tel + id);
+        String name = request.getParameter("name");
+        System.out.println("modifyPerson_proc 파라미터 : " + id + name);
 
         MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 
         MemberInfoDTO memberInfo = new MemberInfoDTO();
-        memberInfo.setTel(tel);
         memberInfo.setId(id);
+        memberInfo.setName(name);
 
-        int result = memberInfoDAO.modifyTel(memberInfo);
+        int result = memberInfoDAO.modifyId(memberInfo);
         System.out.println(result);
 
         if(result > 0){
@@ -43,6 +42,5 @@
                 }
 
             %>
-    %>
 </body>
 </html>
