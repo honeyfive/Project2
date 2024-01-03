@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="header2.jsp"%>
 
 	<!-- 로그인 메인 -->
 	<div class="content">
