@@ -136,7 +136,6 @@
 				<div class="place return-place">반납장소선택</div>
 			</div>
 			<div class="rv-locationAndDateBox-date"></div>
-			<div class="rv-locationAndDateBox-selectCarBtn">차량검색</div>
 		</div>
 	</div>
 	<div class="rv-container">
@@ -199,7 +198,7 @@
 						%>
 					</div>
 				</div>
-				<div class="rv-filterBox-Main-2">자동차모델
+				<%-- <div class="rv-filterBox-Main-2">자동차모델
 				<div class="rv-filterBox-Main-2-data">
 					<div class="select" data-role="selectBox">
 						<span date-value="optValue" class="selected-option"> <!-- 선택된 옵션 값이 출력되는 부분 -->
@@ -217,7 +216,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 				<div class="rv-filterBox-Main-3">
 					차량크기
 					<div class="rv-filterBox-Main-3-data">
