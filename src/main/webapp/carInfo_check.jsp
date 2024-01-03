@@ -7,33 +7,38 @@
 <html>
 <head>
 <style>
+	@import
+	url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
-
-.side_bar {
-	margin-right: 2%;
-	width: 10%;
-	height: 1200px;
-	float: left;
-	/* border: 3px solid black; */
-	/* background-color: #0D6FFC; */
-	/* color: white; */
-	border-right: 3px solid #0D6FFC;
-	font-weight: bold;
+	font-family: "Roboto", helvetica, arial, sans-serif;
 }
 
 body {
-	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
+		font-family: "Roboto", helvetica, arial, sans-serif;
+		text-rendering: optimizeLegibility;
+		overflow-x: hidden;
 }
+
+.side_bar {
+	margin-right: 1%;
+	width: 10%;
+	height: 1200px;
+	float: left;
+	background-color: #0D6FFC;
+	font-weight: bold;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+
 
 h1 {
 	color: #0D6FFC;
+	margin-top: 15px;
 }
 
 table {
@@ -89,8 +94,9 @@ tr:last-child td:last-child {
 
 .manage {
 	margin: 0 auto;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin-top: 15%;
+	color: white;
 }
 
 a {
@@ -176,9 +182,11 @@ input[type="checkbox"] {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
+	<%@ include file="header3.jsp"%>
 
 	<%
 	CarInfoCheckDAO memberInfoDAO = new CarInfoCheckDAO();

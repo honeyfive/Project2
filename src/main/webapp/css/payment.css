@@ -1,18 +1,285 @@
-.titleBox{
-    background-color: pink;
-    width: 100%;
-    height: 300px;
+.payment-topBox{
+	width: 100%;
+	padding-top: 100px;
+	/*background-color: gray;*/
+	background-color: #eeeeee;
+	height: 215px;
 }
 
-.titleText1{
-    font-size: 50px;
-    border: solid black;
-    width: 100%;
-    height: 200px;
-    padding: 150px;
+.payment-titleBox{
+	position: relative;
+	display: flex;
+	justify-content: center;
     align-items: center;
-    text-align: center;
+    padding-top: 40px;
+    border-radius: 10px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    
+} 
+
+.payment-titleText{
+    position: absolute;
+    top: 60px;
+    left: 563px;
+    width: 137px;
+    height: 23px;
+    background-color: lightgray;
+    z-index:-5;
+    }
+
+.payment-container{
+	width: 100%;
+	height: 1450px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	background-color: #eeeeee;
+	position: relative;
+	z-index: 100;
 }
 
+.payment-box1{
+    background-color: white;
+    margin-left: 5%;
+	width: 55%;
+	height: 1400px;;
+	display: flex;
+	flex-direction: column;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.payment-input{
+	width: 100%;
+	height: 3rem;
+	margin-top:0.5rem;
+	margin-bottom:0.5rem;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	background-color: rgb(233, 233, 233);
+	padding-left: 10px;
+	border-width: 0;
+}
+
+/*면허증 지참 박스*/
+.license-info{
+	border: 1px solid lightgray;
+	width: 100%;
+	height: 10rem;
+	padding: 2.5rem;
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 20px;
+}
+.license-info-icon{
+ 	font-size: 40px;
+}
+
+
+
+/*총결제금액*/
+.box1-totalPrice{
+	font-weight: bolder;
+    margin-top: 30px;
+    font-size: large;
+}
+
+.box1-detailPrice1{
+	font-size: 1rem;
+	margin-top: 0.5rem;
+	color: darkgray;
+}
+
+.box1-detailPrice2{
+	font-size: 1rem;
+	color: darkgray;
+}
+
+
+
+/*오른쪽 결제 정보 박스*/
+
+.payment-box2{
+    margin-right: 5%;
+	width: 30%;
+	height: 27%;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	padding : 20px;
+    background-color: white;
+    /*position: fixed;*/
+}
+
+.payment-type-select{
+	width: 100%;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.payment-type-select:focus{
+    border: 1px solid #0D6FFC;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 2px solid #0D6FFC;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.payment-Btn{
+	width: 100%;
+	height: 60px;
+	border-radius:10px;
+	font-size: 2rem;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #0D6FFC;
+	cursor: pointer;
+	margin-top: 30px;
+}
+
+.totlaPrice{
+	font-size: 1rem;
+}
+
+.detailPrice1{
+	font-size: 0.8rem;
+	color: lightgray;
+	margin-top: 0.5rem;
+}
+.detailPrice2{
+	font-size: 0.8rem;
+	color: lightgray;
+}
+
+.paymentAgree{
+	width: 100%;
+	height: 30px;
+	border-radius:10px;
+	font-size: 0.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	margin-top: 10px;
+}
+
+
+/*대인/대물/자손 보상한도 테이블*/
+
+  table.insuInfoTable {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+	border: 0.5px solid #0D6FFC;
+  }
+  table.insuInfoTable thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #0D6FFC;
+  }
+  table.insuInfoTable tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    background: #f3f6f7;
+  }
+  table.insuInfoTable td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+  }
+  
+  .insu-info{
+	  font-size: 13px;
+	  margin-top: 10px;
+  }
+  
+  /*차량정보 아코디언*/
+  .pay-carinfo-box{
+    display: block;
+    border-width: 0;
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+}
+
+.pay-carinfo {
+    font-weight: bold;
+}
+
+#pay-carinfo {
+    position: fixed;
+    left: -9999px;
+}
+
+.pay-carinfo-click {
+    cursor: pointer;
+    color: gray;
+}
+
+.pay-carinfo-body {
+    display: none;
+    list-style: none;
+    width: 80%;
+    background-color: white;
+    text-align: left;
+}
+
+#pay-carinfo:checked~.pay-carinfo-body {
+    display: block;
+    margin: 10px;
+    margin-right: 16px;
+}
+
+
+
+
+/*대여 반납 테이블*/
+.rentReturn-table1{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -20px;
+}
+.rentReturn-table2{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;;
+}
+
+.rentReturn-title{
+	font-size: 1rem;
+	color: rgb(128, 128, 128);
+	text-align: center;
+}
+
+.rentReturn-body{
+	font-size: 1rem;
+	text-align: center;
+}
+
+.rentReturn-body-time{
+	font-size: 1rem;
+	text-align: center;
+	background-color: lightgrey;
+	border-radius: 30px;
+	margin-left: 5px;
+}
 
 

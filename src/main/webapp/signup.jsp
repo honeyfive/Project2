@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 페이지</title>
+<title>휴카</title>
 <link rel="stylesheet" href="./css/signup.css">
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="header2.jsp"%>
 
 	<!-- 회원가입-->
 	<form action="signup_proc.jsp">

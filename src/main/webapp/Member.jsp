@@ -9,41 +9,42 @@
 <html>
 <head>
 <style>
+	@import
+	url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", helvetica, arial, sans-serif;
 }
-
 .material-symbols-outlined {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
 }
 
 .side_bar {
-	margin-right: 2%;
+	margin-right: 1%;
 	width: 10%;
-	height: 1200px;
+	height: 100vh;
 	float: left;
-	/* border: 3px solid black; */
-	/* background-color: #0D6FFC; */
-	/* color: white; */
-	border-right: 3px solid #0D6FFC;
+	background-color: #0D6FFC;
 	font-weight: bold;
+	text-align: center;
 }
 
 body {
-	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
+	font-family: "Roboto", helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
 }
 
 table {
-	margin-top: 5%;
+	margin-top: 1%;
 	border-collapse: separate;
 	border-spacing: 0;
 	width: 88%;
 	border-collapse: separate;
+	font-size: 0.85rem;
 }
 
 th, td {
@@ -54,6 +55,7 @@ th {
 	background: #0D6FFC;
 	color: #fff;
 	text-align: left;
+	border-right: 1px solid #c2c2c2;
 }
 
 tr:first-child th:first-child {
@@ -91,8 +93,9 @@ tr:last-child td:last-child {
 
 .manage {
 	margin: 0 auto;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin-top: 15%;
+	color: white;
 }
 
 a {
@@ -101,8 +104,10 @@ a {
 }
 
 fieldset {
-	margin-top: 20px;
+	margin-top: 5px;
 	padding: 10px;
+	width: 88%;
+    border-radius: 5px;
 }
 
 input[type="text"] {
@@ -116,6 +121,7 @@ input[type="text"] {
 
 h1 {
 	color: #0D6FFC;
+	margin-top: 15px;
 }
 
 .carAddClass {
@@ -124,10 +130,11 @@ h1 {
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
-
+<%@ include file="header3.jsp"%>
 	<div class="side_bar">
 		<a href="./manage_main.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
