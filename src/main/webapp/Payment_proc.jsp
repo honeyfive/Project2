@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
    <%
@@ -32,14 +33,14 @@
       if(result > 0){
    %>
       <script>
-         alert('저장 성공');
+         alert('결제 성공');
          location.href = 'mainpage.jsp'; //해당 경로로 페이지 이동
       </script>
    <%
       } else {
    %>
       <script>
-         alert('저장 실패');
+         alert('결제 실패');
          history.back(); //뒤로가기
       </script>
    <%   

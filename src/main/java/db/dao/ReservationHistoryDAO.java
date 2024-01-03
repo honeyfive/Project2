@@ -29,6 +29,7 @@ public class ReservationHistoryDAO {
 		List<ReservationHistoryDTO> reservationHistoryList = null;
 
 		try {
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, targetMembershipNumber);
 			rs = psmt.executeQuery();
@@ -37,9 +38,10 @@ public class ReservationHistoryDAO {
 			while (rs.next()) {
 				ReservationHistoryDTO reservationHistoryDTO = new ReservationHistoryDTO(rs.getString("rental_date"),
 						rs.getString("rental_place"), rs.getString("real_return_date"), rs.getString("return_place"),
-						rs.getInt("overdue_history"), rs.getInt("total_rental_date"), rs.getString("car_name"));
+						rs.getInt("overdue_history"), rs.getInt("total_rental_date"), rs.getString("car_number"));
 
 				reservationHistoryList.add(reservationHistoryDTO);
+
 			}
 
 		} catch (SQLException e) {
