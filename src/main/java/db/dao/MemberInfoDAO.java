@@ -232,6 +232,34 @@ public class MemberInfoDAO {
 
 		return result;
 	}
+	
+	public int modifyEmail(MemberInfoDTO memberInfo) {
+
+        conn = DBConnectionManager.connectDB();
+
+        String sql = " UPDATE member_info" + " SET email= ? " + " WHERE id = ? "  ;
+
+        int result = 0;
+
+        try {
+            psmt = conn.prepareStatement(sql);
+
+            psmt.setString(1, memberInfo.getEmail());
+            psmt.setString(2, memberInfo.getId());
+
+            result = psmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionManager.closeDB(conn, psmt, rs);
+        }
+
+        return result;
+    }
+	
+	
+	
 
 	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
 	public MemberInfoDTO findMemberByIdPw(String targetId, String targetPw) {
