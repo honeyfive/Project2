@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    box-sizing: 0;
+}
+
+a {
+    text-decoration: none;
+    /*a 태그 밑줄 제거*/
+}
+
+/*헤더*/
+.header {
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+    /*position: fixed;*/
+    /*z-index: 200;*/
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.header-nav {
+    width: 800px;
+    height: 80px;
+    margin-top: 10px;
+    margin-right: 100px;
+    display: flex;
+    justify-content: center;    
+}
+
+/*헤더 로고*/
+.header-nav-img {
+    width: 200px;
+    height: 80px;
+    /*display: flex;*/
+    /*justify-content : center;*/
+    /*align-items: center;*/
+    float: left;
+}
+
+#hugo-logo {
+	/*padding-top: 10px;*/
+    width: 200px;
+    /*object-fit: contain;*/
+    cursor: pointer;
+    float: left;
+}
+
+
+/*네비게이션 버튼*/
+.hearder-nav-btn-item {
+	width: 60px;
+    height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    color: gray;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#my-pg {
+    width: 100px;
+}
+
+#management-pg {
+    width: 100px;
+}
+
+/*헤더 로그인 쪽*/
+.header-nav-login {
+    width: 450px;
+    height: 80px;
+    margin-top: 10px;
+    margin-left: 800px;
+    margin-right:-55px;
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+/*.header-nav-login-slash {
+    color: gray;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 4px;
+}*/
+
+.header-nav-login-btn {
+    width: 200px;
+    height: 80px;
+    color: gray;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#login {
+    margin-left: 10px;
+}
