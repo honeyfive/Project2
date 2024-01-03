@@ -113,6 +113,15 @@ input[type="text"] {
 .membermodifybutton {
 	float: right;
 }
+
+h1 {
+	color: #0D6FFC;
+}
+
+.carAddClass {
+	float: right;
+}
+
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -151,7 +160,7 @@ input[type="text"] {
   <path
 						d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z" />
 </svg>
-				렌트 관리
+				예약 정보
 			</div></a> <a href="./login.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
@@ -163,19 +172,7 @@ input[type="text"] {
 	</div>
 
 	<%
-	/* String membership_number = request.getParameter("membership_number");
-	System.out.println(membership_number);
-	int intId = 0;
-	try {
-		intId = Integer.parseInt(membership_number);
-	} catch (Exception e){
-		e.printStackTrace();
-		intId = 0;
-	} */
-
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-
-	//MemberInfoDTO memberInfo = memberInfoDAO.findMemberById(intId);
 
 	List<MemberInfoDTO> memberList = memberInfoDAO.findMemberList();
 	%>
@@ -188,10 +185,57 @@ input[type="text"] {
 			<label>회원번호 : </label><input type="text"
 				class="input_membership_number" name="membership_number">
 			<button id="deleteBtn" type="button">삭제하기</button>
-			<a href="modifyMembership_level.jsp"><button type="button" class="membermodifybutton" %>>수정</button></a>
+			<a href="modifyMembership_level.jsp"><button type="button"
+					class="membermodifybutton">수정</button></a>
 		</form>
-
 	</fieldset>
+	<script>
+		
+		document.getElementById('modifyBtn').addEventListener('click',()=>{
+			let input_membership_level = document.getElementById('input_membership_level');
+			if(input_membership_level.value.trim() == ''){
+				alert('회원번호는 필수 입력입니다.');
+				input_membership_level.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyMember_proc.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn1').addEventListener('click',()=>{
+			let input_overdue_history = document.getElementById('input_overdue_history');
+			if(input_overdue_history.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_overdue_history.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyOverdue.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn2').addEventListener('click',()=>{
+			let input_use_count = document.getElementById('input_use_count');
+			if(input_use_count.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_use_count.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyUseCount.jsp';
+				form.submit();
+			}
+		});
+	</script>
 
 	<p></p>
 	<table class="member_graph">

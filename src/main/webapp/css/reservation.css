@@ -44,7 +44,7 @@
 /* 지역 박스 */
 .rv-locationAndDateBox-location {
 	margin-left: 6%;
-	width: 20%;
+	width: 45%;
 	height: 45px;
 	border-radius: 5px;
 	background-color: #F2F3F3;
@@ -53,7 +53,7 @@
 
 /* 날짜 박스 */
 .rv-locationAndDateBox-date {
-	width: 53%;
+	width: 28%;
 	height: 45px;
 	border-radius: 5px;
 	background-color: #F3F3F3;
@@ -105,8 +105,6 @@
 	width: 100%;
 	max-height: 100%;
 	padding: 10px;
-	border-radius: 10px;
-	background-color: white;
 	overflow: scroll;
 }
 
@@ -114,62 +112,91 @@
 	width: 100%;
 	height: 250px;
 	margin-bottom: 10px;
-	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
 	display: flex;
 	flex-flow: row nowrap;
 }
 
 .rv-carInfoBox-Box-imgBox {
-width: 50%;
-border: 1px solid black;
+	width: 50%;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .rv-carInfoBox-Box-carInfoBox {
 	width: 50%;
-	border: 1px solid black;
+	padding: 10px;
+	background-color: white;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: center;
+	border-left: 1px solid #999999;
+}
+
+.car_image {
+	width: 100%;
 }
 
 .rv-carInfoBox-Box-carName {
 	width: 100%;
 	height: 20%;
-	border: 1px solid black;
+	display: flex;
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: #27374D;
+	margin-bottom: 5px;
 }
 
 .rv-carInfoBox-Box-carYear {
 	width: 100%;
 	height: 20%;
+}
+
+.rv-carInfoBox-Box-carYear-textBox {
+	width: 44px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: #c7c7c7;
+	font-size: 1.15rem;
+	font-weight: bold;
+	color: #444444;
+}
+
+.rv-carInfoBox-Box-sumRentAndInsurancePrice {
+	width: 100%;
+	height: 20%;
+	border: 1px solid black;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.rv-carInfoBox-Box-insuranceText{
+	width: 30%;
 	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box2 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
+.rv-carInfoBox-Box-sumRentAndInsurancePrice-text{
+	width: 50%;
 	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box3 {
+.rv-carInfoBox-Box-sumRentAndInsurancePrice2 {
 	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
+	height: 20%;
 	border: 1px solid black;
 }
 
-.rv-carInfoBox-Box4 {
+.rv-carInfoBox-Box-sumRentAndInsurancePrice3 {
 	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
-	border: 1px solid black;
-}
-
-.rv-carInfoBox-Box5 {
-	width: 100%;
-	height: 250px;
-	margin-bottom: 10px;
+	height: 20%;
 	border: 1px solid black;
 }
 
@@ -294,12 +321,12 @@ li {
 }
 
 .rv-filterBox-Main-2-data .select {
-    position: relative;
-    z-index: 2000;
+	position: relative;
+	z-index: 2000;
 }
 
 .rv-filterBox-Main-2-data .hide {
-    z-index: 1000;
+	z-index: 1000;
 }
 
 .rv-filterBox-Main-3 {
@@ -453,7 +480,6 @@ li {
 	height: 390px;
 	font-weight: bold;
 	font-size: 1.2rem;
-
 }
 
 .asanList {
@@ -464,6 +490,11 @@ li {
 	background-color: #0D6FFC;
 	color: white;
 	cursor: pointer;
+}
+
+.selected {
+	background-color: #0D6FFC;
+	color: white;
 }
 
 .cheonanList {
@@ -502,7 +533,6 @@ li {
 	background-color: #e1e1e1;
 }
 
-
 .location-modal-mainBox2-item {
 	color: black;
 	background-color: #eeeeee;
@@ -514,31 +544,6 @@ li {
 	font-weight: bold;
 	color: #27374D;
 	overflow: auto;
-}
-
-.location-modal-returnDate-text {
-	position: absolute;
-	bottom: -63px;
-	left: 0px;
-	text-align: center;
-	font-size: 1.8rem;
-	font-weight: bold;
-	text-align: center;
-	color: #27374D;
-}
-
-.location-modal-returnPlaceBox {
-	position: absolute;
-	bottom: 33px;
-	left: 295px;
-	width: 342px;
-	height: 45px;
-	display: flex;
-	font-size: 1.75rem;
-	font-weight: bold;
-	color: #0D6FFC;
-	justify-content: center;
-	align-items: center;
 }
 
 .location-modal-check-Btn {
@@ -554,7 +559,7 @@ li {
 	cursor: pointer;
 	font-size: 1.5rem;
 	font-weight: bold;
-	background-color: #0D6FFC;
+	background-color: #999999;
 	color: white;
 }
 
@@ -590,4 +595,9 @@ li {
 	/* 테두리 그림자  */
 	transform: translateY(-50%);
 	/* 모듈창열었을때 위치설정 가운데로  */
+}
+
+/* selectBox의 z-index를 다른 필터들보다 높게 설정 */
+[data-role="selectBox"] {
+    z-index: 1000; /* 적절한 숫자로 설정, 다른 필터보다 큰 값을 사용합니다. */
 }

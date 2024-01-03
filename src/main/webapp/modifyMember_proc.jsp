@@ -35,7 +35,6 @@
 			%>
 				<script>
 					alert('수정 실패');
-					//location.href = 'addPerson.jsp';
 					history.back();
 				</script>
 			<%
