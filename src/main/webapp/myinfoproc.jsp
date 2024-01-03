@@ -8,11 +8,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 정보 페이지</title>
+    <title>휴카</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="css/myinfoproc.css">
+    <link rel="stylesheet" href="./css/myinfoproc.css">
 </head> 
 </head>
 <body>
@@ -43,36 +43,10 @@
                     <p class="member_email"> <%=loginMemberDTO.getEmail() %>  </p>
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
-                <div class="member_email_modal">
-                    <div class="email_modal_body">
-                        <div class="email_title">
-                            <span class="proc_email"> 이메일 수정 </span>
-                            <i class="fa-solid fa-xmark close_modal_btn"></i>
-                        </div>
-                        <div class="email_modal_main">
-                            <p>이메일</p>
-                            <div><input class="input_proc_email" value="회원기존이메일"></div>
-                            <button  class="proc_btn"> 이메일 수정 </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>   
             <div class="my_phonenum">
                 <span> 전화번호 : <%=loginMemberDTO.getTel() %> </span>
                 <i class="fa-solid fa-angle-right"></i>
-                <div class="member_tel_modal">
-                    <div class="tel_modal_body">
-                        <div class="tel_title">
-                            <span class="proc_tel"> 전화번호 수정 </span>
-                            <i class="fa-solid fa-xmark close_modal_btn"></i>
-                        </div>
-                        <div class="tel_modal_main">
-                            <p> 전화 번호 </p>
-                            <div><input class="input_proc_tel" value="회원기존전화번호"></div>
-                            <button  class="proc_btn"> 전화번호 수정 </button>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="my_nickname">
                 <p>닉네임</p>
@@ -80,36 +54,10 @@
                     <p class="member_nickname"><%=loginMemberDTO.getId() %>님 </p>
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
-                <div class="member_nickname_modal">
-                    <div class="nickname_modal_body">
-                        <div class="nickname_title">
-                            <span class="proc_nickname"> 닉네임 수정 </span>
-                            <i class="fa-solid fa-xmark close_modal_btn"></i>
-                        </div>
-                        <div class="nickname_modal_main">
-                            <p> 닉네임 </p>
-                            <div><input class="input_proc_tel" value="회원기존닉네임"></div>
-                            <button  class="proc_btn"> 닉네임 수정 </button>
-                        </div>
-                    </div>    
-                </div>
             </div>
             <div class="my_birthday">
                 <p> 생년월일 : <%=loginMemberDTO.getBirthday() %> </p>
                 <i class="fa-solid fa-angle-right"></i>
-                <div class="member_birth_modal">
-                    <div class="birth_modal_body">
-                        <div class="birth_title">
-                            <span class="proc_birth"> 생년월일 수정 </span>
-                            <i class="fa-solid fa-xmark close_modal_btn"></i>
-                        </div>
-                        <div class="birth_modal_main">
-                            <p> 생년월일 </p>
-                            <div><input class="input_proc_birth" value="회원기존생년월일"></div>
-                            <button  class="proc_btn"> 생년월일 수정 </button>
-                        </div>
-                    </div>    
-                </div>
             </div>
             <div class="my_gender">
                 <p> 성별 : <%=loginMemberDTO.getGender() %> </p>
@@ -137,34 +85,78 @@
             <a class="member_out">회원 탈퇴</a>
         </div>
     </div>
-	<script>
-		document.getElementById('go_to_logout').addEventListener('click',()=>{
-
-            if(confirm('로그아웃 하시겠습니까?')){
-
-                alert('로그아웃 되었습니다');
-                location.href="./login.jsp";
-            }
-        })
-
-        document.getElementsByClassName('my_email_id').addEventListener('click',()=>{
-            document.getElementsByClassName('member_email_modal').style.display ='block';
-        })
-
-        document.getElementsByClassName('close_modal_btn').addEventListener('click',()=>{
-            document.getElementsByClassName('member_email_modal').style.display='none';
-        })
 	
-        window.onclick=function(event){
-            if(event.target == document.getElementsByClassName('member_email_modal')){
-                document.getElementsByClassName('member_email_modal').style.display = 'none';
-            }
-        }
-	</script>
+
+    <div class="member_email_modal">
+        <div class="email_modal_body">
+            <div class="email_title">
+                <span class="proc_email"> 이메일 수정 </span>
+                <i class="fa-solid fa-xmark close_modal_btn"></i>
+            </div>
+            <div class="email_modal_main">
+            <form action="modifyMemberEmail.jsp">
+                <div>
+                <input type="hidden" name="id" vaule="<%=loginMemberDTO.getId() %>">
+                <input class="input_proc_email" placeholder="<%=loginMemberDTO.getEmail() %>" name="email"></div>
+                <button  class="proc_btn"> 이메일 수정 </button>
+             </form>   
+            </div>
+        </div>
+    </div>
+
+    <div class="member_tel_modal">
+        <div class="tel_modal_body">
+            <div class="tel_title">
+                <span class="proc_tel"> 전화번호 수정 </span>
+                <i class="fa-solid fa-xmark close_modal_btn"></i>
+            </div>
+            <div class="tel_modal_main">
+                <div><input class="input_proc_tel" placeholder="<%=loginMemberDTO.getTel() %>"></div>
+                <span class="error_text">'010-1234-5678' 형식으로 입력 해 주세요.</span>
+                <button  class="proc_btn"> 전화번호 수정 </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="member_birth_modal">
+        <div class="birth_modal_body">
+            <div class="birth_title">
+                <span class="proc_birth"> 생년월일 수정 </span>
+                <i class="fa-solid fa-xmark close_modal_btn"></i>
+            </div>
+            <div class="birth_modal_main">
+                <div><input class="input_proc_birth" placeholder="<%=loginMemberDTO.getBirthday() %>"></div>
+                <span class="error_text">'2000-01-01' 형식으로 입력 해 주세요.</span>
+                <button  class="proc_btn"> 생년월일 수정 </button>
+            </div>
+        </div>    
+    </div>
+
+    <div class="member_nickname_modal">
+        <div class="nickname_modal_body">
+            <div class="nickname_title">
+                <span class="proc_nickname"> 닉네임 수정 </span>
+                <i class="fa-solid fa-xmark close_modal_btn"></i>
+            </div>
+            <div class="nickname_modal_main">
+                <div><input class="input_proc_nickname" placeholder="<%=loginMemberDTO.getId() %>"></div>
+                <button  class="proc_btn"> 닉네임 수정 </button>
+            </div>
+        </div>    
+    </div>
+
+
+
+    
+
+
+
+
+
 
     <!-- 푸터 -->
     <%@ include file="footer.jsp" %>
 
-
+	<script src="./js/myinfoproc.js"></script>
 </body>
 </html>

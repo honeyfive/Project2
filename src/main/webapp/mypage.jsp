@@ -49,7 +49,7 @@
 				<div class="my_name"><%=loginMemberDTO.getName()%>님
 				</div>
 
-                
+				
                 <div class="my_email"> <%=loginMemberDTO.getEmail() %> </div>
             </div>
             <div class="member_rent_use">
@@ -69,16 +69,16 @@
                     <span class="member_rent_use_text">연체 횟수</span>
                     <span class=""><%=loginMemberDTO.getLisence_number() %></span>
                 </div>
-            </div>
+				</div>
             <div class="member_level"></div>
             
         </div>
         <div class="rent_progress_box">
-            <!-- 진행중인 렌트내역 -->
+				<!-- 진행중인 렌트내역 -->
             <div class="rent_progress"></div> 
             
             <!-- 진행중인 렌트내역이 없을때 -->
-            <div class="not_rent_progress">
+				<div class="not_rent_progress">
                 <i class="fa-regular fa-face-flushed"></i>
                 <p class="not_rent_progress_ment">진행중인 렌트 내역이 없습니다</p>
                 <p class="not_rent_progress_ment" style="color: #0D6FFC; font-weight: bold;">지금 고객님이 원하는 렌트카를 빌리고 신나게 떠나볼까요?</p>
@@ -118,7 +118,7 @@
             </div>
             <div class="go_to_service_center"><i class="fa-solid fa-angle-right"></i></div>
             <!-- 고객센터로 가는 경로 -->
-        </div>
+			</div>
 
 			<div class="member_rent_use">
 				<div class="memeber_rating_box">
