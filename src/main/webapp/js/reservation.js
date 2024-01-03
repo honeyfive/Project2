@@ -2,9 +2,10 @@
 //지역모달창
 const locationModal = document.querySelector('.location-modal');
 const btnLocationOpenModal = document.querySelector('.rv-locationAndDateBox-location');
+const rentModal = document.querySelector('.rent-place');
+const returnModal = document.querySelector('.return-place');
 
-
-btnLocationOpenModal.addEventListener("click", () => {
+rentModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
 });
 
@@ -120,3 +121,26 @@ document.addEventListener("DOMContentLoaded", function() {
 		// 예를 들어, 다음을 누를 때마다 특정 동작이 일어나도록 할 수 있습니다.
 	});
 });
+
+
+// 장소 클릭시 연동되는 거 .. > 중도포기
+const rentPlaceElement = document.querySelector('.rent-place'); // 대여장소선택
+const returnPlaceElement = document.querySelector('.return-place'); // 반납장소선택
+const asanListElements = document.querySelectorAll('.asanList'); // 아산 리스트 요소들
+const cheonListElements = document.querySelectorAll('.cheonanList'); // 천안 리스트 요소들
+
+asanListElements.forEach(function(element){
+	element.addEventListener('click', ()=>{ // 천안에서 클릭한 세부 장소의 innerText값 가져오기
+		const clickedValue = element.innerText; 
+		rentPlaceElement.innerText = clickedValue;
+	})
+})
+
+cheonanListElements.forEach(function(element){
+	element.addEventListener('click', ()=>{ // 클릭한 세부 장소의 innerText값 가져오기
+		const clickedValue = element.innerText; 
+		returnPlaceElement.innerText = clickedValue;
+	})
+})
+
+
