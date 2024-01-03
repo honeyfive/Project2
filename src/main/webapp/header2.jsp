@@ -39,13 +39,11 @@
 			<div class="header-nav-btn">
 				<a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
-				</a> <a href=""> <!-- 결제 페이지 연결-->
+				</a> <a href="./payment.jsp"> <!-- 결제 페이지 연결-->
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
 				</a> <a href="./mypage.jsp"> <!-- 마이 페이지 연결-->
 					<div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
-				</a> <a href=""> <!-- 관리자 전용 페이지 연결-->
-					<div id="management-pg" class="hearder-nav-btn-item">관리자전용</div>
-				</a>
+				</a> 
 			</div>
 
 		</div>
