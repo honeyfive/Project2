@@ -1,212 +1,318 @@
 /* 마이페이지 전체 컨테이너 */
-.mypage_container{
-    margin: 0 auto;
-    width: 100%;
-    padding-top: 110px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #F5F5F5;
+.mypage_container {
+	margin: 0 auto;
+	width: 100%;
+	padding-top: 110px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #F5F5F5;
 }
 
 /* 회원 정보 박스 (이름, 이메일, 등급, 이용횟수, 연체횟수) */
-.my_info_box{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid white;
-    background-color: white;
-    margin: 0 auto;
-    margin-bottom: 50px;
+.my_info_box {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid white;
+	background-color: white;
+	margin: 0 auto;
+	margin-bottom: 50px;
 
 }
 
 /* 회원정보(이름, 이메일)박스 */
-.my_info{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin: 30px;
-    padding: 20px;
+.my_info {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	margin: 30px;
+	padding: 20px;
 }
 
 /* 회원 이름 */
-.my_name{
-    font-size: 25px;
-    font-weight: bold;
+.my_name {
+	font-size: 25px;
+	font-weight: bold;
 }
 
 /* 회원 이메일 */
-.my_email{
-    font-size: 13px;
-    color: gray;
+.my_email {
+	font-size: 13px;
+	color: gray;
 }
 
 /* 회원 렌트 이용내역 박스 */
-.member_rent_use{
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 50px;
+.member_rent_use {
+	display: flex;
+	justify-content: space-around;
+	padding-bottom: 50px;
+}
+
+.member_rent_use_div {
+	width: 80px;
+	height: 15px;
+	text-align: center;
 }
 
 /* 내 등급, 이용 횟수, 연체 횟수 폰트 */
-.member_rent_use_text{
-    font-size: 17px;
+.member_rent_use_text {
+	font-size: 15px;
 }
 
 /* 내 등급, 이용횟수, 연체횟수 flex */
-.memeber_rating_box, .use_count_box, .overdue_history_box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
+.memeber_rating_box,
+.use_count_box,
+.overdue_history_box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 30px;
+	height: 30px;
 }
 
+.memeber_rating_box{
+	cursor: pointer;
+}
 /* 아이콘 설정 */
-.fa-star-half-stroke, .fa-list-check, .fa-triangle-exclamation{
-    font-size: 30px;
-    margin-bottom: 10px;
-    color: #0D6FFC;
+.fa-star-half-stroke,
+.fa-list-check,
+.fa-triangle-exclamation {
+	font-size: 30px;
+	margin-bottom: 10px;
+	color: #0D6FFC;
 }
 
-.fa-triangle-exclamation{
-    color: rgb(255, 217, 0);
+.fa-triangle-exclamation {
+	color: rgb(255, 217, 0);
 }
+
+.rating_level{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/*등급 모달창*/
+.modal {
+	position: absolute;
+	justify-content: center;
+	top: 100px;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	z-index: 100;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.4);
+	
+}
+
+.modal_body {
+    position: absolute;
+    justify-content: center;
+    background-color: white;
+    width: 60%;
+    height: 20%;
+    margin: auto;
+    top: 170px;
+    left: 280px;
+    border-radius: 0.7rem;
+    box-shadow:0px 40px 30px -20px rgba(0,0,0,0.3);
+}
+
+.modal_title{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0D6FFC;
+	margin-top: 10px;
+}
+
+table, th, td{
+	border: 1px solid lightgray;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 3px 3px;
+}
+
+table{
+	margin: auto;
+	margin-top: 30px;
+}
+
+.caution{
+	width: 100%;
+	height: 30px;	
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.modal_close{
+	width: 100%;
+	height: 50px;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.modal_close_btn{
+	width: 50px;
+	height: 30px;
+	color:white;
+	border: none;
+	border-radius: 0.5rem;
+	background-color: #0D6FFC;
+	cursor: pointer;
+}
+
 
 /* 진행중인 렌트 내역 박스 */
-.rent_progress_box{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid white;
-    margin-bottom: 50px;
-    align-items: center;
-    background-color: white;
-}
-
-/* 진행중인 렌트내역이 있을때 */
-.rent_progress{
-
+.rent_progress_box {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid white;
+	margin-bottom: 50px;
+	align-items: center;
+	background-color: white;
 }
 
 /* 진행중인 렌트내역이 없을때 */
-.not_rent_progress{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+.not_rent_progress {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
 }
 
-.fa-face-flushed{
-    margin-top: 10px;
-    font-size: 50px;
+.fa-face-flushed {
+	margin-top: 10px;
+	font-size: 50px;
 }
 
+
+.rent_title{
+	width: 100%;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+/*렌트 내역 테이블*/
+.rent_table{
+	margin-bottom: 30px;
+}
 
 /* 렌트예약페이지 버튼 */
-.go_to_reservation_btn{
-    font-size: 25px;
-    width: 100%;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 16px;
+.go_to_reservation_btn {
+	font-size: 25px;
+	width: 100%;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-bottom: 16px;
 }
 
-.go_to_reservation_text{
-    color: black;
-    font-size: 25px;
+.go_to_reservation_text {
+	color: black;
+	font-size: 25px;
 }
 
 /* 결제 수단 수정 박스 */
-.member_payment_type_proc_box{
-    width: 60%;
-    border: 1px solid white;
-    margin-bottom: 50px;
-    background-color: white;
+.member_payment_type_proc_box {
+	width: 60%;
+	border: 1px solid white;
+	margin-bottom: 50px;
+	background-color: white;
 }
 
 /* 결제 수단 */
-.payment_proc{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+.payment_proc {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
 }
 
 /* 결제수단 3가지 보여주는 select */
-.payment_option{
-    display: flex;
-    font-size: 15px;
-    width: 150px;
-    border: 5px solid rgb(233, 230, 230);
-    border-radius: 5px;
+.payment_option {
+	display: flex;
+	font-size: 15px;
+	width: 150px;
+	border: 5px solid rgb(233, 230, 230);
+	border-radius: 5px;
 }
 
 /* 결제수단 텍스트 */
-.payment_proc_text{
-    font-size: 20px;
-    font-weight: bold;
+.payment_proc_text {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 /* 페이지로 넘어가는 아이콘 */
-.fa-angle-right{
-    font-size: 25px;
-    cursor: pointer;
-    color: gray;
+.fa-angle-right {
+	font-size: 25px;
+	cursor: pointer;
+	color: gray;
 }
 
 /* 내 정보 관리 박스 */
-.my_info_proc_box{
-    width: 60%;
-    border: 1px solid white;
-    margin-bottom: 50px;
-    background-color: white;
+.my_info_proc_box {
+	width: 60%;
+	border: 1px solid white;
+	margin-bottom: 50px;
+	background-color: white;
 }
 
 /* 내 정보 관리 아이템 */
-.my_info_proc{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    align-items: center;
+.my_info_proc {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	align-items: center;
 }
 
 /* 내 정보 관리 텍스트 */
-.my_info_proc_text{
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
+.my_info_proc_text {
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 /* 고객센터 박스 */
-.customer_service_box{
-    width: 60%;
-    display: flex;
-    border: 1px solid white;
-    margin-bottom: 50px;
-    background-color: white;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+.customer_service_box {
+	width: 60%;
+	display: flex;
+	border: 1px solid white;
+	margin-bottom: 50px;
+	background-color: white;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
 }
 
-.customer_service{
-    display: flex;
-    flex-direction: column;
+.customer_service {
+	display: flex;
+	flex-direction: column;
 }
 
-.customer_service_center{
-    font-weight: bold;
-    font-size: 25px;
-    margin-top: 0;
-    margin-bottom: 10px;
+.customer_service_center {
+	font-weight: bold;
+	font-size: 25px;
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 /* 고객센터 정보 */
-.customer_service_info{
-    font-size: 13px;
-    color: gray;
-    margin: 0;
+.customer_service_info {
+	font-size: 13px;
+	color: gray;
+	margin: 0;
 }

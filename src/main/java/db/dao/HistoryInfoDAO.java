@@ -45,4 +45,35 @@ public class HistoryInfoDAO {
 
 		return historyInfoList;
 	}
+	
+	// 회원번호로 이력정보찾기
+	public List<HistoryInfoDTO> findHistoryInfoListByMembershipNumber(int targetMembershipNumber) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " SELECT * FROM history_Info WHERE membership_number = ? ";
+
+		List<HistoryInfoDTO> historyInfoList = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, targetMembershipNumber);
+			rs = psmt.executeQuery();
+			historyInfoList = new ArrayList<HistoryInfoDTO>();
+
+			while (rs.next()) {
+				HistoryInfoDTO historyInfoDTO = new HistoryInfoDTO(rs.getInt("reservation_number"),
+						rs.getInt("membership_number"), rs.getString("return_date"),rs.getString("real_return_date"),rs.getInt("overdue_history"),rs.getString("accident_history"));
+
+				historyInfoList.add(historyInfoDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return historyInfoList;
+	}
 }

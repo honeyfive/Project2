@@ -64,7 +64,7 @@
 	    MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
 
 %>
-	
+
 	
 
  <%@ include file="header.jsp" %>

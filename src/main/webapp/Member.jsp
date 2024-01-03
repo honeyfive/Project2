@@ -9,41 +9,42 @@
 <html>
 <head>
 <style>
+	@import
+	url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", helvetica, arial, sans-serif;
 }
-
 .material-symbols-outlined {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
 }
 
 .side_bar {
-	margin-right: 2%;
+	margin-right: 1%;
 	width: 10%;
-	height: 1200px;
+	height: 100vh;
 	float: left;
-	/* border: 3px solid black; */
-	/* background-color: #0D6FFC; */
-	/* color: white; */
-	border-right: 3px solid #0D6FFC;
+	background-color: #0D6FFC;
 	font-weight: bold;
+	text-align: center;
 }
 
 body {
-	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
+	font-family: "Roboto", helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
 }
 
 table {
-	margin-top: 5%;
+	margin-top: 1%;
 	border-collapse: separate;
 	border-spacing: 0;
 	width: 88%;
 	border-collapse: separate;
+	font-size: 0.85rem;
 }
 
 th, td {
@@ -54,6 +55,7 @@ th {
 	background: #0D6FFC;
 	color: #fff;
 	text-align: left;
+	border-right: 1px solid #c2c2c2;
 }
 
 tr:first-child th:first-child {
@@ -91,8 +93,9 @@ tr:last-child td:last-child {
 
 .manage {
 	margin: 0 auto;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin-top: 15%;
+	color: white;
 }
 
 a {
@@ -101,8 +104,10 @@ a {
 }
 
 fieldset {
-	margin-top: 20px;
+	margin-top: 5px;
 	padding: 10px;
+	width: 88%;
+    border-radius: 5px;
 }
 
 input[type="text"] {
@@ -113,12 +118,23 @@ input[type="text"] {
 .membermodifybutton {
 	float: right;
 }
+
+h1 {
+	color: #0D6FFC;
+	margin-top: 15px;
+}
+
+.carAddClass {
+	float: right;
+}
+
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
-
+<%@ include file="header3.jsp"%>
 	<div class="side_bar">
 		<a href="./manage_main.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -151,7 +167,7 @@ input[type="text"] {
   <path
 						d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z" />
 </svg>
-				렌트 관리
+				예약 정보
 			</div></a> <a href="./login.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
@@ -163,19 +179,7 @@ input[type="text"] {
 	</div>
 
 	<%
-	/* String membership_number = request.getParameter("membership_number");
-	System.out.println(membership_number);
-	int intId = 0;
-	try {
-		intId = Integer.parseInt(membership_number);
-	} catch (Exception e){
-		e.printStackTrace();
-		intId = 0;
-	} */
-
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-
-	//MemberInfoDTO memberInfo = memberInfoDAO.findMemberById(intId);
 
 	List<MemberInfoDTO> memberList = memberInfoDAO.findMemberList();
 	%>
@@ -188,10 +192,57 @@ input[type="text"] {
 			<label>회원번호 : </label><input type="text"
 				class="input_membership_number" name="membership_number">
 			<button id="deleteBtn" type="button">삭제하기</button>
-			<a href="modifyMembership_level.jsp"><button type="button" class="membermodifybutton" %>>수정</button></a>
+			<a href="modifyMembership_level.jsp"><button type="button"
+					class="membermodifybutton">수정</button></a>
 		</form>
-
 	</fieldset>
+	<script>
+		
+		document.getElementById('modifyBtn').addEventListener('click',()=>{
+			let input_membership_level = document.getElementById('input_membership_level');
+			if(input_membership_level.value.trim() == ''){
+				alert('회원번호는 필수 입력입니다.');
+				input_membership_level.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyMember_proc.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn1').addEventListener('click',()=>{
+			let input_overdue_history = document.getElementById('input_overdue_history');
+			if(input_overdue_history.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_overdue_history.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyOverdue.jsp';
+				form.submit();
+			}
+		});
+		
+		document.getElementById('modifyBtn2').addEventListener('click',()=>{
+			let input_use_count = document.getElementById('input_use_count');
+			if(input_use_count.value.trim() == ''){
+				alert('연체횟수는 필수 입력입니다.');
+				input_use_count.focus();
+				return;
+			}
+			
+			if (confirm('수정 하시겠습니까?')){
+				let form = document.getElementById('personForm');
+				form.action = 'modifyUseCount.jsp';
+				form.submit();
+			}
+		});
+	</script>
 
 	<p></p>
 	<table class="member_graph">

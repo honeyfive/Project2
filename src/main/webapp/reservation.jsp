@@ -18,6 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="./css/header2.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -35,13 +36,13 @@
 	//보험 정보 리스트 불러오기
 	InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
 	List<InsuranceInfoDTO> insuranceinfoList = insuranceDAO.findInsuranceInfoList();
-	
+
 	//차량 정보 리스트 불러오기
 	CarInfoDAO carInfoDAO = new CarInfoDAO();
 	List<CarInfoDTO> carInfoList = carInfoDAO.findCarInfoList();
 	List<CarInfoDTO> carInfoListBySize = carInfoDAO.findCarInfoListBySize();
 	List<CarInfoDTO> carInfoListByType = carInfoDAO.findCarInfoListByType();
-	
+
 	//예약 정보 리스트 불러오기
 	//예약 정보 - 대여장소-아산
 	ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
@@ -50,27 +51,30 @@
 	//예약 정보 - 대여장소-천안
 	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO
 			.findReservationInfoListByRentalPlaceCheonan();
-	
+
 	//()안에 예약번호로 예약 정보 불러오기
 	ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1140);
 	//보험 번호로 보험 정보 불러오기
 	InsuranceInfoDTO insuranceDTO = insuranceDAO.findInsuranceInfoByInsuNumber(reservationInfoDTO.getInsurance_number());
 	//예약 정보안 차번호로 차정보 불러오기
 	CarInfoDTO carInfoDTO = carInfoDAO.findCarInfoByCarNumber(reservationInfoDTO.getCar_number());
-	
+
 	//차대여관리 정보
 	CarRentalManagementDAO carRentalManagementDAO = new CarRentalManagementDAO();
-	CarRentalManagementDTO carRentalManagementDTO = carRentalManagementDAO.findCarRentalManagementInfoByCarNumber(reservationInfoDTO.getCar_number());
-	
-	double car_price = ((double)carRentalManagementDTO.getRental_costs() / 1440 ) * reservationInfoDTO.getTotal_rental_time();
-	double total_price= ((double)carRentalManagementDTO.getRental_costs() / 1440 ) * reservationInfoDTO.getTotal_rental_time() + insuranceDTO.getInsurance_price();
-	
+	CarRentalManagementDTO carRentalManagementDTO = carRentalManagementDAO
+			.findCarRentalManagementInfoByCarNumber(reservationInfoDTO.getCar_number());
+
+	double car_price = ((double) carRentalManagementDTO.getRental_costs() / 1440)
+			* reservationInfoDTO.getTotal_rental_time();
+	double total_price = ((double) carRentalManagementDTO.getRental_costs() / 1440)
+			* reservationInfoDTO.getTotal_rental_time() + insuranceDTO.getInsurance_price();
+
 	PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
-    List<PaymentInfoDTO> paymentInfoList = paymentInfoDAO.findPaymentInfoList();
-     
-    MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-    MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
-	
+	List<PaymentInfoDTO> paymentInfoList = paymentInfoDAO.findPaymentInfoList();
+
+	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
+	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
+
 	//
 	%>
 
@@ -112,26 +116,25 @@
 						%>
 					</div>
 				</div>
-				<div class="location-modal-returnDate-text">반납하실 장소는
-					"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
-					입니다</div>
-
 			</div>
-			<div class="location-modal-returnPlaceBox">농협은행 신방 새말점 앞</div>
-			<div class="location-modal-check-Btn">확인</div>
+			<div class="location-modal-check-Btn">다음</div>
 		</div>
 	</div>
 	<!-- 모달창 - 달력 -->
 	<div class="date-modal">
 		<div class="date-modal-body">
 			<div class="date-modal-close-Btn">X</div>
-			대여일<input type="date">대여시간<input type="time">반납일<input type="date">반납시간<input type="time">
+			대여일<input type="date">대여시간<input type="time">반납일<input
+				type="date">반납시간<input type="time">
 		</div>
 	</div>
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
 		<div class="rv-locationAndDateBox">
-			<div class="rv-locationAndDateBox-location"></div>
+			<div class="rv-locationAndDateBox-location"> <!-- 대여 반납 창 따로 만들었습니다 ~ -->
+				<div class="place rent-place">대여장소선택</div>
+				<div class="place return-place">반납장소선택</div>
+			</div>
 			<div class="rv-locationAndDateBox-date"></div>
 			<div class="rv-locationAndDateBox-selectCarBtn">차량검색</div>
 		</div>
@@ -147,13 +150,26 @@
 					for (CarInfoDTO carInfo : carInfoList) {
 				%>
 				<div class="rv-carInfoBox-Box">
-					<div class="rv-carInfoBox-Box-imgBox"><img class="car_image" src=<%=carInfo.getCar_image()%>></div>
+					<div class="rv-carInfoBox-Box-imgBox">
+						<img class="car_image" src=<%=carInfo.getCar_image()%>>
+					</div>
 					<div class="rv-carInfoBox-Box-carInfoBox">
 						<div class="rv-carInfoBox-Box-carName"><%=carInfo.getCar_name()%></div>
-						<div class="rv-carInfoBox-Box-carYear"><p class="rv-carInfoBox-Box-carYear-textBox"><%=carInfo.getModel_year()%></p></div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice1"></div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice2"></div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice3"></div>
+						<div class="rv-carInfoBox-Box-carYear">
+							<p class="rv-carInfoBox-Box-carYear-textBox"><%=carInfo.getModel_year()%></p>
+						</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">완전자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+						<div class="rv-carInfoBox-Box-insuranceText">수퍼자차</div>
+						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text">원 부터</div>
+						</div>
 					</div>
 				</div>
 				<%
@@ -183,7 +199,7 @@
 						%>
 					</div>
 				</div>
-				<div class="rv-filterBox-Main-2">자동차모델</div>
+				<div class="rv-filterBox-Main-2">자동차모델
 				<div class="rv-filterBox-Main-2-data">
 					<div class="select" data-role="selectBox">
 						<span date-value="optValue" class="selected-option"> <!-- 선택된 옵션 값이 출력되는 부분 -->
@@ -201,6 +217,7 @@
 						</ul>
 					</div>
 				</div>
+			</div>
 				<div class="rv-filterBox-Main-3">
 					차량크기
 					<div class="rv-filterBox-Main-3-data">
@@ -210,7 +227,7 @@
 							for (CarInfoDTO carInfo : carInfoListBySize) {
 						%>
 
-						<%=carInfo.getCar_size()%><input type="checkbox">
+						<%=carInfo.getCar_size() %><input type="checkbox">
 						<%
 						}
 						}

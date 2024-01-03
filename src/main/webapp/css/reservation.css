@@ -44,16 +44,28 @@
 /* 지역 박스 */
 .rv-locationAndDateBox-location {
 	margin-left: 6%;
-	width: 20%;
+	width: 45%;
 	height: 45px;
-	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.place{
+	width: 310px;
+	height: 100%;
 	background-color: #F2F3F3;
+	border-radius: 5px;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 /* 날짜 박스 */
 .rv-locationAndDateBox-date {
-	width: 53%;
+	width: 28%;
 	height: 45px;
 	border-radius: 5px;
 	background-color: #F3F3F3;
@@ -121,7 +133,7 @@
 
 .rv-carInfoBox-Box-imgBox {
 	width: 50%;
-	padding: 10px;
+	padding: 20px;
 	border-radius: 10px;
 	background-color: white;
 	display: flex;
@@ -169,8 +181,37 @@
 	color: #444444;
 }
 
-.rv-carInfoBox-Box-sumRentAndInsurancePrice1 {
-	
+.rv-carInfoBox-Box-sumRentAndInsurancePrice {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	border-radius: 10px;
+	margin-top: 5px;
+	background-color: #f3f3f3;
+}
+
+.rv-carInfoBox-Box-insuranceText{
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #444444;
+	border-right: 2px solid #e1e1e1;
+}
+
+.rv-carInfoBox-Box-sumRentAndInsurancePrice-text{
+	width: 50%;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	padding-right: 10px;
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #444444;
 }
 
 /* 자동차 정보 박스 스크롤바 없애기 */
@@ -227,6 +268,8 @@
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
+	position: relative;
+    z-index: 1000;
 }
 
 .rv-filterBox-Main-2-data {
@@ -247,12 +290,14 @@
 
 .show {
 	display: block;
+	height: 255px;
+	overflow: auto;
 }
 
 /* 셀렉트 영역 스타일 */
 .select {
 	padding: 5px 10px;
-	width: 250px;
+	width: 278px;
 	border-radius: 5px;
 	border: 1px solid #0E70FC;
 	background-color: white;
@@ -318,7 +363,7 @@ li {
 	font-size: 1.1rem;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: space-between nowrap;
 	align-items: center;
 }
 
@@ -337,7 +382,7 @@ li {
 	border-bottom: 1px solid #e1e1e1;
 	font-size: 1.1rem;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 }
 
@@ -519,31 +564,6 @@ li {
 	overflow: auto;
 }
 
-.location-modal-returnDate-text {
-	position: absolute;
-	bottom: -63px;
-	left: 0px;
-	text-align: center;
-	font-size: 1.8rem;
-	font-weight: bold;
-	text-align: center;
-	color: #27374D;
-}
-
-.location-modal-returnPlaceBox {
-	position: absolute;
-	bottom: 33px;
-	left: 295px;
-	width: 342px;
-	height: 45px;
-	display: flex;
-	font-size: 1.75rem;
-	font-weight: bold;
-	color: #0D6FFC;
-	justify-content: center;
-	align-items: center;
-}
-
 .location-modal-check-Btn {
 	width: 160px;
 	height: 60px;
@@ -557,7 +577,7 @@ li {
 	cursor: pointer;
 	font-size: 1.5rem;
 	font-weight: bold;
-	background-color: #0D6FFC;
+	background-color: #999999;
 	color: white;
 }
 
@@ -593,4 +613,9 @@ li {
 	/* 테두리 그림자  */
 	transform: translateY(-50%);
 	/* 모듈창열었을때 위치설정 가운데로  */
+}
+
+/* selectBox의 z-index를 다른 필터들보다 높게 설정 */
+[data-role="selectBox"] {
+    z-index: 1000; /* 적절한 숫자로 설정, 다른 필터보다 큰 값을 사용합니다. */
 }

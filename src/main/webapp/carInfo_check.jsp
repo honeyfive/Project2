@@ -7,29 +7,38 @@
 <html>
 <head>
 <style>
+	@import
+	url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
-
-.side_bar {
-	margin-right: 2%;
-	width: 10%;
-	height: 1200px;
-	float: left;
-	/* border: 3px solid black; */
-	/* background-color: #0D6FFC; */
-	/* color: white; */
-	border-right: 3px solid #0D6FFC;
-	font-weight: bold;
+	font-family: "Roboto", helvetica, arial, sans-serif;
 }
 
 body {
-	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
+		font-family: "Roboto", helvetica, arial, sans-serif;
+		text-rendering: optimizeLegibility;
+		overflow-x: hidden;
+}
+
+.side_bar {
+	margin-right: 1%;
+	width: 10%;
+	height: 1200px;
+	float: left;
+	background-color: #0D6FFC;
+	font-weight: bold;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+
+
+h1 {
+	color: #0D6FFC;
+	margin-top: 15px;
 }
 
 table {
@@ -85,8 +94,9 @@ tr:last-child td:last-child {
 
 .manage {
 	margin: 0 auto;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin-top: 15%;
+	color: white;
 }
 
 a {
@@ -100,7 +110,12 @@ a {
 }
 
 .carDelete {
-	margin-top:30px;
+	margin-top: 30px;
+	padding: 8px;
+}
+
+.carMaintenance {
+	margin-top: 30px;
 	padding: 8px;
 }
 
@@ -118,11 +133,60 @@ button[type="submit"] {
 .carAddClass {
 	float: right;
 }
+
+.modal {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1200px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_body {
+	position: absolute;
+	top: 20%;
+	width: 1000px;
+	height: 200px;
+	padding: 10px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	transform: translateY(-50%);
+	color: black;
+}
+
+#modalCloseButton {
+	margin-left: 10px;
+	cursor: pointer;
+	float: right;
+	padding: 5px;
+}
+
+.carAddModalTitle {
+	margin-left: 15px;
+	color: #0D6FFC;
+}
+
+input[type="text"] {
+	line-height: normal;
+	color: black;
+}
+
+input[type="checkbox"] {
+	border-radius: 0;
+	padding: 10px;
+}
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
+	<%@ include file="header3.jsp"%>
 
 	<%
 	CarInfoCheckDAO memberInfoDAO = new CarInfoCheckDAO();
@@ -164,7 +228,7 @@ button[type="submit"] {
   <path
 						d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z" />
 </svg>
-				예약 관리
+				예약 정보
 			</div></a> <a href="./login.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
@@ -175,53 +239,66 @@ button[type="submit"] {
 			</div></a>
 	</div>
 	<h1>차량정보</h1>
-	<fieldset class="carAdd">
-		<legend>차량정보 추가</legend>
-		<form action="addCar_proc.jsp" method="post" class="">
-			<laber>차량번호:</laber>
-			<input type="text" name="car_number">
-			<laber>차량명:</laber>
-			<input type="text" name="car_name">
-			<laber>승차인원: </laber>
-			<input type="text" name="passenger_count">
-			<laber>차크기:</laber>
-			<select name="car_size">
-				<option>S</option>
-				<option>M</option>
-				<option>L_SEDAN</option>
-				<option>S_SUV</option>
-				<option>L_RV</option>
-				<option>L_RV</option>
-				<option>SPORT</option>
-			</select> <label>차종: </label> <select name="car_type">
-				<option>G</option>
-				<option>D</option>
-				<option>E</option>
-				<option>H</option>
-			</select>
-			<laber>배기량: </laber>
-			<input type="text" name="vehicle_rating"><br>
-			<laber>제조회사: </laber>
-			<input type="text" name="company">
-			<laber>색상: </laber>
-			<input type="text" name="color">
-			<laber>연식: </laber>
-			<input type="text" name="model_year"> <label>관리상태: </label> <select
-				name="management_status">
-				<option>A</option>
-				<option>B</option>
-				<option>C</option>
-			</select>
-			<laber>네비게이션: </laber>
-			<input type="checkbox" value="NAV" name="option1">
-			<laber>카메라: </laber>
-			<input type="checkbox" value="CAM" name="option2">
-			<laber>사고이력: </laber>
-			<input type="text" name="accident_history">
 
-			<button type="submit" class="carAddClass">추가</button>
-		</form>
-	</fieldset>
+	<div class="modal">
+		<div class="modal_body">
+			<h2 class="carAddModalTitle">
+				차량정보 추가<span id="modalCloseButton">❌</span>
+			</h2>
+			<fieldset class="carAdd">
+				<legend>차량정보 추가</legend>
+				<form action="addCar_proc.jsp" method="post">
+					<laber>차량번호:</laber>
+					<input type="text" name="car_number">
+					<laber>차량명:</laber>
+					<input type="text" name="car_name">
+					<laber>승차인원: </laber>
+					<input type="text" name="passenger_count">
+					<laber>차크기:</laber>
+					<select name="car_size">
+						<option>S</option>
+						<option>M</option>
+						<option>L_SEDAN</option>
+						<option>S_SUV</option>
+						<option>L_RV</option>
+						<option>L_RV</option>
+						<option>SPORT</option>
+					</select> <label>차종: </label> <select name="car_type">
+						<option>G</option>
+						<option>D</option>
+						<option>E</option>
+						<option>H</option>
+					</select>
+					<laber>배기량: </laber>
+					<input type="text" name="vehicle_rating"><br>
+					<laber>제조회사: </laber>
+					<input type="text" name="company">
+					<laber>색상: </laber>
+					<input type="text" name="color">
+					<laber>연식: </laber>
+					<input type="text" name="model_year"> <label>관리상태:
+					</label> <select name="management_status">
+						<option>A</option>
+						<option>B</option>
+						<option>C</option>
+					</select>
+					<laber>네비게이션: </laber>
+					<input type="checkbox" value="NAV" name="option1">
+					<laber>카메라: </laber>
+					<input type="checkbox" value="CAM" name="option2">
+					<laber>사고이력: </laber>
+					<input type="text" name="accident_history">
+
+					<button type="submit" class="carAddClass">추가</button>
+				</form>
+			</fieldset>
+		</div>
+	</div>
+
+	<div class="carMaintenance">
+		<a href="carMaintenanceInfo.jsp"><button type="button">정비이력</button></a>
+		<button class="btn-open-modal">차량정보추가</button>
+	</div>
 
 	<fieldset class="carDelete">
 		<legend>차량정보 삭제</legend>
@@ -238,6 +315,7 @@ button[type="submit"] {
 			<button type="submit">삭제</button>
 		</form>
 	</fieldset>
+
 	<table class="member_graph">
 		<tr>
 			<th>차량번호</th>
@@ -275,10 +353,24 @@ button[type="submit"] {
 			<td><%=carInfo.getAccident_history()%></td>
 		</tr>
 		<%
-	  } 
-	  %>
+		}
+		%>
 
 	</table>
+
+	<script>
+        const modal = document.querySelector('.modal');
+        const btnOpenModal=document.querySelector('.btn-open-modal');
+        const modalCloseButton = document.getElementById('modalCloseButton');
+
+        btnOpenModal.addEventListener("click", ()=>{
+            modal.style.display="flex";
+        });
+        
+        modalCloseButton.addEventListener('click', () => {
+        	  modal.style.display="none";
+        	});
+    </script>
 
 
 </body>

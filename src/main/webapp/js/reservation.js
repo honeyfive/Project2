@@ -2,9 +2,10 @@
 //지역모달창
 const locationModal = document.querySelector('.location-modal');
 const btnLocationOpenModal = document.querySelector('.rv-locationAndDateBox-location');
+const rentModal = document.querySelector('.rent-place');
+const returnModal = document.querySelector('.return-place');
 
-
-btnLocationOpenModal.addEventListener("click", () => {
+rentModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
 });
 
@@ -76,7 +77,7 @@ function selectOpt() {
 
 /* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
 function selectFirst() {
-	const firstValue = opts[0].innerHTML;
+	const firstValue = '--자동차 모델을 선택하세요--';
 	values.innerHTML = `${firstValue}`
 }
 
@@ -97,10 +98,49 @@ $(document).ready(function() {
 	// 모든 asanList 클래스에 클릭 이벤트 추가
 	$('.asanList,.cheonanList').click(function() {
 		$(this).addClass('selected');
-
 		// 다른 asanList 클래스에서 selected 클래스 제거
 		$('.asanList,.cheonanList').not(this).removeClass('selected');
-
-		$('.rv-locationAndDateBox-location')(text);
+		if ($('.asanList,.cheonanList').hasClass('selected')) {
+			$(".location-modal-check-Btn").css("background-color", "#0D6FFC");
+		}
 	});
 });
+
+//모달 다음 확인
+document.addEventListener("DOMContentLoaded", function() {
+	// 다음버튼 클릭 시 이벤트 처리
+	document.querySelector('.location-modal-check-Btn').addEventListener('click', function() {
+		// 대여장소선택을 반납장소선택으로 변경
+
+		document.querySelector('.location-modal-header-text').innerText = '반납장소선택';
+
+		// 다음을 확인으로 변경
+		document.querySelector('.location-modal-check-Btn').innerText = '확인';
+
+		// 여기에 추가로 원하는 기능을 구현할 수 있습니다.
+		// 예를 들어, 다음을 누를 때마다 특정 동작이 일어나도록 할 수 있습니다.
+	});
+});
+
+
+// 장소 클릭시 연동되는 거 .. > 중도포기
+const rentPlaceElement = document.querySelector('.rent-place'); // 대여장소선택
+const returnPlaceElement = document.querySelector('.return-place'); // 반납장소선택
+const asanListElements = document.querySelectorAll('.asanList'); // 아산 리스트 요소들
+const cheonListElements = document.querySelectorAll('.cheonanList'); // 천안 리스트 요소들
+
+asanListElements.forEach(function(element){
+	element.addEventListener('click', ()=>{ // 천안에서 클릭한 세부 장소의 innerText값 가져오기
+		const clickedValue = element.innerText; 
+		rentPlaceElement.innerText = clickedValue;
+	})
+})
+
+cheonanListElements.forEach(function(element){
+	element.addEventListener('click', ()=>{ // 클릭한 세부 장소의 innerText값 가져오기
+		const clickedValue = element.innerText; 
+		returnPlaceElement.innerText = clickedValue;
+	})
+})
+
+

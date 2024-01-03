@@ -1,3 +1,7 @@
+<%@page import="oracle.jdbc.dcn.RowChangeDescription"%>
+<%@page import="javax.swing.Scrollable"%>
+<%@page import="db.dao.HistoryInfoDAO"%>
+<%@page import="db.dto.HistoryInfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -5,6 +9,10 @@
 <%@ page import="db.dto.MemberInfoDTO"%>
 <%@ page import="db.dao.PaymentInfoDAO"%>
 <%@ page import="db.dto.PaymentInfoDTO"%>
+<%@page import="db.dao.ReservationHistoryDAO"%>
+<%@page import="db.dto.ReservationHistoryDTO"%>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,29 +24,40 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/mypage.css?v=2">
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png"
+	sizes="32x32">
 </head>
 <body>
 	<%
-	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
-	List<MemberInfoDTO> memberInfoDTO = memberInfoDAO.findMemberList();
-	PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
-	List<PaymentInfoDTO> paymentInfoDTO = paymentInfoDAO.findPaymentTypeInfoList();
+	MemberInfoDAO memberInfoMyDAO = new MemberInfoDAO();
+	List<MemberInfoDTO> memberInfoMyDTO = memberInfoMyDAO.findMemberList();
+	PaymentInfoDAO paymentInfoMyDAO = new PaymentInfoDAO();
+	List<PaymentInfoDTO> paymentInfoMyDTO = paymentInfoMyDAO.findPaymentTypeInfoList();
 
-	String id = (String) session.getAttribute("id");
-	MemberInfoDTO loginMemberDTO = memberInfoDAO.findMemberById(id);
+	String id = (String) session.getAttribute("id"); // 세션으로 아이디 가져오기
+	MemberInfoDTO memberinfoMyDTO = memberInfoMyDAO.findMemberById(id); // 아이디로 회원 정보 찾기
+	System.out.println("아이디로 찾은 회원 정보 " + memberinfoMyDTO);
 
-	System.out.println(loginMemberDTO);
+	int membershipNumber = memberinfoMyDTO.getMembership_number(); // 아이디로 찾은 회원 정보에서 회원 번호 가져오기
 
-	String myLevel = loginMemberDTO.getMembership_level();
-	System.out.println(myLevel);
+	HistoryInfoDAO historyInfoMyDAO = new HistoryInfoDAO();
+	List<HistoryInfoDTO> useMemberInfoDTO = historyInfoMyDAO.findHistoryInfoListByMembershipNumber(membershipNumber);
+	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 이용 내역이 있나 확인하려고 만들었삼
+	System.out.println("이력 정보 " + useMemberInfoDTO);
+
+	ReservationHistoryDAO reservationHistoryDAO = new ReservationHistoryDAO();
+	List<ReservationHistoryDTO> reservationHistoryDTO = reservationHistoryDAO
+			.findReservationHistoryListByMembershipNumber(membershipNumber);
+	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 새로 만든 내역 찾기
+	System.out.println("렌트 내역 " + reservationHistoryDTO);
 	%>
 
 	<!--헤더-->
-
 	<%@ include file="header2.jsp"%>
-
 	<!-- 마이페이지 메인 -->
+
+
 	<div class="mypage_container">
 		<div class="my_info_box">
 			<div class="my_info">
@@ -46,7 +65,7 @@
 				<%
 				if (id != null) {
 				%>
-				<div class="my_name"><%=loginMemberDTO.getName()%>님
+				<div class="my_name"><%=memberinfoMyDTO.getName()%>님
 				</div>
 
 				<%
@@ -57,37 +76,47 @@
 				}
 				%>
 				<!-- 이메일 -->
-				<div class="my_email"><%=loginMemberDTO.getEmail()%></div>
+				<div class="my_email"><%=memberinfoMyDTO.getEmail()%></div>
 			</div>
 
+			<!-- 등급, 이용횟수, 연체횟수 -->
 			<div class="member_rent_use">
+				<!-- 등급 -->
 				<div class="memeber_rating_box">
 					<i class="fa-regular fa-star-half-stroke"></i>
+					<div class="member_rent_use_div">
+						<span class="member_rent_use_text" id="rate"><%=memberinfoMyDTO.getMembership_level()%>등급</span>
+					</div>
+				</div>
 
-					<!-- 등급 -->
-					<span class="member_rent_use_text" id="rate">my 등급</span>
-					
-					<!-- 회원등급 보여주는 곳 -->
-				</div>
+				<!-- 이용횟수 -->
 				<div class="use_count_box">
-					<i class="fa-solid fa-list-check"></i> <span
-						class="member_rent_use_text">이용 횟수</span>
-					<!-- 회원 렌트 이용횟수 보여주는 곳 -->
+					<i class="fa-solid fa-list-check"></i>
+					<div class="member_rent_use_div">
+						<span class="member_rent_use_text"><%=memberinfoMyDTO.getUse_count()%>회
+							이용</span>
+					</div>
 				</div>
+				<!-- 연체횟수 -->
 				<div class="overdue_history_box">
-					<i class="fa-solid fa-triangle-exclamation"></i> <span
-						class="member_rent_use_text">연체 횟수</span>
-					<!-- 회원 연체 횟수 보여주는 곳 -->
+					<i class="fa-solid fa-triangle-exclamation"></i>
+					<div class="member_rent_use_div">
+						<span class="member_rent_use_text"><%=memberinfoMyDTO.getOverdue_history()%>회
+							연체 </span>
+					</div>
 				</div>
 			</div>
 			<div class="member_level"></div>
 
+			<div class="rating_level">등급을 누르면 휴카의 등급 기준을 확인하실 수 있습니다</div>
 		</div>
-		<div class="rent_progress_box">
-			<!-- 진행중인 렌트내역 -->
-			<div class="rent_progress"></div>
 
-			<!-- 진행중인 렌트내역이 없을때 -->
+		<!-- 진행중인 렌트내역 -->
+		<div class="rent_progress_box">
+			<div class="rent_progress"></div>
+			<%
+			if (useMemberInfoDTO.size() == 0) { // 렌트 내역이 없으면
+			%>
 			<div class="not_rent_progress">
 				<i class="fa-regular fa-face-flushed"></i>
 				<p class="not_rent_progress_ment">진행중인 렌트 내역이 없습니다</p>
@@ -97,7 +126,51 @@
 				<button class="go_to_reservation_btn"
 					onclick="location.href='./reservation.jsp'">렌트하러 가기</button>
 			</div>
+			<%
+			} else { // 렌트 내역 있으면
+			%>
+			<div class="not_rent_progress rent_progress">
+				<div class="rent_title">렌트 내역</div>
+			</div>
+			<table class="rent_table">
+				<tr>
+					<th>대여날짜</th>
+					<th>대여장소</th>
+					<th>반납날짜</th>
+					<th>반납장소</th>
+					<th>연체시간(분)</th>
+					<th>총대여시간</th>
+					<th>차량번호</th>
+				</tr>
+
+				<%
+				for (ReservationHistoryDTO reservationHistoryList : reservationHistoryDTO) {
+					String textColor = (reservationHistoryList.getReal_return_date() == null) ? "red" : "black";
+					String backgroundColor = (reservationHistoryList.getOverdue_history() < 0) ? "yellow" : "white";
+				%>
+				<tr
+					style="color: <%=textColor%>; background-color: <%=backgroundColor%>;">
+					<td><%=reservationHistoryList.getRental_date()%></td>
+					<td><%=reservationHistoryList.getRental_place()%></td>
+					<td><%=reservationHistoryList.getReal_return_date()%></td>
+					<td><%=reservationHistoryList.getReturn_place()%></td>
+					<td><%=reservationHistoryList.getOverdue_history()%></td>
+					<td><%=reservationHistoryList.getTotal_rental_date()%></td>
+					<td><%=reservationHistoryList.getCar_number()%></td>
+				</tr>
+				<%
+				}
+				%>
+
+			</table>
+			<div class="rating_level">빨간글씨 : 예약취소 건</div>
+			<div class="rating_level">노란배경 : 연체 건</div>
+
 		</div>
+		<%
+		}
+		%>
+		<!-- 결제수단은 보완사항으로 .. -->
 		<div class="member_payment_type_proc_box">
 			<div class="payment_proc">
 				<div class="payment_proc_text">결제수단 수정</div>
@@ -117,6 +190,7 @@
 
 			</div>
 		</div>
+
 		<!-- 개인정보 수정 페이지 -->
 		<a href="./myinfoproc.jsp" class="my_info_proc_box">
 			<div class="my_info_proc">
@@ -138,11 +212,52 @@
 
 	</div>
 
+	<!-- 등급 모달창 -->
+	<div class="modal modal_rating">
+		<div class="modal_body">
+			<div class="modal_title">회원 등급 기준</div>
+			<table>
+				<tr>
+					<th>회원등급</th>
+					<th>실제등급</th>
+					<th>이용횟수</th>
+				</tr>
+				<tr>
+					<td>N</td>
+					<td>New 등급</td>
+					<td>0회 (신규회원)</td>
+				</tr>
+				<tr>
+					<td>S</td>
+					<td>Silver 등급</td>
+					<td>1회</td>
+				</tr>
+				<tr>
+					<td>G</td>
+					<td>Gold 등급</td>
+					<td>2~4회</td>
+				</tr>
+				<tr>
+					<td>D</td>
+					<td>Diamond 등급</td>
+					<td>5회 이상</td>
+				</tr>
+				<tr>
+					<td>B</td>
+					<td>BlackList 등급</td>
+					<td style="color: red">이용횟수와 상관 없이 연체 3회 시</td>
+				</tr>
+			</table>
+			<div class="caution">회원 등급은 이용횟수, 연체횟수에 따라 자동으로 변경됩니다!</div>
+			<div class="modal_close">
+				<button class="modal_close_btn modal_rating_close_btn">닫기</button>
+			</div>
+		</div>
+	</div>
 
 	<!-- 푸터 -->
 	<%@ include file="footer.jsp"%>
 
-
-<script type="text/javascript" scr="./js/mypage.js"></script>
+	<script src="./js/mypage.js"></script>
 </body>
 </html>
