@@ -82,9 +82,13 @@
         
 
         <div class="logout_box">
-            <a id="go_to_logout">로그아웃</a>
+            <button id="go_to_logout" onclick="location.href='logout.jsp'">로그아웃</button>
             <span class="logout_slash">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <a class="member_out">회원 탈퇴</a>
+            <form action="./deleteMemberInfo_proc.jsp" method="post">
+            	<input type="hidden" name="id" value="<%=loginMemberDTO.getId() %>">
+            	<button type="submit" class="member_out">회원 탈퇴</button>
+            </form>
+            
         </div>
     </div>
 	

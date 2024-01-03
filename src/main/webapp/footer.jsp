@@ -95,7 +95,7 @@
                             </div>
                             <div class="callcenterbox">
                                 <p class="callcenter">고객센터</p>
-                                <p class="callcenter_num">1544-5344</p>
+                                <p class="callcenter_num">1544-3333</p>
                                 <div class="callcenter_info">
                                     <p class="call_info">매일(공휴일 포함) 오전 9시 ~ 오후 6시</p>
                                     <p class="call_info">점심시간 오후 12시 30분 ~ 1시 30분(1시간)</p>

@@ -29,6 +29,7 @@
                 <script>
                     alert('수정 성공');
                     location.href='myinfoproc.jsp';
+                    window.history.forward();
                 </script>
             <%
                 } else {

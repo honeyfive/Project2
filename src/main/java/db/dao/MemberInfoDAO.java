@@ -156,6 +156,32 @@ public class MemberInfoDAO {
 
 		return result;
 	}
+	
+	
+	public int removeMember(String id) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " DELETE FROM member_info " + " WHERE id = ? ";
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+			
+			result = psmt.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
 
 	// 수정
 	public int modifyMembershipLevel(MemberInfoDTO memberInfo) {

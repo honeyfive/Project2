@@ -60,23 +60,23 @@
 			<div class="header-nav-login-slash">|</div>
 
 			<!-- 로그인 버튼-->
-			<a href="./login.jsp"> <!-- 로그인 / 회원가입 페이지 연결하기-->
-				<div class="header-nav-login-btn">
-					<i class="fa-regular fa-circle-user"></i>
-
-					<%
-					if (memberInfoHeaderDTO == null){
-					%>
-					<div id="login">로그인</div>
-					<%
-					} else {
-					%>
-					<div id="login"><%=memberInfoHeaderDTO.getName()%>님</div>
-					<%	
-					}
-					%>
-				</div>
-			</a>
+			 <% if (headerId == null || memberInfoHeaderDTO == null) { %>
+		        <!-- 로그인 되어 있지 않은 경우 -->
+		        <a href="./login.jsp">
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login">로그인</div>
+		            </div>
+		        </a>
+		    <% } else { %>
+		        <!-- 로그인 되어 있는 경우 -->
+		        <a href="./logout.jsp"> <!-- 로그아웃 페이지 연결하기 -->
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login"><%= memberInfoHeaderDTO.getName() %>님</div>
+		            </div>
+		        </a>
+    		<% } %>
 
 		</div>
 

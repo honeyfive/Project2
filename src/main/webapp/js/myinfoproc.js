@@ -81,3 +81,12 @@ document.querySelector('#go_to_logout').addEventListener('click', () => {
       location.href = "./login.jsp";
   }
 });
+
+document.querySelector('.member_out').addEventListener('click',()=>{
+  if(confirm('카모아를 떠나실건가요?')) {
+    alert('가는 사람 안 잡아요');
+    location.href = "./deleteMemberInfo_proc.jsp";
+  }
+});
+
+

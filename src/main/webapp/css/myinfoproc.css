@@ -184,6 +184,7 @@
 
 #go_to_logout, .member_out{
     cursor: pointer;
+    border: none;
 }
 
 .member_email_modal, .member_tel_modal, .member_birth_modal, .member_id_modal{
