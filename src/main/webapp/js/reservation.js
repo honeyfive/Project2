@@ -43,14 +43,14 @@ dateModal.addEventListener("click", e => {
 	}
 });
 
-//자동차 모델 선택바
+/*//자동차 모델 선택바
 const body = document.querySelector('body');
 const select = document.querySelector(`[data-role="selectBox"]`);
 const values = select.querySelector(`[date-value="optValue"]`);
 const option = select.querySelector('ul');
 const opts = option.querySelectorAll('li');
 
-/* 셀렉트영역 클릭 시 옵션 숨기기, 보이기 */
+ 셀렉트영역 클릭 시 옵션 숨기기, 보이기 
 function selects(e) {
 	e.stopPropagation();
 	option.setAttribute('style', `top:${select.offsetHeight}px`)
@@ -64,7 +64,7 @@ function selects(e) {
 	selectOpt();
 }
 
-/* 옵션선택 */
+ 옵션선택 
 function selectOpt() {
 	opts.forEach(opt => {
 		const innerValue = opt.innerHTML;
@@ -75,11 +75,11 @@ function selectOpt() {
 	});
 }
 
-/* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
+ 렌더링 시 옵션의 첫번째 항목 기본 선택 
 function selectFirst() {
 	const firstValue = '--자동차 모델을 선택하세요--';
 	values.innerHTML = `${firstValue}`
-}
+}*/
 
 /* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
 function hideSelect() {
@@ -101,6 +101,8 @@ $(document).ready(function() {
 		// 다른 asanList 클래스에서 selected 클래스 제거
 		$('.asanList,.cheonanList').not(this).removeClass('selected');
 		if ($('.asanList,.cheonanList').hasClass('selected')) {
+			var clickedValue = $(this).text(); // 클릭된 요소의 텍스트 가져오기
+      $(".place.rent-place").text(clickedValue); // 텍스트 설정
 			$(".location-modal-check-Btn").css("background-color", "#0D6FFC");
 		}
 	});
@@ -124,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // 장소 클릭시 연동되는 거 .. > 중도포기
-const rentPlaceElement = document.querySelector('.rent-place'); // 대여장소선택
+/*const rentPlaceElement = document.querySelector('.rent-place'); // 대여장소선택
 const returnPlaceElement = document.querySelector('.return-place'); // 반납장소선택
 const asanListElements = document.querySelectorAll('.asanList'); // 아산 리스트 요소들
 const cheonListElements = document.querySelectorAll('.cheonanList'); // 천안 리스트 요소들
@@ -141,6 +143,6 @@ cheonanListElements.forEach(function(element){
 		const clickedValue = element.innerText; 
 		returnPlaceElement.innerText = clickedValue;
 	})
-})
+})*/
 
 

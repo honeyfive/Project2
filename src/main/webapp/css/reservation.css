@@ -43,8 +43,8 @@
 
 /* 지역 박스 */
 .rv-locationAndDateBox-location {
-	margin-left: 6%;
-	width: 45%;
+	margin-left: 7%;
+	width: 50%;
 	height: 45px;
 	display: flex;
 	justify-content: space-between;
@@ -65,26 +65,11 @@
 
 /* 날짜 박스 */
 .rv-locationAndDateBox-date {
-	width: 28%;
+	margin-right: 5.5%;
+	width: 35%;
 	height: 45px;
 	border-radius: 5px;
 	background-color: #F3F3F3;
-	cursor: pointer;
-}
-
-/* 차량검색 버튼 */
-.rv-locationAndDateBox-selectCarBtn {
-	margin-right: 6%;
-	width: 12%;
-	height: 45px;
-	border-radius: 5px;
-	font-size: 1.1rem;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	background-color: #0D6FFC;
 	cursor: pointer;
 }
 
