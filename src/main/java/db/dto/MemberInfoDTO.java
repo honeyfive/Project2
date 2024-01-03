@@ -17,8 +17,12 @@ public class MemberInfoDTO {
 	int overdue_history;
 	int use_count;
 	
-	
-	
+	public MemberInfoDTO(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+	}
+
 	public MemberInfoDTO(String id, String password, String email, String membership_level) {
 		super();
 		this.id = id;
