@@ -156,6 +156,8 @@
 						<div class="rv-carInfoBox-Box-carName"><%=carInfo.getCar_name()%></div>
 						<div class="rv-carInfoBox-Box-carYear">
 							<p class="rv-carInfoBox-Box-carYear-textBox"><%=carInfo.getModel_year()%></p>
+							<span class="rv-carInfoBox-Box-carSize"><%=carInfo.getCar_size() %></span>
+							<span class="rv-carInfoBox-Box-carType"><%=carInfo.getCar_type() %></span>
 						</div>
 						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
 						<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
@@ -180,17 +182,17 @@
 			</div>
 		</div>
 		<div class="rv-filterBox">
+		<form action="./payment.jsp" method="post">
 			<div class="rv-filterBox-Main">
 				<div class="rv-filterBox-Main-1">
 					자차보험
 					<div class="rv-filterBox-Main-1-data">
-						전체<input type="checkbox">
 						<%
 						if (insuranceinfoList != null) {
 							for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
 						%>
 
-						<%=insuranceinfo.getInsurance_type()%><input type="checkbox">
+						<%=insuranceinfo.getInsurance_type()%><input type="checkbox" value="<%=insuranceinfo.getInsurance_number()%>" name="insurance_number">
 
 						<%
 						}
@@ -220,29 +222,34 @@
 				<div class="rv-filterBox-Main-3">
 					차량크기
 					<div class="rv-filterBox-Main-3-data">
-						전체 <input type="checkbox">
-						<%
-						if (carInfoListBySize != null) {
-							for (CarInfoDTO carInfo : carInfoListBySize) {
-						%>
-
-						<%=carInfo.getCar_size() %><input type="checkbox">
-						<%
-						}
-						}
-						%>
+						<form method="post" action="/carInfoBySize">
+							<label for="selectAll">전체</label>
+							<input type="checkbox" id="selectAllSizes" class="carCheckbox" value="all">
+							
+							<%
+							if (carInfoListBySize != null) {
+								for (CarInfoDTO carInfo : carInfoListBySize) {
+							%>
+	
+							<%=carInfo.getCar_size()%> <input type="checkbox" value="<%=carInfo.getCar_size()%>" class="carCheckbox">
+							<%
+							}
+							}
+							%>
+						</form>
 					</div>
 				</div>
 				<div class="rv-filterBox-Main-4">
 					차량연료
 					<div class="rv-filterBox-Main-4-data">
-						전체 <input type="checkbox">
+						<label for="selectAll">전체</label>
+							<input type="checkbox" id="selectAllTypes" class="carTypeCheckbox" value="all">
 						<%
 						if (carInfoListByType != null) {
 							for (CarInfoDTO carInfo : carInfoListByType) {
 						%>
 
-						<%=carInfo.getCar_type()%><input type="checkbox">
+						<%=carInfo.getCar_type()%><input type="checkbox" value="<%=carInfo.getCar_type()%>" class="carTypeCheckobx">
 						<%
 						}
 						}
@@ -263,7 +270,12 @@
 				</div>
 
 			</div>
-			<div class="rv-filterBox-RVBtn">예약하기</div>
+			<div class="rv-filterBox-RVBtn">
+				
+					<button type="submit">예약하기</button>
+				
+			</div>
+			</form>
 		</div>
 	</div>
 
@@ -275,5 +287,80 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 	<script src="./js/reservation.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    var carBoxes = document.querySelectorAll('.rv-carInfoBox-Box');
+	    var carSizeCheckboxes = document.querySelectorAll('.carCheckbox');
+	    var carTypeCheckboxes = document.querySelectorAll('.carTypeCheckobx');
+	    var selectAllSizes = document.getElementById('selectAllSizes');
+	    var selectAllTypes = document.getElementById('selectAllTypes');
+
+	    selectAllSizes.addEventListener('change', toggleAllSizes);
+	    selectAllTypes.addEventListener('change', toggleAllTypes);
+
+	    carSizeCheckboxes.forEach(function(checkbox) {
+	        checkbox.addEventListener('change', updateDisplayedCars);
+	    });
+
+	    carTypeCheckboxes.forEach(function(checkbox) {
+	        checkbox.addEventListener('change', updateDisplayedCars);
+	    });
+
+	    function toggleAllSizes() {
+	        carSizeCheckboxes.forEach(function(cb) {
+	            cb.checked = selectAllSizes.checked;
+	        });
+	        updateDisplayedCars();
+	    }
+
+	    function toggleAllTypes() {
+	        carTypeCheckboxes.forEach(function(cb) {
+	            cb.checked = selectAllTypes.checked;
+	        });
+	        updateDisplayedCars();
+	    }
+
+	    function updateDisplayedCars() {
+	        var selectedSizes = [];
+	        var selectedTypes = [];
+
+	        carSizeCheckboxes.forEach(function(cb) {
+	            if (cb.checked) {
+	                selectedSizes.push(cb.value.toLowerCase());
+	            }
+	        });
+
+	        carTypeCheckboxes.forEach(function(cb) {
+	            if (cb.checked) {
+	                selectedTypes.push(cb.value.toLowerCase());
+	            }
+	        });
+
+	        carBoxes.forEach(function(carBox) {
+	            var carSizeElement = carBox.querySelector('.rv-carInfoBox-Box-carSize');
+	            var carTypeElement = carBox.querySelector('.rv-carInfoBox-Box-carType');
+
+	            var carSizeText = carSizeElement.textContent.trim().toLowerCase();
+	            var carTypeText = carTypeElement.textContent.trim().toLowerCase();
+
+	            var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(carSizeText) || selectedSizes.includes('all');
+	            var typeFilter = selectedTypes.length === 0 || selectedTypes.includes(carTypeText) || selectedTypes.includes('all');
+
+	            if ((selectedSizes.length === 1 && selectedTypes.length === 0 && sizeFilter) ||
+	                (selectedTypes.length === 1 && selectedSizes.length === 0 && typeFilter) ||
+	                (sizeFilter && typeFilter)) {
+	                carBox.style.display = 'flex';
+	            } else {
+	                carBox.style.display = 'none';
+	            }
+	        });
+	    }
+	});
+
+
+
+
+
+	</script>
 </body>
 </html>

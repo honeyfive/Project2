@@ -49,7 +49,7 @@ public class CarInfoDTO {
             // 다른 경우에 대한 처리 (예: 기본값 반환)
             return car_size;
         }
-    } 
+    }
 
 	public void setCar_size(String car_size) {
 		this.car_size = car_size;
