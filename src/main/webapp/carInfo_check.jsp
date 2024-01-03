@@ -19,7 +19,7 @@
 	height: 1200px;
 	float: left;
 	/* border: 3px solid black; */
-	/* background-color: #0D6FFC; */
+	background-color: #0D6FFC;
 	/* color: white; */
 	border-right: 3px solid #0D6FFC;
 	font-weight: bold;
@@ -34,6 +34,7 @@ body {
 
 h1 {
 	color: #0D6FFC;
+	margin-top: 15px;
 }
 
 table {
@@ -91,6 +92,7 @@ tr:last-child td:last-child {
 	margin: 0 auto;
 	font-size: 1.1rem;
 	margin-top: 15%;
+	color: white;
 }
 
 a {
@@ -176,9 +178,11 @@ input[type="checkbox"] {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 </head>
 <body>
+	<%@ include file="header3.jsp"%>
 
 	<%
 	CarInfoCheckDAO memberInfoDAO = new CarInfoCheckDAO();

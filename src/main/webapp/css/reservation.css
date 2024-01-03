@@ -172,32 +172,34 @@
 .rv-carInfoBox-Box-sumRentAndInsurancePrice {
 	width: 100%;
 	height: 20%;
-	border: 1px solid black;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
+	border-radius: 10px;
+	margin-top: 5px;
+	background-color: #f3f3f3;
 }
 
 .rv-carInfoBox-Box-insuranceText{
 	width: 30%;
-	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #444444;
+	border-right: 2px solid #e1e1e1;
 }
 
 .rv-carInfoBox-Box-sumRentAndInsurancePrice-text{
 	width: 50%;
-	border: 1px solid black;
-}
-
-.rv-carInfoBox-Box-sumRentAndInsurancePrice2 {
-	width: 100%;
-	height: 20%;
-	border: 1px solid black;
-}
-
-.rv-carInfoBox-Box-sumRentAndInsurancePrice3 {
-	width: 100%;
-	height: 20%;
-	border: 1px solid black;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	padding-right: 10px;
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #444444;
 }
 
 /* 자동차 정보 박스 스크롤바 없애기 */
@@ -254,6 +256,8 @@
 	padding: 10px;
 	font-weight: bold;
 	font-size: 1.3rem;
+	position: relative;
+    z-index: 1000;
 }
 
 .rv-filterBox-Main-2-data {
@@ -274,12 +278,14 @@
 
 .show {
 	display: block;
+	height: 255px;
+	overflow: auto;
 }
 
 /* 셀렉트 영역 스타일 */
 .select {
 	padding: 5px 10px;
-	width: 250px;
+	width: 278px;
 	border-radius: 5px;
 	border: 1px solid #0E70FC;
 	background-color: white;
@@ -345,7 +351,7 @@ li {
 	font-size: 1.1rem;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: space-between nowrap;
 	align-items: center;
 }
 
@@ -364,7 +370,7 @@ li {
 	border-bottom: 1px solid #e1e1e1;
 	font-size: 1.1rem;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 }
 

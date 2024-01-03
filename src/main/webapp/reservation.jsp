@@ -18,8 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>휴카</title>
-<link rel="shortcut icon" href="./images/favicon.png" type="image/png"
-	sizes="32x32">
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="./css/header2.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -197,7 +196,7 @@
 						%>
 					</div>
 				</div>
-				<div class="rv-filterBox-Main-2">자동차모델</div>
+				<div class="rv-filterBox-Main-2">자동차모델
 				<div class="rv-filterBox-Main-2-data">
 					<div class="select" data-role="selectBox">
 						<span date-value="optValue" class="selected-option"> <!-- 선택된 옵션 값이 출력되는 부분 -->
@@ -215,6 +214,7 @@
 						</ul>
 					</div>
 				</div>
+			</div>
 				<div class="rv-filterBox-Main-3">
 					차량크기
 					<div class="rv-filterBox-Main-3-data">
@@ -224,7 +224,7 @@
 							for (CarInfoDTO carInfo : carInfoListBySize) {
 						%>
 
-						<%=carInfo.getCar_size()%><input type="checkbox">
+						<%=carInfo.getCar_size() %><input type="checkbox">
 						<%
 						}
 						}

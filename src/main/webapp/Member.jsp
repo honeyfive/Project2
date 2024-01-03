@@ -116,6 +116,7 @@ input[type="text"] {
 
 h1 {
 	color: #0D6FFC;
+	margin-top: 15px;
 }
 
 .carAddClass {
@@ -127,7 +128,7 @@ h1 {
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="header3.jsp"%>
 	<div class="side_bar">
 		<a href="./manage_main.jsp"><div class="manage">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
