@@ -186,13 +186,14 @@
 		</div>
 	</div>
 	<!-- 모달창 - 달력 -->
-	<div class="date-modal">
-		<div class="date-modal-body">
-			<div class="date-modal-close-Btn">X</div>
-			대여일<input type="date">대여시간<input type="time">반납일<input
-				type="date">반납시간<input type="time">
+		<div class="date-modal">
+			<div class="date-modal-body">
+				-->
+				<div class="date-modal-close-Btn">X</div>
+				대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
+					type="datetime-local" name="return_date" id="dateTime1">
+			</div>
 		</div>
-	</div>
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
 		<div class="rv-locationAndDateBox">
@@ -204,93 +205,6 @@
 			<div class="rv-locationAndDateBox-date"></div>
 		</div>
 	</div>
-	<div class="rv-container">
-		<div class="rv-carInfoBox-container">
-			<div class="rv-carInfoBox-top">
-				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
-			</div>
-			<div class="rv-carInfoBox-main">
-				<%
-				if (carInfoList != null) {
-					for (CarInfoDTO carInfo : carInfoList) {
-				%>
-				<div class="rv-carInfoBox-Box">
-					<div class="rv-carInfoBox-Box-imgBox">
-						<img class="car_image" src=<%=carInfo.getCar_image()%>>
-					</div>
-					<div class="rv-carInfoBox-Box-carInfoBox">
-						<div class="rv-carInfoBox-Box-carName"><%=carInfo.getCar_name()%></div>
-						<div class="rv-carInfoBox-Box-carYear">
-							<p class="rv-carInfoBox-Box-carYear-textBox"><%=carInfo.getModel_year()%></p>
-							<span class="rv-carInfoBox-Box-carSize"><%=carInfo.getCar_size()%></span>
-							<span class="rv-carInfoBox-Box-carType"><%=carInfo.getCar_type()%></span>
-
-						</div>
-
-
-						<%-- <%
-						if (carRentalManagementList != null) {
-							for (CarRentalManagementDTO carRental : carRentalManagementList) {
-						%>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
-							<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
-							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=carRental.getRental_costs() + 20000%>원
-								부터
-							</div>
-						</div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
-							<div class="rv-carInfoBox-Box-insuranceText">완전자차</div>
-							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=carRental.getRental_costs() + 40000%>원
-								부터
-							</div>
-						</div>
-						<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
-							<div class="rv-carInfoBox-Box-insuranceText">수퍼자차</div>
-							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=carRental.getRental_costs() + 100000%>원
-								부터
-							
-							</div>
-							<%
-					}
-					} else {
-					// 데이터가 없을 때 처리할 부분
-					}
-					%>
-						</div> --%>
-
-
-					</div>
-
-				</div>
-				<%
-					}
-					} else {
-					// 데이터가 없을 때 처리할 부분
-					}
-					%>
-			</div>
-
-		</div>
-		<!-- 모달창 - 달력 -->
-		<div class="date-modal">
-			<div class="date-modal-body">
-				<div class="date-modal-close-Btn">X</div>
-				대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
-					type="datetime-local" name="return_date" id="dateTime1">
-			</div>
-		</div>
-		<!-- 예약페이지  -->
-		<div class="rv-locationAndDateBox-sticky">
-			<div class="rv-locationAndDateBox">
-				<div class="rv-locationAndDateBox-location">
-					<!-- 대여 반납 창 따로 만들었습니다 ~ -->
-					<div class="place rent-place">대여장소선택</div>
-					<div class="place return-place">반납장소선택</div>
-				</div>
-				<div class="rv-locationAndDateBox-date"></div>
-			</div>
-		</div>
-
 		<div class="rv-container">
 			<div class="rv-carInfoBox-container">
 				<div class="rv-carInfoBox-top">
