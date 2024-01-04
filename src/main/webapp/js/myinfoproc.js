@@ -79,14 +79,15 @@ document.querySelector('#go_to_logout').addEventListener('click', () => {
   if (confirm('로그아웃 하시겠습니까?')) {
       alert('로그아웃 되었습니다');
       location.href = "./login.jsp";
+  }else{
+	  location.href = "./mainpage.jsp";
   }
 });
 
-document.querySelector('.member_out').addEventListener('click',()=>{
-  if(confirm('카모아를 떠나실건가요?')) {
-    alert('가는 사람 안 잡아요');
-    location.href = "./deleteMemberInfo_proc.jsp";
-  }
-});
+ document.getElementById('member_delete_btn').addEventListener('click', function() {
+            if (confirm('정말로 회원 탈퇴하시겠습니까?')) {
+                document.getElementById('member_out_form').submit();
+            }
+        });
 
 

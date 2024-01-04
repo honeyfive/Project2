@@ -30,6 +30,8 @@ public class ReservationInfoDTO {
 		this.membership_number = membership_number;
 		this.payment_number = payment_number;
 	}
+	
+	public ReservationInfoDTO(){}
 
 
 	public int getReservation_number() {
