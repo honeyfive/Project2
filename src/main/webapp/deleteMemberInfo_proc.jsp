@@ -20,7 +20,7 @@
 		if(result > 0){
 			%>
 				<script>
-					alert('삭제 성공');
+					alert('탈퇴되었습니다');
 					location.href='mainpage.jsp';
 				</script>
 			<%		

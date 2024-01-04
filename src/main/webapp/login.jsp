@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<%@ include file="header2.jsp"%>
 
 	<!-- 로그인 메인 -->
@@ -58,6 +58,10 @@
 				return true;
 			}
 		}
+	</script>
+	<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
 	</script>
 </body>
 </html>

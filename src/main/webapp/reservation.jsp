@@ -77,13 +77,20 @@
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
+	
+	
+	String membership_number = (String) session.getAttribute("id");
+	MemberInfoDTO memberinfoMyDTO = memberInfoDAO.findMemberById(membership_number);
+	System.out.println(memberinfoMyDTO.getMembership_number());
 
 	// 차량 정보 + 렌탈 비용 리스트
 		CarRentalInfoDAO carRentalInfoDAO = new CarRentalInfoDAO();
 		List<CarRentalInfoDTO> carRentalInfoList = carRentalInfoDAO.findCarRentalInfo();
 	%>
-
+	<form action="./addReservation_proc.jsp" method="post">
 	<div class="location-modal">
+		<input type="hidden" name="membership_number" value="<%=memberinfoMyDTO.getMembership_number() %>">
+		
 		<!-- 모달창 - 지역 -->
 		<div class="location-modal-body">
 			<div class="location-modal-close-Btn">X</div>
@@ -123,15 +130,15 @@
 				</div>
 			</div>
 			<div class="location-modal-check-Btn">다음</div>
-		</div>
+		</div> 
 	</div>
 	<!-- 모달창 - 달력 -->
 	<div class="date-modal">
-		<div class="date-modal-body">
+		<div class="date-modal-body"> -->
 			<div class="date-modal-close-Btn">X</div>
-			대여일<input type="date">대여시간<input type="time">반납일<input
-				type="date">반납시간<input type="time">
-		</div>
+			대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
+				type="datetime-local" name="return_date" id="dateTime1">
+		 </div>
 	</div>
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
@@ -144,18 +151,23 @@
 			<div class="rv-locationAndDateBox-date"></div>
 		</div>
 	</div>
+	
 	<div class="rv-container">
 		<div class="rv-carInfoBox-container">
 			<div class="rv-carInfoBox-top">
 				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
 			</div>
+			
 			<div class="rv-carInfoBox-main">
+			<input type="text" name="rental_place">
+		<input type="text" name="return_place">
 				<%
 				if (carInfoList != null) {
 					for(CarRentalInfoDTO item : carRentalInfoList){
 				%>
 				<div class="rv-carInfoBox-Box">
 					<div class="rv-carInfoBox-Box-imgBox">
+						<input type="checkbox" value="<%=item.getCar_number()%>" name="car_number">
 						<img class="car_image" src=<%=item.getCar_image()%>>
 					</div>
 					<div class="rv-carInfoBox-Box-carInfoBox">
@@ -191,12 +203,19 @@
 			</div>
 		</div>
 		<div class="rv-filterBox">
-			<form action="./payment.jsp" method="post">
+		
+			<%-- <input type="text" value="<%=carInfoList.get %>"> --%>
+			<div class="rv-filterBox-Main">
+				<div class="rv-filterBox-Main-1">
+					자차보험
+					<div class="rv-filterBox-Main-1-data">
+						
+			<!-- /* <form action="./payment.jsp" method="post">
 				<div class="rv-filterBox-Main">
 					<div class="rv-filterBox-Main-1">
 						자차보험
-						<div class="rv-filterBox-Main-1-data">
-							<%
+						<div class="rv-filterBox-Main-1-data"> */ -->
+						<%
 						if (insuranceinfoList != null) {
 							for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
 						%>
@@ -287,12 +306,15 @@
 				<div class="rv-filterBox-RVBtn">
 
 					<button type="submit">예약하기</button>
+				
+			
+			
 
 				</div>
 			</form>
 		</div>
 	</div>
-
+</form>
 	<!-- 푸터 -->
 	<%@ include file="footer.jsp"%>
 
@@ -357,6 +379,22 @@
 									}
 								});
 
+	</script>
+	
+	<script>
+	function removeT() {
+	    const dateTimeValue1 = document.getElementById('dateTime1').value;
+	    const formattedDateTime1 = dateTimeValue1.replace('T', ' '); // 첫 번째 datetime-local의 'T'를 공백으로 대체
+
+	    const dateTimeValue2 = document.getElementById('dateTime2').value;
+	    const formattedDateTime2 = dateTimeValue2.replace('T', ' '); // 두 번째 datetime-local의 'T'를 공백으로 대체
+
+	    // formattedDateTime1, formattedDateTime2를 사용하여 데이터를 처리하거나 전송할 수 있습니다.
+	    console.log('Formatted DateTime 1:', formattedDateTime1);
+	    console.log('Formatted DateTime 2:', formattedDateTime2);
+	    // 데이터를 전송하거나 다른 작업을 수행할 수 있습니다.
+	}
+}
 								carTypeCheckboxes.forEach(function(cb) {
 									if (cb.checked) {
 										selectedTypes.push(cb.value

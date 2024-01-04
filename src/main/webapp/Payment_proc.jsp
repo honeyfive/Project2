@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="db.dao.ReservationInfoDAO" %>
+    <%@page import="db.dto.ReservationInfoDTO"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,22 +16,29 @@
    <%
    
       PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
-   
-      request.setCharacterEncoding("UTF-8"); //문자인코딩 설정
+  	  ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
+  	  
+    
+      request.setCharacterEncoding("UTF-8");
+      
       String payment_price = request.getParameter("payment_price");
       String payment_type = request.getParameter("payment_type");
       String reservation_number = request.getParameter("reservation_number");
-      String payment_state = request.getParameter("payment_state");
-      
+     
       int intPayment_price = Integer.parseInt(payment_price);
       int intReservation_number = Integer.parseInt(reservation_number);
-   
-      
+     
       int result = paymentInfoDAO.savePaymentInfo(intPayment_price, payment_type, intReservation_number);
       
-      System.out.println(result);
-   
       
+      ReservationInfoDTO reservationInfo = new ReservationInfoDTO();
+      reservationInfo.setReservation_number(intReservation_number);
+      
+      int result2 = reservationInfoDAO.modifyPaymentNumber(reservationInfo);
+      
+      
+      System.out.println(result + result2);
+   
       if(result > 0){
    %>
       <script>
