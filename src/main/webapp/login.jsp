@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴카</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
