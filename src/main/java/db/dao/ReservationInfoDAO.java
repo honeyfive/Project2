@@ -146,5 +146,32 @@ public class ReservationInfoDAO {
 
 		return reservationInfoListByRentalPlaceCheonan;
 	}
+	
+	
+	//결제하면 결제번호 수정
+		public int modifyPaymentNumber(ReservationInfoDTO reservationInfo) {
+
+	        conn = DBConnectionManager.connectDB();
+
+	        String sql = " UPDATE reservation_information" 
+	        			+ " SET payment_number = (select payment_number from payment_info where reservation_number = ? ) where reservation_number = ? " ;
+
+	        int result = 0;
+
+	        try {
+	            psmt = conn.prepareStatement(sql);
+
+	            psmt.setInt(1, reservationInfo.getReservation_number());
+	            psmt.setInt(2, reservationInfo.getReservation_number());
+
+	            result = psmt.executeUpdate();  
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            DBConnectionManager.closeDB(conn, psmt, rs);
+	        }
+	        return result;
+	    }
 
 }
