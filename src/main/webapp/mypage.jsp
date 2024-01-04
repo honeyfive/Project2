@@ -164,8 +164,8 @@
 				%>
 
 			</table>
-			<div class="rating_level">빨간글씨 : 예약취소 건</div>
-			<div class="rating_level">노란배경 : 연체 건</div>
+			<div class="rating_level" style="color:#0D6FFC">빨간글씨 : 예약취소 건</div>
+			<div class="rating_level" style="color:#0D6FFC">노란배경 : 연체 건</div>
 
 		</div>
 		<%
