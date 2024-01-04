@@ -40,18 +40,39 @@
 			if (headerId == null || memberInfoHeaderDTO == null) {
 			%>
 			<div class="header-nav-btn">
-				<!-- 예약 페이지 연결-->
-				<a href="#" onclick="loginPlzAlert()">
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="resevation-pg" class="hearder-nav-btn-item logout_status">예약</div>
+				 </a>
+			<%}else{%>
+				 <!-- 로그인 되어 있는 경우 -->
+				 <a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
-				</a>
-				<!-- 결제 페이지 연결-->
-				<a href="#" onclick="loginPlzAlert()">
+				 </a>
+			<% } %>
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="payment-pg" class="hearder-nav-btn-item logout_status">결제</div>
+				 </a>
+			<%}else{%>
+				 <!-- 로그인 되어 있는 경우 -->
+				 <a href="./payment.jsp"> <!-- 결제 페이지 연결-->
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
-				</a>
-				<!-- 마이 페이지 연결-->
-				<a href="#" onclick="loginPlzAlert()">
+				</a> 
+			<% } %>
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="my-pg" class="hearder-nav-btn-item logout_status">마이페이지</div>
+				 </a>
+			<%}else{%>
+				<!-- 로그인 되어 있는 경우 -->
+				<a href="./mypage.jsp"> <!-- 마이 페이지 연결-->
 					<div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
-				</a>
+				</a> 
+			<% } %>
 			</div>
 
 			<!-- 로그인이 성공하면 이동 가능 -->
@@ -90,37 +111,29 @@
 			<div class="header-nav-login-slash">|</div>
 
 			<!-- 로그인 버튼-->
-			<%
-			if (headerId == null || memberInfoHeaderDTO == null) {
-			%>
-			<!-- 로그인 되어 있지 않은 경우 -->
-			<a href="./login.jsp">
-				<div class="header-nav-login-btn">
-					<i class="fa-regular fa-circle-user"></i>
-					<div id="login">로그인</div>
-				</div>
-			</a>
-			<!-- 로그인 안 되어 있으면 다른 링크 접근 불가능 -->
-			<a></a>
-
-			<%
-			} else {
-			%>
-			<!-- 로그인 되어 있는 경우 -->
-			<a href="./logout.jsp"> <!-- 로그아웃 페이지 연결하기 -->
-				<div class="header-nav-login-btn">
-					<i class="fa-regular fa-circle-user"></i>
-					<div id="login"><%=memberInfoHeaderDTO.getName()%>님
-					</div>
-				</div>
-			</a>
-			<%
-			}
-			%>
+			 <% if (headerId == null || memberInfoHeaderDTO == null) {%>
+		        <!-- 로그인 되어 있지 않은 경우 -->
+		        <a href="./login.jsp">
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login">로그인</div>
+		            </div>
+		        </a>
+		    <% } else { %>
+		        <!-- 로그인 되어 있는 경우 -->
+		        <a href="./logout.jsp"> <!-- 로그아웃 페이지 연결하기 -->
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login_after"><%= memberInfoHeaderDTO.getName() %>님</div>
+		            </div>
+		        </a>
+    		<% } %>
 
 		</div>
 
 	</div>
+	<script src="./js/login.js"></script>
+	<script src="./js/logout.js"></script>
 	<script>
 		function loginPlzAlert(){
 			alert("로그인 이후 이용하실 수 있습니다.");
