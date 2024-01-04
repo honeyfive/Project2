@@ -4,26 +4,50 @@ const locationModal = document.querySelector('.location-modal');
 const btnLocationOpenModal = document.querySelector('.rv-locationAndDateBox-location');
 const rentModal = document.querySelector('.rent-place');
 const returnModal = document.querySelector('.return-place');
+const locationCloseBtn = document.querySelector('.location-modal-close-Btn');
+const locationCloseBtn2 = document.querySelector('.location-modal2-close-Btn');
+const modalCheckBtn = document.querySelector('.location-modal-check-Btn');
+const modalCheckBtn2 = document.querySelector('.location-modal2-check-Btn');
 
+// 대여장소선택박스를 누르면 실행되는 이벤트
 rentModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
+	$(".location-modal-check-Btn").css("background-color", "#999999");
+	$('.location-modal-body').css("z-index", 301);
+	$('.asanList, .cheonanList').on('click', function() {
+		$('.asanList, .cheonanList').removeClass('selected');
+		$(this).addClass('selected');
+		var clickedValue = $(this).text();
+		$('.rent-place').text(clickedValue);
+		$('.location-modal-check-Btn').css("background-color", "#0D6FFC");
+	});
 });
 
-const locationCloseBtn = document.querySelector(".location-modal-close-Btn");
-locationCloseBtn.addEventListener("click", e => {
-	locationModal.style.display = "none";
+returnModal.addEventListener("click", () => {
+	locationModal.style.display = "flex";
+	$(".location-modal2-check-Btn").css("background-color", "#999999");
+	$('.asanList2, .cheonanList2').on('click', function() {
+		$('.asanList2, .cheonanList2').removeClass('selected');
+		$(this).addClass('selected');
+		var clickedValue = $(this).text();
+		$(".return-place").text(clickedValue);
+		$(".location-modal2-check-Btn").css("background-color", "#0D6FFC");
+	});
 });
 
-locationModal.addEventListener("click", e => {
-	const evTarget = e.target
-	if (evTarget.classList.contains("location-modal")) {
+modalCheckBtn.addEventListener("click", () => {
+	$('.location-modal-body').css("z-index", 299);
+	if ($('.asanList, .cheonanList').hasClass('selected')) {
 		locationModal.style.display = "none";
 	}
 });
 
+modalCheckBtn2.addEventListener("click", () => {
+	if ($('.asanList2, .cheonanList2').hasClass('selected')) {
+		locationModal.style.display = "none";
+	}
+});
 
-
-//달력모달창
 const dateModal = document.querySelector('.date-modal');
 const btnDateOpenModal = document.querySelector('.rv-locationAndDateBox-date');
 
@@ -43,6 +67,42 @@ dateModal.addEventListener("click", e => {
 	}
 });
 
+modalCheckBtn.addEventListener("click", () => {
+	if ($('.asanList, .cheonanList').hasClass('selected')) {
+		locationModal.style.display = "none";
+	}
+});
+
+modalCheckBtn2.addEventListener("click", () => {
+	if ($('.asanList2, .cheonanList2').hasClass('selected')) {
+		locationModal.style.display = "none";
+	}
+});
+
+locationCloseBtn.addEventListener("click", () => {
+	$('.location-modal-body').css("z-index", 299);
+	locationModal.style.display = "none";
+});
+
+locationCloseBtn2.addEventListener("click", () => {
+	$('.location-modal-body').css("z-index", 299);
+	locationModal.style.display = "none";
+});
+
+locationModal.addEventListener("click", e => {
+	const evTarget = e.target
+	if (evTarget.classList.contains("location-modal")) {
+		$('.location-modal-body').css("z-index", 299);
+		locationModal.style.display = "none";
+	}
+});
+
+
+
+
+
+//달력모달창
+
 /*//자동차 모델 선택바
 const body = document.querySelector('body');
 const select = document.querySelector(`[data-role="selectBox"]`);
@@ -50,7 +110,7 @@ const values = select.querySelector(`[date-value="optValue"]`);
 const option = select.querySelector('ul');
 const opts = option.querySelectorAll('li');
 
- 셀렉트영역 클릭 시 옵션 숨기기, 보이기 
+ 셀렉트영역 클릭 시 옵션 숨기기, 보이기
 function selects(e) {
 	e.stopPropagation();
 	option.setAttribute('style', `top:${select.offsetHeight}px`)
@@ -64,7 +124,7 @@ function selects(e) {
 	selectOpt();
 }
 
- 옵션선택 
+ 옵션선택
 function selectOpt() {
 	opts.forEach(opt => {
 		const innerValue = opt.innerHTML;
@@ -75,54 +135,26 @@ function selectOpt() {
 	});
 }
 
- 렌더링 시 옵션의 첫번째 항목 기본 선택 
+ 렌더링 시 옵션의 첫번째 항목 기본 선택
 function selectFirst() {
 	const firstValue = '--자동차 모델을 선택하세요--';
 	values.innerHTML = `${firstValue}`
 }*/
 
 /* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
-function hideSelect() {
+/*function hideSelect() {
 	if (option.classList.contains('show')) {
 		option.classList.add('hide');
 		option.classList.remove('show');
 	}
-}
+}*/
 
-selectFirst();
+/*selectFirst();
 select.addEventListener('click', selects);
-body.addEventListener('click', hideSelect);
+body.addEventListener('click', hideSelect);*/
 
 //제이쿼리 선택색상변경
-$(document).ready(function() {
-	// 모든 asanList 클래스에 클릭 이벤트 추가
-	$('.asanList,.cheonanList').click(function() {
-		$(this).addClass('selected');
-		// 다른 asanList 클래스에서 selected 클래스 제거
-		$('.asanList,.cheonanList').not(this).removeClass('selected');
-		if ($('.asanList,.cheonanList').hasClass('selected')) {
-			var clickedValue = $(this).text(); // 클릭된 요소의 텍스트 가져오기
-      $(".place.rent-place").text(clickedValue); // 텍스트 설정
-			$(".location-modal-check-Btn").css("background-color", "#0D6FFC");
-		}
-	});
-});
 
-//모달 다음 확인
-document.addEventListener("DOMContentLoaded", function() {
-	// 다음버튼 클릭 시 이벤트 처리
-	document.querySelector('.location-modal-check-Btn').addEventListener('click', function() {
-		// 대여장소선택을 반납장소선택으로 변경
-
-		document.querySelector('.location-modal-header-text').innerText = '반납장소선택';
-
-		// 다음을 확인으로 변경
-		document.querySelector('.location-modal-check-Btn').innerText = '확인';
-
-		// 여기에 추가로 원하는 기능을 구현할 수 있습니다.
-		// 예를 들어, 다음을 누를 때마다 특정 동작이 일어나도록 할 수 있습니다.
-	});
-});
 
 
 // 장소 클릭시 연동되는 거 .. > 중도포기
@@ -145,4 +177,71 @@ cheonanListElements.forEach(function(element){
 	})
 })*/
 
+/*document.addEventListener("DOMContentLoaded", function() {
+		var carBoxes = document.querySelectorAll('.rv-carInfoBox-Box');
+		var carSizeCheckboxes = document.querySelectorAll('.carCheckbox');
+		var carTypeCheckboxes = document.querySelectorAll('.carTypeCheckobx');
+		var selectAllSizes = document.getElementById('selectAllSizes');
+		var selectAllTypes = document.getElementById('selectAllTypes');
 
+		selectAllSizes.addEventListener('change', toggleAllSizes);
+		selectAllTypes.addEventListener('change', toggleAllTypes);
+
+		carSizeCheckboxes.forEach(function(checkbox) {
+			checkbox.addEventListener('change', updateDisplayedCars);
+		});
+
+		carTypeCheckboxes.forEach(function(checkbox) {
+			checkbox.addEventListener('change', updateDisplayedCars);
+		});
+
+		function toggleAllSizes() {
+			carSizeCheckboxes.forEach(function(cb) {
+				cb.checked = selectAllSizes.checked;
+			});
+			updateDisplayedCars();
+		}
+
+		function toggleAllTypes() {
+			carTypeCheckboxes.forEach(function(cb) {
+				cb.checked = selectAllTypes.checked;
+			});
+			updateDisplayedCars();
+		}
+
+		function updateDisplayedCars() {
+			var selectedSizes = [];
+			var selectedTypes = [];
+
+			carSizeCheckboxes.forEach(function(cb) {
+				if (cb.checked) {
+					selectedSizes.push(cb.value.toLowerCase());
+				}
+			});
+
+			carTypeCheckboxes.forEach(function(cb) {
+				if (cb.checked) {
+					selectedTypes.push(cb.value.toLowerCase());
+				}
+			});
+
+			carBoxes.forEach(function(carBox) {
+				var carSizeElement = carBox.querySelector('.rv-carInfoBox-Box-carSize');
+				var carTypeElement = carBox.querySelector('.rv-carInfoBox-Box-carType');
+
+				var carSizeText = carSizeElement.textContent.trim().toLowerCase();
+				var carTypeText = carTypeElement.textContent.trim().toLowerCase();
+
+				var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(carSizeText) || selectedSizes.includes('all');
+				var typeFilter = selectedTypes.length === 0 || selectedTypes.includes(carTypeText) || selectedTypes.includes('all');
+
+				if ((selectedSizes.length === 1 && selectedTypes.length === 0 && sizeFilter) ||
+					(selectedTypes.length === 1 && selectedSizes.length === 0 && typeFilter) ||
+					(sizeFilter && typeFilter)) {
+					carBox.style.display = 'flex';
+				} else {
+					carBox.style.display = 'none';
+				}
+			});
+		}
+	});*/

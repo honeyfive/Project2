@@ -1,6 +1,6 @@
 package db.dto;
 
-public class ReservationInfoDTO {
+public class ReservationInfoDTO2 {
 	int reservation_number;
 	String rental_place;
 	String return_place;
@@ -14,7 +14,7 @@ public class ReservationInfoDTO {
 	int payment_number;
 	
 	
-	public ReservationInfoDTO(int reservation_number, String rental_place, String return_place, String rental_date, String return_date,
+	public ReservationInfoDTO2(int reservation_number, String rental_place, String return_place, String rental_date, String return_date,
 			int total_rental_date, int total_rental_time, int insurance_number, String car_number,
 			int membership_number, int payment_number) {
 		super();
@@ -141,10 +141,9 @@ public class ReservationInfoDTO {
 		this.payment_number = payment_number;
 	}
 	
-	public ReservationInfoDTO(String rental_place) {
+	public ReservationInfoDTO2(String rental_place) {
 		super();
 		this.rental_place = rental_place;
 	}
-	
 	
 }
