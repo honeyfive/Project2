@@ -17,7 +17,7 @@
 	
 
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 <% 
 	CarInfoDAO carInfoDAO = new CarInfoDAO();
 
@@ -172,6 +172,10 @@
 
     <!-- 푸터 -->
     <%@ include file="footer.jsp" %>
+    <script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
     
 </body>
 

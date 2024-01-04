@@ -29,7 +29,7 @@
 <link rel="shortcut icon" href="./images/favicon.png" type="image/png"
 	sizes="32x32">
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<%
 	MemberInfoDAO memberInfoMyDAO = new MemberInfoDAO();
 	List<MemberInfoDTO> memberInfoMyDTO = memberInfoMyDAO.findMemberList();
@@ -260,5 +260,9 @@
 	<%@ include file="footer.jsp"%>
 
 	<script src="./js/mypage.js"></script>
+	<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

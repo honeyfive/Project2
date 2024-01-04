@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./css/myinfoproc.css">
 </head> 
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     <!--헤더-->
     <%@ include file="header2.jsp" %>
 	
@@ -165,5 +165,11 @@
     <%@ include file="footer.jsp" %>
 
 	<script src="./js/myinfoproc.js"></script>
+	
+	<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
+	
 </body>
 </html>
