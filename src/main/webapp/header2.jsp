@@ -15,13 +15,12 @@
 </head>
 <body>
 
-	<% 
+	<%
 	String headerId = (String) session.getAttribute("id");
-	System.out.println("아이디 세션 잘 됏나 !!" + headerId);
-	
+	System.out.println("아이디 세션 잘 됏나 !! " + headerId);
+
 	MemberInfoDAO memberInfoHeaderDAO = new MemberInfoDAO();
 	MemberInfoDTO memberInfoHeaderDTO = memberInfoHeaderDAO.findMemberById(headerId); // 아이디로 회원 정보 찾기
-	
 	%>
 	<div class="header">
 
@@ -36,15 +35,67 @@
 			</div>
 
 			<!-- 네비게이션 버튼-->
+			<!-- 로그인이 안 되어 있으면 다른 페이지 이동 막기 -->
+			<%
+			if (headerId == null || memberInfoHeaderDTO == null) {
+			%>
 			<div class="header-nav-btn">
-				<a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="resevation-pg" class="hearder-nav-btn-item logout_status">예약</div>
+				 </a>
+			<%}else{%>
+				 <!-- 로그인 되어 있는 경우 -->
+				 <a href="./reservation.jsp"> <!-- 예약 페이지 연결-->
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
-				</a> <a href="./payment.jsp"> <!-- 결제 페이지 연결-->
+				 </a>
+			<% } %>
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="payment-pg" class="hearder-nav-btn-item logout_status">결제</div>
+				 </a>
+			<%}else{%>
+				 <!-- 로그인 되어 있는 경우 -->
+				 <a href="./payment.jsp"> <!-- 결제 페이지 연결-->
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
-				</a> <a href="./mypage.jsp"> <!-- 마이 페이지 연결-->
+				</a> 
+			<% } %>
+			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
+				 <!-- 로그인 되어 있지 않은 경우 -->
+				 <a href="./login.jsp">
+				 	<div id="my-pg" class="hearder-nav-btn-item logout_status">마이페이지</div>
+				 </a>
+			<%}else{%>
+				<!-- 로그인 되어 있는 경우 -->
+				<a href="./mypage.jsp"> <!-- 마이 페이지 연결-->
 					<div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
 				</a> 
+			<% } %>
 			</div>
+
+			<!-- 로그인이 성공하면 이동 가능 -->
+			<%
+			} else {
+			%>
+			<div class="header-nav-btn">
+				<!-- 예약 페이지 연결-->
+				<a href="./reservation.jsp">
+					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
+				</a>
+				<!-- 결제 페이지 연결-->
+				<a href="./payment.jsp">
+					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
+				</a>
+				<!-- 마이 페이지 연결-->
+				<a href="./mypage.jsp">
+					<div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
+				</a>
+			</div>
+			<%
+			}
+			%>
 
 		</div>
 
@@ -60,26 +111,32 @@
 			<div class="header-nav-login-slash">|</div>
 
 			<!-- 로그인 버튼-->
-			<a href="./login.jsp"> <!-- 로그인 / 회원가입 페이지 연결하기-->
-				<div class="header-nav-login-btn">
-					<i class="fa-regular fa-circle-user"></i>
-
-					<%
-					if (memberInfoHeaderDTO == null){
-					%>
-					<div id="login">로그인</div>
-					<%
-					} else {
-					%>
-					<div id="login"><%=memberInfoHeaderDTO.getName()%>님</div>
-					<%	
-					}
-					%>
-				</div>
-			</a>
+			 <% if (headerId == null || memberInfoHeaderDTO == null) {%>
+		        <!-- 로그인 되어 있지 않은 경우 -->
+		        <a href="./login.jsp">
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login">로그인</div>
+		            </div>
+		        </a>
+		    <% } else { %>
+		        <!-- 로그인 되어 있는 경우 -->
+		            <div class="header-nav-login-btn">
+		                <i class="fa-regular fa-circle-user"></i>
+		                <div id="login_after"><%= memberInfoHeaderDTO.getName() %>님</div>
+		            </div>
+    		<% } %>
 
 		</div>
 
 	</div>
+	<script src="./js/login.js"></script>
+	<script src="./js/logout.js"></script>
+	<script>
+		function loginPlzAlert(){
+			alert("로그인 이후 이용하실 수 있습니다.");
+			location.href="./login.jsp";
+		}
+	</script>
 </body>
 </html>

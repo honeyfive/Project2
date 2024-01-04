@@ -156,6 +156,32 @@ public class MemberInfoDAO {
 
 		return result;
 	}
+	
+	
+	public int removeMember(String id) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " DELETE FROM member_info " + " WHERE id = ? ";
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+			
+			result = psmt.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
 
 	// 수정
 	public int modifyMembershipLevel(MemberInfoDTO memberInfo) {
@@ -233,6 +259,8 @@ public class MemberInfoDAO {
 		return result;
 	}
 	
+	
+//	이메일 수정
 	public int modifyEmail(MemberInfoDTO memberInfo) {
 
         conn = DBConnectionManager.connectDB();
@@ -258,8 +286,82 @@ public class MemberInfoDAO {
         return result;
     }
 	
+	//전화번호 수정
+	public int modifyTel(MemberInfoDTO memberInfo) {
+
+        conn = DBConnectionManager.connectDB();
+
+        String sql = " UPDATE member_info" + " SET tel= ? " + " WHERE id = ? "  ;
+
+        int result = 0;
+
+        try {
+            psmt = conn.prepareStatement(sql);
+
+            psmt.setString(1, memberInfo.getTel());
+            psmt.setString(2, memberInfo.getId());
+
+            result = psmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionManager.closeDB(conn, psmt, rs);
+        }
+
+        return result;
+    }
 	
-	
+	//아이디 수정
+	public int modifyId(MemberInfoDTO memberInfo) {
+
+        conn = DBConnectionManager.connectDB();
+
+        String sql = " UPDATE member_info" + " SET id = ? " + " WHERE name = ? "  ;
+
+        int result = 0;
+
+        try {
+            psmt = conn.prepareStatement(sql);
+
+            psmt.setString(1, memberInfo.getId());
+            psmt.setString(2, memberInfo.getName());
+
+            result = psmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionManager.closeDB(conn, psmt, rs);
+        }
+
+        return result;
+    }
+	//생년월일 수정
+	public int modifyBirth(MemberInfoDTO memberInfo) {
+
+        conn = DBConnectionManager.connectDB();
+
+        String sql = " UPDATE member_info" + " SET birthday = ? " + " WHERE id = ? "  ;
+
+        int result = 0;
+
+        try {
+            psmt = conn.prepareStatement(sql);
+
+            psmt.setString(1, memberInfo.getBirthday());
+            psmt.setString(2, memberInfo.getId());
+
+            result = psmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnectionManager.closeDB(conn, psmt, rs);
+        }
+
+        return result;
+    }
 
 	// 고객이 입력한 id랑 pw가 서버에 똑같은 게 있나 확인하는 클래스
 	public MemberInfoDTO findMemberByIdPw(String targetId, String targetPw) {

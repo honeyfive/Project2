@@ -173,5 +173,39 @@ public class ReservationInfoDAO {
 	        }
 	        return result;
 	    }
+	public int saveReservationInfo(int reservation_number, String rental_place, String return_place, String rental_date, String return_date,
+			int total_rental_date, int total_rental_time, int insurance_number, String car_number, int membership_number, int payment_number) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sql = " INSERT INTO car_info_check VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, reservation_number);
+			psmt.setString(2, rental_place);
+			psmt.setString(3, return_place);
+			psmt.setString(4, rental_date);
+			psmt.setString(5, return_date);
+			psmt.setInt(6, total_rental_date);
+			psmt.setInt(7, total_rental_time);
+			psmt.setInt(8, insurance_number);
+			psmt.setString(9, car_number);
+			psmt.setInt(10, membership_number);
+			psmt.setInt(11, payment_number);
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
 
 }

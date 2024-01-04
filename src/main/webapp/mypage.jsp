@@ -19,6 +19,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마이페이지</title>
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -28,7 +29,7 @@
 <link rel="shortcut icon" href="./images/favicon.png" type="image/png"
 	sizes="32x32">
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<%
 	MemberInfoDAO memberInfoMyDAO = new MemberInfoDAO();
 	List<MemberInfoDTO> memberInfoMyDTO = memberInfoMyDAO.findMemberList();
@@ -163,8 +164,8 @@
 				%>
 
 			</table>
-			<div class="rating_level">빨간글씨 : 예약취소 건</div>
-			<div class="rating_level">노란배경 : 연체 건</div>
+			<div class="rating_level" style="color:#0D6FFC">빨간글씨 : 예약취소 건</div>
+			<div class="rating_level" style="color:#0D6FFC">노란배경 : 연체 건</div>
 
 		</div>
 		<%
@@ -259,5 +260,9 @@
 	<%@ include file="footer.jsp"%>
 
 	<script src="./js/mypage.js"></script>
+	<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%
+    
+    session.invalidate();
+    response.sendRedirect("./mainpage.jsp"); // 로그아웃 후 메인페이지로 이동
+	%>
 </body>
 </html>

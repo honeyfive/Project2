@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>휴카</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="css/mainpage.css">
     <link
     rel="stylesheet"
@@ -16,7 +17,7 @@
 	
 
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 <% 
 	CarInfoDAO carInfoDAO = new CarInfoDAO();
 
@@ -48,15 +49,20 @@
 	                if (recommendCarInfoList != null) {
 	                	%>
 	                  <%   for (CarInfoDTO recommendCar : recommendCarInfoList) {
-	                %><div class="show_recommend_car">
-	                    <img class="recommend_car_image" src="<%= recommendCar.getCar_image() %>" alt="Car Image">
-	                    <div class="dividing_line"></div>
-	                    <div class="recommend_car_info">
-	                        <p class="recommend_car_info_text">차량명 : <%= recommendCar.getCar_name() %></p>
-	                        <p class="recommend_car_info_text">사이즈 : <%= recommendCar.getCar_size() %></p>
-	                        <p class="recommend_car_info_text">연식 : <%= recommendCar.getModel_year() %></p>
-	                    </div>
-	                </div>
+	                %>
+	                <a href="./reservation.jsp">
+		                <div class="show_recommend_car">
+							<div class="recommend_car_image_box">
+		                    	<img class="recommend_car_image" src="<%= recommendCar.getCar_image() %>" alt="Car Image">
+		                    </div>
+								<div class="dividing_line"></div>
+		                    <div class="recommend_car_info">
+		                        <p class="recommend_car_info_text">차량명 : <%= recommendCar.getCar_name() %></p>
+		                        <p class="recommend_car_info_text">사이즈 : <%= recommendCar.getCar_size() %></p>
+		                        <p class="recommend_car_info_text">연식 : <%= recommendCar.getModel_year() %></p>
+		                    </div>
+		                </div>
+	                </a>
 	                <% 
 	                    }
 	                } else {
@@ -75,16 +81,20 @@
 					if (cheapCarInfoList != null) {
 						for (CarInfoDTO cheapCar : cheapCarInfoList) {
 					%>
-					<div class="show_cheap_car">
-						<img class="cheap_car_image" src="<%= cheapCar.getCar_image() %>" alt="Car Image">
-						<div class="dividing_line"></div>
-						<div class="cheap_car_info">
-							<p class="cheap_car_info_text">차량명 : <%= cheapCar.getCar_name() %></p>
-							<p class="cheap_car_info_text">사이즈 : <%= cheapCar.getCar_size() %></p>
-							<p class="cheap_car_info_text">연식 : <%= cheapCar.getModel_year() %></p>
+					<a href="./reservation.jsp">
+						<div class="show_cheap_car">
+							<div class="cheap_car_image_box">
+								<img class="cheap_car_image" src="<%= cheapCar.getCar_image() %>" alt="Car Image">
+							</div>	
+							<div class="dividing_line"></div>
+							<div class="cheap_car_info">
+								<p class="cheap_car_info_text">차량명 : <%= cheapCar.getCar_name() %></p>
+								<p class="cheap_car_info_text">사이즈 : <%= cheapCar.getCar_size() %></p>
+								<p class="cheap_car_info_text">연식 : <%= cheapCar.getModel_year() %></p>
+							</div>
+						
 						</div>
-					
-					</div>
+					</a>	
 					<% 
 						}
 					} else {
@@ -104,15 +114,19 @@
 					if (oldCarInfoList != null) {
 						for (CarInfoDTO oldCar : oldCarInfoList) {
 					%>
-					<div class="show_old_car">
-						<img class="old_car_image" src="<%= oldCar.getCar_image() %>" alt="Car Image">
-						<div class="dividing_line"></div>
-						<div class="old_car_info">
-							<p class="old_car_info_text">차량명 : <%= oldCar.getCar_name() %></p>
-							<p class="old_car_info_text">사이즈 : <%= oldCar.getCar_size() %></p>
-							<p class="old_car_info_text">연식 : <%= oldCar.getModel_year() %></p>
+					<a href="./reservation.jsp">
+						<div class="show_old_car">
+							<div class="old_car_image_box">
+								<img class="old_car_image" src="<%= oldCar.getCar_image() %>" alt="Car Image">
+							</div>	
+							<div class="dividing_line"></div>
+							<div class="old_car_info">
+								<p class="old_car_info_text">차량명 : <%= oldCar.getCar_name() %></p>
+								<p class="old_car_info_text">사이즈 : <%= oldCar.getCar_size() %></p>
+								<p class="old_car_info_text">연식 : <%= oldCar.getModel_year() %></p>
+							</div>
 						</div>
-					</div>
+					</a>
 					<% 
 						}
 					} else {
@@ -130,15 +144,19 @@
 					if (popularCarInfoList != null) {
 						for (CarInfoDTO popularCar : popularCarInfoList) {
 					%>
-					<div class="show_popular_car">
-						<img class="popular_car_image" src="<%= popularCar.getCar_image() %>" alt="Car Image">
-						<div class="dividing_line"></div>
-						<div class="popular_car_info">
-							<p class="popular_car_info_text">차랑명 : <%= popularCar.getCar_name() %></p>
-							<p class="popular_car_info_text">사이즈 : <%= popularCar.getCar_size() %></p>
-							<p class="popular_car_info_text">연식 : <%= popularCar.getModel_year() %></p>
+					<a href="./reservation.jsp">
+						<div class="show_popular_car">
+							<div class="popular_car_image_box">
+								<img class="popular_car_image" src="<%= popularCar.getCar_image() %>" alt="Car Image">
+							</div>
+							<div class="dividing_line"></div>
+							<div class="popular_car_info">
+								<p class="popular_car_info_text">차랑명 : <%= popularCar.getCar_name() %></p>
+								<p class="popular_car_info_text">사이즈 : <%= popularCar.getCar_size() %></p>
+								<p class="popular_car_info_text">연식 : <%= popularCar.getModel_year() %></p>
+							</div>
 						</div>
-					</div>
+					</a>
 					<% 
 						}
 					} else {
@@ -154,6 +172,10 @@
 
     <!-- 푸터 -->
     <%@ include file="footer.jsp" %>
+    <script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
     
 </body>
 
