@@ -256,6 +256,24 @@ table{
 	font-weight: bold;
 }
 
+/*예약내역*/
+.btn_content{
+	width: 100%;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.cancel_btn{
+	width: 300px;
+	height: 30px;
+	border-radius: 0.5rem;
+	border: none;
+	background-color: #0D6FFC;
+	color: white;
+	
+}
+
 /* 페이지로 넘어가는 아이콘 */
 .fa-angle-right {
 	font-size: 25px;
