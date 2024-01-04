@@ -24,7 +24,7 @@
 .side_bar {
 	margin-right: 1%;
 	width: 10%;
-	height: 100vh;
+	height: 1700px;
 	float: left;
 	background-color: #0D6FFC;
 	font-weight: bold;

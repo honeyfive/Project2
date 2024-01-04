@@ -1,3 +1,5 @@
+<%@page import="db.dto.ReservationInfoDTO2"%>
+<%@page import="db.dao.ReservationInfoDAO2"%>
 <%@page import="db.dto.MemberInfoDTO"%>
 <%@page import="db.dao.MemberInfoDAO"%>
 <%@page import="db.dto.PaymentInfoDTO"%>
@@ -54,6 +56,13 @@
 	//예약 정보 - 대여장소-천안
 	List<ReservationInfoDTO> reservationInfoListByRentalPlaceCheonan = reservationInfoDAO
 			.findReservationInfoListByRentalPlaceCheonan();
+	
+	ReservationInfoDAO2 reservationInfoDAO2 = new ReservationInfoDAO2();
+	List<ReservationInfoDTO2> reservationInfoListByRentalPlaceAsan2 = reservationInfoDAO2
+			.findReservationInfoListByRentalPlaceAsan2();
+	//예약 정보 - 대여장소-천안
+	List<ReservationInfoDTO2> reservationInfoListByRentalPlaceCheonan2 = reservationInfoDAO2
+			.findReservationInfoListByRentalPlaceCheonan();
 
 	//()안에 예약번호로 예약 정보 불러오기
 	ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1140);
@@ -64,6 +73,8 @@
 
 	//차대여관리 정보
 	CarRentalManagementDAO carRentalManagementDAO = new CarRentalManagementDAO();
+	List<CarRentalManagementDTO> carRentalManagementList = carRentalManagementDAO.findCarRentalManagementInfoList();
+
 	CarRentalManagementDTO carRentalManagementDTO = carRentalManagementDAO
 			.findCarRentalManagementInfoByCarNumber(reservationInfoDTO.getCar_number());
 
@@ -107,34 +118,74 @@
 							%>
 
 							<p class="asanList"><%=reservationInfo.getRental_place()%></p>
-
-							<%
-							}
-							}
-							%>
-						</div>
-					</div>
-					<div class="location-modal-mainBox2">
-						천안
-						<div class="location-modal-mainBox2-item">
-							<%
-							if (reservationInfoListByRentalPlaceCheonan != null) {
-								for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceCheonan) {
-							%>
-
-							<p class="cheonanList"><%=reservationInfo.getRental_place()%></p>
-
-							<%
-							}
-							}
-							%>
-						</div>
+						<%
+						}
+						}
+						%>
 					</div>
 				</div>
-				<div class="location-modal-check-Btn">다음</div>
+				<div class="location-modal-mainBox2">
+					천안
+					<div class="location-modal-mainBox2-item">
+						<%
+						if (reservationInfoListByRentalPlaceCheonan != null) {
+							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceCheonan) {
+						%>
+
+						<p class="cheonanList"><%=reservationInfo.getRental_place()%></p>
+
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
 			</div>
+			<div class="location-modal-check-Btn">확인</div>
 		</div>
-		<!-- 모달창 - 달력 -->
+
+		<!-- 반납장소 모달 -->
+		<div class="location-modal2-body">
+			<div class="location-modal2-close-Btn">X</div>
+			<div class="location-modal2-header-text">반납장소선택</div>
+			<div class="location-modal2-body-container">
+				<div class="location-modal2-mainBox1">
+					아산
+					<div class="location-modal2-mainBox1-item">
+						<%
+						if (reservationInfoListByRentalPlaceAsan2 != null) {
+							for (ReservationInfoDTO2 reservationInfo2 : reservationInfoListByRentalPlaceAsan2) {
+						%>
+
+						<p class="asanList2"><%=reservationInfo2.getRental_place()%></p>
+
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
+				<div class="location-modal2-mainBox2">
+					천안
+					<div class="location-modal2-mainBox2-item">
+						<%
+						if (reservationInfoListByRentalPlaceCheonan2 != null) {
+							for (ReservationInfoDTO2 reservationInfo2 : reservationInfoListByRentalPlaceCheonan2) {
+						%>
+
+						<p class="cheonanList2"><%=reservationInfo2.getRental_place()%></p>
+
+						<%
+						}
+						}
+						%>
+					</div>
+				</div>
+			</div>
+			<div class="location-modal2-check-Btn">확인</div>
+		</div>
+	</div>
+	<!-- 모달창 - 달력 -->
 		<div class="date-modal">
 			<div class="date-modal-body">
 				-->
@@ -143,18 +194,17 @@
 					type="datetime-local" name="return_date" id="dateTime1">
 			</div>
 		</div>
-		<!-- 예약페이지  -->
-		<div class="rv-locationAndDateBox-sticky">
-			<div class="rv-locationAndDateBox">
-				<div class="rv-locationAndDateBox-location">
-					<!-- 대여 반납 창 따로 만들었습니다 ~ -->
-					<div class="place rent-place">대여장소선택</div>
-					<div class="place return-place">반납장소선택</div>
-				</div>
-				<div class="rv-locationAndDateBox-date"></div>
+	<!-- 예약페이지  -->
+	<div class="rv-locationAndDateBox-sticky">
+		<div class="rv-locationAndDateBox">
+			<div class="rv-locationAndDateBox-location">
+				<!-- 대여 반납 창 따로 만들었습니다 ~ -->
+				<div class="place rent-place">대여장소선택</div>
+				<div class="place return-place">반납장소선택</div>
 			</div>
+			<div class="rv-locationAndDateBox-date"></div>
 		</div>
-
+	</div>
 		<div class="rv-container">
 			<div class="rv-carInfoBox-container">
 				<div class="rv-carInfoBox-top">
@@ -216,12 +266,6 @@
 					<div class="rv-filterBox-Main-1">
 						자차보험
 						<div class="rv-filterBox-Main-1-data">
-
-							<!-- /* <form action="./payment.jsp" method="post">
-				<div class="rv-filterBox-Main">
-					<div class="rv-filterBox-Main-1">
-						자차보험
-						<div class="rv-filterBox-Main-1-data"> */ -->
 							<%
 							if (insuranceinfoList != null) {
 								for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
@@ -313,6 +357,11 @@
 				<div class="rv-filterBox-RVBtn">
 
 					<button type="submit">예약하기</button>
+
+				</div>
+			</form>
+		</div>
+	</div>
 
 
 
