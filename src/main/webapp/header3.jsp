@@ -17,7 +17,7 @@
 
 			<!-- 헤더 로고-->
 			<div class="header-nav-img">
-				<a href="./mainpage.jsp">
+				<a href="./manage_main.jsp">
 					<img id="hugo-logo" src="./images/hucarlogo2.png" alt="hugo logo">
 				</a>
 			</div>

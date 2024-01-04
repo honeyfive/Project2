@@ -51,16 +51,17 @@
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
 				 </a>
 			<% } %>
-			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
-				 <!-- 로그인 되어 있지 않은 경우 -->
-				 <a href="./login.jsp">
-				 	<div id="payment-pg" class="hearder-nav-btn-item logout_status">결제</div>
-				 </a>
-			<%}else{%>
-				 <!-- 로그인 되어 있는 경우 -->
-				 <a href="./payment.jsp"> <!-- 결제 페이지 연결-->
-					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
-				</a> 
+			
+			<% if (headerId == null || memberInfoHeaderDTO == null) { %>
+			    <!-- 로그인 되어 있지 않은 경우 -->
+			    <a href="./login.jsp">
+			        <div id="payment-pg" class="hearder-nav-btn-item logout_status">결제</div>
+			    </a>
+			<%} else { %>
+			    <!-- 로그인 되어 있는 경우 -->
+			    <a href="./reservation.jsp">
+			        <div id="payment-pg" class="hearder-nav-btn-item">결제</div>
+			    </a>
 			<% } %>
 			<% if (headerId == null || memberInfoHeaderDTO == null){ %>
 				 <!-- 로그인 되어 있지 않은 경우 -->
@@ -85,7 +86,7 @@
 					<div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
 				</a>
 				<!-- 결제 페이지 연결-->
-				<a href="./payment.jsp">
+				<a href="./reservation.jsp">
 					<div id="payment-pg" class="hearder-nav-btn-item">결제</div>
 				</a>
 				<!-- 마이 페이지 연결-->
@@ -130,7 +131,6 @@
 		</div>
 
 	</div>
-	
 	<script src="./js/logout.js"></script>
 	<script>
 		function loginPlzAlert(){

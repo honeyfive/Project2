@@ -149,7 +149,7 @@ button[type="submit"] {
 	position: absolute;
 	top: 20%;
 	width: 1000px;
-	height: 200px;
+	height: 230px;
 	padding: 10px;
 	text-align: center;
 	background-color: rgb(255, 255, 255);
