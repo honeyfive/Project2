@@ -74,11 +74,18 @@
 
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
+	
+	
+	String membership_number = (String) session.getAttribute("id");
+	MemberInfoDTO memberinfoMyDTO = memberInfoDAO.findMemberById(membership_number);
+	System.out.println(memberinfoMyDTO.getMembership_number());
 
 	//
 	%>
-	<form action="./addReservation.jsp" method="post">
+	<form action="./addReservation_proc.jsp" method="post">
 	<div class="location-modal">
+		<input type="hidden" name="membership_number" value="<%=memberinfoMyDTO.getMembership_number() %>">
+		
 		<!-- 모달창 - 지역 -->
 		<div class="location-modal-body">
 			<div class="location-modal-close-Btn">X</div>
@@ -118,15 +125,15 @@
 				</div>
 			</div>
 			<div class="location-modal-check-Btn">다음</div>
-		</div>
+		</div> 
 	</div>
 	<!-- 모달창 - 달력 -->
 	<div class="date-modal">
-		<div class="date-modal-body">
+		<div class="date-modal-body"> -->
 			<div class="date-modal-close-Btn">X</div>
-			대여일<input type="datetime-local" name="rental_date">반납일<input
-				type="datetime-local" name="return_date">
-		</div>
+			대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
+				type="datetime-local" name="return_date" id="dateTime1">
+		 </div>
 	</div>
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
@@ -146,6 +153,8 @@
 			</div>
 			
 			<div class="rv-carInfoBox-main">
+			<input type="text" name="rental_place">
+		<input type="text" name="return_place">
 				<%
 				if (carInfoList != null) {
 					for (CarInfoDTO carInfo : carInfoList) {
@@ -361,10 +370,22 @@
 	    }
 	});
 
+	</script>
+	
+	<script>
+	function removeT() {
+	    const dateTimeValue1 = document.getElementById('dateTime1').value;
+	    const formattedDateTime1 = dateTimeValue1.replace('T', ' '); // 첫 번째 datetime-local의 'T'를 공백으로 대체
 
+	    const dateTimeValue2 = document.getElementById('dateTime2').value;
+	    const formattedDateTime2 = dateTimeValue2.replace('T', ' '); // 두 번째 datetime-local의 'T'를 공백으로 대체
 
-
-
+	    // formattedDateTime1, formattedDateTime2를 사용하여 데이터를 처리하거나 전송할 수 있습니다.
+	    console.log('Formatted DateTime 1:', formattedDateTime1);
+	    console.log('Formatted DateTime 2:', formattedDateTime2);
+	    // 데이터를 전송하거나 다른 작업을 수행할 수 있습니다.
+	}
+}
 	</script>
 </body>
 </html>
