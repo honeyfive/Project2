@@ -167,8 +167,7 @@
 				%>
 				<div class="rv-carInfoBox-Box">
 					<div class="rv-carInfoBox-Box-imgBox">
-						<input type="checkbox" value="<%=carInfo.getCar_number()%>" name="car_number">
-						<img class="car_image" src=<%=carInfo.getCar_image()%>>
+						<input type="checkbox" value="<%=item.getCar_number()%>" name="car_number">
 						<img class="car_image" src=<%=item.getCar_image()%>>
 					</div>
 					<div class="rv-carInfoBox-Box-carInfoBox">
@@ -210,13 +209,13 @@
 				<div class="rv-filterBox-Main-1">
 					자차보험
 					<div class="rv-filterBox-Main-1-data">
-						<%
-			<form action="./payment.jsp" method="post">
+						
+			<!-- /* <form action="./payment.jsp" method="post">
 				<div class="rv-filterBox-Main">
 					<div class="rv-filterBox-Main-1">
 						자차보험
-						<div class="rv-filterBox-Main-1-data">
-							<%
+						<div class="rv-filterBox-Main-1-data"> */ -->
+						<%
 						if (insuranceinfoList != null) {
 							for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
 						%>
