@@ -82,7 +82,7 @@ function selectFirst() {
 }*/
 
 /* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
-function hideSelect() {
+/*function hideSelect() {
 	if (option.classList.contains('show')) {
 		option.classList.add('hide');
 		option.classList.remove('show');
@@ -91,7 +91,7 @@ function hideSelect() {
 
 selectFirst();
 select.addEventListener('click', selects);
-body.addEventListener('click', hideSelect);
+body.addEventListener('click', hideSelect);*/
 
 //제이쿼리 선택색상변경
 $(document).ready(function() {

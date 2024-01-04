@@ -31,12 +31,13 @@
 
 
 	<% 	
-	 	/* request.setCharacterEncoding("UTF-8");
-		int reservation_number = request.getParameter("reservation_number");  */
-		
+	 	request.setCharacterEncoding("UTF-8");
+	
+		String reservation_number = request.getParameter("reservation_number");
+		int intReservation_number = Integer.parseInt(reservation_number);
 		
 		ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
-		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1140);
+		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(intReservation_number);
 	
 		InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
 		InsuranceInfoDTO insuranceDTO = insuranceDAO.findInsuranceInfoByInsuNumber(reservationInfoDTO.getInsurance_number());
@@ -228,8 +229,7 @@
       </select>
 
 <% 
-		String reservation_number = request.getParameter("reservation_number"); 
-		int intReservation_number = 0;
+		intReservation_number = 0;
 		try {
 			intReservation_number = Integer.parseInt(reservation_number);
 		} catch (Exception e) {

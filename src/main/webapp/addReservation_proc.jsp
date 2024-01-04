@@ -33,12 +33,18 @@
 			return_place, rental_date, return_date, return_date, rental_date,return_date, rental_date,
 			intInsurance_number, car_number, intMembership_number, a);
 	
+	ReservationInfoDTO rsrvDTO = reservationInfoDAO.findReservationByMembershipNumber(intMembership_number);
+	int reservation_number = rsrvDTO.getReservation_number(); 
+	
+	//예약번호 !!!
+	//int reservation_number   = 
+	
 	System.out.println(result + rental_place + return_place + " " + rental_date + " " + return_date + " " + intInsurance_number + " " + car_number + " " + intMembership_number);
 	if(result > 0){
 	%>
 		<script>
 			alert('예약 성공');
-			location.href = 'payment.jsp';
+			location.href = 'payment.jsp?reservation_number=<%=reservation_number%>';
 		</script>
 	<%		
 		} else {

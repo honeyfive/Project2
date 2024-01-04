@@ -83,6 +83,34 @@ public class ReservationInfoDAO {
 		return reservationInfoDTO;
 
 	}
+	
+	public ReservationInfoDTO findReservationByMembershipNumber(int membership_number) {
+		conn = DBConnectionManager.connectDB();
+		String sql = " select MAX(reservation_number) reservation_number from reservation_information " + " where membership_number = ? ";
+
+		ReservationInfoDTO reservationInfoDTO = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, membership_number);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				reservationInfoDTO = new ReservationInfoDTO();
+				reservationInfoDTO.setReservation_number(rs.getInt("reservation_number"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return reservationInfoDTO;
+
+	}
 
 	// 아산지역 대여장소리스트
 	public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceAsan() {
