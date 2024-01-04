@@ -19,9 +19,11 @@
 				<form action="login_proc.jsp" class="login"
 					onsubmit="return validateForm()">
 					<input class="login-id login-input" type="text"
-						placeholder="아이디를 입력하세요." name="id"> <input
+						placeholder="아이디를 입력하세요." name="id" autocomplete="off">
+					<input
 						class="login-pw login-input" type="password"
-						placeholder="비밀번호를 입력하세요." name="password"> <input
+						placeholder="비밀번호를 입력하세요." name="password" autocomplete="off">
+					<input
 						class="login-submit login-input" type="submit" value="로그인">
 				</form>
 				<hr>
@@ -43,19 +45,19 @@
 	</div>
 
 	<script>
-    function validateForm() {
-        var id = document.getElementsByName("id")[0].value;
-        var password = document.getElementsByName("password")[0].value;
+		function validateForm() {
+			var id = document.getElementsByName("id")[0].value;
+			var password = document.getElementsByName("password")[0].value;
 
-        // 특정 아이디와 비밀번호를 확인하여 이동할 페이지 결정
-        if (id === "admin" && password === "admin1!") {
-            location.href = './manage_main.jsp';
-            return false; // 폼 제출 막기
-        } else {
-            // 다른 경우에는 기본 동작(폼 제출) 수행
-            return true;
-        }
-    }
-</script>
+			// 특정 아이디와 비밀번호를 확인하여 이동할 페이지 결정
+			if (id === "admin" && password === "admin1!") {
+				location.href = './manage_main.jsp';
+				return false; // 폼 제출 막기
+			} else {
+				// 다른 경우에는 기본 동작(폼 제출) 수행
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>
