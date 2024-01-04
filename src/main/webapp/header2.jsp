@@ -121,12 +121,10 @@
 		        </a>
 		    <% } else { %>
 		        <!-- 로그인 되어 있는 경우 -->
-		        <a href="./logout.jsp"> <!-- 로그아웃 페이지 연결하기 -->
 		            <div class="header-nav-login-btn">
 		                <i class="fa-regular fa-circle-user"></i>
 		                <div id="login_after"><%= memberInfoHeaderDTO.getName() %>님</div>
 		            </div>
-		        </a>
     		<% } %>
 
 		</div>
