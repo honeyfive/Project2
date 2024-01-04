@@ -4,4 +4,4 @@ document.querySelectorAll('.logout_status').forEach(item => {
       location.href = "./login.jsp";
     }
   });
-});
+});s
