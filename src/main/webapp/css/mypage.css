@@ -271,7 +271,7 @@ table{
 	border: none;
 	background-color: #0D6FFC;
 	color: white;
-	
+	cursor: pointer;
 }
 
 /* 페이지로 넘어가는 아이콘 */
