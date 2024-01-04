@@ -7,6 +7,8 @@
 <%@page import="db.dto.CarRentalManagementDTO"%>
 <%@page import="db.dao.CarRentalManagementDAO"%>
 <%@page import="db.dto.ReservationInfoDTO"%>
+<%@page import="db.dao.CarRentalInfoDAO"%>
+<%@page import="db.dto.CarRentalInfoDTO"%>
 <%@page import="db.dao.ReservationInfoDAO"%>
 <%@page import="db.dto.CarInfoDTO"%>
 <%@page import="db.dao.CarInfoDAO"%>
@@ -87,25 +89,35 @@
 	MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 	MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
 
-	//
+	String membership_number = (String) session.getAttribute("id");
+	MemberInfoDTO memberinfoMyDTO = memberInfoDAO.findMemberById(membership_number);
+	System.out.println(memberinfoMyDTO.getMembership_number());
+
+	// 차량 정보 + 렌탈 비용 리스트
+	CarRentalInfoDAO carRentalInfoDAO = new CarRentalInfoDAO();
+	List<CarRentalInfoDTO> carRentalInfoList = carRentalInfoDAO.findCarRentalInfo();
+	System.out.println(reservationInfoDTO.getReservation_number());
 	%>
+	<form action="./addReservation_proc.jsp" method="post">
+		<div class="location-modal">
+			<input type="hidden" name="membership_number"
+				value="<%=memberinfoMyDTO.getMembership_number()%>"> <input
+				type="hidden" name="reservation_number"
+				value="<%=reservationInfoDTO.getReservation_number()%>">
+			<!-- 모달창 - 지역 -->
+			<div class="location-modal-body">
+				<div class="location-modal-close-Btn">X</div>
+				<div class="location-modal-header-text">대여장소선택</div>
+				<div class="location-modal-body-container">
+					<div class="location-modal-mainBox1">
+						아산
+						<div class="location-modal-mainBox1-item">
+							<%
+							if (reservationInfoListByRentalPlaceAsan != null) {
+								for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceAsan) {
+							%>
 
-	<div class="location-modal">
-		<!-- 모달창 - 지역 -->
-		<div class="location-modal-body">
-			<div class="location-modal-close-Btn">X</div>
-			<div class="location-modal-header-text">대여장소선택</div>
-			<div class="location-modal-body-container">
-				<div class="location-modal-mainBox1">
-					아산
-					<div class="location-modal-mainBox1-item">
-						<%
-						if (reservationInfoListByRentalPlaceAsan != null) {
-							for (ReservationInfoDTO reservationInfo : reservationInfoListByRentalPlaceAsan) {
-						%>
-
-						<p class="asanList"><%=reservationInfo.getRental_place()%></p>
-
+							<p class="asanList"><%=reservationInfo.getRental_place()%></p>
 						<%
 						}
 						}
@@ -246,6 +258,7 @@
 					%>
 						</div> --%>
 
+
 					</div>
 
 				</div>
@@ -258,9 +271,83 @@
 			</div>
 
 		</div>
+		<!-- 모달창 - 달력 -->
+		<div class="date-modal">
+			<div class="date-modal-body">
+				<div class="date-modal-close-Btn">X</div>
+				대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
+					type="datetime-local" name="return_date" id="dateTime1">
+			</div>
+		</div>
+		<!-- 예약페이지  -->
+		<div class="rv-locationAndDateBox-sticky">
+			<div class="rv-locationAndDateBox">
+				<div class="rv-locationAndDateBox-location">
+					<!-- 대여 반납 창 따로 만들었습니다 ~ -->
+					<div class="place rent-place">대여장소선택</div>
+					<div class="place return-place">반납장소선택</div>
+				</div>
+				<div class="rv-locationAndDateBox-date"></div>
+			</div>
+		</div>
 
-		<div class="rv-filterBox">
-			<form action="./payment.jsp" method="post">
+		<div class="rv-container">
+			<div class="rv-carInfoBox-container">
+				<div class="rv-carInfoBox-top">
+					<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
+				</div>
+
+				<div class="rv-carInfoBox-main">
+					<input type="text" name="rental_place"> <input type="text"
+						name="return_place">
+					<%
+					if (carInfoList != null) {
+						for (CarRentalInfoDTO item : carRentalInfoList) {
+					%>
+					<div class="rv-carInfoBox-Box">
+						<div class="rv-carInfoBox-Box-imgBox">
+							<input type="checkbox" value="<%=item.getCar_number()%>"
+								name="car_number"> <img class="car_image"
+								src=<%=item.getCar_image()%>>
+						</div>
+						<div class="rv-carInfoBox-Box-carInfoBox">
+							<div class="rv-carInfoBox-Box-carName"><%=item.getCar_name()%></div>
+							<div class="rv-carInfoBox-Box-carYear">
+								<p class="rv-carInfoBox-Box-carYear-textBox"><%=item.getModel_year()%></p>
+								<span class="rv-carInfoBox-Box-carSize"><%=item.getCar_size()%></span>
+								<span class="rv-carInfoBox-Box-carType"><%=item.getCar_type()%></span>
+							</div>
+							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+								<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
+								<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=item.getRental_costs() + 20000%>원
+									부터
+								</div>
+							</div>
+							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+								<div class="rv-carInfoBox-Box-insuranceText">완전자차</div>
+								<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=item.getRental_costs() + 40000%>원
+									부터
+								</div>
+							</div>
+							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
+								<div class="rv-carInfoBox-Box-insuranceText">수퍼자차</div>
+								<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice-text"><%=item.getRental_costs() + 100000%>원
+									부터
+								</div>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+					} else {
+					// 데이터가 없을 때 처리할 부분
+					}
+					%>
+				</div>
+			</div>
+			<div class="rv-filterBox">
+
+				<%-- <input type="text" value="<%=carInfoList.get %>"> --%>
 				<div class="rv-filterBox-Main">
 					<div class="rv-filterBox-Main-1">
 						자차보험
@@ -362,6 +449,14 @@
 		</div>
 	</div>
 
+
+
+
+				</div>
+	</form>
+	</div>
+	</div>
+	</form>
 	<!-- 푸터 -->
 	<%@ include file="footer.jsp"%>
 
@@ -370,5 +465,133 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 	<script src="./js/reservation.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    var carBoxes = document.querySelectorAll('.rv-carInfoBox-Box');
+	    var carSizeCheckboxes = document.querySelectorAll('.carCheckbox');
+	    var carTypeCheckboxes = document.querySelectorAll('.carTypeCheckobx');
+	    var selectAllSizes = document.getElementById('selectAllSizes');
+	    var selectAllTypes = document.getElementById('selectAllTypes');
+
+	    selectAllSizes.addEventListener('change', toggleAllSizes);
+	    selectAllTypes.addEventListener('change', toggleAllTypes);
+
+	    carSizeCheckboxes.forEach(function(checkbox) {
+	        checkbox.addEventListener('change', updateDisplayedCars);
+	    });
+
+	    carTypeCheckboxes.forEach(function(checkbox) {
+	        checkbox.addEventListener('change', updateDisplayedCars);
+	    });
+
+	    function toggleAllSizes() {
+	        carSizeCheckboxes.forEach(function(cb) {
+	            cb.checked = selectAllSizes.checked;
+	        });
+	        updateDisplayedCars();
+	    }
+
+	    function toggleAllTypes() {
+	        carTypeCheckboxes.forEach(function(cb) {
+	            cb.checked = selectAllTypes.checked;
+	        });
+	        updateDisplayedCars();
+	    }
+
+	    function updateDisplayedCars() {
+	        var selectedSizes = [];
+	        var selectedTypes = [];
+
+	        carSizeCheckboxes.forEach(function(cb) {
+	            if (cb.checked) {
+	                selectedSizes.push(cb.value.toLowerCase());
+	            }
+	        });
+
+	        carTypeCheckboxes.forEach(function(cb) {
+	            if (cb.checked) {
+	                selectedTypes.push(cb.value.toLowerCase());
+	            }
+	        });
+
+	        carBoxes.forEach(function(carBox) {
+	            var carSizeElement = carBox.querySelector('.rv-carInfoBox-Box-carSize');
+	            var carTypeElement = carBox.querySelector('.rv-carInfoBox-Box-carType');
+
+	            var carSizeText = carSizeElement.textContent.trim().toLowerCase();
+	            var carTypeText = carTypeElement.textContent.trim().toLowerCase();
+
+	            var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(carSizeText) || selectedSizes.includes('all');
+	            var typeFilter = selectedTypes.length === 0 || selectedTypes.includes(carTypeText) || selectedTypes.includes('all');
+
+	            if ((selectedSizes.length === 1 && selectedTypes.length === 0 && sizeFilter) ||
+	                (selectedTypes.length === 1 && selectedSizes.length === 0 && typeFilter) ||
+	                (sizeFilter && typeFilter)) {
+	                carBox.style.display = 'flex';
+	            } else {
+	                carBox.style.display = 'none';
+	            }
+	        });
+	    }
+	});
+	</script>
+
+	<script>
+	function removeT() {
+	    const dateTimeValue1 = document.getElementById('dateTime1').value;
+	    const formattedDateTime1 = dateTimeValue1.replace('T', ' '); // 첫 번째 datetime-local의 'T'를 공백으로 대체
+
+	    const dateTimeValue2 = document.getElementById('dateTime2').value;
+	    const formattedDateTime2 = dateTimeValue2.replace('T', ' '); // 두 번째 datetime-local의 'T'를 공백으로 대체
+
+	    // formattedDateTime1, formattedDateTime2를 사용하여 데이터를 처리하거나 전송할 수 있습니다.
+	    console.log('Formatted DateTime 1:', formattedDateTime1);
+	    console.log('Formatted DateTime 2:', formattedDateTime2);
+	    // 데이터를 전송하거나 다른 작업을 수행할 수 있습니다.
+	}
+}
+								carTypeCheckboxes.forEach(function(cb) {
+									if (cb.checked) {
+										selectedTypes.push(cb.value
+												.toLowerCase());
+									}
+								});
+
+								carBoxes
+										.forEach(function(carBox) {
+											var carSizeElement = carBox
+													.querySelector('.rv-carInfoBox-Box-carSize');
+											var carTypeElement = carBox
+													.querySelector('.rv-carInfoBox-Box-carType');
+
+											var carSizeText = carSizeElement.textContent
+													.trim().toLowerCase();
+											var carTypeText = carTypeElement.textContent
+													.trim().toLowerCase();
+
+											var sizeFilter = selectedSizes.length === 0
+													|| selectedSizes
+															.includes(carSizeText)
+													|| selectedSizes
+															.includes('all');
+											var typeFilter = selectedTypes.length === 0
+													|| selectedTypes
+															.includes(carTypeText)
+													|| selectedTypes
+															.includes('all');
+
+											if ((selectedSizes.length === 1
+													&& selectedTypes.length === 0 && sizeFilter)
+													|| (selectedTypes.length === 1
+															&& selectedSizes.length === 0 && typeFilter)
+													|| (sizeFilter && typeFilter)) {
+												carBox.style.display = 'flex';
+											} else {
+												carBox.style.display = 'none';
+											}
+										});
+							}
+						});
+	</script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="db.dao.ReservationInfoDAO"%>
 <%@page import="oracle.jdbc.dcn.RowChangeDescription"%>
 <%@page import="javax.swing.Scrollable"%>
 <%@page import="db.dao.HistoryInfoDAO"%>
@@ -11,7 +12,8 @@
 <%@ page import="db.dto.PaymentInfoDTO"%>
 <%@page import="db.dao.ReservationHistoryDAO"%>
 <%@page import="db.dto.ReservationHistoryDTO"%>
-
+<%@ page import="db.dao.ReservationMyPageDAO"%>
+<%@ page import="db.dto.ReservationMyPageDTO"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,7 +21,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마이페이지</title>
-<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png"
+	sizes="32x32">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -29,7 +32,7 @@
 <link rel="shortcut icon" href="./images/favicon.png" type="image/png"
 	sizes="32x32">
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<%
 	MemberInfoDAO memberInfoMyDAO = new MemberInfoDAO();
 	List<MemberInfoDTO> memberInfoMyDTO = memberInfoMyDAO.findMemberList();
@@ -38,20 +41,23 @@
 
 	String id = (String) session.getAttribute("id"); // 세션으로 아이디 가져오기
 	MemberInfoDTO memberinfoMyDTO = memberInfoMyDAO.findMemberById(id); // 아이디로 회원 정보 찾기
-	System.out.println("아이디로 찾은 회원 정보 " + memberinfoMyDTO);
 
 	int membershipNumber = memberinfoMyDTO.getMembership_number(); // 아이디로 찾은 회원 정보에서 회원 번호 가져오기
 
+	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 이용 내역 찾기
 	HistoryInfoDAO historyInfoMyDAO = new HistoryInfoDAO();
 	List<HistoryInfoDTO> useMemberInfoDTO = historyInfoMyDAO.findHistoryInfoListByMembershipNumber(membershipNumber);
-	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 이용 내역이 있나 확인하려고 만들었삼
-	System.out.println("이력 정보 " + useMemberInfoDTO);
 
+	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 새로 만든 내역 찾기
 	ReservationHistoryDAO reservationHistoryDAO = new ReservationHistoryDAO();
 	List<ReservationHistoryDTO> reservationHistoryDTO = reservationHistoryDAO
 			.findReservationHistoryListByMembershipNumber(membershipNumber);
-	// 아이디로 찾은 회원 정보에서 가져온 회원 번호로 새로 만든 내역 찾기
-	System.out.println("렌트 내역 " + reservationHistoryDTO);
+
+	// 아디로 찾은 회원 정보에서 가져온 회원 번호로 예약 내역 찾기
+	ReservationMyPageDAO reservationDAO = new ReservationMyPageDAO();
+	List<ReservationMyPageDTO> reservationList = reservationDAO.findReservationListByMembershipNumber(membershipNumber);
+	
+	System.out.println(reservationList);
 	%>
 
 	<!--헤더-->
@@ -149,6 +155,7 @@
 					String textColor = (reservationHistoryList.getReal_return_date() == null) ? "red" : "black";
 					String backgroundColor = (reservationHistoryList.getOverdue_history() < 0) ? "yellow" : "white";
 				%>
+
 				<tr
 					style="color: <%=textColor%>; background-color: <%=backgroundColor%>;">
 					<td><%=reservationHistoryList.getRental_date()%></td>
@@ -164,8 +171,8 @@
 				%>
 
 			</table>
-			<div class="rating_level">빨간글씨 : 예약취소 건</div>
-			<div class="rating_level">노란배경 : 연체 건</div>
+			<div class="rating_level" style="color: #0D6FFC">빨간글씨 : 예약취소 건</div>
+			<div class="rating_level" style="color: #0D6FFC">노란배경 : 연체 건</div>
 
 		</div>
 		<%
@@ -188,9 +195,52 @@
 						<option value="T">실시간 계좌이체</option>
 					</select>
 				</div>
-
 			</div>
 		</div>
+
+		<!-- 결제 취소 -->
+		<div class="rent_progress_box">
+			<div class="rent_progress"></div>
+			<%
+					if (reservationList.size() == 0) {
+					%>
+			<div class="not_rent_progress">
+				<i class="fa-regular fa-face-flushed"></i>
+				<p class="not_rent_progress_ment">예약 내역이 없습니다</p>
+			</div>
+			<%
+			} else { // 예약 내역 있으면
+			%>
+			<div class="not_rent_progress rent_progress">
+				<div class="rent_title">예약 내역</div>
+			</div>
+			<form action="./mypage_proc.jsp" onsubmit="return onSubmitForm()"
+				method="post">
+				<table class="rent_table">
+					<tr class="cancel_tr">
+						<th>선택</th>
+						<th>대여날짜</th>
+						<th>대여장소</th>
+						<th>반납날짜</th>
+						<th>반납장소</th>
+						<th>차량번호</th>
+					</tr>
+
+					<% for (ReservationMyPageDTO item : reservationList) { %>
+					<tr>
+						<td><input type="checkbox" name="cancelChk" value="<%= item.getReservation_number()%>"></td>
+						<td><%= item.getRental_date() %></td>
+						<td><%= item.getRental_place() %></td>
+						<td><%= item.getReturn_date() %></td>
+						<td><%= item.getReturn_place() %></td>
+						<td><%= item.getCar_number() %></td>
+					</tr>
+					<% }} %>
+				</table>
+				<div class="btn_content"><button type="submit" class="cancel_btn">예약취소하기</button></div>
+			</form>
+		</div>
+
 
 		<!-- 개인정보 수정 페이지 -->
 		<a href="./myinfoproc.jsp" class="my_info_proc_box">
@@ -260,5 +310,9 @@
 	<%@ include file="footer.jsp"%>
 
 	<script src="./js/mypage.js"></script>
+	<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

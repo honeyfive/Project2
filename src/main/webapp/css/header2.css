@@ -118,6 +118,6 @@ a {
     cursor: pointer;
 }
 
-#login {
+#login , #login_after{
     margin-left: 10px;
 }

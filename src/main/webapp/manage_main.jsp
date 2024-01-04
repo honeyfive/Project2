@@ -42,6 +42,7 @@ html,body {
 	width: 10%;
 	height: 100%;
 	background-color: #0D6FFC;
+	float:left;
 	font-weight: bold;
 	text-align: center;
 }
@@ -78,38 +79,47 @@ html,body {
 }
 
 .car_available_img {
-	width: 70%;
-    height: 76%;
+	width: 60%;
+    height: 70%;
     object-fit: contain;
-    margin-top: 1%;
+    margin-bottom: 15%;
     margin-left: 36%;
 }
 
 .car_available {
-	position: relative;
+	width : 20%;
+	height : 22%;
 	background-color: #4891d4;
 	border-radius: 10px;
+	display: inline-block;
+	margin-left: 8%;
 }
 
 .car_using {
-	position: relative;
+	width : 20%;
+	height : 22%;
 	background-color: #f4d141;
 	border-radius: 10px;
+	margin-left: 8%;
+	display: inline-block;
 }
 
 .car_maintenance {
-	position: relative;
+	width : 20%;
+	height : 22%;
 	background-color: #e67e22;
 	border-radius: 10px;
+	margin-left: 8%;
+	display: inline-block;
 }
 
 .availableCount {
-	position: absolute;
+	/* position: absolute; */
 	margin-left: 1%;
 	color: white;
 	font-size: 1.9rem;
-	padding-top: 15%;
-	padding-left: 12%;
+	/* padding-top: 15%;
+	padding-left: 12%; */
 	font-weight: bold;
 }
 
@@ -369,8 +379,7 @@ hr {
 
 	int age_5 = memberInfoDAO.findMemberByAge_5();
 
-	System.out.println(
-			availableCount + " " + gasoline + " " + diesel + " " + electronic + " " + hydrogen + " " + vehicleRating_1);
+	System.out.println(availableCount + " " + gasoline + " " + diesel + " " + electronic + " " + hydrogen + " " + vehicleRating_1);
 
 	PaymentInfoDAO paymentInfoDAO = new PaymentInfoDAO();
 	List<PaymentInfoDTO> paymentInfoList = paymentInfoDAO.dailyPaymentsList();
@@ -378,7 +387,6 @@ hr {
 
 	<%@ include file="header3.jsp"%>
 
-	<div id="container">
 		<div class="side_bar">
 			<a href="./manage_main.jsp"><div class="manage">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -422,10 +430,10 @@ hr {
 				</div></a>
 		</div>
 		<!-- 대쉬보드박스 -->
-		<div class="dashBoardBox">
+		
 			<!-- 대쉬보드텍스트 -->
-			<span class="dashBoard-text">Dashboard</span>
-			<div class="infograph-box">
+			<p>Dashboard</p>
+			
 				<div class="car_available">
 					<div class="ment">사용가능</div>
 					<div class="availableCount">
@@ -449,17 +457,6 @@ hr {
 					</div>
 					<img src="./images/자동차_정비중.png" class="car_available_img">
 				</div>
-			</div>
-			<div class="chartBox">
-				<div class="chart"></div>
-				<div class="chart"></div>
-				<div class="chart"></div>
-				<div class="chart"></div>
-				<div class="chart"></div>
-				<div class="chart"></div>
-			</div>
-		</div>
-	</div>
 
 	
 
@@ -471,7 +468,7 @@ hr {
 		<hr /> -->
 
 
-		<!-- <script
+		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 		<canvas id="doughnut-chart" width="500" height="200"
 			style="display: inline-block;"></canvas>
@@ -635,6 +632,6 @@ hr {
 				}
 			}
 		});
-	</script> -->
+	</script>
 </body>
 </html>

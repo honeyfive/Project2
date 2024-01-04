@@ -83,6 +83,34 @@ public class ReservationInfoDAO {
 		return reservationInfoDTO;
 
 	}
+	
+	public ReservationInfoDTO findReservationByMembershipNumber(int membership_number) {
+		conn = DBConnectionManager.connectDB();
+		String sql = " select MAX(reservation_number) reservation_number from reservation_information " + " where membership_number = ? ";
+
+		ReservationInfoDTO reservationInfoDTO = null;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, membership_number);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				reservationInfoDTO = new ReservationInfoDTO();
+				reservationInfoDTO.setReservation_number(rs.getInt("reservation_number"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.closeDB(conn, psmt, rs);
+		}
+
+		return reservationInfoDTO;
+
+	}
 
 	// 아산지역 대여장소리스트
 	public List<ReservationInfoDTO> findReservationInfoListByRentalPlaceAsan() {
@@ -147,29 +175,58 @@ public class ReservationInfoDAO {
 		return reservationInfoListByRentalPlaceCheonan;
 	}
 	
-	public int saveReservationInfo(int reservation_number, String rental_place, String return_place, String rental_date, String return_date,
-			int total_rental_date, int total_rental_time, int insurance_number, String car_number, int membership_number, int payment_number) {
+	
+	//결제하면 결제번호 수정
+		public int modifyPaymentNumber(ReservationInfoDTO reservationInfo) {
+
+	        conn = DBConnectionManager.connectDB();
+
+	        String sql = " UPDATE reservation_information" 
+	        			+ " SET payment_number = (select payment_number from payment_info where reservation_number = ? ) where reservation_number = ? " ;
+
+	        int result = 0;
+
+	        try {
+	            psmt = conn.prepareStatement(sql);
+
+	            psmt.setInt(1, reservationInfo.getReservation_number());
+	            psmt.setInt(2, reservationInfo.getReservation_number());
+
+	            result = psmt.executeUpdate();  
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            DBConnectionManager.closeDB(conn, psmt, rs);
+	        }
+	        return result;
+	    }
+	public int saveReservationInfo(String rental_place, String return_place, String rental_date, String return_date,
+			String return_date1, String rental_date1, String return_date2, String rental_date2, int insurance_number, String car_number,
+			int membership_number, int payment_number) {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " INSERT INTO car_info_check VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+		String sql = " INSERT INTO reservation_information VALUES((SELECT MAX(reservation_number) + 1 FROM reservation_information), ?, ?, ?, ?, CEIL(TO_DATE(?, 'YYYY-MM-DD HH24:MI') - TO_DATE(?, 'YYYY-MM-DD HH24:MI')), round((TO_DATE(?, 'YYYY-MM-DD HH24:MI') - TO_DATE(?, 'YYYY-MM-DD HH24:MI'))*24*60), ?, ?, ?, ?) ";
 
 		int result = 0;
 
 		try {
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setInt(1, reservation_number);
-			psmt.setString(2, rental_place);
-			psmt.setString(3, return_place);
-			psmt.setString(4, rental_date);
-			psmt.setString(5, return_date);
-			psmt.setInt(6, total_rental_date);
-			psmt.setInt(7, total_rental_time);
-			psmt.setInt(8, insurance_number);
-			psmt.setString(9, car_number);
-			psmt.setInt(10, membership_number);
-			psmt.setInt(11, payment_number);
+			psmt.setString(1, rental_place);
+			psmt.setString(2, return_place);
+			psmt.setString(3, rental_date);
+			psmt.setString(4, return_date);
+			
+			psmt.setString(5, return_date1);
+			psmt.setString(6, rental_date1);
+			psmt.setString(7, return_date2);
+			psmt.setString(8, rental_date2);
+			psmt.setInt(9, insurance_number);
+			psmt.setString(10, car_number);
+			psmt.setInt(11, membership_number);
+			psmt.setInt(12, payment_number);
 
 			result = psmt.executeUpdate();
 

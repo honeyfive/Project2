@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>휴카</title>
 <link rel="stylesheet" href="./css/signup.css">
-<link rel="shortcut icon" href="./images/favicon.png" type="image/png" sizes="32x32">
+<link rel="shortcut icon" href="./images/favicon.png" type="image/png"
+	sizes="32x32">
 
 </head>
 <body>
@@ -30,7 +31,7 @@
 						<div class="input-box">
 							<div class="input-item">
 								<input class="input-id" type="text" placeholder="최대 10글자"
-									name="id" id="id">
+									name="id" id="id" autocomplete="off">
 							</div>
 							<div id="idChkResult"></div>
 							<div>
@@ -38,29 +39,30 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- 비밀번호 -->
 					<div class="signin-input">
 						<div class="signin-id">비밀번호</div>
 						<div class="input-box">
 							<div>
 								<input class="input-id input-pw" type="input"
-									placeholder="최대 10글자" name="pw" id="pw">
+									placeholder="최대 10글자" name="pw" id="pw" autocomplete="off">
 								<!-- <i class="fa-solid fa-eye"></i> -->
 							</div>
 							<div>
-								<button type="button" class="id-chd" id="pwChkBtn" onclick="checkPasswordPattern(pw)">확인</button>
+								<button type="button" class="id-chd" id="pwChkBtn"
+									onclick="checkPasswordPattern(pw)">확인</button>
 							</div>
 						</div>
-						<div class="caution signin-id" >비밀번호는 영문 + 숫자 + 특수기호를
-							포함 3-10글자이어야 합니다</div>
+						<div class="caution signin-id">비밀번호는 영문 + 숫자 + 특수기호를 포함
+							3-10글자이어야 합니다</div>
 					</div>
 
 					<!-- 이름-->
 					<div class="signin-input signin-input-id">
 						<div class="signin-id">이름</div>
 						<div class="signin-id">
-							<input class="input-new" type="text" name="name">
+							<input class="input-new" type="text" name="name"
+								autocomplete="off">
 						</div>
 					</div>
 
@@ -69,7 +71,7 @@
 						<div class="signin-id">생년월일</div>
 						<div class="signin-birth">
 							<input class="birth-box" name="birth-year" id="birth-year"
-								type="text" placeholder="출생년도"> <select
+								type="text" placeholder="출생년도" autocomplete="off"> <select
 								class="birth-box" name="birth-month" id="birth-month">
 								<option disabled selected>월</option>
 								<option value="1">1</option>
@@ -143,22 +145,22 @@
 								<div class="signin-li-form">
 									<div>
 										<input class="input-li" type="text" name="lisence1"
-											id="lisence1">
+											id="lisence1" autocomplete="off">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
 										<input class="input-li" type="text" name="lisence2"
-											id="lisence2">
+											id="lisence2" autocomplete="off">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
 										<input class="input-li" type="text" name="lisence3"
-											id="lisence3">
+											id="lisence3" autocomplete="off">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
 										<input class="input-li" type="text" name="lisence4"
-											id="lisence4">
+											id="lisence4" autocomplete="off">
 									</div>
 								</div>
 								<div>
@@ -173,7 +175,7 @@
 						<div class="signin-id">면허취득일</div>
 						<div class="signin-birth">
 							<input class="birth-box" name="lisence-year" id="lisence-year"
-								type="text" placeholder="취득년도"> <select
+								type="text" placeholder="취득년도" autocomplete="off"> <select
 								class="birth-box" name="lisence-month" id="lisence-month">
 								<option disabled selected>월</option>
 								<option value="1">1</option>
@@ -233,15 +235,18 @@
 							<div class="input-item">
 								<div class=" signin-tel">
 									<div>
-										<input class="input-tel" type="text" name="tel1" id="tel1">
+										<input class="input-tel" type="text" name="tel1" id="tel1"
+											autocomplete="off">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-tel" type="text" name="tel2" id="tel2">
+										<input class="input-tel" type="text" name="tel2" id="tel2"
+											autocomplete="off">
 									</div>
 									<div class="input-li-slash">-</div>
 									<div>
-										<input class="input-tel" type="text" name="tel3" id="tel3">
+										<input class="input-tel" type="text" name="tel3" id="tel3"
+											autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -256,7 +261,8 @@
 						<div class="signin-id">이메일</div>
 						<div class="input-box">
 							<div class="input-item">
-								<input class="input-id" type="text" name="email" id="email">
+								<input class="input-id" type="text" name="email" id="email"
+									autocomplete="off">
 							</div>
 							<div>
 								<button type="button" class="id-chd" id="emailChkBtn">확인</button>
@@ -273,7 +279,8 @@
 							<input type="checkbox" name="email-ok"> 이메일 수신 동의 (선택)
 						</div>
 						<div>
-							<input type="checkbox" name="plz-ok" id="plz-ok" onchange="toggleButton()"> 개인정보수집 및 이용 동의
+							<input type="checkbox" name="plz-ok" id="plz-ok"
+								onchange="toggleButton()"> 개인정보수집 및 이용 동의
 						</div>
 					</div>
 

@@ -31,16 +31,13 @@
 
 
 	<% 	
-		//이전 예약 페이지에서 값 전달!!! 
-		// 어떻게 전달할건가 어떻게 받을건가!!
-		
-		// 직접수정 or 이전 담당자 얘기해서 협의 
-		//int reservation_number = request.getParameter(""); 
-		
+	 	request.setCharacterEncoding("UTF-8");
+	
+		String reservation_number = request.getParameter("reservation_number");
+		int intReservation_number = Integer.parseInt(reservation_number);
 		
 		ReservationInfoDAO reservationInfoDAO = new ReservationInfoDAO();
-		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(1140);
-
+		ReservationInfoDTO reservationInfoDTO = reservationInfoDAO.findReservationInfoByRsrvNumber(intReservation_number);
 	
 		InsuranceInfoDAO insuranceDAO = new InsuranceInfoDAO();
 		InsuranceInfoDTO insuranceDTO = insuranceDAO.findInsuranceInfoByInsuNumber(reservationInfoDTO.getInsurance_number());
@@ -63,11 +60,12 @@
 	    MemberInfoDAO memberInfoDAO = new MemberInfoDAO();
 	    MemberInfoDTO memberInfoDTO = memberInfoDAO.findMemberById(reservationInfoDTO.getMembership_number());
 
+	    
 %>
 
 	
 
- <%@ include file="header.jsp" %>
+ <%@ include file="header2.jsp" %>
  
  <div class="payment-topBox">
  <div class="payment-titleBox">결제페이지<div class="payment-titleText"></div></div>
@@ -128,10 +126,29 @@
         <i class="fa-solid fa-user"></i> <%=carInfoDTO.getPassenger_count() %>
         <hr/>
         차량옵션 : 
-        <%=carInfoDTO.getOption1()%>  & <%=carInfoDTO.getOption2()%>
+        
+   	 <%
+     	if(carInfoDTO.getOption1() == null){
+     	%>
+        			<%=carInfoDTO.getOption2()%>
+        <%
+        }else if(carInfoDTO.getOption2()==null){
+       	%>
+        	<%=carInfoDTO.getOption1()%>
+        	<%
+        }else{
+        	 %>
+        	<%=carInfoDTO.getOption1()%>  & <%=carInfoDTO.getOption2()%>
+        	<%
+        }
+        %> 
+        
+        
     	</li>
     	</ul>
     </div>
+    
+    <hr/>
   
    <h3> * 보험정보</h3>
    
@@ -211,11 +228,19 @@
       	<option value="P">휴대폰결제</option>
       </select>
 
-
+<% 
+		intReservation_number = 0;
+		try {
+			intReservation_number = Integer.parseInt(reservation_number);
+		} catch (Exception e) {
+			e.printStackTrace();
+			intReservation_number = 0;
+		}
 		
-			
+%>		
 		<input type="hidden" name="reservation_number" value="<%=reservationInfoDTO.getReservation_number()%>">
 		<input type="hidden"  name="payment_price" value="<%=(int)total_price %>">
+		<input type="hidden" name="membership_number" value="<%=memberInfoDTO.getMembership_number()%>">
 		
 		<button type="submit" class="payment-Btn">결제하기</button>
 	</form>
@@ -223,7 +248,8 @@
 		<div class="paymentAgree"> * 위 내용을 모두 확인하였으며, 결제에 동의합니다</div>
 	
 	</div>
-</div>
+</div>	
+
 	
 	
 	 <%@ include file="footer.jsp" %>
