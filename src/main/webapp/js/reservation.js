@@ -14,11 +14,12 @@ rentModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
 	$(".location-modal-check-Btn").css("background-color", "#999999");
 	$('.location-modal-body').css("z-index", 301);
+	$('input[type="text"].rent-place').css("border","3px solid #0D6FFC")
 	$('.asanList, .cheonanList').on('click', function() {
 		$('.asanList, .cheonanList').removeClass('selected');
 		$(this).addClass('selected');
 		var clickedValue = $(this).text();
-		$('.rent-place').text(clickedValue);
+		$('input[type="text"].rent-place').val(clickedValue);
 		$('.location-modal-check-Btn').css("background-color", "#0D6FFC");
 	});
 });
@@ -26,11 +27,12 @@ rentModal.addEventListener("click", () => {
 returnModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
 	$(".location-modal2-check-Btn").css("background-color", "#999999");
+	$('input[type="text"].return-place').css("border","3px solid #0D6FFC")
 	$('.asanList2, .cheonanList2').on('click', function() {
 		$('.asanList2, .cheonanList2').removeClass('selected');
 		$(this).addClass('selected');
 		var clickedValue = $(this).text();
-		$(".return-place").text(clickedValue);
+		$('input[type="text"].return-place').val(clickedValue);
 		$(".location-modal2-check-Btn").css("background-color", "#0D6FFC");
 	});
 });

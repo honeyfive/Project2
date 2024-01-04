@@ -198,9 +198,10 @@
 	<div class="rv-locationAndDateBox-sticky">
 		<div class="rv-locationAndDateBox">
 			<div class="rv-locationAndDateBox-location">
-				<!-- 대여 반납 창 따로 만들었습니다 ~ -->
-				<div class="place rent-place">대여장소선택</div>
-				<div class="place return-place">반납장소선택</div>
+				<!-- 대여 반납 창 input type -->
+				<input type="text" name="rental_place" class="place rent-place" value="대여장소선택" readonly>
+				<input type="text" name="return_place" class="place return-place" value="반납장소선택" readonly>
+				
 			</div>
 			<div class="rv-locationAndDateBox-date"></div>
 		</div>
@@ -212,16 +213,15 @@
 				</div>
 
 				<div class="rv-carInfoBox-main">
-					<input type="text" name="rental_place"> <input type="text"
-						name="return_place">
 					<%
 					if (carInfoList != null) {
 						for (CarRentalInfoDTO item : carRentalInfoList) {
 					%>
 					<div class="rv-carInfoBox-Box">
+						<input type="checkbox" class="carCheckBox" value="<%=item.getCar_number()%>"
+								name="car_number">
 						<div class="rv-carInfoBox-Box-imgBox">
-							<input type="checkbox" value="<%=item.getCar_number()%>"
-								name="car_number"> <img class="car_image"
+							 <img class="car_image"
 								src=<%=item.getCar_image()%>>
 						</div>
 						<div class="rv-carInfoBox-Box-carInfoBox">
