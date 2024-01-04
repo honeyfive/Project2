@@ -77,7 +77,7 @@
 
 	//
 	%>
-
+	<form action="./addReservation.jsp" method="post">
 	<div class="location-modal">
 		<!-- 모달창 - 지역 -->
 		<div class="location-modal-body">
@@ -124,8 +124,8 @@
 	<div class="date-modal">
 		<div class="date-modal-body">
 			<div class="date-modal-close-Btn">X</div>
-			대여일<input type="date">대여시간<input type="time">반납일<input
-				type="date">반납시간<input type="time">
+			대여일<input type="datetime-local" name="rental_date">반납일<input
+				type="datetime-local" name="return_date">
 		</div>
 	</div>
 	<!-- 예약페이지  -->
@@ -138,11 +138,13 @@
 			<div class="rv-locationAndDateBox-date"></div>
 		</div>
 	</div>
+	
 	<div class="rv-container">
 		<div class="rv-carInfoBox-container">
 			<div class="rv-carInfoBox-top">
 				<div class="rv-carInfoBox-top-searchResult-text">검색결과</div>
 			</div>
+			
 			<div class="rv-carInfoBox-main">
 				<%
 				if (carInfoList != null) {
@@ -150,6 +152,7 @@
 				%>
 				<div class="rv-carInfoBox-Box">
 					<div class="rv-carInfoBox-Box-imgBox">
+						<input type="checkbox" value="<%=carInfo.getCar_number()%>" name="car_number">
 						<img class="car_image" src=<%=carInfo.getCar_image()%>>
 					</div>
 					<div class="rv-carInfoBox-Box-carInfoBox">
@@ -182,7 +185,8 @@
 			</div>
 		</div>
 		<div class="rv-filterBox">
-		<form action="./payment.jsp" method="post">
+		
+			<%-- <input type="text" value="<%=carInfoList.get %>"> --%>
 			<div class="rv-filterBox-Main">
 				<div class="rv-filterBox-Main-1">
 					자차보험
@@ -275,10 +279,10 @@
 					<button type="submit">예약하기</button>
 				
 			</div>
-			</form>
+			
 		</div>
 	</div>
-
+</form>
 	<!-- 푸터 -->
 	<%@ include file="footer.jsp"%>
 
