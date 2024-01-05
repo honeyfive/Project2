@@ -188,21 +188,27 @@
 	<!-- 모달창 - 달력 -->
 		<div class="date-modal">
 			<div class="date-modal-body">
-				-->
+				<div class="location-modal-header-text">대여/반납 날짜/시간선택</div>
 				<div class="date-modal-close-Btn">X</div>
-				대여일<input type="datetime-local" name="rental_date" id="dateTime1">반납일<input
-					type="datetime-local" name="return_date" id="dateTime1">
+				<div class="centerDate"><p class="rentText">대여일</p><input type="datetime-local" class="rentDateText" name="rental_date" id="dateTime1"><p class="returnText" >반납일</p><input
+					type="datetime-local" class="returnDateText" name="return_date" id="dateTime1"></div>
+				
+					<div class="date-modal3-check-Btn">확인</div>
 			</div>
 		</div>
 	<!-- 예약페이지  -->
 	<div class="rv-locationAndDateBox-sticky">
 		<div class="rv-locationAndDateBox">
 			<div class="rv-locationAndDateBox-location">
-				<!-- 대여 반납 창 따로 만들었습니다 ~ -->
-				<div class="place rent-place">대여장소선택</div>
-				<div class="place return-place">반납장소선택</div>
+				<!-- 대여 반납 창 input type -->
+				<input type="text" name="rental_place" class="place rent-place" value="대여장소선택" readonly>
+				<input type="text" name="return_place" class="place return-place" value="반납장소선택" readonly>
+				
 			</div>
-			<div class="rv-locationAndDateBox-date"></div>
+			<div class="rv-locationAndDateBox-date">대여/반납 날짜/시간선택 &nbsp<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+				<path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+				<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+			  </svg></div>
 		</div>
 	</div>
 		<div class="rv-container">
@@ -212,24 +218,24 @@
 				</div>
 
 				<div class="rv-carInfoBox-main">
-					<input type="text" name="rental_place"> <input type="text"
-						name="return_place">
 					<%
 					if (carInfoList != null) {
 						for (CarRentalInfoDTO item : carRentalInfoList) {
 					%>
 					<div class="rv-carInfoBox-Box">
+						<input type="radio" class="carCheckBox" value="<%=item.getCar_number()%>"
+								name="car_number">
 						<div class="rv-carInfoBox-Box-imgBox">
-							<input type="checkbox" value="<%=item.getCar_number()%>"
-								name="car_number"> <img class="car_image"
+							 <img class="car_image"
 								src=<%=item.getCar_image()%>>
 						</div>
 						<div class="rv-carInfoBox-Box-carInfoBox">
 							<div class="rv-carInfoBox-Box-carName"><%=item.getCar_name()%></div>
 							<div class="rv-carInfoBox-Box-carYear">
-								<p class="rv-carInfoBox-Box-carYear-textBox"><%=item.getModel_year()%></p>
-								<span class="rv-carInfoBox-Box-carSize"><%=item.getCar_size()%></span>
-								<span class="rv-carInfoBox-Box-carType"><%=item.getCar_type()%></span>
+								<div class="carMiniInfoBox"><%=item.getModel_year()%></div>
+								<div class="carMiniInfoBox rv-carInfoBox-Box-carSize"><%=item.getCar_size()%></div>
+								<div class="carMiniInfoBox rv-carInfoBox-Box-carType"><%=item.getCar_type()%></div>
+								
 							</div>
 							<div class="rv-carInfoBox-Box-sumRentAndInsurancePrice">
 								<div class="rv-carInfoBox-Box-insuranceText">일반자차</div>
@@ -271,7 +277,7 @@
 								for (InsuranceInfoDTO insuranceinfo : insuranceinfoList) {
 							%>
 
-							<%=insuranceinfo.getInsurance_type()%><input type="checkbox"
+							<%=insuranceinfo.getInsurance_type()%><input type="radio"
 								value="<%=insuranceinfo.getInsurance_number()%>"
 								name="insurance_number">
 
@@ -343,7 +349,7 @@
 					</div>
 					<div class="rv-filterBox-Main-5">
 						필터 초기화
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 							fill="currentColor" class="bi bi-arrow-counterclockwise"
 							viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -356,7 +362,7 @@
 				</div>
 				<div class="rv-filterBox-RVBtn">
 
-					<button type="submit">예약하기</button>
+					<input type="submit" value="예약하기">
 
 				</div>
 			</form>

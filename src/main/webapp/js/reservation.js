@@ -14,25 +14,35 @@ rentModal.addEventListener("click", () => {
 	locationModal.style.display = "flex";
 	$(".location-modal-check-Btn").css("background-color", "#999999");
 	$('.location-modal-body').css("z-index", 301);
+	$('input[type="text"].rent-place').css("border","3px solid #0D6FFC")
+	if ($('.asanList, .cheonanList').hasClass('selected')) {
+        $(".location-modal-check-Btn").css("background-color", "#0D6FFC");
+    }
 	$('.asanList, .cheonanList').on('click', function() {
 		$('.asanList, .cheonanList').removeClass('selected');
 		$(this).addClass('selected');
 		var clickedValue = $(this).text();
-		$('.rent-place').text(clickedValue);
+		$('input[type="text"].rent-place').val(clickedValue);
 		$('.location-modal-check-Btn').css("background-color", "#0D6FFC");
 	});
 });
 
 returnModal.addEventListener("click", () => {
-	locationModal.style.display = "flex";
-	$(".location-modal2-check-Btn").css("background-color", "#999999");
-	$('.asanList2, .cheonanList2').on('click', function() {
-		$('.asanList2, .cheonanList2').removeClass('selected');
-		$(this).addClass('selected');
-		var clickedValue = $(this).text();
-		$(".return-place").text(clickedValue);
-		$(".location-modal2-check-Btn").css("background-color", "#0D6FFC");
-	});
+    locationModal.style.display = "flex";
+    $(".location-modal2-check-Btn").css("background-color", "#999999");
+    $('input[type="text"].return-place').css("border", "3px solid #0D6FFC");
+
+    if ($('.asanList2, .cheonanList2').hasClass('selected')) {
+        $(".location-modal2-check-Btn").css("background-color", "#0D6FFC");
+    }
+
+    $('.asanList2, .cheonanList2').on('click', function () {
+        $('.asanList2, .cheonanList2').removeClass('selected');
+        $(this).addClass('selected');
+        var clickedValue = $(this).text();
+        $('input[type="text"].return-place').val(clickedValue);
+        $(".location-modal2-check-Btn").css("background-color", "#0D6FFC");
+    });
 });
 
 modalCheckBtn.addEventListener("click", () => {
@@ -51,9 +61,6 @@ modalCheckBtn2.addEventListener("click", () => {
 const dateModal = document.querySelector('.date-modal');
 const btnDateOpenModal = document.querySelector('.rv-locationAndDateBox-date');
 
-btnDateOpenModal.addEventListener("click", () => {
-	dateModal.style.display = "flex";
-});
 
 const dateCloseBtn = document.querySelector(".date-modal-close-Btn");
 dateCloseBtn.addEventListener("click", e => {
@@ -97,7 +104,43 @@ locationModal.addEventListener("click", e => {
 	}
 });
 
+const refreshFilter = document.querySelector('.rv-filterBox-Main-5');
 
+refreshFilter.addEventListener("click", e => {
+	window.location.reload();
+});
+
+// 확인 파랗게~ $(".date-modal3-check-Btn").css("background-color", "#999999");
+
+const modalCheckBtn3 = document.querySelector('.date-modal3-check-Btn');
+
+modalCheckBtn3.addEventListener("click", () => {
+	var rentDateValue = $('.rentDateText').val();
+    var returnDateValue = $('.returnDateText').val();
+    if (rentDateValue && returnDateValue) {
+        dateModal.style.display = "none";
+		$(".rv-locationAndDateBox-date").css("border","3px solid #0D6FFC")
+}});
+
+btnDateOpenModal.addEventListener("click", () => {
+	$(".date-modal3-check-Btn").css("background-color", "#999999");
+	dateModal.style.display = "flex";
+	var rentDateValue = $('.rentDateText').val();
+    var returnDateValue = $('.returnDateText').val();
+	if (rentDateValue && returnDateValue) {
+	$(".date-modal3-check-Btn").css("background-color", "#0D6FFC");
+}});
+
+$('.rentDateText, .returnDateText').on('input', function () {
+    var rentDateValue = $('.rentDateText').val();
+    var returnDateValue = $('.returnDateText').val();
+
+    if (rentDateValue && returnDateValue) {
+        $(".date-modal3-check-Btn").css("background-color", "#0D6FFC");
+    } else {
+        $(".date-modal3-check-Btn").css("background-color", "#999999");
+    }
+});
 
 
 
