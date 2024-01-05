@@ -26,6 +26,19 @@
 	String option1 = request.getParameter("option1");
 	String option2 = request.getParameter("option2");
 	String accident_history = request.getParameter("accident_history");
+	
+	if (car_number == null || car_name == null || car_size == null || car_type == null ||
+		    passenger_count == null || vehicle_rating == null || company == null || color == null ||
+		    model_year == null || management_status == null || option1 == null || option2 == null ||
+		    accident_history == null) {
+		    %>
+		    <script>
+		        alert('차량 정보를 모두 입력해주세요.');
+		        history.back();
+		    </script>
+		    <%
+		} else {
+	
 	int intPassenger_count = Integer.parseInt(passenger_count);
 	int intVehicle_rating = Integer.parseInt(vehicle_rating);
 	int intModel_year = Integer.parseInt(model_year);
@@ -51,6 +64,7 @@
 			location.href = 'carInfo_check.jsp';
 		</script>
 	<%
+		}
 		}
 	%>
 </body>

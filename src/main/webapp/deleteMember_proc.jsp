@@ -28,8 +28,7 @@
 				} else {
 			%>
 				<script>
-					alert('삭제 실패');
-					//location.href = 'addPerson.jsp';
+					alert('회원번호를 다시 한번 확인해주세요');
 					history.back();
 				</script>
 			<%

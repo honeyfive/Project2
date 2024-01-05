@@ -16,7 +16,7 @@
 	String rental_place = request.getParameter("rental_place"); 
 	String return_place = request.getParameter("return_place"); 
 	String rental_date = request.getParameter("rental_date"); //
-	String return_date = request.getParameter("return_date"); //
+	String return_date = request.getParameter("return_date"); //여기밑
 	
 	rental_date = rental_date.replace('T', ' ');
 	return_date = return_date.replace('T', ' ');
@@ -25,6 +25,17 @@
 	String car_number = request.getParameter("car_number"); //
 	String membership_number = request.getParameter("membership_number"); //
 	String payment_number = request.getParameter("payment_number"); //지울예정
+	
+	if (insurance_number == null || car_number == null || membership_number == null
+		|| rental_place == null || return_place== null || rental_date==null || return_date==null) {
+        %>
+        <script>
+            alert('필수 정보를 모두 입력해주세요.');
+            history.back();
+        </script>
+        <%
+    } else {
+	
 	int intInsurance_number = Integer.parseInt(insurance_number);
 	int intMembership_number = Integer.parseInt(membership_number);
 	int a = 1;
@@ -38,9 +49,10 @@
 	
 	//예약번호 !!!
 	//int reservation_number   = 
+	System.out.println(Integer.toString(result));
+	//System.out.println(result + rental_place + return_place + " " + rental_date + " " + return_date + " " + intInsurance_number + " " + car_number + " " + intMembership_number);
 	
-	System.out.println(result + rental_place + return_place + " " + rental_date + " " + return_date + " " + intInsurance_number + " " + car_number + " " + intMembership_number);
-	if(result > 0){
+	if(insurance_number != null){
 	%>
 		<script>
 			alert('예약 성공');
@@ -55,6 +67,7 @@
 		</script>
 	<%
 		}
+    }
 	%>
 </body>
 </html>

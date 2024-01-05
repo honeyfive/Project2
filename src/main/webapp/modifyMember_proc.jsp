@@ -34,7 +34,7 @@
 				} else {
 			%>
 				<script>
-					alert('수정 실패');
+					alert('회원번호를 다시 한번 확인해주세요');
 					history.back();
 				</script>
 			<%

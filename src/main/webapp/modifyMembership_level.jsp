@@ -37,6 +37,11 @@ table {
 	border-collapse: separate;
 }
 
+h1 {
+	color: #0D6FFC;
+	margin-top: 15px;
+}
+
 th, td {
 	padding: 8px 4px;
 }
@@ -77,7 +82,7 @@ tr:last-child td:last-child {
 }
 
 #input_membership_number {
-margin-top: 20px;
+margin-bottom: 20px;
 }
 
 h1 {
