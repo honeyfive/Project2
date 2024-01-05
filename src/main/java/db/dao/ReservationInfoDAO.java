@@ -23,7 +23,7 @@ public class ReservationInfoDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-		String sql = " select * from reservation_information";
+		String sql = " select * from reservation_information order by reservation_number";
 
 		List<ReservationInfoDTO> reservationInfoList = null;
 
