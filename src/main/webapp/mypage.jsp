@@ -308,7 +308,7 @@
 
 	<!-- 푸터 -->
 	<%@ include file="footer.jsp"%>
-
+	<script src="./js/login.js"></script>
 	<script src="./js/mypage.js"></script>
 	<script type="text/javascript">
 	 window.history.forward();
