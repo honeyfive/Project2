@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/mypage.css">
+</head> 
+<body>
+    <!--헤더-->
+    <div class="header">
+
+        <!-- 헤더 네비게이션-->
+        <div class="header-nav">
+
+            <!-- 헤더 로고-->
+            <div class="header-nav-img">
+                <a href=""> <!-- 이미지 누르면 메인 화면으로 이동하도록 .. 나중에 링크 추가하기-->
+                    <img id="hugo-logo" src="../images/휴카로고_예비1.png" alt="hugo logo">
+                </a>
+            </div>
+
+            <!-- 네비게이션 버튼-->
+            <div class="header-nav-btn">
+                <a href=""> <!-- 예약 페이지 연결-->
+                    <div id="resevation-pg" class="hearder-nav-btn-item">예약</div>
+                </a>
+                <a href=""> <!-- 결제 페이지 연결-->
+                    <div id="payment-pg" class="hearder-nav-btn-item">결제</div>
+                </a>
+                <a href=""> <!-- 마이 페이지 연결-->
+                    <div id="my-pg" class="hearder-nav-btn-item">마이페이지</div>
+                </a>
+                <a href=""> <!-- 관리자 전용 페이지 연결-->
+                    <div id="management-pg" class="hearder-nav-btn-item">관리자전용</div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- 헤더 로그인 쪽-->
+        <div class="header-nav-login">
+
+            <!-- 상담 연결-->
+            <div class="header-nav-login-call">
+                <i class="fa-solid fa-phone"></i>
+                <div>친절상담</div>
+                <div>1544-3333</div>
+            </div>
+            <div class="header-nav-login-slash"> | </div>
+            <!-- 로그인 버튼-->
+            <a href=""> <!-- 로그인 / 회원가입 페이지 연결하기-->
+                <div class="header-nav-login-btn">
+                    <i class="fa-regular fa-circle-user"></i>
+                    <div id="login">로그인</div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- 마이페이지 메인 -->
+    <div class="mypage_container">
+        <div class="my_info_box">
+            <div class="my_info">
+                <div class="my_name"> 000님</div>
+                <div class="my_email"> 000@gmail.com</div>
+            </div>
+            <div class="member_rent_use">
+                <div class="memeber_rating_box">
+                    <i class="fa-regular fa-star-half-stroke"></i>
+                    <span class="member_rent_use_text">내 등급</span>
+                    <!-- 회원등급 보여주는 곳 -->
+                </div>
+                <div class="use_count_box">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span class="member_rent_use_text">이용 횟수</span>
+                    <!-- 회원 렌트 이용횟수 보여주는 곳 -->
+                </div>
+                <div class="overdue_history_box">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span class="member_rent_use_text">연체 횟수</span>
+                    <!-- 회원 연체 횟수 보여주는 곳 -->
+                </div>
+            </div>
+            <div class="member_level"></div>
+            
+        </div>
+        <div class="rent_progress_box">
+            <!-- 진행중인 렌트내역 -->
+            <div class="rent_progress"></div> 
+            
+            <!-- 진행중인 렌트내역이 없을때 -->
+            <div class="not_rent_progress">
+                <i class="fa-regular fa-face-flushed"></i>
+                <p class="not_rent_progress_ment">진행중인 렌트 내역이 없습니다</p>
+                <p class="not_rent_progress_ment" style="color: #0D6FFC; font-weight: bold;">지금 고객님이 원하는 렌트카를 빌리고 신나게 떠나볼까요?</p>
+                <button class="go_to_reservation">렌트하러 가기</button>
+            </div>
+        </div>
+        <div class="member_payment_type_proc_box">
+            <div class="payment_proc">
+                <div class="payment_proc_text">결제수단 수정</div> 
+                <div class="payment_proc_option">
+                    <select class="payment_option">
+                        <option name="실시간 계좌이체">실시간 계좌이체</option>
+                        <option name="카드 결제">카드 결제</option>
+                        <option name="휴대폰 결제">휴대폰 결제</option>
+                    </select>
+                </div>
+                
+            </div>
+        </div>
+        <div class="my_info_proc_box">
+            <div class="my_info_proc">
+                <p class="my_info_proc_text"> 내 정보 관리</p>
+                <i class="fa-solid fa-angle-right"></i>
+                <!-- 개인정보 수정 페이지 -->
+            </div>
+        </div>
+        <div class="customer_service_box">
+            <div class="customer_service">
+                <p class="customer_service_center">고객 센터</p>
+                <p class="customer_service_info">매일(공휴일 포함) 오전 9시 ~ 오후 6시 </p>
+                <p class="customer_service_info">점심시간 오후 12시30분 ~ 1시30분 (1시간)</p>
+            </div>
+            <div class="go_to_service_center"><i class="fa-solid fa-angle-right"></i></div>
+            <!-- 고객센터로 가는 경로 -->
+        </div>
+
+    </div>
+
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer_container">
+            <div class="box1">
+                <div class="b1">
+                    <div class="b1-1">
+                        <div class="p1box">
+                                <p class="b1_font">
+                                    휴카 서비스
+                                </p>
+                                <div class="p1_min">
+                                    <a class="a1_font">단기렌트</a>
+                                    <a class="a1_font">해외렌트</a>
+                                    <a class="a1_font">월렌트</a>
+                                    <a class="a1_font">휴카 회원 혜택</a>
+                                    <a class="a1_font">자주 묻는 질문</a>
+                                </div>
+                        </div>
+                        <div class="p2box">
+                                <p class="b1_font">
+                                    국내인기 지역
+                                </p>
+                                <div class="p2-1_min">
+                                    <a class="a1_font">제주 렌트카</a>
+                                    <a class="a1_font">부산 렌트카</a>
+                                    <a class="a1_font">여수 렌트카</a>
+                                    <a class="a1_font">경주 렌트카</a>
+                                    <a class="a1_font">서울 렌트카</a>
+                                    <a class="a1_font">강남구 월렌트</a>
+                                </div>
+                        </div>
+                        <div class="p3box">
+                                <p class="b1_font">
+                                    해외 인기 지역
+                                </p>
+                                <div class="p2-2_min">
+                                    <a class="a1_font">오키나와 렌트카</a>
+                                    <a class="a1_font">괌 렌트카</a>
+                                    <a class="a1_font">후쿠오카 렌트카</a>
+                                    <a class="a1_font">사이판 렌트카</a>
+                                    <a class="a1_font">삿포로 렌트카</a>
+                                    <a class="a1_font">해외 편도 렌트카</a>
+                                </div>
+                        </div>
+                        <div class="p4box">
+                                <p class="b1_font">
+                                    회사 정보
+                                </p>
+                                <div class="p3-1_min">
+                                    <a class="a1_font">2조 소개</a>
+                                    <a class="a1_font">휴카 서비스</a>
+                                    <a class="a1_font">휴카 파트너스</a>
+                                    <a class="a1_font">2조 채용</a>
+                                    <a class="a1_font">입점 문의</a>
+                                </div>
+                        </div>
+                        <div class="p5box">
+                                <p class="b1_font">
+                                    통합 약관
+                                </p>
+                                <div class="p3-2_min">
+                                    <a class="a1_font">개인정보 처리방침</a>
+                                    <a class="a1_font">이용약관</a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="b1-2">
+                        <div>
+                            <div class="iconbox">
+                                <div class="insta">
+                                    <span><i class="fa-brands fa-instagram fa-2x"></i></span>
+                                </div>
+                                <div class="facebook">
+                                    <span><i class="fa-brands fa-facebook fa-2x"></i></span>
+                                </div>
+                                <div class="blog">
+                                    <span><i class="fa-brands fa-blogger fa-2x"></i></span>
+                                </div>
+                                <div class="youtube">
+                                    <span><i class="fa-brands fa-youtube fa-2x"></i></span>
+                                </div>
+                            </div>
+                            <div class="callcenterbox">
+                                <p class="callcenter">고객센터</p>
+                                <p class="callcenter_num">1544-5344</p>
+                                <div class="callcenter_info">
+                                    <p class="call_info">매일(공휴일 포함) 오전 9시 ~ 오후 6시</p>
+                                    <p class="call_info">점심시간 오후 12시 30분 ~ 1시 30분(1시간)</p>
+                                    <p class="call_info">국내문의 : feedback@teamo2.kr</p>
+                                    <p class="call_info">해외문의 : global@teamo2.kr</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 라인 -->
+        <div class="line"></div>
+
+            
+            <div class="box2">
+                <div class="b2">
+                    <div class="b2-1">
+                        <img>
+                        <div class="company_info">
+                            <p class="a2_font">주식회사 팀오투 | 대표자 : 정용진 | 사업자등록번호 : 286-88-00238</p>
+                            <p class="a2_font">주소 : 서울특별시 강남구 테헤란로2길 21 9층, 10층 (역삼동, 타워 300빌딩)</p>
+                            <p class="a2_font">통신판매업신고: 제2019-서울강남-04914호 | 개인정보보호책임자: 오승헌</p>
+                            <p class="a2_font">Copyright TeamO2 Co., Ltd. All rights reserved.</p>
+                        </div>
+                        <p class="p1_font">주식회사 팀오투는 통신판매중개자로서 카모아의 
+                            거래당사자가 아니며 상품정보, 거래조건 및 거래에 관련한 의무와 책임은 각 판매자에게 있습니다.</p>
+                    </div>
+                    <div class="b2-2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+</body>
+</html>

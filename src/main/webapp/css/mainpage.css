@@ -1,0 +1,199 @@
+*{
+    box-sizing: border-box;
+}
+
+a:link { 
+	color: black; text-decoration: none;
+} 
+
+a:visited { 
+	color: black; text-decoration: none;
+} 
+
+.recommend_car_image_box, .cheap_car_image_box, .old_car_image_box, .popular_car_image_box{
+    width: 100%;
+    height: 50%;
+}
+
+.recommend_car_image, .cheap_car_image, .old_car_image, .popular_car_image{
+    width: 100%;
+    height: 160px;
+    padding: 20px;
+}
+
+/* 차량 이미지 높이 너비 */
+.main_page_picture{
+    width: 100%;
+    object-fit: contain;
+}
+
+
+/* 차량정보 글박스 높이조정 */
+.recommend_car_info,.cheap_car_info,.old_car_info,.popular_car_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+
+
+
+/* 조건별 차 고르는 메뉴 박스 */
+.mainpage_menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 구분선 */
+.dividing_line{
+    border-top: 1px solid lightgray;
+    width: 80%;
+}
+
+/* 추천차량 글꼴 */
+.recommend_car_title_text{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* 추천차량 4개 박스를 감싸는 박스 */
+.show_recommend_car_box{
+    display: flex;
+    
+}
+
+/* 추천 차량 4개 박스 */
+.show_recommend_car{
+	margin: 20px;
+    width: 275px;
+    height: 350px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer; 
+    transition: all 0.5 ease;
+}
+
+.text_align{
+	align-items: center;
+}
+
+
+
+
+/* 가성비 차량 글꼴 */
+.cheap_car_title{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* 가성비 차량 4개 박스를 감싸는 박스 */
+.show_cheap_car_box{
+    display: flex;
+}
+
+/* 가성비 차량 4개 박스 */
+.show_cheap_car{
+    margin: 20px;
+    width: 275px;
+    height: 350px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5 ease;
+}
+
+
+/* Y2K 차량 글꼴 */
+.old_car_title{
+    font-size: 30px;
+    margin: 30px;
+    font-weight: bold;
+    color: #0D6FFC;
+}
+
+/* Y2K 차량 4개 박스를 감싸는 박스 */
+.show_old_car_box{
+    display: flex;
+}
+
+/* Y2K 차량 4개 박스 */
+.show_old_car{
+    margin: 20px;
+    width: 275px;
+    height: 350px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5 ease;
+}
+
+
+/* 인기 차량 글꼴 */
+.popular_car_title{
+    font-size: 30px;
+    margin: 30px;
+    color: #0D6FFC;
+    font-weight: bold;
+}
+
+/* 인기 차량 4개를 감싸는 박스 */
+.show_popular_car_box{
+    display: flex;
+}
+
+/* 인기 차량 4개 박스 */
+.show_popular_car{
+    margin: 20px;
+    width: 275px;
+    height: 350px;
+    border-radius: 3%;
+    border: 1px solid rgb(158, 156, 156);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5 ease;
+}
+
+.show_recommend_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_cheap_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_old_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}
+
+.show_popular_car:hover{
+    border: 5px solid #0D6FFC;
+    transform: scale(1.1);
+}

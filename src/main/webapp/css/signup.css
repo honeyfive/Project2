@@ -1,0 +1,222 @@
+*{
+    box-sizing: border-box;
+}
+.content{
+    width: 100%;
+    height: 1500px;
+    background-color: #F5F5F5;
+}
+
+.content-main{
+    width: 60%;
+    height: 1400px;
+    background-color: white;
+    margin: auto;
+    position:relative;
+    top: 100px;
+}
+
+/* 회원가입 메인 */
+.signin-box{
+    width: 80%;
+    height: 1000px;
+    margin: auto;
+}
+
+.signin-title{
+    width: 200px;
+    height: 200px;
+    font-size: 40px;
+    font-weight: 700;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin{
+    width: 100%;
+    height: 1000px;
+    /* border: 1px solid black; */
+}
+
+.signin-input{
+    width: 100%;
+    height: 100px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.signin-id{
+    width: 500px;
+    height: 30px;
+    margin: auto;
+}
+
+.input-box{
+    width: 500px;
+    height: 40px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-id{
+    width: 430px;
+    height: 40px;
+    margin: auto;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+.input-new{
+    width: 500px;
+    height: 40px;
+    margin: auto;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+/*확인 버튼*/
+.id-chd{
+    width: 60px;
+    height: 40px;
+    background-color: #0D6FFC;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+} 
+
+/* 비밀번호 표시 눈깔 제작 중*/
+/* .input-pw{
+    width: 470px;
+}
+
+.fa-eye{
+    color: lightgray;
+    cursor: pointer;
+} */
+
+.caution{
+    color: #0D6FFC;
+    font-size: 12px;
+    font-weight: lighter;
+    margin-top: 13px;
+}
+
+.hide{
+    display: none;
+}
+
+#pw-check{
+    /* display: none; */
+}
+
+/*생년월일*/
+.signin-birth{
+    width: 500px;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.birth-box{
+    width: 150px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+/*성별*/
+.signin-gender{
+    display: flex;
+    justify-content: space-around;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+/*운전면허번호*/
+.signin-li{
+    width: 430px;
+    height: 40px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signin-li-form{
+    width: 430px;
+    height: 40px;
+    display: flex;
+}
+
+.input-li{
+    width: 98px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+.input-li-slash{
+    width: 10px;
+    height: 40px;
+}
+
+/*전화번호*/
+.signin-tel{
+    width: 430px;
+    height: 40px;
+    margin: auto;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-tel{
+    width: 120px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+/*동의문구*/
+.checkbox{
+    width: 600px;
+    font-size: 12px;
+    font-weight: normal;
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.plz{
+    width: 500px;
+    height: 10px;
+    margin: auto;
+    text-align: center;
+}
+
+/*회원가입버튼*/
+.signin-btn{
+    display: flex;
+    justify-self: center;
+    margin-top: 10px;
+}
+
+.signin-submit:disabled{
+    background-color: #7a7e83;
+    border: none;
+    color: white;
+    cursor: not-allowed;
+}
+
+.signin-submit:not(:disabled){
+    background-color: #0D6FFC;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

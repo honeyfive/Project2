@@ -1,0 +1,280 @@
+.my_Info_main_container{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: #F5F5F5;
+    padding-bottom: 50px;
+}
+
+.my_info_box{
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.my_info_text{
+    padding: 40px;
+}
+
+.my_info_main_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+}
+
+.my_id_email_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+.member_id_big{
+    margin-bottom: 0;
+    font-size: 25px;
+}
+
+.member_email_big{
+    color: gray;
+    margin: 0;
+    font-size: 20px;
+}
+
+.my_email_box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.go_to_member_email{
+    display: flex;
+    align-items: center;
+}
+
+.member_email{
+    margin-right: 10px;
+}
+
+.fa-angle-right{
+    color: gray;
+}
+
+.my_phonenum{
+    width: 50%;
+    height: 73px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.my_id{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.go_to_member_id{
+    display: flex;
+    align-items: center;
+}
+
+.member_id{
+    margin-right: 10px;
+}
+
+.my_birthday{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.my_gender{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.account_linkage{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.account_linkage_text{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+.kakaotalk_box, .apple_box, .naver_box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fa-apple, .fa-comment-sms, .fa-n{
+    width: 16px;
+    height: 16px;
+    color: grey;
+}
+
+.go_to_apple_linkage, .go_to_naver_linkage, .go_to_kakao_linkage{
+    width: 83px;
+    height: 22px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.status_text.connected{
+    font-size: 15px;
+    font-weight: bold;
+    border: 0px;
+}
+
+.my_email_box:hover, .my_phonenum:hover, .my_id:hover, .my_birthday:hover, .my_gender:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.go_to_apple_linkage:hover, .go_to_naver_linkage:hover, .go_to_kakao_linkage:hover{
+    background-color: white;
+}
+
+.logout_box{
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: right;
+    width: 50%;
+    margin-top: 2.5rem !important;
+    margin: 0 auto;
+}
+
+.logout_slash{
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+}
+
+#go_to_logout, .logout_slash, .member_out{
+    font-size: 13px;
+    color: gray;
+}
+
+#go_to_logout, .member_out{
+    cursor: pointer;
+    border: none;
+}
+
+.member_email_modal, .member_tel_modal, .member_birth_modal, .member_id_modal{
+    position: fixed; /* Stay in place */
+    z-index: 200; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+
+.email_modal_body, .tel_modal_body, .birth_modal_body, .id_modal_body{
+    transform: translateY(30%);
+    flex-direction: column;
+    justify-content: center;
+	align-items: start;
+    width: 50%;
+    height: 400px;
+    padding: 30px 30px;
+    margin: 0 auto;
+    border: 1px solid #777;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
+.email_title, .tel_title, .nickname_title, .birth_title, .id_title{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.email_modal_main, .tel_modal_main, .birth_modal_main, .id_modal_main{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(60%);
+}
+
+.close_modal_btn{
+    font-weight: bold;
+    color: #777;
+    font-size:25px;
+    cursor: pointer;
+}
+
+.input_proc_email, .input_proc_tel, .input_proc_birth, .input_proc_id{ 
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+
+.proc_btn{
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.error_text{
+    font-size: 13px;
+    color: red;
+    margin-bottom: 15px;
+}
+
+.modify_member_email, .modify_member_tel, .modify_member_id, .modify_member_birth{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
